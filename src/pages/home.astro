@@ -1,0 +1,493 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import BigHero from "../components/ui/big-hero.astro";
+
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout
+  title="Mediabros - Rediseño Estratégico"
+  description="Genera leads de calidad para tu empresa con una estrategia de marketing digital probada. Curso online gratuito en 45 minutos."
+>
+  <!-- ----- HERO ----- -->
+  <BigHero />
+
+  <!-- --------------- QUALIFIED LEADS SECTION --------------- -->
+  <section
+    id="qualified-leads"
+    class="py-16 lg:py-24 bg-brand-fondo relative overflow-hidden"
+  >
+    <m-container class="relative z-10">
+      <m-row
+        class="flex-col lg:flex-row gap-12 lg:gap-8 items-center lg:items-stretch"
+      >
+        <!-- Left Column: Content -->
+        <m-col
+          class="flex-none w-full lg:w-1/2 lg:pr-8 xl:pr-16 flex flex-col justify-center"
+        >
+          <!-- Badge -->
+          <div class="mb-6 lg:mb-8">
+            <span
+              class="inline-block border border-brand-dark/20 text-brand-dark/80 rounded-full px-5 py-1.5 text-[14px] md:text-[15px] tracking-wide bg-transparent"
+            >
+              Nuestra agencia de marketing digital
+            </span>
+          </div>
+
+          <!-- Heading -->
+          <h2
+            class="text-4xl md:text-5xl xl:text-[52px] font-display font-semibold text-brand-dark leading-[1.15] tracking-tight mb-8"
+          >
+            Recibe leads calificados<br class="hidden md:block" /> de forma constante
+          </h2>
+
+          <!-- CTA Button -->
+          <div class="mb-12 lg:mb-16">
+            <a
+              href="#"
+              class="inline-flex items-center justify-center gap-2 bg-brand-celeste hover:bg-brand-celeste-hover text-white font-medium text-base px-8 py-3.5 rounded-full transition-colors shadow-blue"
+            >
+              Solicitar diagnóstico
+              <m-icon class="material-symbols-outlined text-[20px]"
+                >arrow_forward</m-icon
+              >
+            </a>
+          </div>
+
+          <!-- Features Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10">
+            <!-- Feature 1 -->
+            <div>
+              <div
+                class="w-8 h-8 rounded-full bg-brand-turquesa flex items-center justify-center mb-4"
+              >
+                <m-icon
+                  class="material-symbols-outlined text-brand-celeste text-[18px] font-black"
+                  >check</m-icon
+                >
+              </div>
+              <h3
+                class="text-[17px] md:text-lg font-display font-semibold text-brand-dark mb-2 tracking-tight"
+              >
+                Nuestras certificaciones
+              </h3>
+              <p
+                class="text-brand-gris text-[14px] md:text-[15px] leading-relaxed"
+              >
+                Somos partners certificados en las principales plataformas de
+                publicidad digital, cumpliendo estándares de calidad y buenas
+                prácticas.
+              </p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div>
+              <div
+                class="w-8 h-8 rounded-full bg-brand-turquesa flex items-center justify-center mb-4"
+              >
+                <m-icon
+                  class="material-symbols-outlined text-brand-celeste text-[18px] font-black"
+                  >check</m-icon
+                >
+              </div>
+              <h3
+                class="text-[17px] md:text-lg font-display font-semibold text-brand-dark mb-2 tracking-tight"
+              >
+                Tecnología propia
+              </h3>
+              <p
+                class="text-brand-gris text-[14px] md:text-[15px] leading-relaxed"
+              >
+                Usamos automatización y herramientas internas para optimizar
+                campañas más rápido y reducir el desperdicio de inversión.
+              </p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div>
+              <div
+                class="w-8 h-8 rounded-full bg-brand-turquesa flex items-center justify-center mb-4"
+              >
+                <m-icon
+                  class="material-symbols-outlined text-brand-celeste text-[18px] font-black"
+                  >check</m-icon
+                >
+              </div>
+              <h3
+                class="text-[17px] md:text-lg font-display font-semibold text-brand-dark mb-2 tracking-tight"
+              >
+                Tiempos de respuesta
+              </h3>
+              <p
+                class="text-brand-gris text-[14px] md:text-[15px] leading-relaxed"
+              >
+                Te respondemos con SLA definidos según el tipo de
+                implementación. Menos espera, más velocidad para ejecutar
+                mejoras.
+              </p>
+            </div>
+
+            <!-- Feature 4 -->
+            <div>
+              <div
+                class="w-8 h-8 rounded-full bg-brand-turquesa flex items-center justify-center mb-4"
+              >
+                <m-icon
+                  class="material-symbols-outlined text-brand-celeste text-[18px] font-black"
+                  >check</m-icon
+                >
+              </div>
+              <h3
+                class="text-[17px] md:text-lg font-display font-semibold text-brand-dark mb-2 tracking-tight"
+              >
+                Equipo de trabajo
+              </h3>
+              <p
+                class="text-brand-gris text-[14px] md:text-[15px] leading-relaxed"
+              >
+                Cada cuenta trabaja con un equipo mínimo de 3 especialistas,
+                para asegurar continuidad, análisis y ejecución constante.
+              </p>
+            </div>
+          </div>
+        </m-col>
+
+        <!-- Right Column: Image with Bleeding Background -->
+        <m-col
+          class="flex-none w-full lg:w-1/2 relative mt-12 lg:mt-0 flex items-center lg:items-end justify-center lg:justify-end"
+        >
+          <!-- Bleeding Dark Background (Breaks out of the grid to the right) -->
+          <div
+            class="absolute top-[10%] bottom-[-15%] lg:bottom-[-20%] left-[-5%] lg:left-[10%] w-[150vw] bg-brand-dark rounded-t-[32px] lg:rounded-t-none lg:rounded-tl-[48px] z-0"
+          >
+          </div>
+
+          <!-- Foreground Image Wrapper -->
+          <div
+            class="relative z-10 w-full max-w-[340px] md:max-w-[400px] lg:max-w-[420px] mx-auto lg:mr-0 pt-8 lg:pt-0 pb-12 lg:pb-0"
+          >
+            <img
+              src="https://placehold.co/420x800/e7e9ef/1f213d?text=App+Mockup\n(Phone+in+Hand)"
+              alt="Aplicación móvil en mano"
+              class="w-full h-auto drop-shadow-2xl rounded-[36px] border-8 border-brand-dark"
+            />
+          </div>
+        </m-col>
+      </m-row>
+    </m-container>
+  </section>
+
+  <!-- --------------- SERVICES MULTICHANNEL --------------- -->
+  <section id="services-multichannel" class="py-20 lg:py-28 bg-brand-fondo">
+    <m-container>
+      code Code
+      <!-- Section Header -->
+      <m-col class="mb-12 md:mb-16">
+        <div class="mb-6">
+          <span
+            class="inline-block border border-brand-dark/20 text-brand-dark/80 rounded-full px-5 py-1.5 text-sm md:text-[15px] tracking-wide"
+          >
+            Servicios
+          </span>
+        </div>
+        <h2
+          class="text-4xl md:text-5xl lg:text-[56px] font-display font-semibold text-brand-dark leading-[1.1] tracking-tight max-w-2xl"
+        >
+          Campañas multicanal<br /> que generan leads
+        </h2>
+      </m-col>
+
+      <!-- Services Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Card 1: Google Ads -->
+        <div
+          class="group flex flex-col bg-white rounded-[24px] p-6 lg:p-8 shadow-card hover:shadow-card-hover hover:bg-brand-dark hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+        >
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-14 h-14 shrink-0 rounded-full bg-brand-fondo group-hover:bg-white/10 flex items-center justify-center transition-colors"
+            >
+              <img
+                src="ico-google-ads.png"
+                alt="Google Ads Icon"
+                class="w-8 h-8 object-contain"
+              />
+            </div>
+            <h3
+              class="text-[22px] font-display font-semibold text-brand-dark group-hover:text-white transition-colors tracking-tight"
+            >
+              Google Ads
+            </h3>
+          </div>
+          <p
+            class="text-brand-gris text-[15px] leading-relaxed group-hover:text-white/80 transition-colors flex-1 mb-8"
+          >
+            Administración profesional de campañas en Search, Display,
+            Remarketing, Shopping y Video. ¡Optimizamos tus conversiones!
+          </p>
+          <div
+            class="mt-auto self-end w-8 h-8 rounded-full bg-brand-fondo group-hover:bg-white/10 flex items-center justify-center transition-colors"
+          >
+            <m-icon
+              class="material-symbols-outlined text-[18px] text-brand-gris group-hover:text-white transition-colors"
+              >arrow_forward</m-icon
+            >
+          </div>
+        </div>
+
+        <!-- Card 2: Meta Ads -->
+        <div
+          class="group flex flex-col bg-white rounded-[24px] p-6 lg:p-8 shadow-card hover:shadow-card-hover hover:bg-brand-dark hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+        >
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-14 h-14 shrink-0 rounded-full bg-brand-fondo group-hover:bg-white/10 flex items-center justify-center transition-colors"
+            >
+              <img
+                src="ico-meta.png"
+                alt="Meta Ads Icon"
+                class="w-8 h-8 object-contain"
+              />
+            </div>
+            <h3
+              class="text-[22px] font-display font-semibold text-brand-dark group-hover:text-white transition-colors tracking-tight"
+            >
+              Meta Ads
+            </h3>
+          </div>
+          <p
+            class="text-brand-gris text-[15px] leading-relaxed group-hover:text-white/80 transition-colors flex-1 mb-8"
+          >
+            Creamos, configuramos y administramos campañas en Facebook Ads e
+            Instagram Ads de forma profesional.
+          </p>
+          <div
+            class="mt-auto self-end w-8 h-8 rounded-full bg-brand-fondo group-hover:bg-white/10 flex items-center justify-center transition-colors"
+          >
+            <m-icon
+              class="material-symbols-outlined text-[18px] text-brand-gris group-hover:text-white transition-colors"
+              >arrow_forward</m-icon
+            >
+          </div>
+        </div>
+
+        <!-- Card 3: LinkedIn Ads -->
+        <div
+          class="group flex flex-col bg-white rounded-[24px] p-6 lg:p-8 shadow-card hover:shadow-card-hover hover:bg-brand-dark hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+        >
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-14 h-14 shrink-0 rounded-full bg-brand-fondo group-hover:bg-white/10 flex items-center justify-center transition-colors"
+            >
+              <img
+                src="ico-linkedin.png"
+                alt="LinkedIn Ads Icon"
+                class="w-8 h-8 object-contain"
+              />
+            </div>
+            <h3
+              class="text-[22px] font-display font-semibold text-brand-dark group-hover:text-white transition-colors tracking-tight"
+            >
+              LinkedIn Ads
+            </h3>
+          </div>
+          <p
+            class="text-brand-gris text-[15px] leading-relaxed group-hover:text-white/80 transition-colors flex-1 mb-8"
+          >
+            Campañas patrocinadas en la red de profesionales mas grande del
+            mundo. Segmentaciones especificas y enfocadas en leads.
+          </p>
+          <div
+            class="mt-auto self-end w-8 h-8 rounded-full bg-brand-fondo group-hover:bg-white/10 flex items-center justify-center transition-colors"
+          >
+            <m-icon
+              class="material-symbols-outlined text-[18px] text-brand-gris group-hover:text-white transition-colors"
+              >arrow_forward</m-icon
+            >
+          </div>
+        </div>
+
+        <!-- Card 4: Tiktok Ads (Simulating active/hovered state naturally via Tailwind group mechanics) -->
+        <div
+          class="group flex flex-col bg-white rounded-[24px] p-6 lg:p-8 shadow-card hover:shadow-card-hover hover:bg-brand-dark hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+        >
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-14 h-14 shrink-0 rounded-full bg-brand-fondo group-hover:bg-white/10 flex items-center justify-center transition-colors"
+            >
+              <img
+                src="ico-tiktok.png"
+                alt="Tiktok Ads Icon"
+                class="w-8 h-8 object-contain"
+              />
+            </div>
+            <h3
+              class="text-[22px] font-display font-semibold text-brand-dark group-hover:text-white transition-colors tracking-tight"
+            >
+              Tiktok Ads
+            </h3>
+          </div>
+          <p
+            class="text-brand-gris text-[15px] leading-relaxed group-hover:text-white/80 transition-colors flex-1 mb-8"
+          >
+            Gestión de campañas en Tiktok Ads: configuración, segmentación y
+            optimización para atraer tráfico de calidad y aumentar conversiones.
+          </p>
+          <div
+            class="mt-auto self-end w-8 h-8 rounded-full bg-brand-fondo group-hover:bg-white/10 flex items-center justify-center transition-colors"
+          >
+            <m-icon
+              class="material-symbols-outlined text-[18px] text-brand-gris group-hover:text-white transition-colors"
+              >arrow_forward</m-icon
+            >
+          </div>
+        </div>
+
+        <!-- Card 5: Content SEO -->
+        <div
+          class="group flex flex-col bg-white rounded-[24px] p-6 lg:p-8 shadow-card hover:shadow-card-hover hover:bg-brand-dark hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+        >
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-14 h-14 shrink-0 rounded-full bg-brand-fondo group-hover:bg-white/10 flex items-center justify-center transition-colors"
+            >
+              <img
+                src="ico-seo-content.png"
+                alt="Content SEO Icon"
+                class="w-8 h-8 object-contain"
+              />
+            </div>
+            <h3
+              class="text-[22px] font-display font-semibold text-brand-dark group-hover:text-white transition-colors tracking-tight"
+            >
+              Content SEO
+            </h3>
+          </div>
+          <p
+            class="text-brand-gris text-[15px] leading-relaxed group-hover:text-white/80 transition-colors flex-1 mb-8"
+          >
+            Redacción de contenido optimizado para SEO: relevante, estructurado
+            y enfocado en palabras clave para mejorar el posicionamiento en
+            buscadores.
+          </p>
+          <div
+            class="mt-auto self-end w-8 h-8 rounded-full bg-brand-fondo group-hover:bg-white/10 flex items-center justify-center transition-colors"
+          >
+            <m-icon
+              class="material-symbols-outlined text-[18px] text-brand-gris group-hover:text-white transition-colors"
+              >arrow_forward</m-icon
+            >
+          </div>
+        </div>
+
+        <!-- Card 6: Technical SEO -->
+        <div
+          class="group flex flex-col bg-white rounded-[24px] p-6 lg:p-8 shadow-card hover:shadow-card-hover hover:bg-brand-dark hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+        >
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-14 h-14 shrink-0 rounded-full bg-brand-fondo group-hover:bg-white/10 flex items-center justify-center transition-colors"
+            >
+              <img
+                src="ico-seo-technical.png"
+                alt="Technical SEO Icon"
+                class="w-8 h-8 object-contain"
+              />
+            </div>
+            <h3
+              class="text-[22px] font-display font-semibold text-brand-dark group-hover:text-white transition-colors tracking-tight"
+            >
+              Technical SEO
+            </h3>
+          </div>
+          <p
+            class="text-brand-gris text-[15px] leading-relaxed group-hover:text-white/80 transition-colors flex-1 mb-8"
+          >
+            Optimización técnica para mejorar el rendimiento e indexación en
+            buscadores: estructura, sitemap, robots y etiquetas.
+          </p>
+          <div
+            class="mt-auto self-end w-8 h-8 rounded-full bg-brand-fondo group-hover:bg-white/10 flex items-center justify-center transition-colors"
+          >
+            <m-icon
+              class="material-symbols-outlined text-[18px] text-brand-gris group-hover:text-white transition-colors"
+              >arrow_forward</m-icon
+            >
+          </div>
+        </div>
+
+        <!-- Card 7: Local SEO -->
+        <div
+          class="group flex flex-col bg-white rounded-[24px] p-6 lg:p-8 shadow-card hover:shadow-card-hover hover:bg-brand-dark hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+        >
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-14 h-14 shrink-0 rounded-full bg-brand-fondo group-hover:bg-white/10 flex items-center justify-center transition-colors"
+            >
+              <img
+                src="ico-seo-local.png"
+                alt="Local SEO Icon"
+                class="w-8 h-8 object-contain"
+              />
+            </div>
+            <h3
+              class="text-[22px] font-display font-semibold text-brand-dark group-hover:text-white transition-colors tracking-tight"
+            >
+              Local SEO
+            </h3>
+          </div>
+          <p
+            class="text-brand-gris text-[15px] leading-relaxed group-hover:text-white/80 transition-colors flex-1 mb-8"
+          >
+            Optimización del posicionamiento geolocalizado a través de Google My
+            Business. Nos aseguramos de que tus clientes encuentren tu empresa.
+          </p>
+          <div
+            class="mt-auto self-end w-8 h-8 rounded-full bg-brand-fondo group-hover:bg-white/10 flex items-center justify-center transition-colors"
+          >
+            <m-icon
+              class="material-symbols-outlined text-[18px] text-brand-gris group-hover:text-white transition-colors"
+              >arrow_forward</m-icon
+            >
+          </div>
+        </div>
+
+        <!-- Card 8: Asesoramiento -->
+        <div
+          class="group flex flex-col bg-white rounded-[24px] p-6 lg:p-8 shadow-card hover:shadow-card-hover hover:bg-brand-dark hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+        >
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-14 h-14 shrink-0 rounded-full bg-brand-fondo group-hover:bg-white/10 flex items-center justify-center transition-colors"
+            >
+              <img
+                src="ico-asesoramiento.png"
+                alt="Asesoramiento Icon"
+                class="w-8 h-8 object-contain"
+              />
+            </div>
+            <h3
+              class="text-[22px] font-display font-semibold text-brand-dark group-hover:text-white transition-colors tracking-tight"
+            >
+              Asesoramiento
+            </h3>
+          </div>
+          <p
+            class="text-brand-gris text-[15px] leading-relaxed group-hover:text-white/80 transition-colors flex-1 mb-8"
+          >
+            Asesoramiento para aumentar tus leads
+          </p>
+          <div
+            class="mt-auto self-end w-8 h-8 rounded-full bg-brand-fondo group-hover:bg-white/10 flex items-center justify-center transition-colors"
+          >
+            <m-icon
+              class="material-symbols-outlined text-[18px] text-brand-gris group-hover:text-white transition-colors"
+              >arrow_forward</m-icon
+            >
+          </div>
+        </div>
+      </div>
+    </m-container>
+  </section>
+</Layout>

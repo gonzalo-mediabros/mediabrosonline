@@ -1,12 +1,12 @@
-	--dark:#1F213D;
-	--gris:#7388AA;
-	--celeste: #148BEF;
-	--verde: #C6FF95;
-	--turquesa: #A1F9F4;
-	--pastel-celeste :#DBE9F8;
-	--pastel-gris: #E7E9EF;
-	--pastel-verde: #E9F5E4;
-	--gris-background: #F7F8FF;
+	--brand-dark: #1F213D;
+	--brand-gris: #7388AA;
+	--brand-celeste: #148BEF;
+	--brand-verde: #C6FF95;
+	--brand-turquesa: #A1F9F4;
+	--brand-pastel-celeste:#DBE9F8;
+	--brand-pastel-gris: #E7E9EF;
+	--brand-pastel-verde: #E9F5E4;
+	--brand-gris: #F7F8FF;
 
 
 red hat display font display 600
@@ -19,7 +19,7 @@ las imágenes de cada página van dentro de la carpeta public/imgs/[page]
 los, texturas genéricas, van dentro de public/imgs
 
 
-reglas iastudio:
+reglas para google.iastudio *ignorar esto por arquitecto:
 - no crear svg manuales. usar fonts.google.com/icons o un mismo place holder para todos.
 - no crear imágenes usar placeholder o alguna banco de imágenes.
 

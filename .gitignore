@@ -1,13 +1,8 @@
-/scraper
-/node_modules
-/dist
-
 # build output
 dist/
 # generated types
 .astro/
-.vscode/
-.agent/ 
+
 # dependencies
 node_modules/
 
@@ -19,8 +14,6 @@ pnpm-debug.log*
 
 
 # environment variables
-.env
-.env.production
 .env*
 
 # macOS-specific files
@@ -28,9 +21,11 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
-REF
 
-.claude/
-.claude
 
-psd
+.*
+CLAUDE.md
+GEMINI.md
+/scraper
+
+/REF
