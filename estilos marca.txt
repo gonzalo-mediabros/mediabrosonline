@@ -1,0 +1,25 @@
+	--dark:#1F213D;
+	--gris:#7388AA;
+	--celeste: #148BEF;
+	--verde: #C6FF95;
+	--turquesa: #A1F9F4;
+	--pastel-celeste :#DBE9F8;
+	--pastel-gris: #E7E9EF;
+	--pastel-verde: #E9F5E4;
+	--gris-background: #F7F8FF;
+
+
+red hat display font display 600
+inter font textos 400
+
+iconos fonts.google.com/icons
+nunca usar svg propios
+
+las imágenes de cada página van dentro de la carpeta public/imgs/[page]
+los, texturas genéricas, van dentro de public/imgs
+
+
+reglas iastudio:
+- no crear svg manuales. usar fonts.google.com/icons o un mismo place holder para todos.
+- no crear imágenes usar placeholder o alguna banco de imágenes.
+
