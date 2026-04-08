@@ -5,124 +5,286 @@ interface Props {
 
 const { pathname = "/" } = Astro.props;
 
-// Función para normalizar y comparar rutas
-const isActive = (path: string) => {
-  const normalizedPath = path.endsWith("/") ? path : `${path}/`;
-  const normalizedCurrent = pathname.endsWith("/") ? pathname : `${pathname}/`;
-  return normalizedCurrent === normalizedPath;
-};
+const BASE = import.meta.env.BASE_URL;
+
+const services = [
+  { label: "Google Ads", icon: `${BASE}iconos/ico-google-ads.png` },
+  { label: "Meta Ads", icon: `${BASE}iconos/ico-meta.png` },
+  { label: "LinkedIn Ads", icon: `${BASE}iconos/ico-linkedin.png` },
+  { label: "Tiktok Ads", icon: `${BASE}iconos/ico-tiktok.png` },
+  { label: "Content SEO", icon: `${BASE}iconos/ico-seo-content.png` },
+  { label: "Technical SEO", icon: `${BASE}iconos/ico-seo-technical.png` },
+  { label: "Local SEO", icon: `${BASE}iconos/ico-seo-local.png` },
+  { label: "Asesoramiento", icon: `${BASE}iconos/ico-asesoramiento.png` },
+];
 
 const navItems = [
-  { label: "Curso", href: import.meta.env.BASE_URL },
-  { label: "Curso v2", href: `${import.meta.env.BASE_URL}index2` },
-  { label: "Guía", href: `${import.meta.env.BASE_URL}guia` },
-  { label: "Auditoría", href: `${import.meta.env.BASE_URL}auditoria` },
-  { label: "Diagnóstico", href: `${import.meta.env.BASE_URL}diagnostico` },
+  { label: "Inicio", href: BASE },
+  { label: "Agencia", href: `${BASE}agencia` },
+  { label: "Clientes", href: `${BASE}clientes` },
+  { label: "Contacto", href: `${BASE}contacto` },
 ];
+
+const isActive = (href: string) => {
+  const normalized = href.endsWith("/") ? href : `${href}/`;
+  const current = pathname.endsWith("/") ? pathname : `${pathname}/`;
+  return current === normalized;
+};
 ---
 
-<nav class="dev-nav bg-brand-fondo text-sm font-medium">
-  <!-- Desktop Navigation -->
-  <div class="hidden md:flex gap-8 w-full px-8 py-3 items-center">
-    <span class="text-blue">MENU DEV</span>
-    {
-      navItems.map((item) => (
-        <a
-          href={item.href}
-          class={
-            isActive(item.href)
-              ? "underline decoration-2 underline-offset-4 text-blue"
-              : "text-gray-600 hover:text-blue transition-colors"
-          }
-        >
-          {item.label}
-        </a>
-      ))
-    }
+<header
+  id="main-header"
+  class="fixed top-0 left-0 right-0 z-50 py-5 text-white transition-all duration-300"
+>
+  <m-container class="font-display">
+    <m-row class="flex-row items-center justify-between">
+      <!-- Logo -->
+      <a href={BASE} class="">
+        <img src={`${BASE}logo.svg`} alt="Mediabros online" />
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="items-center hidden gap-8 text-lg md:flex">
+        {
+          navItems.map((item) => (
+            <a
+              href={item.href}
+              class:list={[
+                "transition-colors hover:text-brand-turquesa",
+                isActive(item.href) ? "text-brand-turquesa" : "",
+              ]}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+
+        <!-- Servicios dropdown trigger -->
+        <div class="relative" id="services-trigger-wrap">
+          <button
+            id="services-trigger"
+            aria-expanded="false"
+            aria-haspopup="true"
+            class="flex items-center gap-1 p-0 text-lg transition-colors bg-transparent border-0 cursor-pointer hover:text-brand-turquesa text-inherit"
+          >
+            Servicios
+            <m-icon
+              id="services-chevron"
+              class="material-symbols-outlined text-[16px] transition-transform duration-200"
+            >
+              expand_more
+            </m-icon>
+          </button>
+
+          <!-- Dropdown panel -->
+          <div
+            id="services-dropdown"
+            role="menu"
+            class="absolute right-0 hidden p-4 mt-3 shadow-xl w-150 top-full bg-brand-dark rounded-2xl"
+          >
+            <ul class="grid grid-cols-2 gap-1" role="none">
+              {
+                services.map((svc) => (
+                  <li role="none">
+                    <a
+                      href="#services-multichannel"
+                      role="menuitem"
+                      class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/10 transition-colors text-white/90 hover:text-white text-md no-underline"
+                    >
+                      <img
+                        src={svc.icon}
+                        alt=""
+                        class="object-contain size-8 shrink-0"
+                      />
+                      <span class="whitespace-nowrap">{svc.label}</span>
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Burger button (mobile) -->
+      <button
+        id="burger-btn"
+        class="p-1 text-white bg-transparent border-0 cursor-pointer md:hidden"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+      >
+        <m-icon class="text-3xl material-symbols-outlined">menu</m-icon>
+      </button>
+    </m-row>
+  </m-container>
+</header>
+
+<!-- ------------------------------------------  MOBILE MENU ------------------------------------------ -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 flex pointer-events-none z-60 md:hidden font-display"
+  aria-hidden="true"
+>
+  <!-- Overlay -->
+  <div
+    id="mobile-overlay"
+    class="absolute inset-0 transition-opacity duration-300 opacity-0 bg-black/60"
+  >
   </div>
 
-  <!-- Mobile Navigation -->
+  <!-- Panel (slide from right) -->
   <div
-    class="md:hidden flex justify-between items-center w-full px-8 py-3 relative"
+    id="mobile-panel"
+    class="relative flex flex-col w-4/5 h-full max-w-sm ml-auto overflow-y-auto transition-transform duration-300 translate-x-full bg-brand-dark"
   >
-    <span class="text-blue text-xs"></span>
-    <button
-      id="burger-btn"
-      class="material-icons text-blue cursor-pointer"
-      aria-label="Toggle menu"
-      aria-expanded="false"
+    <!-- Panel header -->
+    <div
+      class="flex items-center justify-between px-6 py-5 border-b border-white/10"
     >
-      menu
-    </button>
-  </div>
-
-  <!-- Mobile Slide Menu -->
-  <div
-    id="mobile-menu"
-    class="fixed top-0 right-0 h-full w-3/4 max-w-xs bg-brand-fondo shadow-lg translate-x-full transition-transform duration-300 z-50 md:hidden flex flex-col"
-  >
-    <div class="flex justify-end p-4">
+      <img src={`${BASE}logo.svg`} alt="Mediabros online" class="h-10" />
       <button
         id="close-btn"
-        class="material-icons text-blue cursor-pointer"
-        aria-label="Close menu"
+        class="p-1 text-white bg-transparent border-0 cursor-pointer"
+        aria-label="Cerrar menú"
       >
-        close
+        <m-icon class="text-2xl material-symbols-outlined">close</m-icon>
       </button>
     </div>
-    <nav class="flex flex-col gap-0">
+
+    <!-- Nav items -->
+    <nav class="flex flex-col px-4 py-4">
       {
         navItems.map((item) => (
           <a
             href={item.href}
-            class={`px-8 py-4 border-b border-gray-200 transition-colors ${
+            class:list={[
+              "flex items-center px-4 py-3.5 rounded-xl text-md font-medium transition-colors no-underline",
               isActive(item.href)
-                ? "text-blue bg-gray-100 font-semibold"
-                : "text-gray-600 hover:text-blue hover:bg-gray-50"
-            }`}
+                ? "text-brand-turquesa bg-white/5"
+                : "text-white/80 hover:text-white hover:bg-white/10",
+            ]}
           >
             {item.label}
           </a>
         ))
       }
+
+      <!-- Servicios — expanded inline -->
+      <div class="pt-4 mt-2 border-t border-white/10">
+        <p class="px-4 mb-2 text-sm tracking-widest uppercase text-white/40">
+          Servicios
+        </p>
+        {
+          services.map((svc) => (
+            <a
+              href="#services-multichannel"
+              class="flex items-center gap-3 px-4 py-3 no-underline transition-colors text-md rounded-xl text-white/80 hover:text-white hover:bg-white/10"
+            >
+              <img
+                src={svc.icon}
+                alt=""
+                class="object-contain size-8 shrink-0"
+              />
+              <span>{svc.label}</span>
+            </a>
+          ))
+        }
+      </div>
     </nav>
   </div>
-
-  <!-- Mobile Menu Overlay -->
-  <div
-    id="menu-overlay"
-    class="fixed inset-0 bg-black/50 opacity-0 invisible transition-all duration-300 z-40 md:hidden"
-  >
-  </div>
-</nav>
+</div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const burgerBtn = document.getElementById("burger-btn");
-    const closeBtn = document.getElementById("close-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const menuOverlay = document.getElementById("menu-overlay");
-    const navLinks = mobileMenu?.querySelectorAll("a");
+  // ------------------------------------------ CONFIG ------------------------------------------
+  const STICKY_THRESHOLD = 200; // px — header gains solid bg after this scroll depth
 
-    const openMenu = () => {
-      mobileMenu?.classList.remove("translate-x-full");
-      menuOverlay?.classList.remove("opacity-0", "invisible");
-      burgerBtn?.setAttribute("aria-expanded", "true");
-    };
+  // ------------------------------------------ ELEMENTS ------------------------------------------
+  const header = document.getElementById("main-header")!;
+  const burgerBtn = document.getElementById("burger-btn")!;
+  const closeBtn = document.getElementById("close-btn")!;
+  const mobileMenu = document.getElementById("mobile-menu")!;
+  const mobilePanel = document.getElementById("mobile-panel")!;
+  const mobileOverlay = document.getElementById("mobile-overlay")!;
+  const servicesTrigger = document.getElementById("services-trigger")!;
+  const servicesDropdown = document.getElementById("services-dropdown")!;
+  const servicesChevron = document.getElementById("services-chevron")!;
 
-    const closeMenu = () => {
-      mobileMenu?.classList.add("translate-x-full");
-      menuOverlay?.classList.add("opacity-0", "invisible");
-      burgerBtn?.setAttribute("aria-expanded", "false");
-    };
+  // ------------------------------------------ MOBILE MENU ------------------------------------------
+  const openMobile = () => {
+    mobileMenu.classList.remove("pointer-events-none");
+    mobileMenu.setAttribute("aria-hidden", "false");
+    mobileOverlay.classList.add("opacity-100");
+    mobilePanel.classList.remove("translate-x-full");
+    burgerBtn.setAttribute("aria-expanded", "true");
+  };
 
-    burgerBtn?.addEventListener("click", openMenu);
-    closeBtn?.addEventListener("click", closeMenu);
-    menuOverlay?.addEventListener("click", closeMenu);
+  const closeMobile = () => {
+    mobileMenu.classList.add("pointer-events-none");
+    mobileMenu.setAttribute("aria-hidden", "true");
+    mobileOverlay.classList.remove("opacity-100");
+    mobilePanel.classList.add("translate-x-full");
+    burgerBtn.setAttribute("aria-expanded", "false");
+  };
 
-    // Close menu when clicking a link
-    navLinks?.forEach((link) => {
-      link.addEventListener("click", closeMenu);
-    });
+  burgerBtn.addEventListener("click", openMobile);
+  closeBtn.addEventListener("click", closeMobile);
+  mobileOverlay.addEventListener("click", closeMobile);
+
+  mobilePanel
+    .querySelectorAll("a")
+    .forEach((link) => link.addEventListener("click", closeMobile));
+
+  // ------------------------------------------ SERVICES DROPDOWN ------------------------------------------
+  const openDropdown = () => {
+    servicesDropdown.classList.remove("hidden");
+    servicesTrigger.setAttribute("aria-expanded", "true");
+    servicesChevron.classList.add("rotate-180");
+  };
+
+  const closeDropdown = () => {
+    servicesDropdown.classList.add("hidden");
+    servicesTrigger.setAttribute("aria-expanded", "false");
+    servicesChevron.classList.remove("rotate-180");
+  };
+
+  servicesTrigger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    servicesDropdown.classList.contains("hidden")
+      ? openDropdown()
+      : closeDropdown();
   });
+
+  document.addEventListener("click", (e) => {
+    if (
+      !servicesTrigger.contains(e.target as Node) &&
+      !servicesDropdown.contains(e.target as Node)
+    ) {
+      closeDropdown();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeDropdown();
+      closeMobile();
+    }
+  });
+
+  servicesDropdown
+    .querySelectorAll("a")
+    .forEach((link) => link.addEventListener("click", closeDropdown));
+
+  // ------------------------------------------ SCROLL STICKY ----------------------------------------------
+  const STICKY_CLASSES = ["bg-brand-dark/95", "shadow-md", "backdrop-blur-sm"];
+
+  const updateHeader = () => {
+    if (window.scrollY >= STICKY_THRESHOLD) {
+      header.classList.add(...STICKY_CLASSES);
+    } else {
+      header.classList.remove(...STICKY_CLASSES);
+    }
+  };
+
+  window.addEventListener("scroll", updateHeader, { passive: true });
+  updateHeader(); // run once on load in case page is already scrolled
 </script>

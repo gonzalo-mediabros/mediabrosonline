@@ -1,0 +1,51 @@
+<section id="team-card" class="py-20 bg-brand-fondo">
+  <m-container>
+    <m-row class="justify-center">
+      code Code
+      <!-- Team Card Component -->
+      <div
+        class="w-full max-w-85 bg-white rounded-xl shadow-card p-10 flex flex-col items-center text-center transition-shadow hover:shadow-card-hover duration-300"
+      >
+        <!-- Image Area: Independent Background + Photo -->
+        <!-- Contenedor relativo que permite que una imagen PNG con transparencia sobresalga por arriba -->
+        <div class="relative w-40 h-44 mb-6 flex justify-center items-end">
+          <!-- Elemento Independiente: Círculo de color de fondo -->
+          <div class="absolute bottom-0 w-40 h-40 bg-brand-verde rounded-full">
+          </div>
+
+          <!-- Placeholder de Foto -->
+          <!-- Se le da forma de "busto" para demostrar cómo una foto recortada se asienta sobre el fondo -->
+          <img
+            src="https://placehold.co/130x150/dbe9f8/1f213d?text=Foto"
+            alt="Fernando"
+            class="relative z-10 w-32.5 h-37.5 object-cover rounded-t-full rounded-b-2xl"
+          />
+        </div>
+
+        <!-- Name and Social Icon -->
+        <div class="flex items-center justify-center gap-2 mb-3">
+          <h3
+            class="font-display font-bold text-2xl text-brand-dark leading-none"
+          >
+            Fernando
+          </h3>
+          <a
+            href="#"
+            class="text-brand-dark hover:text-brand-celeste transition-colors flex items-center"
+            aria-label="LinkedIn Profile"
+          >
+            <!-- Se usa un ícono genérico de enlace/red profesional ya que Material Icons no incluye logos de marcas -->
+            <m-icon class="material-symbols-outlined text-[24px]">link</m-icon>
+          </a>
+        </div>
+
+        <!-- Role -->
+        <p
+          class="text-brand-gris text-xs sm:text-sm font-medium tracking-wide uppercase"
+        >
+          Chief Technology Officer
+        </p>
+      </div>
+    </m-row>
+  </m-container>
+</section>

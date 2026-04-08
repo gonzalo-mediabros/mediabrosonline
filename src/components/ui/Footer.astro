@@ -1,48 +1,254 @@
 ---
+import ChipOvertitle from "./ChipOvertitle.astro";
+
 interface Props {
   variant?: "dark" | "light";
 }
 
 const { variant = "dark" } = Astro.props;
-const base = import.meta.env.BASE_URL;
-const isDark = variant === "dark";
+const BASE = import.meta.env.BASE_URL;
 ---
 
 <!-- ----- FOOTER ----- -->
-<footer
-  id="footer"
-  class:list={[
-    "py-12 lg:py-16 text-sm",
-    isDark ? "bg-brand-dark text-slate-400" : "bg-brand-fondo text-slate-600",
-  ]}
->
-  <m-container>
-    <div class="flex flex-col items-center text-center gap-6">
-      <img
-        src={`${base}logo.svg`}
-        alt="Mediabros"
-        class:list={[
-          "h-8 transition-base",
-          isDark
-            ? "opacity-50 grayscale hover:grayscale-0 hover:opacity-100"
-            : "opacity-100",
-        ]}
-      />
-      <p class="font-medium text-slate-500">
-        &copy; {new Date().getFullYear()} mediabroslatam.com ALL RIGHTS RESERVED.
-      </p>
+<footer>
+  <!-- --------------- CERTIFICATIONS --------------- -->
+  <section id="certifications" class="py-18 md:py-24 bg-brand-pastel-gris">
+    <m-container>
+      <m-row
+        class="flex-col items-center justify-between gap-10 lg:flex-row lg:gap-8"
+      >
+        <!-- Left: Title Area -->
+        <m-col
+          class="items-center flex-none w-full text-center lg:items-start lg:text-left lg:w-auto gap-6"
+        >
+          <ChipOvertitle text=" Expertos en Marketing Digital" />
+          <h2
+            class="text-3xl md:text-4xl lg:text-[44px] font-display font-semibold text-brand-dark tracking-tight"
+          >
+            Certificaciones
+          </h2>
+        </m-col>
+
+        <!-- Right: Badges Area -->
+        <m-col
+          class="flex flex-row items-center justify-center flex-none w-full lg:w-auto"
+        >
+          <!-- Left Laurel -->
+          <img
+            src="badges/laurel-izq.png"
+            alt="Laurel decorativo izquierdo"
+            class="object-contain h-16 mr-2 opacity-50 sm:h-20 md:h-28 sm:mr-4 md:mr-8 shrink-0"
+          />
+
+          <!-- Badges Grid/Flex -->
+          <div
+            class="flex flex-wrap items-center justify-center gap-2 sm:gap-2 md:gap-3 mix-blend-multiply"
+          >
+            <img
+              src="badges/badge-google.png"
+              alt="Google Partner Premier"
+              class="object-contain h-20 sm:h-22 lg:h-28 shrink-0"
+            />
+            <img
+              src="badges/badge-meta.png"
+              alt="Meta Business Partner"
+              class="object-contain h-20 sm:h-22 lg:h-28 shrink-0"
+            />
+            <img
+              src="badges/badge-linkedin.png"
+              alt="LinkedIn Marketing Partners"
+              class="object-contain h-20 sm:h-22 lg:h-28 shrink-0"
+            />
+            <img
+              src="badges/badge-mb.png"
+              alt="+15 Años de experiencia"
+              class="object-contain h-20 sm:h-22 lg:h-28 shrink-0"
+            />
+          </div>
+
+          <!-- Right Laurel -->
+          <img
+            src="badges/laurel-der.png"
+            alt="Laurel decorativo derecho"
+            class="object-contain h-16 ml-2 opacity-50 sm:h-20 md:h-28 sm:ml-4 md:ml-8 shrink-0"
+          />
+        </m-col>
+      </m-row>
+    </m-container>
+  </section>
+
+  <!-- --------------- FOOTER --------------- -->
+  <section id="footer" class="pt-16 pb-0 bg-brand-dark">
+    <m-container>
+      <!-- Top grid: 4 columns -->
+      <div class="grid grid-cols-1 gap-12 pb-12 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- Col 1: Logo + Tagline + Social -->
+        <div class="flex flex-col gap-6 lg:col-span-1">
+          <img
+            src={`${BASE}logo.svg`}
+            alt="Mediabros"
+            class="object-contain w-auto h-8 brightness-0 invert"
+          />
+          <p class="text-sm leading-relaxed text-brand-gris">
+            Agencia de marketing digital especializada en generación de leads
+            para empresas B2B y B2C.
+          </p>
+          <!-- Social icons -->
+          <div class="flex items-center gap-3 mt-2">
+            <a
+              href="https://www.linkedin.com/company/mediabros/"
+              target="_blank"
+              rel="noopener"
+              aria-label="LinkedIn"
+              class="flex items-center justify-center transition-all duration-300 border rounded-full w-9 h-9 border-white/10 text-brand-gris hover:text-white hover:border-brand-celeste hover:bg-brand-celeste/10"
+            >
+              <m-icon class="material-symbols-outlined text-[18px]">link</m-icon
+              >
+            </a>
+            <a
+              href="https://www.instagram.com/mediabroslatam/"
+              target="_blank"
+              rel="noopener"
+              aria-label="Instagram"
+              class="flex items-center justify-center transition-all duration-300 border rounded-full w-9 h-9 border-white/10 text-brand-gris hover:text-white hover:border-brand-celeste hover:bg-brand-celeste/10"
+            >
+              <m-icon class="material-symbols-outlined text-[18px]"
+                >photo_camera</m-icon
+              >
+            </a>
+            <a
+              href="https://www.facebook.com/mediabroslatam"
+              target="_blank"
+              rel="noopener"
+              aria-label="Facebook"
+              class="flex items-center justify-center transition-all duration-300 border rounded-full w-9 h-9 border-white/10 text-brand-gris hover:text-white hover:border-brand-celeste hover:bg-brand-celeste/10"
+            >
+              <m-icon class="material-symbols-outlined text-[18px]"
+                >thumb_up</m-icon
+              >
+            </a>
+            <a
+              href="https://www.tiktok.com/@mediabroslatam"
+              target="_blank"
+              rel="noopener"
+              aria-label="TikTok"
+              class="flex items-center justify-center transition-all duration-300 border rounded-full w-9 h-9 border-white/10 text-brand-gris hover:text-white hover:border-brand-celeste hover:bg-brand-celeste/10"
+            >
+              <m-icon class="material-symbols-outlined text-[18px]"
+                >music_note</m-icon
+              >
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Servicios -->
+        <div class="flex flex-col gap-4">
+          <h3
+            class="mb-2 text-sm font-semibold tracking-widest text-white uppercase font-display"
+          >
+            Servicios
+          </h3>
+          {
+            [
+              "Google Ads",
+              "Meta Ads",
+              "TikTok Ads",
+              "LinkedIn Ads",
+              "Bing Ads",
+              "Local SEO",
+              "Content SEO",
+              "Technical SEO",
+              "Google Analytics",
+              "Asesoramiento",
+            ].map((s) => (
+              <a
+                href=""
+                class="text-sm transition-colors duration-200 text-brand-gris hover:text-brand-celeste"
+              >
+                {s}
+              </a>
+            ))
+          }
+        </div>
+
+        <!-- Col 3: Contenido -->
+        <div class="flex flex-col gap-4">
+          <h3
+            class="mb-2 text-sm font-semibold tracking-widest text-white uppercase font-display"
+          >
+            Contenido
+          </h3>
+          {
+            [
+              "Agencia",
+              "Testimonios",
+              "Blog",
+              "Oportunidades",
+              "FAQs",
+              "Contacto",
+            ].map((s) => (
+              <a
+                href=""
+                class="text-sm transition-colors duration-200 text-brand-gris hover:text-brand-celeste"
+              >
+                {s}
+              </a>
+            ))
+          }
+        </div>
+
+        <!-- Col 4: Contacto internacional -->
+        <div class="flex flex-col gap-4">
+          <h3
+            class="mb-2 text-sm font-semibold tracking-widest text-white uppercase font-display"
+          >
+            Contacto
+          </h3>
+          {
+            [
+              { flag: "🇺🇸", label: "USA", tel: "+1 786-828-5062" },
+              { flag: "🇲🇽", label: "MEX", tel: "+52 55 1328 5398" },
+              { flag: "🇨🇱", label: "CHL", tel: "+56 2 2582 3484" },
+              { flag: "🇦🇷", label: "ARG", tel: "+54 11 5983-9447" },
+              { flag: "🇨🇴", label: "COL", tel: "+57 601 5087116" },
+            ].map((c) => (
+              <a
+                href={`tel:${c.tel.replace(/\s/g, "")}`}
+                class="flex items-center gap-2 text-sm transition-colors duration-200 text-brand-gris hover:text-white group"
+              >
+                <span class="text-base leading-none">{c.flag}</span>
+                <span class="text-xs font-medium text-white/40 w-7 shrink-0">
+                  {c.label}
+                </span>
+                <span class="transition-colors duration-200 group-hover:text-brand-celeste">
+                  {c.tel}
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
       <div
-        class:list={[
-          "w-full h-px my-4",
-          isDark ? "bg-white/5" : "bg-brand-dark/8",
-        ]}
-      ></div>
-      <p class="max-w-2xl leading-relaxed text-slate-500 text-xs">
-        This site is not part of the Meta website or Meta Inc. Additionally,
-        this site is NOT endorsed by Meta in any way. META is a trademark of
-        META, Inc.
-      </p>
-    </div>
-  </m-container>
+        class="flex flex-col items-center justify-between gap-4 py-6 border-t border-white/8 sm:flex-row"
+      >
+        <p class="text-xs text-brand-gris">
+          © MediaBros {new Date().getFullYear()} · All Rights Reserved
+        </p>
+        <div class="flex items-center gap-6">
+          <a
+            href=""
+            class="text-xs transition-colors duration-200 text-brand-gris hover:text-white"
+            >Políticas de Privacidad</a
+          >
+          <a
+            href=""
+            class="text-xs transition-colors duration-200 text-brand-gris hover:text-white"
+            >Términos de Uso</a
+          >
+        </div>
+      </div>
+    </m-container>
+  </section>
 </footer>
-<!-- ----- FOOTER ----- -->

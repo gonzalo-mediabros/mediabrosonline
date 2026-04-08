@@ -1,0 +1,70 @@
+---
+interface Props {
+  icon: string;
+  iconAlt: string;
+  title: string;
+  content: string;
+  link: string;
+  theme?: "light" | "dark";
+}
+
+const { icon, iconAlt, title, content, link, theme = "light" } = Astro.props;
+
+const isLight = theme === "light";
+---
+
+<a
+  href={link}
+  class:list={[
+    "group flex flex-col rounded-[24px] p-6 lg:p-8 shadow-card transition-all duration-300 cursor-pointer no-underline",
+    isLight
+      ? "bg-white hover:shadow-card-hover hover:bg-brand-dark hover:-translate-y-1"
+      : "bg-brand-dark",
+  ]}
+>
+  <div class="flex items-center gap-4 mb-6">
+    <div
+      class:list={[
+        "flex items-center justify-center transition-colors rounded-full w-14 h-14 shrink-0",
+        isLight ? "bg-brand-fondo group-hover:bg-white/10" : "bg-white/10",
+      ]}
+    >
+      <img src={icon} alt={iconAlt} class="object-contain w-8 h-8" />
+    </div>
+    <h3
+      class:list={[
+        "text-[22px] font-display font-semibold tracking-tight transition-colors",
+        isLight
+          ? "text-brand-dark group-hover:text-white"
+          : "text-white",
+      ]}
+    >
+      {title}
+    </h3>
+  </div>
+  <p
+    class:list={[
+      "text-[15px] leading-relaxed transition-colors flex-1 mb-8",
+      isLight
+        ? "text-brand-gris group-hover:text-white/80"
+        : "text-white/80",
+    ]}
+  >
+    {content}
+  </p>
+  <div
+    class:list={[
+      "flex items-center self-end justify-center w-8 h-8 mt-auto transition-colors rounded-full",
+      isLight ? "bg-brand-fondo group-hover:bg-white/10" : "bg-white/10",
+    ]}
+  >
+    <m-icon
+      class:list={[
+        "material-symbols-outlined text-[18px] transition-colors",
+        isLight ? "text-brand-gris group-hover:text-white" : "text-white",
+      ]}
+    >
+      arrow_forward
+    </m-icon>
+  </div>
+</a>
