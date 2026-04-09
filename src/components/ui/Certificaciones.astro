@@ -1,0 +1,70 @@
+---
+import ChipOvertitle from "./ChipOvertitle.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<!-- --------------- CERTIFICATIONS --------------- -->
+<section id="certifications" class="py-18 md:py-24 bg-brand-pastel-gris">
+  <m-container>
+    <m-row
+      class="flex-col items-center justify-between gap-10 lg:flex-row lg:gap-8"
+    >
+      <!-- Left: Title Area -->
+      <m-col
+        class="items-center flex-none w-full gap-6 text-center lg:items-start lg:text-left lg:w-auto"
+      >
+        <ChipOvertitle text=" Expertos en Marketing Digital" />
+        <h2
+          class="text-3xl md:text-4xl lg:text-[44px] font-display font-semibold text-brand-dark tracking-tight"
+        >
+          Certificaciones
+        </h2>
+      </m-col>
+
+      <!-- Right: Badges Area -->
+      <m-col
+        class="flex flex-row items-center justify-center flex-none w-full lg:w-auto"
+      >
+        <!-- Left Laurel -->
+        <img
+          src={`${BASE}badges/laurel-izq.png`}
+          alt="Laurel decorativo izquierdo"
+          class="object-contain h-16 mr-2 opacity-50 sm:h-20 md:h-28 sm:mr-4 md:mr-8 shrink-0"
+        />
+
+        <!-- Badges Grid/Flex -->
+        <div
+          class="flex flex-wrap items-center justify-center gap-2 sm:gap-2 md:gap-3 mix-blend-multiply"
+        >
+          <img
+            src={`${BASE}badges/badge-google.png`}
+            alt="Google Partner Premier"
+            class="object-contain h-20 sm:h-22 lg:h-28 shrink-0"
+          />
+          <img
+            src={`${BASE}badges/badge-meta.png`}
+            alt="Meta Business Partner"
+            class="object-contain h-20 sm:h-22 lg:h-28 shrink-0"
+          />
+          <img
+            src={`${BASE}badges/badge-linkedin.png`}
+            alt="LinkedIn Marketing Partners"
+            class="object-contain h-20 sm:h-22 lg:h-28 shrink-0"
+          />
+          <img
+            src={`${BASE}badges/badge-mb.png`}
+            alt="+15 Años de experiencia"
+            class="object-contain h-20 sm:h-22 lg:h-28 shrink-0"
+          />
+        </div>
+
+        <!-- Right Laurel -->
+        <img
+          src={`${BASE}badges/laurel-der.png`}
+          alt="Laurel decorativo derecho"
+          class="object-contain h-16 ml-2 opacity-50 sm:h-20 md:h-28 sm:ml-4 md:ml-8 shrink-0"
+        />
+      </m-col>
+    </m-row>
+  </m-container>
+</section>

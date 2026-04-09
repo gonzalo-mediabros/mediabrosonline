@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+}
+
+const { title, subtitle } = Astro.props;
+
+const BASE = import.meta.env.BASE_URL;
+---
+
+<!-- --------------- HERO SMALL  --------------- -->
+<section
+  class="relative flex flex-col px-0 py-0 overflow-hidden xl:py-6 bg-brand-fondo xl:px-14"
+>
+  <!-- Content Wrapper -->
+  <div
+    class="relative z-10 flex flex-col items-center justify-center min-h-[40vh] pb-12 pt-16 overflow-hidden text-white bg-brand-celeste rounded-4xl"
+  >
+    <m-container>
+      <m-row class="flex-col items-center text-center">
+        <m-col class="max-w-3xl space-y-4">
+          <h1
+            class="text-4xl sm:text-5xl md:text-6xl font-display font-bold leading-[1.1] tracking-tight"
+          >
+            {title}
+          </h1>
+          {
+            subtitle && (
+              <p class="max-w-2xl mx-auto text-lg leading-relaxed md:text-xl text-white/80">
+                {subtitle}
+              </p>
+            )
+          }
+        </m-col>
+      </m-row>
+    </m-container>
+  </div>
+</section>

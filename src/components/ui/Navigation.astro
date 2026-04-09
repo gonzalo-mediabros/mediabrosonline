@@ -1,215 +1,284 @@
 ---
+import Icon from "./Icon.astro";
+
 interface Props {
   pathname?: string;
 }
 
-const { pathname = "/" } = Astro.props;
+interface ServiceItem {
+  label: string;
+  icon: string;
+}
 
+interface NavItem {
+  label: string;
+  href?: string;
+  dropdown?: boolean;
+  children?: ServiceItem[];
+}
+
+const { pathname = "/" } = Astro.props;
 const BASE = import.meta.env.BASE_URL;
 
-const services = [
-  { label: "Google Ads", icon: `${BASE}iconos/ico-google-ads.png` },
-  { label: "Meta Ads", icon: `${BASE}iconos/ico-meta.png` },
-  { label: "LinkedIn Ads", icon: `${BASE}iconos/ico-linkedin.png` },
-  { label: "Tiktok Ads", icon: `${BASE}iconos/ico-tiktok.png` },
-  { label: "Content SEO", icon: `${BASE}iconos/ico-seo-content.png` },
-  { label: "Technical SEO", icon: `${BASE}iconos/ico-seo-technical.png` },
-  { label: "Local SEO", icon: `${BASE}iconos/ico-seo-local.png` },
-  { label: "Asesoramiento", icon: `${BASE}iconos/ico-asesoramiento.png` },
-];
-
-const navItems = [
+const navItems: NavItem[] = [
   { label: "Inicio", href: BASE },
-  { label: "Agencia", href: `${BASE}agencia` },
+  {
+    label: "Servicios",
+    dropdown: true,
+    children: [
+      { label: "Google Ads",    icon: `${BASE}iconos/ico-google-ads.png`    },
+      { label: "Meta Ads",      icon: `${BASE}iconos/ico-meta.png`          },
+      { label: "LinkedIn Ads",  icon: `${BASE}iconos/ico-linkedin.png`      },
+      { label: "Tiktok Ads",    icon: `${BASE}iconos/ico-tiktok.png`        },
+      { label: "Content SEO",   icon: `${BASE}iconos/ico-seo-content.png`   },
+      { label: "Technical SEO", icon: `${BASE}iconos/ico-seo-technical.png` },
+      { label: "Local SEO",     icon: `${BASE}iconos/ico-seo-local.png`     },
+      { label: "Asesoramiento", icon: `${BASE}iconos/ico-asesoramiento.png` },
+    ],
+  },
+  { label: "Agencia",  href: `${BASE}agencia`  },
   { label: "Clientes", href: `${BASE}clientes` },
   { label: "Contacto", href: `${BASE}contacto` },
 ];
 
+const regularItems  = navItems.filter((item) => !item.dropdown);
+const dropdownItems = navItems.filter((item) =>  item.dropdown);
+
 const isActive = (href: string) => {
   const normalized = href.endsWith("/") ? href : `${href}/`;
-  const current = pathname.endsWith("/") ? pathname : `${pathname}/`;
+  const current    = pathname.endsWith("/") ? pathname : `${pathname}/`;
   return current === normalized;
 };
 ---
 
+<!-- ============================================================ HEADER -->
 <header
   id="main-header"
-  class="fixed top-0 left-0 right-0 z-50 py-5 text-white transition-all duration-300"
+  class="absolute left-0 right-0 z-20 py-5 text-white top-15 xl:px-16"
 >
   <m-container class="font-display">
     <m-row class="flex-row items-center justify-between">
-      <!-- Logo -->
-      <a href={BASE} class="">
-        <img src={`${BASE}logo.svg`} alt="Mediabros online" />
+
+      <a href={BASE}>
+        <img id="main-logo" src={`${BASE}logo.svg`} alt="Mediabros online" />
       </a>
 
-      <!-- Desktop Nav -->
+      <!-- Desktop nav -->
       <nav class="items-center hidden gap-8 text-lg md:flex">
-        {
-          navItems.map((item) => (
-            <a
-              href={item.href}
-              class:list={[
-                "transition-colors hover:text-brand-turquesa",
-                isActive(item.href) ? "text-brand-turquesa" : "",
-              ]}
-            >
-              {item.label}
-            </a>
-          ))
-        }
 
-        <!-- Servicios dropdown trigger -->
-        <div class="relative" id="services-trigger-wrap">
-          <button
-            id="services-trigger"
-            aria-expanded="false"
-            aria-haspopup="true"
-            class="flex items-center gap-1 p-0 text-lg transition-colors bg-transparent border-0 cursor-pointer hover:text-brand-turquesa text-inherit"
-          >
-            Servicios
-            <m-icon
-              id="services-chevron"
-              class="material-symbols-outlined text-[16px] transition-transform duration-200"
-            >
-              expand_more
-            </m-icon>
-          </button>
+        {navItems.map((item) => (
+          <Fragment>
 
-          <!-- Dropdown panel -->
-          <div
-            id="services-dropdown"
-            role="menu"
-            class="absolute right-0 hidden p-4 mt-3 shadow-xl w-150 top-full bg-brand-dark rounded-2xl"
-          >
-            <ul class="grid grid-cols-2 gap-1" role="none">
-              {
-                services.map((svc) => (
-                  <li role="none">
-                    <a
-                      href="#services-multichannel"
-                      role="menuitem"
-                      class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/10 transition-colors text-white/90 hover:text-white text-md no-underline"
-                    >
-                      <img
-                        src={svc.icon}
-                        alt=""
-                        class="object-contain size-8 shrink-0"
-                      />
-                      <span class="whitespace-nowrap">{svc.label}</span>
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        </div>
+            {/* Regular link */}
+            {!item.dropdown && (
+              <a
+                href={item.href}
+                class:list={[
+                  "transition-colors hover:text-brand-turquesa",
+                  isActive(item.href!) && "text-brand-turquesa",
+                ]}
+              >
+                {item.label}
+              </a>
+            )}
+
+            {/* Dropdown trigger + panel */}
+            {item.dropdown && (
+              <div class="relative" id="services-trigger-wrap">
+
+                <button
+                  id="services-trigger"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  class="flex items-center gap-1 p-0 text-lg transition-colors bg-transparent border-0 cursor-pointer hover:text-brand-turquesa text-inherit"
+                >
+                  {item.label}
+                  <Icon
+                    id="services-chevron"
+                    name="expand_more"
+                    size={16}
+                    class="transition-transform duration-200"
+                  />
+                </button>
+
+                <!--
+                  Outer div: handles scale + opacity animation.
+                  Inner div: handles backdrop-blur.
+                  (transform + backdrop-filter conflict on same element)
+                -->
+                <div
+                  id="services-dropdown"
+                  role="menu"
+                  class="absolute mt-4 transition-all duration-200 origin-top scale-95 -translate-x-1/2 opacity-0 pointer-events-none left-1/2 top-10 w-120"
+                >
+                  <div class="relative p-4 border shadow-2xl rounded-2xl border-white/5 bg-brand-dark/95 backdrop-blur-xl">
+
+                    <!-- Arrow pointing up to trigger -->
+                    <div
+                      class="absolute left-1/2 -translate-x-1/2 w-0 h-0"
+                      style="top: -8px; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 8px solid rgba(31, 33, 61, 0.95);"
+                    ></div>
+
+                    <ul class="grid grid-cols-2 gap-x-6 gap-y-2" role="none">
+                      {item.children?.map((svc) => (
+                        <li role="none">
+                          <a
+                            href="#services-multichannel"
+                            role="menuitem"
+                            class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors no-underline text-md text-white/90 hover:text-white hover:bg-white/10"
+                          >
+                            <div class="flex items-center justify-center rounded-full bg-white/15 size-9 shrink-0">
+                              <img src={svc.icon} alt="" class="object-contain size-9" />
+                            </div>
+                            <span class="font-semibold font-display whitespace-nowrap">
+                              {svc.label}
+                            </span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+
+                  </div>
+                </div>
+
+              </div>
+            )}
+
+          </Fragment>
+        ))}
+
       </nav>
 
-      <!-- Burger button (mobile) -->
+      <!-- Burger (mobile) -->
       <button
         id="burger-btn"
         class="p-1 text-white bg-transparent border-0 cursor-pointer md:hidden"
         aria-label="Abrir menú"
         aria-expanded="false"
       >
-        <m-icon class="text-3xl material-symbols-outlined">menu</m-icon>
+        <Icon name="menu" size={32} />
       </button>
+
     </m-row>
   </m-container>
 </header>
 
-<!-- ------------------------------------------  MOBILE MENU ------------------------------------------ -->
+<!-- ============================================================ MOBILE MENU -->
 <div
   id="mobile-menu"
   class="fixed inset-0 flex pointer-events-none z-60 md:hidden font-display"
   aria-hidden="true"
 >
-  <!-- Overlay -->
   <div
     id="mobile-overlay"
     class="absolute inset-0 transition-opacity duration-300 opacity-0 bg-black/60"
-  >
-  </div>
+  ></div>
 
-  <!-- Panel (slide from right) -->
   <div
     id="mobile-panel"
     class="relative flex flex-col w-4/5 h-full max-w-sm ml-auto overflow-y-auto transition-transform duration-300 translate-x-full bg-brand-dark"
   >
-    <!-- Panel header -->
-    <div
-      class="flex items-center justify-between px-6 py-5 border-b border-white/10"
-    >
+    <!-- Header -->
+    <div class="flex items-center justify-between px-6 py-5 border-b border-white/10">
       <img src={`${BASE}logo.svg`} alt="Mediabros online" class="h-10" />
       <button
         id="close-btn"
         class="p-1 text-white bg-transparent border-0 cursor-pointer"
         aria-label="Cerrar menú"
       >
-        <m-icon class="text-2xl material-symbols-outlined">close</m-icon>
+        <Icon name="close" size={28} />
       </button>
     </div>
 
-    <!-- Nav items -->
+    <!-- Nav links -->
     <nav class="flex flex-col px-4 py-4">
-      {
-        navItems.map((item) => (
-          <a
-            href={item.href}
-            class:list={[
-              "flex items-center px-4 py-3.5 rounded-xl text-md font-medium transition-colors no-underline",
-              isActive(item.href)
-                ? "text-brand-turquesa bg-white/5"
-                : "text-white/80 hover:text-white hover:bg-white/10",
-            ]}
-          >
-            {item.label}
-          </a>
-        ))
-      }
 
-      <!-- Servicios — expanded inline -->
-      <div class="pt-4 mt-2 border-t border-white/10">
-        <p class="px-4 mb-2 text-sm tracking-widest uppercase text-white/40">
-          Servicios
-        </p>
-        {
-          services.map((svc) => (
+      {regularItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            "flex items-center px-4 py-3.5 rounded-xl text-md font-medium transition-colors no-underline",
+            isActive(item.href!)
+              ? "text-brand-turquesa bg-white/5"
+              : "text-white/80 hover:text-white hover:bg-white/10",
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+
+      {dropdownItems.map((item) => (
+        <div class="pt-4 mt-2 border-t border-white/10">
+          <p class="px-4 mb-2 text-sm tracking-widest uppercase text-white/40">
+            {item.label}
+          </p>
+          {item.children?.map((svc) => (
             <a
               href="#services-multichannel"
-              class="flex items-center gap-3 px-4 py-3 no-underline transition-colors text-md rounded-xl text-white/80 hover:text-white hover:bg-white/10"
+              class="flex items-center gap-3 px-4 py-3 no-underline transition-colors rounded-xl text-md text-white/80 hover:text-white hover:bg-white/10"
             >
-              <img
-                src={svc.icon}
-                alt=""
-                class="object-contain size-8 shrink-0"
-              />
-              <span>{svc.label}</span>
+              <div class="flex items-center justify-center rounded-full bg-white/15 size-9 shrink-0">
+                <img src={svc.icon} alt="" class="object-contain size-5" />
+              </div>
+              <span class="font-semibold font-display">{svc.label}</span>
             </a>
-          ))
-        }
-      </div>
+          ))}
+        </div>
+      ))}
+
     </nav>
   </div>
 </div>
 
+<!-- ============================================================ STYLES -->
+<style>
+  #main-header {
+    transition:
+      background-color 300ms ease,
+      box-shadow 300ms ease,
+      backdrop-filter 300ms ease,
+      padding 300ms ease;
+  }
+
+  #main-header.is-sticky {
+    position: fixed;
+    top: 0;
+    padding-top: 0.75rem;
+    padding-bottom:   0.75rem;
+    animation: nav-slide-in 300ms ease forwards;
+  }
+
+  #main-logo {
+    transition: height 300ms ease;
+  }
+
+  #main-header.is-sticky #main-logo {
+    height: 2.5rem;
+  }
+
+  @keyframes nav-slide-in {
+    from { transform: translateY(-100%); }
+    to   { transform: translateY(0);     }
+  }
+</style>
+
+<!-- ============================================================ SCRIPT -->
 <script>
-  // ------------------------------------------ CONFIG ------------------------------------------
-  const STICKY_THRESHOLD = 200; // px — header gains solid bg after this scroll depth
+  const STICKY_THRESHOLD = 400;
 
-  // ------------------------------------------ ELEMENTS ------------------------------------------
-  const header = document.getElementById("main-header")!;
-  const burgerBtn = document.getElementById("burger-btn")!;
-  const closeBtn = document.getElementById("close-btn")!;
-  const mobileMenu = document.getElementById("mobile-menu")!;
-  const mobilePanel = document.getElementById("mobile-panel")!;
-  const mobileOverlay = document.getElementById("mobile-overlay")!;
-  const servicesTrigger = document.getElementById("services-trigger")!;
-  const servicesDropdown = document.getElementById("services-dropdown")!;
-  const servicesChevron = document.getElementById("services-chevron")!;
+  // Elements
+  const header            = document.getElementById("main-header")!;
+  const burgerBtn         = document.getElementById("burger-btn")!;
+  const closeBtn          = document.getElementById("close-btn")!;
+  const mobileMenu        = document.getElementById("mobile-menu")!;
+  const mobilePanel       = document.getElementById("mobile-panel")!;
+  const mobileOverlay     = document.getElementById("mobile-overlay")!;
+  const servicesTrigger   = document.getElementById("services-trigger")!;
+  const servicesTriggerWrap = document.getElementById("services-trigger-wrap")!;
+  const servicesDropdown  = document.getElementById("services-dropdown")!;
+  const servicesChevron   = document.getElementById("services-chevron")!;
 
-  // ------------------------------------------ MOBILE MENU ------------------------------------------
+  // ── Mobile menu ──────────────────────────────────────────────
   const openMobile = () => {
     mobileMenu.classList.remove("pointer-events-none");
     mobileMenu.setAttribute("aria-hidden", "false");
@@ -229,62 +298,60 @@ const isActive = (href: string) => {
   burgerBtn.addEventListener("click", openMobile);
   closeBtn.addEventListener("click", closeMobile);
   mobileOverlay.addEventListener("click", closeMobile);
+  mobilePanel.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMobile));
 
-  mobilePanel
-    .querySelectorAll("a")
-    .forEach((link) => link.addEventListener("click", closeMobile));
+  // ── Services dropdown ─────────────────────────────────────────
+  const OPEN   = ["opacity-100", "pointer-events-auto", "scale-100"];
+  const CLOSED = ["opacity-0",   "pointer-events-none", "scale-95" ];
 
-  // ------------------------------------------ SERVICES DROPDOWN ------------------------------------------
+  let closeTimer: ReturnType<typeof setTimeout> | null = null;
+
+  const cancelClose = () => {
+    if (closeTimer !== null) { clearTimeout(closeTimer); closeTimer = null; }
+  };
+
   const openDropdown = () => {
-    servicesDropdown.classList.remove("hidden");
+    cancelClose();
+    servicesDropdown.classList.remove(...CLOSED);
+    servicesDropdown.classList.add(...OPEN);
     servicesTrigger.setAttribute("aria-expanded", "true");
     servicesChevron.classList.add("rotate-180");
   };
 
   const closeDropdown = () => {
-    servicesDropdown.classList.add("hidden");
+    cancelClose();
+    servicesDropdown.classList.remove(...OPEN);
+    servicesDropdown.classList.add(...CLOSED);
     servicesTrigger.setAttribute("aria-expanded", "false");
     servicesChevron.classList.remove("rotate-180");
   };
 
   servicesTrigger.addEventListener("click", (e) => {
     e.stopPropagation();
-    servicesDropdown.classList.contains("hidden")
-      ? openDropdown()
-      : closeDropdown();
+    servicesDropdown.classList.contains("opacity-0") ? openDropdown() : closeDropdown();
   });
 
-  document.addEventListener("click", (e) => {
-    if (
-      !servicesTrigger.contains(e.target as Node) &&
-      !servicesDropdown.contains(e.target as Node)
-    ) {
-      closeDropdown();
-    }
+  servicesTriggerWrap.addEventListener("mouseleave", () => {
+    closeTimer = setTimeout(closeDropdown, 2000);
   });
+  servicesTriggerWrap.addEventListener("mouseenter", cancelClose);
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      closeDropdown();
-      closeMobile();
-    }
-  });
+  document.addEventListener("click",   (e) => { !servicesTriggerWrap.contains(e.target as Node) && closeDropdown(); });
+  document.addEventListener("keydown",  (e) => { e.key === "Escape" && (closeDropdown(), closeMobile()); });
 
-  servicesDropdown
-    .querySelectorAll("a")
-    .forEach((link) => link.addEventListener("click", closeDropdown));
+  servicesDropdown.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeDropdown));
 
-  // ------------------------------------------ SCROLL STICKY ----------------------------------------------
-  const STICKY_CLASSES = ["bg-brand-dark/95", "shadow-md", "backdrop-blur-sm"];
+  // ── Sticky header ─────────────────────────────────────────────
+  const STICKY_CLASSES = ["bg-brand-dark/95", "backdrop-blur-xl", "shadow-lg"];
 
   const updateHeader = () => {
     if (window.scrollY >= STICKY_THRESHOLD) {
-      header.classList.add(...STICKY_CLASSES);
+      header.classList.add("is-sticky", ...STICKY_CLASSES);
     } else {
-      header.classList.remove(...STICKY_CLASSES);
+      header.classList.remove("is-sticky", ...STICKY_CLASSES);
     }
   };
 
   window.addEventListener("scroll", updateHeader, { passive: true });
-  updateHeader(); // run once on load in case page is already scrolled
+  updateHeader();
 </script>

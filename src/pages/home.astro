@@ -1,14 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
-import BigHero from "../components/ui/big-hero.astro";
+import Navigation from "../components/ui/Navigation.astro";
+import HeroBig from "../components/ui/HeroBig.astro";
 import LeadForm from "../components/ui/LeadForm.astro";
 import Footer from "../components/ui/Footer.astro";
 import ChipOvertitle from "../components/ui/ChipOvertitle.astro";
 import ServiceCard from "../components/ui/ServiceCard.astro";
 import CardTeam from "../components/ui/CardTeam.astro";
+import Icon from "../components/ui/Icon.astro";
+import Certificaciones from "../components/ui/Certificaciones.astro";
+import HeroSmall from "../components/ui/HeroSmall.astro";
 
 const BASE = import.meta.env.BASE_URL;
+const { pathname } = Astro.url;
 ---
 
 <Layout
@@ -16,8 +20,13 @@ const BASE = import.meta.env.BASE_URL;
   description="Genera leads de calidad para tu empresa con una estrategia de marketing digital probada. Curso online gratuito en 45 minutos."
 >
   <!-- ----- HERO ----- -->
-  <BigHero />
-  <CardTeam />
+  <Navigation pathname={pathname} />
+  <HeroBig />
+  <HeroSmall
+    title="Nuestra agencia de marketing digital"
+    subtitle="Tecnología propia y estrategias de generación de demanda."
+  />
+
   <!-- --------------- QUALIFIED LEADS SECTION --------------- -->
   <section
     id="qualified-leads"
@@ -50,9 +59,7 @@ const BASE = import.meta.env.BASE_URL;
               class="inline-flex items-center justify-center gap-2 bg-brand-celeste hover:bg-brand-celeste-hover text-white font-medium text-base px-8 py-3.5 rounded-full transition-colors shadow-blue"
             >
               Solicitar diagnóstico
-              <m-icon class="material-symbols-outlined text-[20px]"
-                >arrow_forward</m-icon
-              >
+              <Icon name="arrow_forward" size={20} />
             </a>
           </div>
 
@@ -63,10 +70,11 @@ const BASE = import.meta.env.BASE_URL;
               <div
                 class="flex items-center justify-center w-8 h-8 mb-4 rounded-full bg-brand-turquesa"
               >
-                <m-icon
-                  class="material-symbols-outlined text-brand-celeste text-[18px] font-black"
-                  >check</m-icon
-                >
+                <Icon
+                  name="check"
+                  size={18}
+                  class="font-black text-brand-celeste"
+                />
               </div>
               <h3
                 class="text-[17px] md:text-lg font-display font-semibold text-brand-dark mb-2 tracking-tight"
@@ -87,10 +95,11 @@ const BASE = import.meta.env.BASE_URL;
               <div
                 class="flex items-center justify-center w-8 h-8 mb-4 rounded-full bg-brand-turquesa"
               >
-                <m-icon
-                  class="material-symbols-outlined text-brand-celeste text-[18px] font-black"
-                  >check</m-icon
-                >
+                <Icon
+                  name="check"
+                  size={18}
+                  class="font-black text-brand-celeste"
+                />
               </div>
               <h3
                 class="text-[17px] md:text-lg font-display font-semibold text-brand-dark mb-2 tracking-tight"
@@ -110,10 +119,11 @@ const BASE = import.meta.env.BASE_URL;
               <div
                 class="flex items-center justify-center w-8 h-8 mb-4 rounded-full bg-brand-turquesa"
               >
-                <m-icon
-                  class="material-symbols-outlined text-brand-celeste text-[18px] font-black"
-                  >check</m-icon
-                >
+                <Icon
+                  name="check"
+                  size={18}
+                  class="font-black text-brand-celeste"
+                />
               </div>
               <h3
                 class="text-[17px] md:text-lg font-display font-semibold text-brand-dark mb-2 tracking-tight"
@@ -134,10 +144,11 @@ const BASE = import.meta.env.BASE_URL;
               <div
                 class="flex items-center justify-center w-8 h-8 mb-4 rounded-full bg-brand-turquesa"
               >
-                <m-icon
-                  class="material-symbols-outlined text-brand-celeste text-[18px] font-black"
-                  >check</m-icon
-                >
+                <Icon
+                  name="check"
+                  size={18}
+                  class="font-black text-brand-celeste"
+                />
               </div>
               <h3
                 class="text-[17px] md:text-lg font-display font-semibold text-brand-dark mb-2 tracking-tight"
@@ -165,7 +176,7 @@ const BASE = import.meta.env.BASE_URL;
           </div>
           <div class="relative z-10 w-full mx-auto max-w-150 lg:mr-0">
             <img
-              src="home/mano-celu.webp"
+              src={`${BASE}home/mano-celu.webp`}
               alt="Tráfico calificado conversiones"
               class="w-full h-auto"
             />
@@ -174,14 +185,12 @@ const BASE = import.meta.env.BASE_URL;
       </m-row>
     </m-container>
   </section>
-  <!-- DEFINICIÓN DE SVGs (Colocar arriba en Astro) -->
-
   <!-- --------------- PERFORMANCE AI SECTION --------------- -->
   <section id="performance-ai" class="py-16 md:py-24 bg-brand-fondo">
     <m-container>
       <!-- Outer Blue Container -->
       <div
-        class="relative px-6 py-12 overflow-hidden bg-brand-celeste rounded-xl shadow-blue md:p-12 lg:p-16"
+        class="relative flex items-center p-6 overflow-hidden bg-brand-celeste rounded-xl shadow-blue md:p-10 lg:p-10 min-h-150"
       >
         <m-row
           class="relative z-10 flex-col items-center gap-12 lg:flex-row lg:gap-16"
@@ -229,7 +238,7 @@ const BASE = import.meta.env.BASE_URL;
             >
               <!-- Icon -->
               <div class="shrink-0 w-24 md:w-27.5 flex justify-center">
-                <img src="ico-MIA.svg" alt="" />
+                <img src={`${BASE}ico-MIA.svg`} alt="" />
               </div>
               <!-- Text -->
               <div class="flex flex-col">
@@ -253,7 +262,7 @@ const BASE = import.meta.env.BASE_URL;
             >
               <!-- Icon -->
               <div class="shrink-0 w-24 md:w-27.5 flex justify-center">
-                <img src="ico-mb-suite.svg" alt="" />
+                <img src={`${BASE}ico-mb-suite.svg`} alt="" />
               </div>
               <!-- Text -->
               <div class="flex flex-col">
@@ -294,56 +303,56 @@ const BASE = import.meta.env.BASE_URL;
       <!-- Services Grid -->
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         <ServiceCard
-          icon="iconos/ico-google-ads.png"
+          icon={`${BASE}iconos/ico-google-ads.png`}
           iconAlt="Google Ads Icon"
           title="Google Ads"
           content="Administración profesional de campañas en Search, Display, Remarketing, Shopping y Video. ¡Optimizamos tus conversiones!"
           link="#"
         />
         <ServiceCard
-          icon="iconos/ico-meta.png"
+          icon={`${BASE}iconos/ico-meta.png`}
           iconAlt="Meta Ads Icon"
           title="Meta Ads"
           content="Creamos, configuramos y administramos campañas en Facebook Ads e Instagram Ads de forma profesional."
           link="#"
         />
         <ServiceCard
-          icon="iconos/ico-linkedin.png"
+          icon={`${BASE}iconos/ico-linkedin.png`}
           iconAlt="LinkedIn Ads Icon"
           title="LinkedIn Ads"
           content="Campañas patrocinadas en la red de profesionales mas grande del mundo. Segmentaciones especificas y enfocadas en leads."
           link="#"
         />
         <ServiceCard
-          icon="iconos/ico-tiktok.png"
+          icon={`${BASE}iconos/ico-tiktok.png`}
           iconAlt="Tiktok Ads Icon"
           title="Tiktok Ads"
           content="Gestión de campañas en Tiktok Ads: configuración, segmentación y optimización para atraer tráfico de calidad y aumentar conversiones."
           link="#"
         />
         <ServiceCard
-          icon="iconos/ico-seo-content.png"
+          icon={`${BASE}iconos/ico-seo-content.png`}
           iconAlt="Content SEO Icon"
           title="Content SEO"
           content="Redacción de contenido optimizado para SEO: relevante, estructurado y enfocado en palabras clave para mejorar el posicionamiento en buscadores."
           link="#"
         />
         <ServiceCard
-          icon="iconos/ico-seo-technical.png"
+          icon={`${BASE}iconos/ico-seo-technical.png`}
           iconAlt="Technical SEO Icon"
           title="Technical SEO"
           content="Optimización técnica para mejorar el rendimiento e indexación en buscadores: estructura, sitemap, robots y etiquetas."
           link="#"
         />
         <ServiceCard
-          icon="iconos/ico-seo-local.png"
+          icon={`${BASE}iconos/ico-seo-local.png`}
           iconAlt="Local SEO Icon"
           title="Local SEO"
           content="Optimización del posicionamiento geolocalizado a través de Google My Business. Nos aseguramos de que tus clientes encuentren tu empresa."
           link="#"
         />
         <ServiceCard
-          icon="iconos/ico-asesoramiento.png"
+          icon={`${BASE}iconos/ico-asesoramiento.png`}
           iconAlt="Asesoramiento Icon"
           title="Asesoramiento"
           content="Asesoramiento para aumentar tus leads"
@@ -353,21 +362,20 @@ const BASE = import.meta.env.BASE_URL;
     </m-container>
   </section>
   <!-- --------------- CONTACT --------------- -->
-  <section id="contact" class="py-20 md:py-24 bg-brand-fondo">
+  <section id="contact" class="py-14 md:py-24 bg-brand-fondo">
     <m-container>
       <!-- Main Card Wrapper with Blue Background -->
       <div class="relative w-full overflow-hidden rounded-xl shadow-blue">
-        <!-- Background Image Placeholder (Simulating the office background) -->
-        <img
-          src="https://placehold.co/1200x800/148bef/ffffff?text=+"
-          alt="Fondo de equipo trabajando"
-          class="absolute inset-0 object-cover w-full h-full"
-        />
-        <!-- Blue Overlay for brand color and text readability -->
-        <div class="absolute inset-0 bg-brand-celeste/90"></div>
+        <div class="absolute inset-0 bg-brand-celeste/90">
+          <img
+            src={`${BASE}home/bg.team.webp`}
+            alt="Fondo de equipo trabajando"
+            class="absolute inset-0 object-cover w-full opacity-8 mix-blend-luminosity h-[150%] -top-70"
+          />
+        </div>
 
         <!-- Content -->
-        <div class="relative z-10 px-6 py-12 md:p-16 lg:p-20">
+        <div class="relative z-10 p-6 md:p-10 lg:p-10">
           <m-row class="flex-col items-center gap-12 lg:flex-row">
             <!-- Left Column: Text Content -->
             <m-col class="flex-1 w-full lg:w-1/2">
@@ -473,6 +481,6 @@ const BASE = import.meta.env.BASE_URL;
       </div>
     </m-container>
   </section>
-
+  <Certificaciones />
   <Footer />
 </Layout>

@@ -1,4 +1,6 @@
 ---
+import Icon from "./Icon.astro";
+
 interface Props {
   icon: string;
   iconAlt: string;
@@ -58,13 +60,13 @@ const isLight = theme === "light";
       isLight ? "bg-brand-fondo group-hover:bg-white/10" : "bg-white/10",
     ]}
   >
-    <m-icon
+    <Icon
+      name="arrow_forward"
+      size={18}
       class:list={[
-        "material-symbols-outlined text-[18px] transition-colors",
+        "transition-colors",
         isLight ? "text-brand-gris group-hover:text-white" : "text-white",
       ]}
-    >
-      arrow_forward
-    </m-icon>
+    />
   </div>
 </a>

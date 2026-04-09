@@ -1,5 +1,5 @@
 ---
-import ChipOvertitle from "./ChipOvertitle.astro";
+import Icon from "./Icon.astro";
 
 interface Props {
   variant?: "dark" | "light";
@@ -11,83 +11,17 @@ const BASE = import.meta.env.BASE_URL;
 
 <!-- ----- FOOTER ----- -->
 <footer>
-  <!-- --------------- CERTIFICATIONS --------------- -->
-  <section id="certifications" class="py-18 md:py-24 bg-brand-pastel-gris">
-    <m-container>
-      <m-row
-        class="flex-col items-center justify-between gap-10 lg:flex-row lg:gap-8"
-      >
-        <!-- Left: Title Area -->
-        <m-col
-          class="items-center flex-none w-full text-center lg:items-start lg:text-left lg:w-auto gap-6"
-        >
-          <ChipOvertitle text=" Expertos en Marketing Digital" />
-          <h2
-            class="text-3xl md:text-4xl lg:text-[44px] font-display font-semibold text-brand-dark tracking-tight"
-          >
-            Certificaciones
-          </h2>
-        </m-col>
-
-        <!-- Right: Badges Area -->
-        <m-col
-          class="flex flex-row items-center justify-center flex-none w-full lg:w-auto"
-        >
-          <!-- Left Laurel -->
-          <img
-            src="badges/laurel-izq.png"
-            alt="Laurel decorativo izquierdo"
-            class="object-contain h-16 mr-2 opacity-50 sm:h-20 md:h-28 sm:mr-4 md:mr-8 shrink-0"
-          />
-
-          <!-- Badges Grid/Flex -->
-          <div
-            class="flex flex-wrap items-center justify-center gap-2 sm:gap-2 md:gap-3 mix-blend-multiply"
-          >
-            <img
-              src="badges/badge-google.png"
-              alt="Google Partner Premier"
-              class="object-contain h-20 sm:h-22 lg:h-28 shrink-0"
-            />
-            <img
-              src="badges/badge-meta.png"
-              alt="Meta Business Partner"
-              class="object-contain h-20 sm:h-22 lg:h-28 shrink-0"
-            />
-            <img
-              src="badges/badge-linkedin.png"
-              alt="LinkedIn Marketing Partners"
-              class="object-contain h-20 sm:h-22 lg:h-28 shrink-0"
-            />
-            <img
-              src="badges/badge-mb.png"
-              alt="+15 Años de experiencia"
-              class="object-contain h-20 sm:h-22 lg:h-28 shrink-0"
-            />
-          </div>
-
-          <!-- Right Laurel -->
-          <img
-            src="badges/laurel-der.png"
-            alt="Laurel decorativo derecho"
-            class="object-contain h-16 ml-2 opacity-50 sm:h-20 md:h-28 sm:ml-4 md:ml-8 shrink-0"
-          />
-        </m-col>
-      </m-row>
-    </m-container>
-  </section>
-
   <!-- --------------- FOOTER --------------- -->
-  <section id="footer" class="pt-16 pb-0 bg-brand-dark">
+  <section id="footer" class="bg-brand-dark">
     <m-container>
       <!-- Top grid: 4 columns -->
-      <div class="grid grid-cols-1 gap-12 pb-12 sm:grid-cols-2 lg:grid-cols-4">
+      <m-row class="flex-col justify-between gap-24 py-20 md:flex-row">
         <!-- Col 1: Logo + Tagline + Social -->
-        <div class="flex flex-col gap-6 lg:col-span-1">
+        <m-col class="flex flex-col items-start gap-6">
           <img
             src={`${BASE}logo.svg`}
             alt="Mediabros"
-            class="object-contain w-auto h-8 brightness-0 invert"
+            class="justify-start object-contain h-12 align-start"
           />
           <p class="text-sm leading-relaxed text-brand-gris">
             Agencia de marketing digital especializada en generación de leads
@@ -96,36 +30,31 @@ const BASE = import.meta.env.BASE_URL;
           <!-- Social icons -->
           <div class="flex items-center gap-3 mt-2">
             <a
-              href="https://www.linkedin.com/company/mediabros/"
+              href="https://www.linkedin.com/company/mediabros-marketing-digital/mycompany/"
               target="_blank"
               rel="noopener"
               aria-label="LinkedIn"
               class="flex items-center justify-center transition-all duration-300 border rounded-full w-9 h-9 border-white/10 text-brand-gris hover:text-white hover:border-brand-celeste hover:bg-brand-celeste/10"
             >
-              <m-icon class="material-symbols-outlined text-[18px]">link</m-icon
-              >
+              <Icon lib="social" name="simple-icons:linkedin" size={18} />
             </a>
             <a
-              href="https://www.instagram.com/mediabroslatam/"
+              href="https://www.instagram.com/mediabrosmkt/"
               target="_blank"
               rel="noopener"
               aria-label="Instagram"
               class="flex items-center justify-center transition-all duration-300 border rounded-full w-9 h-9 border-white/10 text-brand-gris hover:text-white hover:border-brand-celeste hover:bg-brand-celeste/10"
             >
-              <m-icon class="material-symbols-outlined text-[18px]"
-                >photo_camera</m-icon
-              >
+              <Icon lib="social" name="simple-icons:instagram" size={18} />
             </a>
             <a
-              href="https://www.facebook.com/mediabroslatam"
+              href="https://www.facebook.com/MediaBrosMKT"
               target="_blank"
               rel="noopener"
               aria-label="Facebook"
               class="flex items-center justify-center transition-all duration-300 border rounded-full w-9 h-9 border-white/10 text-brand-gris hover:text-white hover:border-brand-celeste hover:bg-brand-celeste/10"
             >
-              <m-icon class="material-symbols-outlined text-[18px]"
-                >thumb_up</m-icon
-              >
+              <Icon lib="social" name="simple-icons:facebook" size={18} />
             </a>
             <a
               href="https://www.tiktok.com/@mediabroslatam"
@@ -134,45 +63,45 @@ const BASE = import.meta.env.BASE_URL;
               aria-label="TikTok"
               class="flex items-center justify-center transition-all duration-300 border rounded-full w-9 h-9 border-white/10 text-brand-gris hover:text-white hover:border-brand-celeste hover:bg-brand-celeste/10"
             >
-              <m-icon class="material-symbols-outlined text-[18px]"
-                >music_note</m-icon
-              >
+              <Icon lib="social" name="simple-icons:tiktok" size={18} />
             </a>
           </div>
-        </div>
+        </m-col>
 
         <!-- Col 2: Servicios -->
-        <div class="flex flex-col gap-4">
+        <m-col class="flex flex-col gap-4 grow-2">
           <h3
             class="mb-2 text-sm font-semibold tracking-widest text-white uppercase font-display"
           >
             Servicios
           </h3>
-          {
-            [
-              "Google Ads",
-              "Meta Ads",
-              "TikTok Ads",
-              "LinkedIn Ads",
-              "Bing Ads",
-              "Local SEO",
-              "Content SEO",
-              "Technical SEO",
-              "Google Analytics",
-              "Asesoramiento",
-            ].map((s) => (
-              <a
-                href=""
-                class="text-sm transition-colors duration-200 text-brand-gris hover:text-brand-celeste"
-              >
-                {s}
-              </a>
-            ))
-          }
-        </div>
+          <div class="grid grid-cols-2 gap-2">
+            {
+              [
+                "Google Ads",
+                "Meta Ads",
+                "TikTok Ads",
+                "LinkedIn Ads",
+                "Bing Ads",
+                "Local SEO",
+                "Content SEO",
+                "Technical SEO",
+                "Google Analytics",
+                "Asesoramiento",
+              ].map((s) => (
+                <a
+                  href=""
+                  class="text-sm transition-colors duration-200 text-brand-gris hover:text-brand-celeste"
+                >
+                  {s}
+                </a>
+              ))
+            }
+          </div>
+        </m-col>
 
         <!-- Col 3: Contenido -->
-        <div class="flex flex-col gap-4">
+        <m-col class="flex flex-col gap-4">
           <h3
             class="mb-2 text-sm font-semibold tracking-widest text-white uppercase font-display"
           >
@@ -195,10 +124,10 @@ const BASE = import.meta.env.BASE_URL;
               </a>
             ))
           }
-        </div>
+        </m-col>
 
         <!-- Col 4: Contacto internacional -->
-        <div class="flex flex-col gap-4">
+        <m-col class="flex flex-col gap-4">
           <h3
             class="mb-2 text-sm font-semibold tracking-widest text-white uppercase font-display"
           >
@@ -206,17 +135,21 @@ const BASE = import.meta.env.BASE_URL;
           </h3>
           {
             [
-              { flag: "🇺🇸", label: "USA", tel: "+1 786-828-5062" },
-              { flag: "🇲🇽", label: "MEX", tel: "+52 55 1328 5398" },
-              { flag: "🇨🇱", label: "CHL", tel: "+56 2 2582 3484" },
-              { flag: "🇦🇷", label: "ARG", tel: "+54 11 5983-9447" },
-              { flag: "🇨🇴", label: "COL", tel: "+57 601 5087116" },
+              { flag: "usa", label: "USA", tel: "+1 786-828-5062" },
+              { flag: "mex", label: "MEX", tel: "+52 55 1328 5398" },
+              { flag: "chi", label: "CHL", tel: "+56 2 2582 3484" },
+              { flag: "arg", label: "ARG", tel: "+54 11 5983-9447" },
+              { flag: "col", label: "COL", tel: "+57 601 5087116" },
             ].map((c) => (
               <a
                 href={`tel:${c.tel.replace(/\s/g, "")}`}
                 class="flex items-center gap-2 text-sm transition-colors duration-200 text-brand-gris hover:text-white group"
               >
-                <span class="text-base leading-none">{c.flag}</span>
+                <img
+                  src={`${BASE}flags/${c.flag}.svg`}
+                  alt={c.label}
+                  class="object-contain w-5 h-auto shrink-0"
+                />
                 <span class="text-xs font-medium text-white/40 w-7 shrink-0">
                   {c.label}
                 </span>
@@ -226,17 +159,21 @@ const BASE = import.meta.env.BASE_URL;
               </a>
             ))
           }
-        </div>
-      </div>
+        </m-col>
+      </m-row>
 
       <!-- Bottom bar -->
-      <div
+      <m-row
         class="flex flex-col items-center justify-between gap-4 py-6 border-t border-white/8 sm:flex-row"
       >
-        <p class="text-xs text-brand-gris">
-          © MediaBros {new Date().getFullYear()} · All Rights Reserved
-        </p>
-        <div class="flex items-center gap-6">
+        <m-col>
+          <p class="text-xs text-brand-gris">
+            <span class="text-white"
+              >© MediaBros {new Date().getFullYear()}
+            </span>· Todos los derechos reservados
+          </p>
+        </m-col>
+        <m-col class="flex flex-row justify-end gap-6">
           <a
             href=""
             class="text-xs transition-colors duration-200 text-brand-gris hover:text-white"
@@ -247,8 +184,8 @@ const BASE = import.meta.env.BASE_URL;
             class="text-xs transition-colors duration-200 text-brand-gris hover:text-white"
             >Términos de Uso</a
           >
-        </div>
-      </div>
+        </m-col>
+      </m-row>
     </m-container>
   </section>
 </footer>

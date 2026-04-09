@@ -1,6 +1,5 @@
 ---
 import "../styles/global.css";
-import Navigation from "../components/ui/Navigation.astro";
 
 interface Props {
   title: string;
@@ -75,7 +74,6 @@ const { pathname } = Astro.url;
     />
   </head>
   <body>
-    <Navigation pathname={pathname} />
     <slot />
   </body>
 </html>
