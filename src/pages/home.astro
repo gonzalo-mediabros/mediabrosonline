@@ -22,10 +22,6 @@ const { pathname } = Astro.url;
   <!-- ----- HERO ----- -->
   <Navigation pathname={pathname} />
   <HeroBig />
-  <HeroSmall
-    title="Nuestra agencia de marketing digital"
-    subtitle="Tecnología propia y estrategias de generación de demanda."
-  />
 
   <!-- --------------- QUALIFIED LEADS SECTION --------------- -->
   <section
@@ -47,7 +43,7 @@ const { pathname } = Astro.url;
 
           <!-- Heading -->
           <h2
-            class="text-4xl md:text-5xl xl:text-[52px] font-display font-semibold text-brand-dark leading-[1.15] tracking-tight mb-8"
+            class="text-4xl md:text-5xl font-display text-brand-dark leading-[1.15] tracking-tight mb-8"
           >
             Recibe leads calificados<br class="hidden md:block" /> de forma constante
           </h2>
@@ -77,13 +73,11 @@ const { pathname } = Astro.url;
                 />
               </div>
               <h3
-                class="text-[17px] md:text-lg font-display font-semibold text-brand-dark mb-2 tracking-tight"
+                class="mb-2 text-sm tracking-tight md:text-lg font-display text-brand-dark"
               >
                 Nuestras certificaciones
               </h3>
-              <p
-                class="text-brand-gris text-[14px] md:text-[15px] leading-relaxed"
-              >
+              <p class="text-sm leading-relaxed text-brand-gris">
                 Somos partners certificados en las principales plataformas de
                 publicidad digital, cumpliendo estándares de calidad y buenas
                 prácticas.
@@ -102,13 +96,11 @@ const { pathname } = Astro.url;
                 />
               </div>
               <h3
-                class="text-[17px] md:text-lg font-display font-semibold text-brand-dark mb-2 tracking-tight"
+                class="mb-2 text-sm tracking-tight md:text-lg font-display text-brand-dark"
               >
                 Tecnología propia
               </h3>
-              <p
-                class="text-brand-gris text-[14px] md:text-[15px] leading-relaxed"
-              >
+              <p class="text-sm leading-relaxed text-brand-gris">
                 Usamos automatización y herramientas internas para optimizar
                 campañas más rápido y reducir el desperdicio de inversión.
               </p>
@@ -126,13 +118,11 @@ const { pathname } = Astro.url;
                 />
               </div>
               <h3
-                class="text-[17px] md:text-lg font-display font-semibold text-brand-dark mb-2 tracking-tight"
+                class="mb-2 text-sm tracking-tight md:text-lg font-display text-brand-dark"
               >
                 Tiempos de respuesta
               </h3>
-              <p
-                class="text-brand-gris text-[14px] md:text-[15px] leading-relaxed"
-              >
+              <p class="text-sm leading-relaxed text-brand-gris">
                 Te respondemos con SLA definidos según el tipo de
                 implementación. Menos espera, más velocidad para ejecutar
                 mejoras.
@@ -151,13 +141,11 @@ const { pathname } = Astro.url;
                 />
               </div>
               <h3
-                class="text-[17px] md:text-lg font-display font-semibold text-brand-dark mb-2 tracking-tight"
+                class="mb-2 text-sm tracking-tight md:text-lg font-display text-brand-dark"
               >
                 Equipo de trabajo
               </h3>
-              <p
-                class="text-brand-gris text-[14px] md:text-[15px] leading-relaxed"
-              >
+              <p class="text-sm leading-relaxed text-brand-gris">
                 Cada cuenta trabaja con un equipo mínimo de 3 especialistas,
                 para asegurar continuidad, análisis y ejecución constante.
               </p>
@@ -173,12 +161,16 @@ const { pathname } = Astro.url;
           <div
             class="absolute top-[35%] bottom-[0%] left-[-0%] w-screen bg-brand-dark rounded-[30px] z-0"
           >
+            <div
+              class="absolute top-0 left-1/3 -translate-x-1/2 w-full max-w-4xl h-100 bg-brand-celeste opacity-5 blur-[120px] rounded-full pointer-events-none -z-10"
+            >
+            </div>
           </div>
           <div class="relative z-10 w-full mx-auto max-w-150 lg:mr-0">
             <img
               src={`${BASE}home/mano-celu.webp`}
               alt="Tráfico calificado conversiones"
-              class="w-full h-auto"
+              class="relative w-full h-auto -bottom-0"
             />
           </div>
         </m-col>
@@ -192,6 +184,10 @@ const { pathname } = Astro.url;
       <div
         class="relative flex items-center p-6 overflow-hidden bg-brand-celeste rounded-xl shadow-blue md:p-10 lg:p-10 min-h-150"
       >
+        <div
+          class="absolute top-0 left-100 -translate-x-1/2 w-full max-w-5xl h-100 bg-brand-dark opacity-20 blur-[120px] rounded-full pointer-events-none z-1"
+        >
+        </div>
         <m-row
           class="relative z-10 flex-col items-center gap-12 lg:flex-row lg:gap-16"
         >
@@ -204,7 +200,7 @@ const { pathname } = Astro.url;
 
             <!-- Heading -->
             <h2
-              class="text-4xl md:text-5xl lg:text-[52px] font-display font-semibold leading-[1.1] tracking-tight mb-8"
+              class="text-4xl md:text-5xl font-display leading-[1.1] tracking-tight mb-8"
             >
               Mejores resultados con<br class="hidden xl:block" /> optimizaciones
               24/7
@@ -212,7 +208,7 @@ const { pathname } = Astro.url;
 
             <!-- Description Paragraphs -->
             <div
-              class="text-white/90 text-[15px] md:text-base leading-snug space-y-3 pr-0 lg:pr-8"
+              class="pr-0 space-y-3 text-sm leading-snug text-white/90 lg:pr-8"
             >
               <p>
                 Desarrollamos tecnología propia para monitorear y optimizar
@@ -243,13 +239,11 @@ const { pathname } = Astro.url;
               <!-- Text -->
               <div class="flex flex-col">
                 <h3
-                  class="text-brand-celeste font-display font-semibold text-lg md:text-[20px] tracking-tight mb-2"
+                  class="mb-2 tracking-tight text-brand-celeste font-display text-md"
                 >
                   MIA: MediaBros Intelligent Automation
                 </h3>
-                <p
-                  class="text-brand-pastel-gris/80 text-[14px] md:text-[15px] leading-relaxed"
-                >
+                <p class="text-sm leading-tight text-brand-pastel-gris/80">
                   Optimizaciones automáticas y monitoreo constante para mejorar
                   performance y reducir costos
                 </p>
@@ -267,13 +261,11 @@ const { pathname } = Astro.url;
               <!-- Text -->
               <div class="flex flex-col">
                 <h3
-                  class="text-brand-celeste font-display font-semibold text-lg md:text-[20px] tracking-tight mb-2"
+                  class="mb-2 tracking-tight text-brand-celeste font-display text-md"
                 >
                   MediaBros App
                 </h3>
-                <p
-                  class="text-brand-pastel-gris/80 text-[14px] md:text-[15px] leading-relaxed"
-                >
+                <p class="text-sm leading-tight text-brand-pastel-gris/80">
                   Portal de clientes con estrategia, reportes y performance en
                   tiempo real. Toda la información clara, centralizada y
                   disponible cuando la necesitás.
@@ -294,7 +286,7 @@ const { pathname } = Astro.url;
           <ChipOvertitle text="Servicios" />
         </div>
         <h2
-          class="text-4xl md:text-5xl lg:text-[56px] font-display font-semibold text-brand-dark leading-[1.1] tracking-tight max-w-2xl"
+          class="text-4xl md:text-5xl font-display text-brand-dark leading-[1.1] tracking-tight max-w-2xl"
         >
           Campañas multicanal<br /> que generan leads
         </h2>
@@ -387,13 +379,13 @@ const { pathname } = Astro.url;
 
                 <!-- Heading -->
                 <h2
-                  class="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl font-display"
+                  class="mb-6 text-4xl leading-tight text-white md:text-5xl lg:text-6xl font-display"
                 >
                   Apasionados por el Marketing Digital
                 </h2>
 
                 <!-- Description -->
-                <p class="text-lg leading-relaxed text-white/90">
+                <p class="leading-relaxed text-white/90">
                   Desarrollamos estrategias de marketing digital para nuestros
                   clientes, desde la etapa de planeamiento hasta la
                   implementación de campañas de marketing digital, medición de
@@ -421,7 +413,7 @@ const { pathname } = Astro.url;
         </div>
         <!-- Heading -->
         <h2
-          class="text-3xl md:text-4xl lg:text-[44px] font-display font-semibold tracking-tight"
+          class="text-3xl md:text-4xl lg:text-[44px] font-display tracking-tight"
         >
           <span class="text-brand-dark">+150 empresas</span>
           <span class="text-brand-gris">confían en nosotros</span>

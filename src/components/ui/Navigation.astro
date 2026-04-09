@@ -60,7 +60,7 @@ const isActive = (href: string) => {
     <m-row class="flex-row items-center justify-between">
 
       <a href={BASE}>
-        <img id="main-logo" src={`${BASE}logo.svg`} alt="Mediabros online" />
+        <img id="main-logo" src={`${BASE}logo-blanco.svg`} alt="Mediabros online" />
       </a>
 
       <!-- Desktop nav -->
@@ -180,7 +180,7 @@ const isActive = (href: string) => {
   >
     <!-- Header -->
     <div class="flex items-center justify-between px-6 py-5 border-b border-white/10">
-      <img src={`${BASE}logo.svg`} alt="Mediabros online" class="h-10" />
+      <img src={`${BASE}logo-blanco.svg`} alt="Mediabros online" class="h-10" />
       <button
         id="close-btn"
         class="p-1 text-white bg-transparent border-0 cursor-pointer"
@@ -343,12 +343,19 @@ const isActive = (href: string) => {
 
   // ── Sticky header ─────────────────────────────────────────────
   const STICKY_CLASSES = ["bg-brand-dark/95", "backdrop-blur-xl", "shadow-lg"];
+  const mainLogo = document.getElementById("main-logo") as HTMLImageElement;
 
   const updateHeader = () => {
     if (window.scrollY >= STICKY_THRESHOLD) {
       header.classList.add("is-sticky", ...STICKY_CLASSES);
+      if (mainLogo && mainLogo.src.includes("logo-blanco.svg")) {
+        mainLogo.src = mainLogo.src.replace("logo-blanco.svg", "logo.svg");
+      }
     } else {
       header.classList.remove("is-sticky", ...STICKY_CLASSES);
+      if (mainLogo && !mainLogo.src.includes("logo-blanco.svg") && mainLogo.src.includes("logo.svg")) {
+        mainLogo.src = mainLogo.src.replace("logo.svg", "logo-blanco.svg");
+      }
     }
   };
 

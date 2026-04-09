@@ -14,10 +14,10 @@ const { text, icon = "verified", class: className = "" } = Astro.props;
     className,
   ]}
 >
-  {icon && (
-    <span class="material-symbols-outlined leading-none text-[14px]">
-      {icon}
-    </span>
-  )}
+  {
+    icon && (
+      <span class="material-symbols-outlined leading-none text-sm">{icon}</span>
+    )
+  }
   {text}
 </span>

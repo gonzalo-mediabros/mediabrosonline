@@ -2,9 +2,10 @@
 interface Props {
   title: string;
   subtitle?: string;
+  icon?: string;
 }
 
-const { title, subtitle } = Astro.props;
+const { title, subtitle, icon } = Astro.props;
 
 const BASE = import.meta.env.BASE_URL;
 ---
@@ -15,21 +16,26 @@ const BASE = import.meta.env.BASE_URL;
 >
   <!-- Content Wrapper -->
   <div
-    class="relative z-10 flex flex-col items-center justify-center min-h-[40vh] pb-12 pt-16 overflow-hidden text-white bg-brand-celeste rounded-4xl"
+    class="relative z-10 flex flex-col items-center justify-center min-h-[40vh] pb-20 pt-36 overflow-hidden text-white bg-brand-celeste rounded-4xl"
   >
+    <div
+      class="absolute top-0 left-3/3 -translate-x-1/2 w-full max-w-4xl h-100 bg-brand-dark opacity-10 blur-[120px] rounded-full pointer-events-none -z-10"
+    >
+    </div>
     <m-container>
       <m-row class="flex-col items-center text-center">
-        <m-col class="max-w-3xl space-y-4">
+        <m-col class="max-w-3xl space-y-4 items-center">
+          <img src={`${BASE}iconos/${icon}`} alt={title} class="size-16" />
           <h1
-            class="text-4xl sm:text-5xl md:text-6xl font-display font-bold leading-[1.1] tracking-tight"
+            class="text-4xl sm:text-5xl md:text-7xl font-display leading-[1.1] tracking-tight"
           >
             {title}
           </h1>
           {
             subtitle && (
-              <p class="max-w-2xl mx-auto text-lg leading-relaxed md:text-xl text-white/80">
+              <h2 class="max-w-sm mx-auto text-lg leading-tight md:text-xl text-white/80 font-display font-normal leading">
                 {subtitle}
-              </p>
+              </h2>
             )
           }
         </m-col>

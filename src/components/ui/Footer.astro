@@ -15,7 +15,9 @@ const BASE = import.meta.env.BASE_URL;
   <section id="footer" class="bg-brand-dark">
     <m-container>
       <!-- Top grid: 4 columns -->
-      <m-row class="flex-col justify-between gap-24 py-20 md:flex-row">
+      <m-row
+        class="flex-col gap-y-6 gap-x-2 lg:space-between py-20 lg:flex-row flex-wrap"
+      >
         <!-- Col 1: Logo + Tagline + Social -->
         <m-col class="flex flex-col items-start gap-6">
           <img
@@ -69,7 +71,7 @@ const BASE = import.meta.env.BASE_URL;
         </m-col>
 
         <!-- Col 2: Servicios -->
-        <m-col class="flex flex-col gap-4 grow-2">
+        <m-col class="flex flex-col gap-4 grow-2 lg:ml-20">
           <h3
             class="mb-2 text-sm font-semibold tracking-widest text-white uppercase font-display"
           >
@@ -143,7 +145,7 @@ const BASE = import.meta.env.BASE_URL;
             ].map((c) => (
               <a
                 href={`tel:${c.tel.replace(/\s/g, "")}`}
-                class="flex items-center gap-2 text-sm transition-colors duration-200 text-brand-gris hover:text-white group"
+                class="flex items-center gap-2 text-sm transition-colors duration-200 text-brand-gris hover:text-white group whitespace-nowrap"
               >
                 <img
                   src={`${BASE}flags/${c.flag}.svg`}

@@ -22,8 +22,8 @@ const containerClasses = isDark
 
 // Título y Subtítulo
 const titleClasses = isDark
-  ? "font-display text-2xl font-bold text-white mb-2 text-center lg:text-left"
-  : "text-2xl font-display font-bold text-brand-dark mb-2 text-center";
+  ? "font-display text-2xl  text-white mb-2 text-center lg:text-left"
+  : "text-2xl font-display  text-brand-dark mb-2 text-center";
 
 const subtitleClasses = isDark
   ? "text-sm text-text-light mb-8 leading-relaxed text-center lg:text-left"
@@ -41,8 +41,8 @@ const inputClasses = isDark
 
 // Botón
 const buttonClasses = isDark
-  ? "w-full mt-6 py-5 bg-brand-celeste text-white border-none rounded-md font-display font-bold uppercase tracking-wide cursor-pointer transition-all hover:bg-brand-celeste-hover hover:-translate-y-0.5 shadow-blue"
-  : "w-full bg-brand-celeste hover:bg-brand-celeste-hover text-white rounded-md py-4 font-bold shadow-blue transition-base mt-4 cursor-pointer text-lg";
+  ? "w-full mt-6 py-5 bg-brand-celeste text-white border-none rounded-md font-display  uppercase tracking-wide cursor-pointer transition-all hover:bg-brand-celeste-hover hover:-translate-y-0.5 shadow-blue"
+  : "w-full bg-brand-celeste hover:bg-brand-celeste-hover text-white rounded-md py-4  shadow-blue transition-base mt-4 cursor-pointer text-lg";
 
 // Form attributes
 const formId = `lead-form-${Math.random().toString(36).substr(2, 9)}`;
@@ -116,8 +116,8 @@ const formId = `lead-form-${Math.random().toString(36).substr(2, 9)}`;
 
     <div
       class={isDark
-        ? "mt-6 flex flex-wrap justify-center items-center text-center gap-4 lg:gap-6 text-[11px] font-medium text-slate-400 uppercase tracking-wide [&_.footer-item]:flex [&_.footer-item]:items-center [&_.footer-item]:gap-1.5 [&_.material-symbols-outlined]:text-[16px]"
-        : "mt-6 flex flex-wrap justify-center items-center text-center gap-4 lg:gap-6 text-[11px] font-semibold text-brand-celeste uppercase tracking-wide [&_.footer-item]:flex [&_.footer-item]:items-center [&_.footer-item]:gap-1.5 [&_.material-symbols-outlined]:text-[16px]"}
+        ? "mt-6 flex flex-wrap justify-center items-center text-center gap-4 lg:gap-6 text-sm font-medium text-slate-400 uppercase tracking-wide [&_.footer-item]:flex [&_.footer-item]:items-center [&_.footer-item]:gap-1.5 [&_.material-symbols-outlined]:text-xs"
+        : "mt-6 flex flex-wrap justify-center items-center text-center gap-4 lg:gap-6 text-sm font-semibold text-brand-celeste uppercase tracking-wide [&_.footer-item]:flex [&_.footer-item]:items-center [&_.footer-item]:gap-1.5 [&_.material-symbols-outlined]:text-xs"}
     >
       <slot name="footer" />
     </div>
