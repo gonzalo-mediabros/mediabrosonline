@@ -1,0 +1,82 @@
+---
+import ChipOvertitle from "../ui/ChipOvertitle.astro";
+import ServiceCard from "../ui/ServiceCard.astro";
+
+const BASE = import.meta.env.BASE_URL;
+---
+
+<section id="services-multichannel" class="py-20 lg:py-28 bg-brand-fondo">
+  <m-container>
+    <!-- Section Header -->
+    <m-col class="mb-12 md:mb-16">
+      <div class="mb-6">
+        <ChipOvertitle text="Servicios" />
+      </div>
+      <h2
+        class="text-4xl md:text-5xl font-display text-brand-dark leading-[1.1] tracking-tight max-w-2xl"
+      >
+        Campañas multicanal<br /> que generan leads
+      </h2>
+    </m-col>
+
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <ServiceCard
+        icon={`${BASE}iconos/ico-google-ads.png`}
+        iconAlt="Google Ads Icon"
+        title="Google Ads"
+        content="Administración profesional de campañas en Search, Display, Remarketing, Shopping y Video. ¡Optimizamos tus conversiones!"
+        link="#"
+      />
+      <ServiceCard
+        icon={`${BASE}iconos/ico-meta.png`}
+        iconAlt="Meta Ads Icon"
+        title="Meta Ads"
+        content="Creamos, configuramos y administramos campañas en Facebook Ads e Instagram Ads de forma profesional."
+        link="#"
+      />
+      <ServiceCard
+        icon={`${BASE}iconos/ico-linkedin.png`}
+        iconAlt="LinkedIn Ads Icon"
+        title="LinkedIn Ads"
+        content="Campañas patrocinadas en la red de profesionales mas grande del mundo. Segmentaciones especificas y enfocadas en leads."
+        link="#"
+      />
+      <ServiceCard
+        icon={`${BASE}iconos/ico-tiktok.png`}
+        iconAlt="Tiktok Ads Icon"
+        title="Tiktok Ads"
+        content="Gestión de campañas en Tiktok Ads: configuración, segmentación y optimización para atraer tráfico de calidad y aumentar conversiones."
+        link="#"
+      />
+      <ServiceCard
+        icon={`${BASE}iconos/ico-seo-content.png`}
+        iconAlt="Content SEO Icon"
+        title="Content SEO"
+        content="Redacción de contenido optimizado para SEO: relevante, estructurado y enfocado en palabras clave para mejorar el posicionamiento en buscadores."
+        link="#"
+      />
+      <ServiceCard
+        icon={`${BASE}iconos/ico-seo-technical.png`}
+        iconAlt="Technical SEO Icon"
+        title="Technical SEO"
+        content="Optimización técnica para mejorar el rendimiento e indexación en buscadores: estructura, sitemap, robots y etiquetas."
+        link="#"
+      />
+      <ServiceCard
+        icon={`${BASE}iconos/ico-seo-local.png`}
+        iconAlt="Local SEO Icon"
+        title="Local SEO"
+        content="Optimización del posicionamiento geolocalizado a través de Google My Business. Nos aseguramos de que tus clientes encuentren tu empresa."
+        link="#"
+      />
+      <ServiceCard
+        icon={`${BASE}iconos/ico-asesoramiento.png`}
+        iconAlt="Asesoramiento Icon"
+        title="Asesoramiento"
+        content="Asesoramiento para aumentar tus leads"
+        link="#"
+      />
+    </div>
+  </m-container>
+</section>

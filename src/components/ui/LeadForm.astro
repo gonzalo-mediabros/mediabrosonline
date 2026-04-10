@@ -1,4 +1,6 @@
 ---
+import Icon from "./Icon.astro";
+
 interface Props {
   title?: string;
   subtitle?: string;
@@ -39,10 +41,6 @@ const inputClasses = isDark
   ? "w-full py-4 px-5 bg-white/5 border border-white/10 rounded-md text-white placeholder:text-white/30 outline-none transition-all focus:border-brand-celeste focus:bg-white/8"
   : "w-full bg-slate-50 border border-slate-200 rounded-md px-4 py-3 text-brand-dark focus:outline-none focus:border-brand-celeste focus:ring-1 focus:ring-brand-celeste transition-base";
 
-// Botón
-const buttonClasses = isDark
-  ? "w-full mt-6 py-5 bg-brand-celeste text-white border-none rounded-md font-display  uppercase tracking-wide cursor-pointer transition-all hover:bg-brand-celeste-hover hover:-translate-y-0.5 shadow-blue"
-  : "w-full bg-brand-celeste hover:bg-brand-celeste-hover text-white rounded-md py-4  shadow-blue transition-base mt-4 cursor-pointer text-lg";
 
 // Form attributes
 const formId = `lead-form-${Math.random().toString(36).substr(2, 9)}`;
@@ -110,8 +108,14 @@ const formId = `lead-form-${Math.random().toString(36).substr(2, 9)}`;
       </div>
     </div>
 
-    <button type="submit" class={buttonClasses}>
-      {buttonText}
+    <button
+      type="submit"
+      class="mt-6 w-full flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-medium font-display transition-colors bg-brand-celeste hover:bg-brand-celeste-hover text-white shadow-blue cursor-pointer border-none"
+    >
+      <span class="flex-1 text-center">{buttonText}</span>
+      <span class="flex items-center justify-center rounded-full size-9 shrink-0 bg-white/20">
+        <Icon name="arrow_forward" size={18} />
+      </span>
     </button>
 
     <div

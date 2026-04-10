@@ -1,0 +1,105 @@
+---
+import ChipOvertitle from "../ui/ChipOvertitle.astro";
+
+const BASE = import.meta.env.BASE_URL;
+---
+
+<section id="performance-ai" class="py-16 md:py-24 bg-brand-fondo">
+  <m-container>
+    <!-- Outer Blue Container -->
+    <div
+      class="relative flex items-center p-6 overflow-hidden bg-brand-celeste rounded-xl shadow-blue md:p-10 lg:p-10 min-h-150"
+    >
+      <div
+        class="absolute top-0 left-100 -translate-x-1/2 w-full max-w-5xl h-100 bg-brand-dark opacity-20 blur-[120px] rounded-full pointer-events-none z-1"
+      >
+      </div>
+      <m-row
+        class="relative z-10 flex-col items-center gap-12 lg:flex-row lg:gap-16"
+      >
+        <!-- Left Side: Text Content -->
+        <m-col class="lg:w-[45%] flex-none text-white">
+          <!-- Badge -->
+          <div class="mb-6">
+            <ChipOvertitle text="IA aplicada a performance" theme="dark" />
+          </div>
+
+          <!-- Heading -->
+          <h2
+            class="text-4xl md:text-5xl font-display leading-[1.1] tracking-tight mb-8"
+          >
+            Mejores resultados con<br class="hidden xl:block" /> optimizaciones
+            24/7
+          </h2>
+
+          <!-- Description Paragraphs -->
+          <div
+            class="pr-0 space-y-3 text-sm leading-snug text-white/90 lg:pr-8"
+          >
+            <p>
+              Desarrollamos tecnología propia para monitorear y optimizar
+              campañas todos los días.
+            </p>
+            <p>
+              Detectamos oportunidades, reducimos desperdicio de inversión y
+              aceleramos mejoras para generar más leads con el mismo
+              presupuesto.
+            </p>
+            <p>
+              Unimos automatización + criterio humano para lograr performance
+              real.
+            </p>
+          </div>
+        </m-col>
+
+        <!-- Right Side: Action Cards -->
+        <m-col class="lg:w-[55%] flex-none flex flex-col gap-6 w-full shrink">
+          <!-- Card 1: MIA -->
+          <div
+            class="flex flex-col items-start gap-6 p-6 transition-colors rounded-lg bg-brand-dark md:p-8 sm:flex-row sm:items-center sm:gap-8 shadow-premium hover:bg-brand-dark/95"
+          >
+            <!-- Icon -->
+            <div class="shrink-0 w-24 md:w-27.5 flex justify-center">
+              <img src={`${BASE}ico-MIA.svg`} alt="" />
+            </div>
+            <!-- Text -->
+            <div class="flex flex-col">
+              <h3
+                class="mb-2 tracking-tight text-brand-celeste font-display text-md"
+              >
+                MIA: MediaBros Intelligent Automation
+              </h3>
+              <p class="text-sm leading-tight text-brand-pastel-gris/80">
+                Optimizaciones automáticas y monitoreo constante para mejorar
+                performance y reducir costos
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2: App -->
+          <div
+            class="flex flex-col items-start gap-6 p-6 transition-colors rounded-lg bg-brand-dark md:p-8 sm:flex-row sm:items-center sm:gap-8 shadow-premium hover:bg-brand-dark/95"
+          >
+            <!-- Icon -->
+            <div class="shrink-0 w-24 md:w-27.5 flex justify-center">
+              <img src={`${BASE}ico-mb-suite.svg`} alt="" />
+            </div>
+            <!-- Text -->
+            <div class="flex flex-col">
+              <h3
+                class="mb-2 tracking-tight text-brand-celeste font-display text-md"
+              >
+                MediaBros App
+              </h3>
+              <p class="text-sm leading-tight text-brand-pastel-gris/80">
+                Portal de clientes con estrategia, reportes y performance en
+                tiempo real. Toda la información clara, centralizada y
+                disponible cuando la necesitás.
+              </p>
+            </div>
+          </div>
+        </m-col>
+      </m-row>
+    </div>
+  </m-container>
+</section>

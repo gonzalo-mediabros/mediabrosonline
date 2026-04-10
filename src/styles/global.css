@@ -43,6 +43,23 @@
   --font-sans: "Inter", sans-serif;
   --font-display: "Red Hat Display", sans-serif;
 
+  /* Borders */
+  --color-border-subtle: rgba(23, 25, 49, 0.06);
+  --color-border-subtle-light: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(20, 139, 239, 0.2);
+
+  /* Glassmorphism */
+  --color-glass-light: rgba(255, 255, 255, 0.6);
+  --color-glass-dark: rgba(23, 25, 49, 0.7);
+
+  /* Glows */
+  --color-glow-celeste: rgba(20, 139, 239, 0.08);
+  --color-glow-verde: rgba(198, 255, 149, 0.06);
+
+  /* Additional Shadows */
+  --shadow-subtle: 0 1px 2px rgba(23, 25, 49, 0.04);
+  --shadow-glow-celeste: 0 0 40px rgba(20, 139, 239, 0.15);
+
   /* Transitions */
   --transition-base: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -76,8 +93,7 @@ body {
 }
 
 /* ===== LAYOUT WEB COMPONENTS ===== */
-/* @layer base ensures Tailwind utilities (flex-row, items-center, etc.)
-   can override these defaults when applied via class attributes. */
+/* @layer base ensures Tailwind utilities (flex-row, items-center, etc.) can override these defaults when applied via class attributes. */
 
 @layer base {
   html {
@@ -122,5 +138,18 @@ body {
     --radius-md: 8px;
     --radius-lg: 16px;
     --radius-xl: 20px;
+  }
+}
+
+/* ===== PREMIUM POLISH UTILITIES ===== */
+
+/* ===== PREMIUM BASE IMPROVEMENTS ===== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  details {
+    border: 1px solid var(--color-border-subtle);
   }
 }

@@ -1,0 +1,73 @@
+---
+import ChipOvertitle from "../ui/ChipOvertitle.astro";
+---
+
+<section id="clients-carousel" class="py-16 md:py-24 bg-brand-fondo">
+  <m-container>
+    <m-col class="items-center mb-12 text-center md:mb-16">
+      <!-- Badge -->
+      <div class="mb-6">
+        <ChipOvertitle text="Nuestros clientes" />
+      </div>
+      <!-- Heading -->
+      <h2
+        class="text-3xl md:text-4xl lg:text-[44px] font-display tracking-tight"
+      >
+        <span class="text-brand-dark">+150 empresas</span>
+        <span class="text-brand-gris">confían en nosotros</span>
+      </h2>
+    </m-col>
+
+    <!-- Carousel Container -->
+    <div class="relative w-full">
+      <!-- Left Fade -->
+      <div
+        class="absolute inset-y-0 left-0 z-10 w-16 pointer-events-none md:w-32 bg-linear-to-r from-brand-fondo to-transparent"
+      >
+      </div>
+
+      <!-- Right Fade -->
+      <div
+        class="absolute inset-y-0 right-0 z-10 w-16 pointer-events-none md:w-32 bg-linear-to-l from-brand-fondo to-transparent"
+      >
+      </div>
+
+      <!-- Scrollable Track -->
+      <div
+        class="flex items-center justify-between gap-12 px-8 py-4 overflow-x-auto md:gap-20 snap-x"
+      >
+        <!-- Client Logos -->
+        <img
+          src="https://placehold.co/200x80/f7f8ff/7388aa?text=Logo+Citrin"
+          alt="Cliente 1"
+          class="object-contain w-auto h-8 transition-opacity opacity-50 md:h-12 hover:opacity-100 snap-center shrink-0 mix-blend-multiply"
+        />
+        <img
+          src="https://placehold.co/200x80/f7f8ff/7388aa?text=Logo+Chaer"
+          alt="Cliente 2"
+          class="object-contain w-auto h-8 transition-opacity opacity-50 md:h-12 hover:opacity-100 snap-center shrink-0 mix-blend-multiply"
+        />
+        <img
+          src="https://placehold.co/200x80/f7f8ff/7388aa?text=Logo+CareU"
+          alt="Cliente 3"
+          class="object-contain w-auto h-8 transition-opacity opacity-50 md:h-12 hover:opacity-100 snap-center shrink-0 mix-blend-multiply"
+        />
+        <img
+          src="https://placehold.co/200x80/f7f8ff/7388aa?text=Logo+Caracas"
+          alt="Cliente 4"
+          class="object-contain w-auto h-8 transition-opacity opacity-50 md:h-12 hover:opacity-100 snap-center shrink-0 mix-blend-multiply"
+        />
+        <img
+          src="https://placehold.co/200x80/f7f8ff/7388aa?text=Logo+Canaglia"
+          alt="Cliente 5"
+          class="object-contain w-auto h-8 transition-opacity opacity-50 md:h-12 hover:opacity-100 snap-center shrink-0 mix-blend-multiply"
+        />
+        <img
+          src="https://placehold.co/200x80/f7f8ff/7388aa?text=Logo+Cami"
+          alt="Cliente 6"
+          class="object-contain w-auto h-8 transition-opacity opacity-50 md:h-12 hover:opacity-100 snap-center shrink-0 mix-blend-multiply"
+        />
+      </div>
+    </div>
+  </m-container>
+</section>
