@@ -1,5 +1,5 @@
 ---
-import Icon from "../atoms/Icon.astro";
+import Button from "../atoms/Button.astro";
 
 interface Props {
   title?: string;
@@ -9,9 +9,9 @@ interface Props {
 }
 
 const {
-  title = "Solicitá tu recurso gratuito",
-  subtitle = "Completá tus datos para empezar ahora mismo.",
-  buttonText = "Quiero empezar",
+  title = "Asesoramiento personalizado",
+  subtitle = "Completa tus datos y ",
+  buttonText = "Enviar ",
   theme = "dark",
 } = Astro.props;
 
@@ -107,17 +107,12 @@ const formId = `lead-form-${Math.random().toString(36).substr(2, 9)}`;
       </div>
     </div>
 
-    <button
+    <Button
+      label={buttonText}
       type="submit"
-      class="flex items-center w-full gap-3 py-2 pl-6 pr-2 mt-6 font-medium text-white transition-colors border-none rounded-full cursor-pointer font-display bg-brand-celeste hover:bg-brand-celeste-hover shadow-blue"
-    >
-      <span class="flex-1 text-center">{buttonText}</span>
-      <span
-        class="flex items-center justify-center rounded-full size-9 shrink-0 bg-white/20"
-      >
-        <Icon name="arrow_forward" size={18} />
-      </span>
-    </button>
+      variant="dark"
+      class="w-full justify-between mt-6"
+    />
 
     <div
       class={isDark

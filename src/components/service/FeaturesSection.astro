@@ -1,9 +1,12 @@
 ---
 import ChipOvertitle from "../atoms/ChipOvertitle.astro";
+import Icon from "../atoms/Icon.astro";
 
 interface FeatureItem {
   iconSrc?: string;
   iconAlt?: string;
+  iconName?: string;
+  iconColor?: string;
   title: string;
   description: string;
 }
@@ -29,7 +32,7 @@ const {
 const BASE = import.meta.env.BASE_URL;
 ---
 
-<section class="py-16 md:py-24">
+<section class="py-16 isolate md:py-20">
   <m-container class="z-10 p-8 bg-white rounded-3xl md:p-12 lg:p-16">
     <m-row
       class="flex-col items-start gap-12 lg:flex-row lg:gap-16 lg:items-center"
@@ -80,6 +83,18 @@ const BASE = import.meta.env.BASE_URL;
                   alt={item.iconAlt ?? ""}
                   class="size-12 shrink-0 mt-0.5"
                 />
+              )}
+              {!item.iconSrc && item.iconName && (
+                <div class="flex items-center  transition-colors rounded-full bg-brand-fondo group-hover:bg-white/10 p-1">
+                  <span class="inline-flex items-center justify-center size-12 shrink-0 mt-0.5 rounded-xl bg-linear-to-bl from-brand-celeste/15 to-brand-celeste/10">
+                    <Icon
+                      fill={1}
+                      name={item.iconName}
+                      size={26}
+                      class={item.iconColor ?? "text-brand-celeste"}
+                    />
+                  </span>
+                </div>
               )}
               <div>
                 <h3 class="text-lg font-display text-brand-dark mb-1.5">

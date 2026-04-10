@@ -24,7 +24,7 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative py-16 md:py-24">
+<section class="relative isolate py-16 md:py-24">
   <m-container class="flex flex-col gap-18">
     <Glow
       class="w-screen -translate-x-1/2 -top-100 bg-brand-gris/5 h-160 -z-1"
@@ -40,7 +40,7 @@ const {
       >
         {heading}
       </h2>
-      <p
+      <div
         class="max-w-4xl mx-auto text-base leading-relaxed md:text-lg text-brand-gris"
         set:html={description}
       />
@@ -89,7 +89,9 @@ const {
               </div>
             )
           }
-          <p class="mx-auto text-base md:text-lg text-brand-dark/90 leading-relaxed">
+          <p
+            class="mx-auto text-base md:text-lg text-brand-dark/90 leading-relaxed"
+          >
             {calloutText}
           </p>
         </div>

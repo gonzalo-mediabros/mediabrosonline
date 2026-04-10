@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import LeadForm from "../components/ui/LeadForm.astro";
 import Footer from "../components/ui/Footer.astro";
 import Chip from "../components/atoms/Chip.astro";
-import BenefitCard from "../components/atoms/BenefitCard.astro";
+import CardBenefit from "../components/atoms/CardBenefit.astro";
 import BigHero from "../components/ui/HeroBig.astro";
 import Glow from "../components/atoms/Glow.astro";
 
@@ -201,7 +201,7 @@ const BASE = import.meta.env.BASE_URL;
 
       <m-row class="flex-col md:flex-row flex-wrap gap-6">
         <!-- Benefit 1 -->
-        <BenefitCard
+        <CardBenefit
           title="Diagnóstico Guiado"
           description="Aprenderás a identificar errores comunes."
           icon="vital_signs"
@@ -209,7 +209,7 @@ const BASE = import.meta.env.BASE_URL;
         />
 
         <!-- Benefit 2 -->
-        <BenefitCard
+        <CardBenefit
           title="Claridad estratégica"
           description="Descubrirás qué canales son los adecuados."
           icon="map"
@@ -217,7 +217,7 @@ const BASE = import.meta.env.BASE_URL;
         />
 
         <!-- Benefit 3 -->
-        <BenefitCard
+        <CardBenefit
           title="Casos reales"
           description="Casos concretos en sectores logísticos y construcción."
           icon="stacks"
@@ -225,7 +225,7 @@ const BASE = import.meta.env.BASE_URL;
         />
 
         <!-- Benefit 4 -->
-        <BenefitCard
+        <CardBenefit
           title="Acción inmediata"
           description="Llamado a la acción claro para avanzar con solidez."
           icon="bolt"

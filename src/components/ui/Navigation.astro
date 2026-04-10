@@ -59,7 +59,7 @@ const isActive = (href: string) => {
   id="main-header"
   class="absolute top-0 left-0 right-0 z-20 py-5 text-white md:top-15 xl:px-16"
 >
-  <m-container class="font-display">
+  <m-container class="font-display lg:max-w-[calc(100%-100px)]"]>
     <m-row class="flex-row items-center justify-between">
 
       <a href={BASE}>
@@ -67,7 +67,7 @@ const isActive = (href: string) => {
       </a>
 
       <!-- Desktop nav -->
-      <nav class="items-center hidden gap-8 text-lg md:flex">
+      <nav class="items-center hidden gap-6 text-lg md:flex">
 
         {navItems.map((item) => (
           <Fragment>
@@ -77,8 +77,8 @@ const isActive = (href: string) => {
               <a
                 href={item.href}
                 class:list={[
-                  "transition-colors hover:text-brand-turquesa",
-                  isActive(item.href!) && "text-brand-turquesa",
+                  "transition-colors hover:text-brand-celeste",
+                  isActive(item.href!) && "text-brand-celeste",
                 ]}
               >
                 {item.label}
@@ -94,7 +94,7 @@ const isActive = (href: string) => {
                   id="services-trigger"
                   aria-expanded="false"
                   aria-haspopup="true"
-                  class="flex items-center gap-1 p-0 text-lg transition-colors bg-transparent border-0 cursor-pointer hover:text-brand-turquesa text-inherit"
+                  class="flex items-center gap-1 p-0 text-lg transition-colors bg-transparent border-0 cursor-pointer hover:text-brand-celeste text-inherit"
                 >
                   {item.label}
                   <Icon
@@ -203,7 +203,7 @@ const isActive = (href: string) => {
           class:list={[
             "flex items-center px-4 py-3.5 rounded-xl text-md font-medium transition-colors no-underline",
             isActive(item.href!)
-              ? "text-brand-turquesa bg-white/5"
+              ? "text-brand-celeste bg-white/5"
               : "text-white/80 hover:text-white hover:bg-white/10",
           ]}
         >
@@ -346,7 +346,7 @@ const isActive = (href: string) => {
   servicesDropdown.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeDropdown));
 
   // ── Sticky header ─────────────────────────────────────────────
-  const STICKY_CLASSES = ["bg-white/95", "backdrop-blur-xl", "shadow-sm", "border-b", "border-brand-gris/20", "text-brand-dark"];
+  const STICKY_CLASSES = ["bg-brand-fondo", "backdrop-blur-xl",  "border-b", "border-brand-gris/20", "text-brand-dark"];
   const NON_STICKY_CLASSES = ["text-white"];
   const mainLogo = document.getElementById("main-logo") as HTMLImageElement;
 

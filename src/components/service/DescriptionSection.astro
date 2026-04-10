@@ -37,7 +37,7 @@ const {
 const BASE = import.meta.env.BASE_URL;
 ---
 
-<section class="py-16 isolate md:py-24 bg-brand-fondo">
+<section class="py-16 isolate md:py-20 bg-brand-fondo">
   <m-container>
     <m-row
       class="flex-col items-center gap-12 lg:flex-row lg:gap-8 lg:items-stretch"
@@ -71,45 +71,16 @@ const BASE = import.meta.env.BASE_URL;
 
       <!-- Right Column -->
       <m-col class="flex items-center justify-center text-sm basis-1 grow-4">
-        {
-          rightContent === "image" && imageSrc && (
-            <div class="relative w-full rounded-lg bg-brand-dark overflow-clip h-120">
-              <Glow class="top-0 z-10 -translate-x-1/2 translate-y-1/2 left-10 w-200 h-200 bg-brand-celeste/40" />
-              <img
-                src={`${BASE}imgs/${imageSrc}`}
-                alt={imageAlt ?? ""}
-                class="object-cover w-full h-120 opacity-95"
-              />
-            </div>
-          )
-        }
-
-        {
-          rightContent === "icons" && (
-            <div class="flex flex-col w-full divide-y divide-brand-pastel-gris">
-              {icons.map((item) => (
-                <div class="flex items-start gap-4 py-6 first:pt-0 last:pb-0">
-                  {item.src && (
-                    <img
-                      src={`${BASE}imgs/${item.src}`}
-                      alt={item.alt}
-                      class="size-12 shrink-0 mt-0.5"
-                    />
-                  )}
-                  asd
-                  <div>
-                    <h3 class="text-lg font-display text-brand-dark mb-1.5">
-                      {item.label}
-                    </h3>
-                    <p class="text-sm leading-relaxed text-brand-gris">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )
-        }
+        <div class="relative w-full rounded-lg overflow-clip h-120">
+          <Glow
+            class="top-0 z-10 -translate-x-1/2 translate-y-1/2 left-10 w-200 h-200 bg-brand-celeste/40"
+          />
+          <img
+            src={`${BASE}imgs/${imageSrc}`}
+            alt={imageAlt ?? ""}
+            class="object-cover w-full h-120 opacity-100 brightness-95"
+          />
+        </div>
       </m-col>
     </m-row>
   </m-container>

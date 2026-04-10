@@ -1,23 +1,34 @@
 ---
+import Glow from "./Glow.astro";
 import Icon from "./Icon.astro";
 
 interface Props {
   label: string;
   href?: string;
+  type?: "button" | "submit" | "reset";
   variant?: "celeste" | "dark" | "white";
   class?: string;
 }
 
-const { label, href = "#", variant = "celeste", class: className } = Astro.props;
+const {
+  label,
+  href,
+  type = "button",
+  variant = "celeste",
+  class: className,
+} = Astro.props;
+
+const isLink = !!href;
+const Tag = isLink ? "a" : "button";
 
 const variants = {
   celeste: {
-    pill: "bg-brand-celeste hover:bg-brand-celeste-hover text-white shadow-blue",
-    circle: "bg-white/20",
+    pill: "bg-brand-celeste hover:bg-brand-celeste-hover text-white ",
+    circle: "bg-white/10",
   },
   dark: {
     pill: "bg-brand-dark hover:bg-brand-dark-2 text-white",
-    circle: "bg-white/15",
+    circle: "bg-white/5",
   },
   white: {
     pill: "bg-white hover:bg-brand-pastel-gris text-brand-dark",
@@ -25,22 +36,25 @@ const variants = {
   },
 };
 
-const v = variants[variant];
+const currVariant = variants[variant];
 ---
 
-<a
-  href={href}
+<Tag
+  href={isLink ? href : undefined}
+  type={!isLink ? type : undefined}
   class:list={[
-    "inline-flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-medium font-display transition-colors no-underline",
-    v.pill,
+    "inline-flex items-center gap-3 pl-6 pr-1 py-1 rounded-full font-medium font-display transition-colors no-underline relative overflow-clip",
+    isLink ? "cursor-pointer" : "border-none cursor-pointer",
+    currVariant.pill,
     className,
   ]}
 >
-  <span>{label}</span>
+  <Glow class="top-0 z-10 left-10 w-200 h-200 bg-brand-celeste/40" />
+  <span class="flex-1 text-center">{label}</span>
   <span
     class:list={[
-      "flex items-center justify-center rounded-full size-9 shrink-0",
-      v.circle,
+      "flex items-center justify-center rounded-full size-10 shrink-0",
+      currVariant.circle,
     ]}
   >
     <Icon
@@ -49,4 +63,4 @@ const v = variants[variant];
       class={variant === "white" ? "text-white" : "text-current"}
     />
   </span>
-</a>
+</Tag>
