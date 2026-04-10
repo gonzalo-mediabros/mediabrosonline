@@ -1,0 +1,120 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/ui/Navigation.astro";
+import HeroSmall from "../components/ui/HeroSmall.astro";
+import Certificaciones from "../components/ui/Certificaciones.astro";
+import Footer from "../components/ui/Footer.astro";
+import ContactSection from "../components/ui/ContactSection.astro";
+import DescriptionSection from "../components/service/DescriptionSection.astro";
+import FeaturesSection from "../components/service/FeaturesSection.astro";
+import WhySection from "../components/service/WhySection.astro";
+import CtaSection from "../components/service/CtaSection.astro";
+import FAQSection from "../components/service/FAQSection.astro";
+
+const { pathname } = Astro.url;
+---
+
+<Layout
+  title="LinkedIn Ads | Mediabros Online"
+  description="LinkedIn Ads para generar leads de alto valor en procesos comerciales consultivos"
+>
+  <Navigation pathname={pathname} />
+  <HeroSmall
+    title="LinkedIn Ads"
+    icon="ico-linkedin.png"
+    subtitle="LinkedIn Ads para generar leads de alto valor en procesos comerciales consultivos"
+  />
+
+  <DescriptionSection
+    chipText="Más leads con LinkedIn Ads"
+    heading="Mercados profesionales"
+    description="LinkedIn Ads es el canal más potente cuando el objetivo es generar oportunidades comerciales de calidad en mercados profesionales. A diferencia de otras plataformas, LinkedIn permite impactar a las personas no solo por intereses o comportamientos, sino por <strong>rol, cargo, industria y contexto laboral.</strong>"
+    ctaLabel="Consúltanos"
+    ctaHref="#contacto"
+    rightContent="image"
+    imageSrc="servicios/linkedin.webp"
+    imageAlt="LinkedIn Ads"
+  />
+
+  <FeaturesSection
+    chipText="Campañas en LinkedIn Ads"
+    heading="Tipos de campañas en LinkedIn Ads"
+    description="Según los objetivos de cada empresa y la etapa del funnel, implementamos distintos tipos de campañas en LinkedIn Ads. Cada tipo de campaña cumple una función dentro de una estrategia integral, no se utiliza de forma aislada."
+    sectionIconSrc="iconos/ico-linkedin.png"
+    sectionIconAlt="LinkedIn Ads"
+    items={[
+      {
+        title: "Campañas de tráfico",
+        description: "Trabajamos campañas de generación de leads mediante formularios nativos, optimizadas para captar contactos con información relevante.",
+      },
+      {
+        title: "Generación de leads",
+        description: "Desarrollamos campañas de tráfico a landing pages cuando el foco está en educar o profundizar la propuesta de valor.",
+      },
+      {
+        title: "Conversaciones directas",
+        description: "Utilizamos mensajes patrocinados para generar conversaciones directas en contextos específicos.",
+      },
+      {
+        title: "Estrategias de remarketing",
+        description: "Implementamos estrategias de remarketing para reforzar el mensaje sobre usuarios que ya interactuaron con la marca.",
+      },
+    ]}
+  />
+
+  <WhySection
+    chipText="Más leads con LinkedIn Ads"
+    heading="¿Por qué hacer publicidad en LinkedIn Ads?"
+    description="LinkedIn es una plataforma donde los usuarios están en modo profesional. No están navegando para entretenerse, sino para informarse, posicionarse y tomar decisiones vinculadas a su trabajo o negocio."
+    listHeading="LinkedIn Ads es un canal ideal para:"
+    listItems={[
+      "El proceso de venta es consultivo.",
+      "El ticket promedio es medio o alto.",
+      "La decisión depende de perfiles específicos.",
+      "La calidad del lead es más importante que el volumen.",
+    ]}
+    calloutText="LinkedIn Ads no es el canal más barato, pero bien trabajado suele ser <strong>uno de los más rentables cuando se mide correctamente la calidad del contacto generado.</strong>"
+  />
+
+  <CtaSection
+    chipText="LinkedIn Ads"
+    heading="¿Es adecuado para tu empresa?"
+    description="Podemos analizar tu mercado, tu ticket promedio y tu proceso comercial para definir si LinkedIn Ads puede ser un canal rentable dentro de tu estrategia digital."
+    ctaLabel="Consúltanos"
+    ctaHref="#contacto"
+  />
+
+  <FAQSection
+    heading="Aprende todo sobre LinkedIn Ads"
+    faqs={[
+      {
+        question: "¿Qué es LinkedIn Ads?",
+        answer: "<strong>LinkedIn Ads</strong> es una forma de publicidad pagada que te permite llegar a profesionales específicos en la plataforma <strong>LinkedIn</strong>. Puedes utilizar los <strong>anuncios de LinkedIn</strong> para promocionar tu empresa, productos, servicios o eventos a una audiencia altamente relevante.",
+      },
+      {
+        question: "¿Cómo funcionan los anuncios de LinkedIn Ads?",
+        answer: "Los anuncios en <strong>LinkedIn Ads</strong> funcionan mediante un sistema de subastas. Cuando creas un anuncio, estableces un presupuesto y una puja máxima para cada clic. Cuando un usuario busca o navega por LinkedIn, el sistema de <strong>LinkedIn Ads</strong> realiza una subasta en tiempo real entre los anunciantes que han pujado por las palabras clave, ubicaciones y datos demográficos relevantes. El anuncio que gana la subasta es el que se muestra al usuario.",
+      },
+      {
+        question: "¿Qué tipos de anuncios de LinkedIn Ads hay?",
+        answer: "<strong>LinkedIn Ads</strong> ofrece una variedad de tipos de anuncios, incluyendo:<ul class=\"mt-3 space-y-2\"><li><strong>Anuncios con una sola imagen:</strong> Son anuncios que incluyen una imagen y un breve texto.</li><li><strong>Anuncios en carrusel:</strong> Son anuncios que muestran varias imágenes o videos en un formato deslizable.</li><li><strong>Anuncios de texto:</strong> Son anuncios que solo incluyen texto.</li><li><strong>Anuncios de video:</strong> Son anuncios que se reproducen automáticamente cuando un usuario visita una página web o aplicación móvil.</li><li><strong>Anuncios Sponsored InMail:</strong> Son anuncios que se envían directamente a los buzones de entrada de LinkedIn de los usuarios.</li></ul>",
+      },
+      {
+        question: "¿Cómo puedo medir el rendimiento de mis campañas de LinkedIn Ads?",
+        answer: "<strong>LinkedIn Ads</strong> ofrece una variedad de herramientas para medir el rendimiento de tus campañas, como:<ul class=\"mt-3 space-y-2\"><li><strong>Impresiones:</strong> El número de veces que se ha mostrado tu anuncio.</li><li><strong>Clics:</strong> El número de veces que se ha hecho clic en tu anuncio.</li><li><strong>CTR (tasa de clics):</strong> El porcentaje de impresiones que ha resultado en un clic.</li><li><strong>Conversiones:</strong> El número de veces que un usuario ha realizado una acción deseada.</li></ul>",
+      },
+      {
+        question: "¿Cuáles son los beneficios de usar anuncios en LinkedIn Ads?",
+        answer: "Los anuncios de <strong>LinkedIn Ads</strong> ofrecen una serie de beneficios, como:<ul class=\"mt-3 space-y-2\"><li><strong>Llegar a una audiencia profesional:</strong> LinkedIn es una plataforma con más de 830 millones de miembros, la mayoría de los cuales son profesionales.</li><li><strong>Dirigirte a tu público objetivo con precisión:</strong> Puedes utilizar los anuncios de LinkedIn para dirigirte a personas específicas en función de su industria, cargo, ubicación e intereses.</li><li><strong>Generar leads de alta calidad:</strong> Los usuarios de LinkedIn son propensos a estar interesados en productos y servicios B2B.</li><li><strong>Medir el ROI de tus campañas:</strong> LinkedIn Ads te permite medir el rendimiento de tus campañas y calcular el retorno de la inversión.</li></ul>",
+      },
+      {
+        question: "¿Hay algún requisito para usar anuncios en LinkedIn Ads?",
+        answer: "Para usar anuncios en <strong>LinkedIn Ads</strong>, debes tener una cuenta de LinkedIn y una página de empresa. También debes aceptar los Términos y condiciones de <strong>LinkedIn Ads</strong>.",
+      },
+    ]}
+  />
+
+  <ContactSection />
+  <Certificaciones />
+  <Footer />
+</Layout>

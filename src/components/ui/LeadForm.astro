@@ -1,5 +1,5 @@
 ---
-import Icon from "./Icon.astro";
+import Icon from "../atoms/Icon.astro";
 
 interface Props {
   title?: string;
@@ -38,9 +38,8 @@ const labelClasses = isDark
 
 // Inputs
 const inputClasses = isDark
-  ? "w-full py-4 px-5 bg-white/5 border border-white/10 rounded-md text-white placeholder:text-white/30 outline-none transition-all focus:border-brand-celeste focus:bg-white/8"
+  ? "w-full py-4 px-5 bg-white/5 border border-white/10 rounded-md text-white placeholder:t"
   : "w-full bg-slate-50 border border-slate-200 rounded-md px-4 py-3 text-brand-dark focus:outline-none focus:border-brand-celeste focus:ring-1 focus:ring-brand-celeste transition-base";
-
 
 // Form attributes
 const formId = `lead-form-${Math.random().toString(36).substr(2, 9)}`;
@@ -65,7 +64,7 @@ const formId = `lead-form-${Math.random().toString(36).substr(2, 9)}`;
           id={`${formId}-name`}
           name="nombre"
           required
-          placeholder="Ej. Juan Pérez"
+          placeholder=""
           class={inputClasses}
         />
       </div>
@@ -76,7 +75,7 @@ const formId = `lead-form-${Math.random().toString(36).substr(2, 9)}`;
           id={`${formId}-website`}
           name="website"
           required
-          placeholder="Ej. www.tuempresa.com"
+          placeholder=""
           class={inputClasses}
         />
       </div>
@@ -89,7 +88,7 @@ const formId = `lead-form-${Math.random().toString(36).substr(2, 9)}`;
           id={`${formId}-email`}
           name="email"
           required
-          placeholder="tu@empresa.com"
+          placeholder=""
           class={inputClasses}
         />
       </div>
@@ -102,7 +101,7 @@ const formId = `lead-form-${Math.random().toString(36).substr(2, 9)}`;
           id={`${formId}-phone`}
           name="telefono"
           required
-          placeholder="+54 9 11 1234-5678"
+          placeholder=""
           class={inputClasses}
         />
       </div>
@@ -110,10 +109,12 @@ const formId = `lead-form-${Math.random().toString(36).substr(2, 9)}`;
 
     <button
       type="submit"
-      class="mt-6 w-full flex items-center gap-3 pl-6 pr-2 py-2 rounded-full font-medium font-display transition-colors bg-brand-celeste hover:bg-brand-celeste-hover text-white shadow-blue cursor-pointer border-none"
+      class="flex items-center w-full gap-3 py-2 pl-6 pr-2 mt-6 font-medium text-white transition-colors border-none rounded-full cursor-pointer font-display bg-brand-celeste hover:bg-brand-celeste-hover shadow-blue"
     >
       <span class="flex-1 text-center">{buttonText}</span>
-      <span class="flex items-center justify-center rounded-full size-9 shrink-0 bg-white/20">
+      <span
+        class="flex items-center justify-center rounded-full size-9 shrink-0 bg-white/20"
+      >
         <Icon name="arrow_forward" size={18} />
       </span>
     </button>

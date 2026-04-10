@@ -25,7 +25,7 @@ const {
 } = Astro.props;
 
 // Prioridad: ogImage > image > default
-const finalImage = ogImage || image || "assets/og-image.jpg";
+const finalImage = ogImage || image || `${import.meta.env.BASE_URL}assets/og-image.jpg`;
 const socialImage = new URL(finalImage, Astro.site || Astro.url).href;
 
 const shouldNoIndex = GLOBAL_NOINDEX || noindex;

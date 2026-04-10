@@ -1,5 +1,5 @@
 ---
-import Icon from "./Icon.astro";
+import Icon from "../atoms/Icon.astro";
 
 interface Props {
   variant?: "dark" | "light";
@@ -16,12 +16,12 @@ const BASE = import.meta.env.BASE_URL;
     <m-container>
       <!-- Top grid: 4 columns -->
       <m-row
-        class="flex-col gap-y-6 gap-x-2 lg:space-between py-20 lg:flex-row flex-wrap"
+        class="flex-col flex-wrap py-20 gap-y-6 gap-x-2 lg:space-between lg:flex-row"
       >
         <!-- Col 1: Logo + Tagline + Social -->
         <m-col class="flex flex-col items-start gap-6">
           <img
-            src={`${BASE}logo.svg`}
+            src={`${BASE}imgs/logo.svg`}
             alt="Mediabros"
             class="justify-start object-contain h-12 align-start"
           />
@@ -148,7 +148,7 @@ const BASE = import.meta.env.BASE_URL;
                 class="flex items-center gap-2 text-sm transition-colors duration-200 text-brand-gris hover:text-white group whitespace-nowrap"
               >
                 <img
-                  src={`${BASE}flags/${c.flag}.svg`}
+                  src={`${BASE}imgs/flags/${c.flag}.svg`}
                   alt={c.label}
                   class="object-contain w-5 h-auto shrink-0"
                 />

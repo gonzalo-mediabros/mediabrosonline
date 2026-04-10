@@ -1,0 +1,100 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/ui/Navigation.astro";
+import HeroSmall from "../components/ui/HeroSmall.astro";
+import Certificaciones from "../components/ui/Certificaciones.astro";
+import Footer from "../components/ui/Footer.astro";
+import ContactSection from "../components/ui/ContactSection.astro";
+import DescriptionSection from "../components/service/DescriptionSection.astro";
+import FeaturesSection from "../components/service/FeaturesSection.astro";
+import WhySection from "../components/service/WhySection.astro";
+import CtaSection from "../components/service/CtaSection.astro";
+import FAQSection from "../components/service/FAQSection.astro";
+
+const { pathname } = Astro.url;
+---
+
+<Layout
+  title="Bing Ads | Mediabros Online"
+  description="Bing Ads como canal complementario para captar demanda específica y audiencias corporativas"
+>
+  <Navigation pathname={pathname} />
+  <HeroSmall
+    title="Bing Ads"
+    icon="ico-bing-ads.png"
+    subtitle="Bing Ads como canal complementario para captar demanda específica y audiencias corporativas"
+  />
+
+  <DescriptionSection
+    chipText="Más leads con Bing Ads"
+    heading="Resultados medibles"
+    description="Bing Ads, actualmente Microsoft Advertising, es un canal publicitario que suele quedar en segundo plano frente a Google Ads. Sin embargo, en determinados mercados y contextos, puede transformarse en un complemento estratégico para captar demanda con menor competencia y costos más bajos."
+    ctaLabel="Consúltanos"
+    ctaHref="#contacto"
+    rightContent="image"
+    imageSrc="servicios/bing-ads.webp"
+    imageAlt="Bing Ads"
+  />
+
+  <FeaturesSection
+    chipText="Campañas en Bing Ads"
+    heading="Tipos de campañas de Bing Ads"
+    description="Según los objetivos y la etapa del funnel, trabajamos diferentes tipos de campañas en Bing Ads. Cada campaña responde a una función específica dentro de la estrategia general."
+    sectionIconSrc="iconos/ico-bing-ads.png"
+    sectionIconAlt="Bing Ads"
+    items={[
+      {
+        title: "Campañas de búsqueda",
+        description: "Implementamos campañas de búsqueda para captar usuarios que ya están evaluando soluciones.",
+      },
+      {
+        title: "Remarketing",
+        description: "Desarrollamos campañas de remarketing para reforzar el mensaje sobre usuarios que ya interactuaron con la marca.",
+      },
+      {
+        title: "Ecosistema Microsoft",
+        description: "Aprovechamos audiencias del ecosistema Microsoft cuando el perfil del negocio lo justifica.",
+      },
+    ]}
+  />
+
+  <WhySection
+    chipText="Más leads con Bing Ads"
+    heading="¿Por qué hacer publicidad en Bing Ads?"
+    description="Aunque su volumen es menor, Bing tiene una particularidad clave: concentra una audiencia con fuerte presencia corporativa y profesional, especialmente en entornos donde se utilizan productos del ecosistema Microsoft."
+    listHeading="¿Por qué considerar Bing Ads?"
+    listItems={[
+      "Se apunta a públicos corporativos.",
+      "El ticket promedio es medio o alto.",
+      "Se busca reducir la competencia en búsquedas específicas.",
+      "Para complementar una estrategia ya activa en Google Ads.",
+    ]}
+    calloutText="Bing Ads permite captar búsquedas relevantes a un costo generalmente más bajo, sin competir directamente en los entornos más saturados."
+  />
+
+  <CtaSection
+    chipText="Bing Ads"
+    heading="¿Es adecuado para tu empresa?"
+    description="Podemos analizar tu mercado, tu ticket promedio y tu estrategia actual para definir si Bing Ads puede aportar valor como complemento dentro de tu mix digital."
+    ctaLabel="Consúltanos"
+    ctaHref="#contacto"
+  />
+
+  <FAQSection
+    heading="Aprende todo sobre Bing Ads"
+    faqs={[
+      {
+        question: "¿Qué es Bing Ads?",
+        answer: "<strong>Bing Ads</strong>, actualmente conocido como <strong>Microsoft Advertising</strong>, es la plataforma publicitaria de Microsoft que permite a los anunciantes mostrar anuncios en los resultados de búsqueda de Bing y en la red de sitios asociados de Microsoft. Funciona mediante un sistema de subasta donde los anunciantes pujan por palabras clave relevantes para su negocio.",
+      },
+      {
+        question: "¿Cómo funciona Bing Ads?",
+        answer: "<strong>Bing Ads</strong> funciona mediante un sistema de subastas. Cuando un usuario realiza una búsqueda en Bing, el sistema realiza una subasta en tiempo real entre los anunciantes que han pujado por las palabras clave relevantes para esa búsqueda. El anuncio que gana la subasta es el que se muestra al usuario en la primera posición.",
+      },
+    ]}
+  />
+
+  <ContactSection />
+  <Certificaciones />
+  <Footer />
+</Layout>

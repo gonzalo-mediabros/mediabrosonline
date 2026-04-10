@@ -1,0 +1,104 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/ui/Navigation.astro";
+import HeroSmall from "../components/ui/HeroSmall.astro";
+import Certificaciones from "../components/ui/Certificaciones.astro";
+import Footer from "../components/ui/Footer.astro";
+import ContactSection from "../components/ui/ContactSection.astro";
+import DescriptionSection from "../components/service/DescriptionSection.astro";
+import FeaturesSection from "../components/service/FeaturesSection.astro";
+import WhySection from "../components/service/WhySection.astro";
+import CtaSection from "../components/service/CtaSection.astro";
+import FAQSection from "../components/service/FAQSection.astro";
+
+const { pathname } = Astro.url;
+---
+
+<Layout
+  title="Google Analytics | Mediabros Online"
+  description="Medición, análisis y toma de decisiones basada en datos"
+>
+  <Navigation pathname={pathname} />
+  <HeroSmall
+    title="Google Analytics"
+    icon="ico-analytics-1.png"
+    subtitle="Medición, análisis y toma de decisiones basada en datos"
+  />
+
+  <DescriptionSection
+    chipText="Más leads con Google Analytics"
+    heading="Optimizar, priorizar y escalar"
+    description="Google Analytics no es un servicio aislado ni una acción puntual. Es la herramienta central que utilizamos en MediaBros para medir, analizar y entender el rendimiento real de toda la estrategia digital."
+    ctaLabel="Consúltanos"
+    ctaHref="#contacto"
+    rightContent="image"
+    imageSrc="servicios/google-analytics.webp"
+    imageAlt="Google Analytics"
+  />
+
+  <FeaturesSection
+    chipText="Estrategia con Google Analytics"
+    heading="Medir no es lo mismo que entender"
+    description="Uno de los errores más comunes en marketing digital es confundir datos con información. Tener métricas no alcanza si no se interpretan correctamente."
+    sectionIconSrc="iconos/ico-analytics-1.png"
+    sectionIconAlt="Google Analytics"
+    items={[
+      {
+        title: "De dónde vienen los usuarios",
+        description: "Identifica los canales o fuentes de tráfico que dirigen visitas al sitio (ej. Google Ads, Meta Ads, SEO).",
+      },
+      {
+        title: "Cómo interactúan con el sitio",
+        description: "Analizamos el comportamiento del usuario dentro de la web, como las páginas que visita y su ruta de navegación.",
+      },
+      {
+        title: "Qué acciones realizan",
+        description: "Mide las conversiones clave y los eventos específicos que el usuario completa (ej. enviar un formulario, descargar un catálogo).",
+      },
+      {
+        title: "Dónde se generan oportunidades reales",
+        description: "Determina qué partes del sitio o qué pasos del embudo son más efectivos para producir un lead calificado.",
+      },
+    ]}
+  />
+
+  <WhySection
+    chipText="Optimización con Google Analytics"
+    heading="Google Analytics como centro de la estrategia"
+    description="Todas las acciones que realizamos se conectan y se analizan desde un mismo lugar."
+    listHeading="Google Analytics nos permite:"
+    listItems={[
+      "Comparar el rendimiento entre canales.",
+      "Detectar qué campañas aportan valor real.",
+      "Identificar cuellos de botella en el funnel.",
+      "Optimizar la inversión publicitaria.",
+    ]}
+    calloutText="Google Analytics nos da una visión integral del recorrido del usuario, desde el primer contacto hasta la conversión."
+  />
+
+  <CtaSection
+    chipText="Google Analytics"
+    heading="Como base de una estrategia profesional"
+    description="Aunque Google Analytics no sea un «servicio» en sí mismo, ocupa un lugar central dentro de nuestra metodología de trabajo. Sin análisis, no hay estrategia. Sin datos confiables, no hay crecimiento sostenido."
+    ctaLabel="Consúltanos"
+    ctaHref="#contacto"
+  />
+
+  <FAQSection
+    heading="Aprende todo sobre Google Analytics"
+    faqs={[
+      {
+        question: "¿Qué es Google Analytics?",
+        answer: "<strong>Google Analytics</strong> es una herramienta de análisis web desarrollada por Google que permite medir y analizar el tráfico de un sitio web. Proporciona información detallada sobre el comportamiento de los usuarios, el origen del tráfico, las conversiones y el rendimiento general de la estrategia digital.",
+      },
+      {
+        question: "¿Por qué es importante implementar Google Analytics correctamente?",
+        answer: "Una implementación correcta de <strong>Google Analytics</strong> garantiza que los datos que se obtienen sean confiables y accionables. Sin una configuración adecuada de eventos, conversiones y atribución, las métricas pueden ser engañosas y llevar a decisiones incorrectas sobre la inversión publicitaria.",
+      },
+    ]}
+  />
+
+  <ContactSection />
+  <Certificaciones />
+  <Footer />
+</Layout>

@@ -1,7 +1,7 @@
 ---
-import ChipOvertitle from "../ui/ChipOvertitle.astro";
-import Button from "../ui/Button.astro";
-import Glow from "../ui/Glow.astro";
+import ChipOvertitle from "../atoms/ChipOvertitle.astro";
+import Button from "../atoms/Button.astro";
+import Glow from "../atoms/Glow.astro";
 
 interface Props {
   chipText: string;
@@ -16,7 +16,7 @@ const { chipText, heading, description, ctaLabel, ctaHref } = Astro.props;
 
 <section class="py-16 isolate md:py-24 bg-brand-fondo">
   <m-container
-    class="relative flex items-center px-6 py-10 overflow-hidden bg-brand-dark rounded-xl shadow-blue/1 0 md:p-10 lg:p-16"
+    class="relative flex items-center px-6 py-10 overflow-hidden bg-brand-dark rounded-xl shadow-blue/10 md:p-10 lg:p-16"
   >
     <Glow
       class="top-0 w-full -translate-x-1/2 left-100 h-100 bg-brand-dark opacity-20"
@@ -33,7 +33,7 @@ const { chipText, heading, description, ctaLabel, ctaHref } = Astro.props;
         <ChipOvertitle text={chipText} theme="dark" />
 
         <div class="flex flex-col items-center gap-4">
-          <h2 class="mb-2 text-3xl md:text-5xl font-display leading">
+          <h2 class="mb-2 text-3xl md:text-5xl font-display leading-tight">
             {heading}
           </h2>
           <p

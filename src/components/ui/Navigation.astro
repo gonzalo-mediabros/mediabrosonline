@@ -1,5 +1,5 @@
 ---
-import Icon from "./Icon.astro";
+import Icon from "../atoms/Icon.astro";
 
 interface Props {
   pathname?: string;
@@ -29,14 +29,14 @@ const navItems: NavItem[] = [
     label: "Servicios",
     dropdown: true,
     children: [
-      { label: "Google Ads",    icon: `${BASE}iconos/ico-google-ads.png`   , href: `${BASE}servicio-google-ads` },
-      { label: "Meta Ads",      icon: `${BASE}iconos/ico-meta.png`         , href: `${BASE}servicio-meta-ads` },
-      { label: "LinkedIn Ads",  icon: `${BASE}iconos/ico-linkedin.png`     , href: `${BASE}servicio-linkedin-ads` },
-      { label: "Tiktok Ads",    icon: `${BASE}iconos/ico-tiktok.png`       , href: `${BASE}servicio-tiktok-ads` },
-      { label: "Content SEO",   icon: `${BASE}iconos/ico-seo-content.png`  , href: `${BASE}servicio-content-seo` },
-      { label: "Technical SEO", icon: `${BASE}iconos/ico-seo-technical.png`, href: `${BASE}servicio-technical-seo` },
-      { label: "Local SEO",     icon: `${BASE}iconos/ico-seo-local.png`    , href: `${BASE}servicio-local-seo` },
-      { label: "Asesoramiento", icon: `${BASE}iconos/ico-asesoramiento.png`, href: `${BASE}servicio-asesoramiento` },
+      { label: "Google Ads",    icon: `${BASE}imgs/iconos/ico-google-ads.png`   , href: `${BASE}servicio-google-ads` },
+      { label: "Meta Ads",      icon: `${BASE}imgs/iconos/ico-meta.png`         , href: `${BASE}servicio-meta-ads` },
+      { label: "LinkedIn Ads",  icon: `${BASE}imgs/iconos/ico-linkedin.png`     , href: `${BASE}servicio-linkedin-ads` },
+      { label: "Tiktok Ads",    icon: `${BASE}imgs/iconos/ico-tiktok.png`       , href: `${BASE}servicio-tiktok-ads` },
+      { label: "Content SEO",   icon: `${BASE}imgs/iconos/ico-seo-content.png`  , href: `${BASE}servicio-content-seo` },
+      { label: "Technical SEO", icon: `${BASE}imgs/iconos/ico-seo-technical.png`, href: `${BASE}servicio-technical-seo` },
+      { label: "Local SEO",     icon: `${BASE}imgs/iconos/ico-seo-local.png`    , href: `${BASE}servicio-local-seo` },
+      { label: "Asesoramiento", icon: `${BASE}imgs/iconos/ico-asesoramiento.png`, href: `${BASE}servicio-asesoramiento` },
     ],
   },
   { label: "Agencia",  href: `${BASE}agencia`  },
@@ -63,7 +63,7 @@ const isActive = (href: string) => {
     <m-row class="flex-row items-center justify-between">
 
       <a href={BASE}>
-        <img id="main-logo" src={`${BASE}logo-blanco.svg`} alt="Mediabros online" />
+        <img id="main-logo" src={`${BASE}imgs/logo-blanco.svg`} alt="Mediabros online" />
       </a>
 
       <!-- Desktop nav -->
@@ -156,7 +156,7 @@ const isActive = (href: string) => {
       <!-- Burger (mobile) -->
       <button
         id="burger-btn"
-        class="p-1 text-white bg-transparent border-0 cursor-pointer md:hidden"
+        class="p-1 bg-transparent border-0 cursor-pointer md:hidden text-inherit"
         aria-label="Abrir menú"
         aria-expanded="false"
       >
@@ -184,7 +184,7 @@ const isActive = (href: string) => {
   >
     <!-- Header -->
     <div class="flex items-center justify-between px-6 py-5 border-b border-white/10">
-      <img src={`${BASE}logo-blanco.svg`} alt="Mediabros online" class="h-10" />
+      <img src={`${BASE}imgs/logo-blanco.svg`} alt="Mediabros online" class="h-10" />
       <button
         id="close-btn"
         class="p-1 text-white bg-transparent border-0 cursor-pointer"
@@ -346,17 +346,20 @@ const isActive = (href: string) => {
   servicesDropdown.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeDropdown));
 
   // ── Sticky header ─────────────────────────────────────────────
-  const STICKY_CLASSES = ["bg-brand-dark/95", "backdrop-blur-xl", "shadow-lg"];
+  const STICKY_CLASSES = ["bg-white/95", "backdrop-blur-xl", "shadow-sm", "border-b", "border-brand-gris/20", "text-brand-dark"];
+  const NON_STICKY_CLASSES = ["text-white"];
   const mainLogo = document.getElementById("main-logo") as HTMLImageElement;
 
   const updateHeader = () => {
     if (window.scrollY >= STICKY_THRESHOLD) {
+      header.classList.remove(...NON_STICKY_CLASSES);
       header.classList.add("is-sticky", ...STICKY_CLASSES);
       if (mainLogo && mainLogo.src.includes("logo-blanco.svg")) {
         mainLogo.src = mainLogo.src.replace("logo-blanco.svg", "logo.svg");
       }
     } else {
       header.classList.remove("is-sticky", ...STICKY_CLASSES);
+      header.classList.add(...NON_STICKY_CLASSES);
       if (mainLogo && !mainLogo.src.includes("logo-blanco.svg") && mainLogo.src.includes("logo.svg")) {
         mainLogo.src = mainLogo.src.replace("logo.svg", "logo-blanco.svg");
       }

@@ -1,7 +1,7 @@
 ---
-import ChipOvertitle from "../ui/ChipOvertitle.astro";
-import Glow from "../ui/Glow.astro";
-import Icon from "../ui/Icon.astro";
+import ChipOvertitle from "../atoms/ChipOvertitle.astro";
+import Glow from "../atoms/Glow.astro";
+import Icon from "../atoms/Icon.astro";
 
 interface Props {
   chipText: string;
@@ -89,7 +89,7 @@ const {
               </div>
             )
           }
-          <p class="mx-auto text-base md:text-lg text-brand-dark/90 leading">
+          <p class="mx-auto text-base md:text-lg text-brand-dark/90 leading-relaxed">
             {calloutText}
           </p>
         </div>

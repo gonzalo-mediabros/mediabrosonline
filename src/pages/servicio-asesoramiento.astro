@@ -1,0 +1,100 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/ui/Navigation.astro";
+import HeroSmall from "../components/ui/HeroSmall.astro";
+import Certificaciones from "../components/ui/Certificaciones.astro";
+import Footer from "../components/ui/Footer.astro";
+import ContactSection from "../components/ui/ContactSection.astro";
+import DescriptionSection from "../components/service/DescriptionSection.astro";
+import FeaturesSection from "../components/service/FeaturesSection.astro";
+import WhySection from "../components/service/WhySection.astro";
+import CtaSection from "../components/service/CtaSection.astro";
+import FAQSection from "../components/service/FAQSection.astro";
+
+const { pathname } = Astro.url;
+---
+
+<Layout
+  title="Asesoramiento | Mediabros Online"
+  description="Acompañamiento, criterio y equipo dedicado para desarrollar la estrategia digital"
+>
+  <Navigation pathname={pathname} />
+  <HeroSmall
+    title="Asesoramiento"
+    icon="ico-asesoramiento.png"
+    subtitle="Acompañamiento, criterio y equipo dedicado para desarrollar la estrategia digital"
+  />
+
+  <DescriptionSection
+    chipText="Asesoramiento estratégico"
+    heading="Un equipo trabajando, escuchando y respondiendo"
+    description="El asesoramiento estratégico es uno de los pilares del trabajo en MediaBros. No se trata solo de ejecutar campañas, sino de acompañar a cada empresa en la toma de decisiones, aportando criterio, experiencia y una visión integral del marketing digital."
+    ctaLabel="Consúltanos"
+    ctaHref="#contacto"
+    rightContent="image"
+    imageSrc="servicios/hombres-de-negocios.webp"
+    imageAlt="Asesoramiento"
+  />
+
+  <FeaturesSection
+    chipText="Asesoramiento estratégico"
+    heading="Un equipo real detrás de la estrategia"
+    description="En MediaBros no trabajamos con un único interlocutor aislado. Cada empresa cuenta con un equipo mínimo asignado, que puede incluir:"
+    sectionIconSrc="iconos/ico-asesoramiento.png"
+    sectionIconAlt="Asesoramiento"
+    items={[
+      {
+        title: "Director de cuentas",
+        description: "Responsable de la relación con el cliente, el seguimiento de objetivos y la coordinación del equipo asignado.",
+      },
+      {
+        title: "Digital Manager",
+        description: "Gestiona la estrategia digital integral, asegurando coherencia entre canales y acciones.",
+      },
+      {
+        title: "Campaign Manager o especialista en SEO",
+        description: "Ejecuta y optimiza las campañas activas o las acciones de posicionamiento orgánico según la estrategia definida.",
+      },
+    ]}
+  />
+
+  <WhySection
+    chipText="Asesoramiento estratégico"
+    heading="Asesoramiento estratégico, no solo operativo"
+    description="El asesoramiento que brindamos no se limita a la ejecución técnica. Acompañamos a las empresas en la definición y evolución de su estrategia digital."
+    listHeading="Nuestro asesoramiento estratégico incluye:"
+    listItems={[
+      "Definir qué acciones tienen sentido desarrollar.",
+      "Evaluar cómo distribuir la inversión entre canales.",
+      "Planificar la cantidad y tipo de campañas.",
+      "Estimar escenarios de rendimiento y crecimiento.",
+    ]}
+    calloutText="El foco está puesto en tomar mejores decisiones, no en sumar acciones sin criterio."
+  />
+
+  <CtaSection
+    chipText="Asesoramiento estratégico"
+    heading="Asesoramiento como parte del crecimiento"
+    description="El asesoramiento estratégico es una parte fundamental de la propuesta de MediaBros. Es lo que permite que la estrategia no se estanque, que las decisiones tengan fundamento y que el trabajo evolucione junto al negocio del cliente."
+    ctaLabel="Consúltanos"
+    ctaHref="#contacto"
+  />
+
+  <FAQSection
+    heading="Aprende todo sobre nuestro asesoramiento"
+    faqs={[
+      {
+        question: "¿Qué incluye el servicio de asesoramiento estratégico?",
+        answer: "El <strong>asesoramiento estratégico</strong> de MediaBros incluye la definición y revisión de la estrategia digital, la distribución de inversión entre canales, la planificación de campañas y el seguimiento continuo de resultados. No es solo ejecución técnica, sino acompañamiento en la toma de decisiones.",
+      },
+      {
+        question: "¿Con qué frecuencia se realizan reuniones de seguimiento?",
+        answer: "La frecuencia de las reuniones de seguimiento se define según las necesidades de cada cliente y la intensidad de las acciones en marcha. El equipo asignado mantiene comunicación continua para asegurar que la estrategia esté siempre alineada con los objetivos del negocio.",
+      },
+    ]}
+  />
+
+  <ContactSection />
+  <Certificaciones />
+  <Footer />
+</Layout>

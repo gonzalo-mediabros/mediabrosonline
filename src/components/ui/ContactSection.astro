@@ -1,7 +1,7 @@
 ---
-import ChipOvertitle from "./ChipOvertitle.astro";
-import Glow from "./Glow.astro";
-import ImageBackground from "./ImageBackground.astro";
+import ChipOvertitle from "../atoms/ChipOvertitle.astro";
+import Glow from "../atoms/Glow.astro";
+import ImageBackground from "../atoms/ImageBackground.astro";
 import LeadForm from "./LeadForm.astro";
 
 const BASE = import.meta.env.BASE_URL;
@@ -14,12 +14,12 @@ const BASE = import.meta.env.BASE_URL;
     <!-- Main Card Wrapper with Blue Background -->
 
     <!-- <ImageBackground
-          src={`${BASE}home/bg.team.webp`}
+          src={`${BASE}imgs/home/bg.team.webp`}
           alt="Fondo de equipo trabajando"
           class="absolute inset-0 object-cover w-full opacity-4 mix-blend-luminosity h-[150%] -top-70"
         /> -->
     <ImageBackground
-      src={BASE + "pattern-ondulado.svg"}
+      src={BASE + "imgs/pattern-ondulado.svg"}
       class="inset-0 w-full h-full opacity-120"
     />
     <Glow
