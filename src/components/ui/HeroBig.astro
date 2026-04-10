@@ -1,5 +1,7 @@
 ---
 import Icon from "./Icon.astro";
+import Glow from "./Glow.astro";
+import ImageBackground from "./ImageBackground.astro";
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -25,23 +27,26 @@ const services = [
     class="relative z-10 flex flex-col flex-1 pb-12 overflow-hidden text-white pt-26 bg-brand-dark md:rounded-4xl"
   >
     <!-- bg image -->
-    <img
+    <ImageBackground
       src={`${BASE}home/bg-hero.webp`}
       alt=""
-      class="absolute w-[105%] h-[105%] object-cover -z-10 opacity-3 top-[-2.5%] left[-2.5%]"
+      class="absolute w-[105%] h-[105%] object-cover -z-10 opacity-5 top-[-2.5%] left[-2.5%]"
+    />
+    <ImageBackground
+      src={BASE + "pattern-ondulado.svg"}
+      class="inset-0 w-full h-full opacity-5 mix-blend-luminosity"
     />
     <!-- bg gradient -->
-    <div
-      class="absolute top-1/2 left-1/2 -translate-x-1/2 w-screen h-100 bg-brand-celeste opacity-5 blur-[120px] rounded-full pointer-events-none -z-10"
-    >
-    </div>
-    <div
-      class="absolute bottom-0 left-2/3 -translate-x-1/2 w-full max-w-4xl h-100 bg-brand-dark opacity-80 blur-[120px] rounded-full pointer-events-none -z-10"
-    >
-    </div>
+    <Glow
+      class="w-screen -translate-x-1/2 top-1/2 left-1/2 h-100 bg-brand-celeste opacity-5 -z-10"
+    />
+    <Glow
+      class="bottom-0 w-full max-w-4xl -translate-x-1/2 left-2/3 h-100 bg-brand-dark opacity-80 -z-10"
+    />
+    <!-- bg image end-->
     <!-- Main Hero Text -->
     <m-row
-      class="flex flex-col justify-center flex-1 py-16 text-center md:py-24"
+      class="z-10 flex flex-col justify-center flex-1 py-16 text-center md:py-24"
     >
       <m-container>
         <m-row class="flex-col items-center">
@@ -68,7 +73,7 @@ const services = [
     </m-row>
 
     <!-- cards carrusel -->
-    <m-row class="mt-auto">
+    <m-row class="z-10 mt-auto">
       <m-container class="relative">
         <!-- Visual Left Arrow -->
         <div

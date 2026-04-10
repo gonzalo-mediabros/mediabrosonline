@@ -8,6 +8,7 @@ interface Props {
 interface ServiceItem {
   label: string;
   icon: string;
+    href?: string;
 }
 
 interface NavItem {
@@ -16,6 +17,8 @@ interface NavItem {
   dropdown?: boolean;
   children?: ServiceItem[];
 }
+
+
 
 const { pathname = "/" } = Astro.props;
 const BASE = import.meta.env.BASE_URL;
@@ -26,14 +29,14 @@ const navItems: NavItem[] = [
     label: "Servicios",
     dropdown: true,
     children: [
-      { label: "Google Ads",    icon: `${BASE}iconos/ico-google-ads.png`    },
-      { label: "Meta Ads",      icon: `${BASE}iconos/ico-meta.png`          },
-      { label: "LinkedIn Ads",  icon: `${BASE}iconos/ico-linkedin.png`      },
-      { label: "Tiktok Ads",    icon: `${BASE}iconos/ico-tiktok.png`        },
-      { label: "Content SEO",   icon: `${BASE}iconos/ico-seo-content.png`   },
-      { label: "Technical SEO", icon: `${BASE}iconos/ico-seo-technical.png` },
-      { label: "Local SEO",     icon: `${BASE}iconos/ico-seo-local.png`     },
-      { label: "Asesoramiento", icon: `${BASE}iconos/ico-asesoramiento.png` },
+      { label: "Google Ads",    icon: `${BASE}iconos/ico-google-ads.png`   , href: `${BASE}servicio-google-ads` },
+      { label: "Meta Ads",      icon: `${BASE}iconos/ico-meta.png`         , href: `${BASE}servicio-meta-ads` },
+      { label: "LinkedIn Ads",  icon: `${BASE}iconos/ico-linkedin.png`     , href: `${BASE}servicio-linkedin-ads` },
+      { label: "Tiktok Ads",    icon: `${BASE}iconos/ico-tiktok.png`       , href: `${BASE}servicio-tiktok-ads` },
+      { label: "Content SEO",   icon: `${BASE}iconos/ico-seo-content.png`  , href: `${BASE}servicio-content-seo` },
+      { label: "Technical SEO", icon: `${BASE}iconos/ico-seo-technical.png`, href: `${BASE}servicio-technical-seo` },
+      { label: "Local SEO",     icon: `${BASE}iconos/ico-seo-local.png`    , href: `${BASE}servicio-local-seo` },
+      { label: "Asesoramiento", icon: `${BASE}iconos/ico-asesoramiento.png`, href: `${BASE}servicio-asesoramiento` },
     ],
   },
   { label: "Agencia",  href: `${BASE}agencia`  },
@@ -51,10 +54,10 @@ const isActive = (href: string) => {
 };
 ---
 
-<!-- ============================================================ HEADER -->
+<!-- ----------------------------------------- HEADER ----------------------------------------- -->
 <header
   id="main-header"
-  class="absolute left-0 right-0 z-20 py-5 text-white top-15 xl:px-16"
+  class="absolute top-0 left-0 right-0 z-20 py-5 text-white md:top-15 xl:px-16"
 >
   <m-container class="font-display">
     <m-row class="flex-row items-center justify-between">
@@ -86,7 +89,8 @@ const isActive = (href: string) => {
             {item.dropdown && (
               <div class="relative" id="services-trigger-wrap">
 
-                <button
+                <a 
+                  href={item.href}
                   id="services-trigger"
                   aria-expanded="false"
                   aria-haspopup="true"
@@ -99,7 +103,7 @@ const isActive = (href: string) => {
                     size={16}
                     class="transition-transform duration-200"
                   />
-                </button>
+                </a>
 
                 <!--
                   Outer div: handles scale + opacity animation.
@@ -115,7 +119,7 @@ const isActive = (href: string) => {
 
                     <!-- Arrow pointing up to trigger -->
                     <div
-                      class="absolute left-1/2 -translate-x-1/2 w-0 h-0"
+                      class="absolute w-0 h-0 -translate-x-1/2 left-1/2"
                       style="top: -8px; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 8px solid rgba(31, 33, 61, 0.95);"
                     ></div>
 
@@ -123,7 +127,7 @@ const isActive = (href: string) => {
                       {item.children?.map((svc) => (
                         <li role="none">
                           <a
-                            href="#services-multichannel"
+                             href={svc.href}
                             role="menuitem"
                             class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors no-underline text-md text-white/90 hover:text-white hover:bg-white/10"
                           >
@@ -163,7 +167,7 @@ const isActive = (href: string) => {
   </m-container>
 </header>
 
-<!-- ============================================================ MOBILE MENU -->
+<!-- ----------------------------------------- MOBILE MENU ----------------------------------------- -->
 <div
   id="mobile-menu"
   class="fixed inset-0 flex pointer-events-none z-60 md:hidden font-display"
@@ -230,7 +234,7 @@ const isActive = (href: string) => {
   </div>
 </div>
 
-<!-- ============================================================ STYLES -->
+<!-- ----------------------------------------- STYLES ----------------------------------------- -->
 <style>
   #main-header {
     transition:
@@ -262,7 +266,7 @@ const isActive = (href: string) => {
   }
 </style>
 
-<!-- ============================================================ SCRIPT -->
+<!-- ----------------------------------------- SCRIPT ----------------------------------------- -->
 <script>
   const STICKY_THRESHOLD = 400;
 

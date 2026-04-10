@@ -1,0 +1,33 @@
+---
+import FaqAccordion from "../ui/FaqAccordion.astro";
+
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  heading: string;
+  faqs: FaqItem[];
+}
+
+const { heading, faqs } = Astro.props;
+---
+
+<section class="py-16 md:py-24">
+  <m-container class="flex flex-col gap-10">
+    <h2 class="text-4xl md:text-5xl font-display text-brand-dark leading">
+      {heading}
+    </h2>
+
+    <div>
+      {
+        faqs.map((faq) => (
+          <FaqAccordion question={faq.question}>
+            <p set:html={faq.answer} />
+          </FaqAccordion>
+        ))
+      }
+    </div>
+  </m-container>
+</section>

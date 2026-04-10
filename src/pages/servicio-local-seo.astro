@@ -1,0 +1,112 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/ui/Navigation.astro";
+import HeroSmall from "../components/ui/HeroSmall.astro";
+import Certificaciones from "../components/ui/Certificaciones.astro";
+import Footer from "../components/ui/Footer.astro";
+import ContactSection from "../components/ui/ContactSection.astro";
+import DescriptionSection from "../components/service/DescriptionSection.astro";
+import FeaturesSection from "../components/service/FeaturesSection.astro";
+import WhySection from "../components/service/WhySection.astro";
+import CtaSection from "../components/service/CtaSection.astro";
+import FAQSection from "../components/service/FAQSection.astro";
+
+const { pathname } = Astro.url;
+---
+
+<Layout
+  title="Local SEO | Mediabros Online"
+  description="Local SEO como complemento para mejorar la visibilidad geográfica de la empresa"
+>
+  <Navigation pathname={pathname} />
+  <HeroSmall
+    title="Local SEO"
+    icon="ico-seo-local.png"
+    subtitle="Local SEO como complemento para mejorar la visibilidad geográfica de la empresa"
+  />
+
+  <DescriptionSection
+    chipText="Más leads con Local SEO"
+    heading="Google Business Profile"
+    description="El Local SEO es una estrategia orientada a mejorar la presencia de una empresa en búsquedas geolocalizadas, especialmente a través de su perfil en Google Business Profile (antes Google Mi Negocio)."
+    ctaLabel="Consúltanos"
+    ctaHref="#contacto"
+    rightContent="image"
+    imageSrc="imgs/local-seo/local-seo.webp"
+    imageAlt="Local SEO"
+  />
+
+  <FeaturesSection
+    chipText="Nuestro enfoque de Local SEO"
+    heading="Cómo trabajamos el Local SEO"
+    description="Nuestro trabajo incluye la correcta configuración del perfil de Google Business Profile, asegurándonos de que la información de la empresa esté completa, consistente y alineada con su identidad."
+    sectionIconSrc="iconos/ico-seo-local.png"
+    sectionIconAlt="Local SEO"
+    items={[
+      {
+        title: "Descripción del negocio",
+        description: "Asegurándonos de que la información de la empresa esté completa y correctamente configurada.",
+      },
+      {
+        title: "Datos de contacto y horarios",
+        description: "Configuración y mantenimiento de datos de contacto, horarios y ubicación en el perfil.",
+      },
+      {
+        title: "Publicaciones periódicas",
+        description: "Mantenemos el perfil activo mediante publicaciones periódicas, lo que ayuda a mejorar su relevancia y visibilidad dentro del ecosistema de Google.",
+      },
+    ]}
+  />
+
+  <WhySection
+    chipText="Más leads con Local SEO"
+    heading="¿Qué es el Local SEO y cuándo tiene sentido?"
+    description="El Local SEO permite que una empresa aparezca con mayor relevancia cuando los usuarios realizan búsquedas asociadas a una ubicación específica. Esto incluye la correcta configuración y gestión del perfil de Google Business Profile."
+    listHeading="Local SEO tiene sentido cuando:"
+    listItems={[
+      "La empresa opera en una zona geográfica definida.",
+      "Busca reforzar su presencia local.",
+      "Necesita una ficha completa y bien optimizada.",
+      "Quiere mejorar su visibilidad en búsquedas cercanas.",
+    ]}
+    calloutText="El Local SEO es esencial y estratégico para empresas cuya captación de clientes depende de la <strong>ubicación física</strong> o de la prestación de un servicio en <strong>un área geográfica definida</strong>, convirtiéndose en un motor clave para la visibilidad en búsquedas geolocalizadas."
+  />
+
+  <CtaSection
+    chipText="Local SEO"
+    heading="¿Tiene sentido el Local SEO para tu empresa?"
+    description="Podemos evaluar tu mercado, tu tipo de operación y tu estrategia digital para definir si el Local SEO puede aportar valor como complemento."
+    ctaLabel="Consúltanos"
+    ctaHref="#contacto"
+  />
+
+  <FAQSection
+    heading="Aprende todo sobre Local SEO"
+    faqs={[
+      {
+        question: "¿Qué es el Posicionamiento SEO?",
+        answer: "<strong>SEO</strong> (Search Engine Optimization), <strong>Posicionamiento en Motores de Búsqueda</strong> o <strong>Posicionamiento SEO</strong>, se refiere a un conjunto de prácticas y estrategias que se implementan en un sitio web para mejorar su visibilidad en los resultados orgánicos de los motores de búsqueda como Google, Bing o Yahoo. El objetivo del <strong>Posicionamiento SEO</strong> es posicionar un sitio web en las primeras posiciones de los resultados de búsqueda para las palabras clave relevantes para su negocio o nicho.",
+      },
+      {
+        question: "¿Cómo funciona el Posicionamiento SEO?",
+        answer: "Los motores de búsqueda utilizan algoritmos complejos para analizar y clasificar los sitios web. Estos algoritmos tienen en cuenta una serie de factores, como la calidad del contenido, la relevancia de las palabras clave, la estructura del sitio web, la velocidad de carga y la experiencia del usuario. Para mejorar el <strong>Posicionamiento SEO</strong>, es necesario optimizar el sitio web en base a estos factores.",
+      },
+      {
+        question: "¿Qué tipos de Posicionamiento SEO existen?",
+        answer: "Existen dos tipos principales de <strong>SEO</strong>:<ul class=\"mt-3 space-y-2\"><li><strong>SEO On-Page:</strong> Se refiere a las optimizaciones que se realizan dentro del propio sitio web, como la optimización del contenido, la estructura del sitio web y los metadatos.</li><li><strong>SEO Off-Page:</strong> Se refiere a las acciones que se realizan fuera del sitio web, como la obtención de backlinks de otros sitios web relevantes y la participación en las redes sociales.</li></ul>",
+      },
+      {
+        question: "¿Cuáles son los beneficios del Posicionamiento SEO?",
+        answer: "El <strong>Posicionamiento SEO</strong> ofrece una serie de beneficios, como:<ul class=\"mt-3 space-y-2\"><li><strong>Aumento del tráfico orgánico:</strong> Un buen posicionamiento SEO puede generar un aumento significativo del tráfico orgánico hacia tu sitio web.</li><li><strong>Mayor visibilidad de marca:</strong> Cuanto más visible sea tu sitio web en los resultados de búsqueda, mayor será la visibilidad de tu marca.</li><li><strong>Mayor generación de leads y ventas:</strong> Un mayor tráfico orgánico puede conducir a un aumento de leads y ventas.</li><li><strong>Mejora de la reputación online:</strong> Un buen posicionamiento SEO puede contribuir a mejorar la reputación online de tu negocio.</li></ul>",
+      },
+      {
+        question: "¿Cuánto tiempo tarda en verse resultados del Posicionamiento SEO?",
+        answer: "El tiempo que tarda en verse resultados del <strong>Posicionamiento SEO</strong> depende de una serie de factores, como la calidad de las estrategias implementadas, la competencia del nicho y la autoridad del sitio web. Sin embargo, generalmente se recomienda ser paciente y constante con el SEO, ya que los resultados suelen ser a largo plazo.",
+      },
+    ]}
+  />
+
+  <ContactSection />
+  <Certificaciones />
+  <Footer />
+</Layout>

@@ -1,0 +1,98 @@
+---
+import ChipOvertitle from "../ui/ChipOvertitle.astro";
+
+interface FeatureItem {
+  iconSrc?: string;
+  iconAlt?: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  chipText: string;
+  heading: string;
+  description: string;
+  sectionIconSrc?: string;
+  sectionIconAlt?: string;
+  items: FeatureItem[];
+}
+
+const {
+  chipText,
+  heading,
+  description,
+  sectionIconSrc,
+  sectionIconAlt,
+  items,
+} = Astro.props;
+
+const BASE = import.meta.env.BASE_URL;
+---
+
+<section class="py-16 md:py-24">
+  <m-container class="z-10 p-8 bg-white rounded-3xl md:p-12 lg:p-16">
+    <m-row
+      class="flex-col items-start gap-12 lg:flex-row lg:gap-16 lg:items-center"
+    >
+      <!-- Left Column: Content -->
+      <m-col class="flex flex-col justify-center w-full text-sm lg:w-1/2">
+        {
+          sectionIconSrc && (
+            <span class="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-gradient-to-tr from-brand-pastel-verde/40 to-brand-pastel-celeste/40">
+              <img
+                src={`${BASE}${sectionIconSrc}`}
+                alt={sectionIconAlt ?? ""}
+                class="size-16"
+              />
+            </span>
+          )
+        }
+
+        <div class="mb-6">
+          <ChipOvertitle text={chipText} />
+        </div>
+
+        <h2
+          class="text-4xl md:text-5xl font-display text-brand-dark leading-[1.15] tracking-tight mb-8"
+        >
+          {heading}
+        </h2>
+
+        <p class="text-base leading-relaxed md:text-lg text-brand-gris">
+          {description}
+        </p>
+      </m-col>
+
+      <!-- Right Column: Items List -->
+      <m-col class="flex flex-col w-full text-sm shrink">
+        {
+          items.map((item, index) => (
+            <div
+              class:list={[
+                "flex items-start gap-4 py-6 border-b border-brand-pastel-gris",
+                index === 0 ? "first:pt-0" : "",
+                index === items.length - 1 ? "last:pb-0 border-b-0" : "",
+              ]}
+            >
+              {item.iconSrc && (
+                <img
+                  src={`${BASE}${item.iconSrc}`}
+                  alt={item.iconAlt ?? ""}
+                  class="size-12 shrink-0 mt-0.5"
+                />
+              )}
+              <div>
+                <h3 class="text-lg font-display text-brand-dark mb-1.5">
+                  {item.title}
+                </h3>
+                <p class="text-sm leading-relaxed text-brand-gris">
+                  {item.description}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </m-col>
+    </m-row>
+  </m-container>
+</section>

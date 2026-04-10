@@ -1,0 +1,121 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/ui/Navigation.astro";
+import HeroSmall from "../components/ui/HeroSmall.astro";
+import Certificaciones from "../components/ui/Certificaciones.astro";
+import Footer from "../components/ui/Footer.astro";
+import ContactSection from "../components/ui/ContactSection.astro";
+import DescriptionSection from "../components/service/DescriptionSection.astro";
+import FeaturesSection from "../components/service/FeaturesSection.astro";
+import WhySection from "../components/service/WhySection.astro";
+import CtaSection from "../components/service/CtaSection.astro";
+import FAQSection from "../components/service/FAQSection.astro";
+
+const { pathname } = Astro.url;
+---
+
+<Layout
+  title="Technical SEO | Mediabros Online"
+  description="SEO técnico para mejorar visibilidad, rendimiento y capacidad de posicionamiento"
+>
+  <Navigation pathname={pathname} />
+  <HeroSmall
+    title="Technical SEO"
+    icon="ico-seo-technical.png"
+    subtitle="SEO técnico para mejorar visibilidad, rendimiento y capacidad de posicionamiento"
+  />
+
+  <DescriptionSection
+    chipText="Más leads con Technical SEO"
+    heading="Optimización estructura"
+    description="El SEO técnico es la base sobre la que se construye cualquier estrategia de posicionamiento orgánico sólida. Sin una estructura técnica correcta, ningún contenido ni ninguna estrategia de palabras clave puede rendir al máximo."
+    ctaLabel="Consúltanos"
+    ctaHref="#contacto"
+    rightContent="image"
+    imageSrc="imgs/technical-seo/technical-seo.webp"
+    imageAlt="Technical SEO"
+  />
+
+  <FeaturesSection
+    chipText="Servicio de Technical SEO"
+    heading="Qué trabajamos dentro del SEO técnico"
+    description="El SEO técnico abarca múltiples aspectos del sitio web que impactan directamente en el ranking. En MediaBros trabajamos, entre otros, los siguientes ejes:"
+    sectionIconSrc="iconos/ico-seo-technical.png"
+    sectionIconAlt="Technical SEO"
+    items={[
+      {
+        title: "Rastreo e indexación",
+        description: "Optimizamos la estructura del sitio para facilitar el rastreo y la indexación.",
+      },
+      {
+        title: "Corrección de errores técnicos",
+        description: "Corregimos errores técnicos que afectan la visibilidad en buscadores.",
+      },
+      {
+        title: "Velocidad de carga",
+        description: "Mejoramos la velocidad de carga y el rendimiento general del sitio.",
+      },
+      {
+        title: "Arquitectura de URL",
+        description: "Optimizamos la arquitectura de URLs y la navegación interna.",
+      },
+      {
+        title: "Datos estructurados",
+        description: "Implementamos datos estructurados para mejorar la interpretación del contenido por parte de los buscadores.",
+      },
+    ]}
+  />
+
+  <WhySection
+    chipText="Más leads con Technical SEO"
+    heading="¿Por qué es clave el SEO técnico?"
+    description="Un sitio puede tener buen contenido y una propuesta clara, pero si presenta errores técnicos, problemas de rendimiento o una mala arquitectura, Google simplemente no lo prioriza."
+    listHeading="El SEO técnico es fundamental cuando:"
+    listItems={[
+      "El sitio no posiciona como debería.",
+      "El tráfico orgánico está estancado.",
+      "Existen errores de rastreo o indexación.",
+      "El sitio es lento o poco usable.",
+      "Se quiere escalar el posicionamiento en distintos países.",
+    ]}
+    calloutText="En mercados competitivos, el SEO técnico no es opcional: es una condición necesaria para competir."
+  />
+
+  <CtaSection
+    chipText="Technical SEO"
+    heading="¿Tu sitio necesita SEO técnico?"
+    description="Podemos analizar el estado actual de tu web y definir si el SEO técnico es el paso necesario para mejorar su rendimiento y posicionamiento."
+    ctaLabel="Consúltanos"
+    ctaHref="#contacto"
+  />
+
+  <FAQSection
+    heading="Aprende todo sobre Technical SEO"
+    faqs={[
+      {
+        question: "¿Qué es el Posicionamiento SEO?",
+        answer: "<strong>SEO</strong> (Search Engine Optimization), <strong>Posicionamiento en Motores de Búsqueda</strong> o <strong>Posicionamiento SEO</strong>, se refiere a un conjunto de prácticas y estrategias que se implementan en un sitio web para mejorar su visibilidad en los resultados orgánicos de los motores de búsqueda como Google, Bing o Yahoo. El objetivo del <strong>Posicionamiento SEO</strong> es posicionar un sitio web en las primeras posiciones de los resultados de búsqueda para las palabras clave relevantes para su negocio o nicho.",
+      },
+      {
+        question: "¿Cómo funciona el Posicionamiento SEO?",
+        answer: "Los motores de búsqueda utilizan algoritmos complejos para analizar y clasificar los sitios web. Estos algoritmos tienen en cuenta una serie de factores, como la calidad del contenido, la relevancia de las palabras clave, la estructura del sitio web, la velocidad de carga y la experiencia del usuario. Para mejorar el <strong>Posicionamiento SEO</strong>, es necesario optimizar el sitio web en base a estos factores.",
+      },
+      {
+        question: "¿Qué tipos de Posicionamiento SEO existen?",
+        answer: "Existen dos tipos principales de <strong>SEO</strong>:<ul class=\"mt-3 space-y-2\"><li><strong>SEO On-Page:</strong> Se refiere a las optimizaciones que se realizan dentro del propio sitio web, como la optimización del contenido, la estructura del sitio web y los metadatos.</li><li><strong>SEO Off-Page:</strong> Se refiere a las acciones que se realizan fuera del sitio web, como la obtención de backlinks de otros sitios web relevantes y la participación en las redes sociales.</li></ul>",
+      },
+      {
+        question: "¿Cuáles son los beneficios del Posicionamiento SEO?",
+        answer: "El <strong>Posicionamiento SEO</strong> ofrece una serie de beneficios, como:<ul class=\"mt-3 space-y-2\"><li><strong>Aumento del tráfico orgánico:</strong> Un buen posicionamiento SEO puede generar un aumento significativo del tráfico orgánico hacia tu sitio web.</li><li><strong>Mayor visibilidad de marca:</strong> Cuanto más visible sea tu sitio web en los resultados de búsqueda, mayor será la visibilidad de tu marca.</li><li><strong>Mayor generación de leads y ventas:</strong> Un mayor tráfico orgánico puede conducir a un aumento de leads y ventas.</li><li><strong>Mejora de la reputación online:</strong> Un buen posicionamiento SEO puede contribuir a mejorar la reputación online de tu negocio.</li></ul>",
+      },
+      {
+        question: "¿Cuánto tiempo tarda en verse resultados del Posicionamiento SEO?",
+        answer: "El tiempo que tarda en verse resultados del <strong>Posicionamiento SEO</strong> depende de una serie de factores, como la calidad de las estrategias implementadas, la competencia del nicho y la autoridad del sitio web. Sin embargo, generalmente se recomienda ser paciente y constante con el SEO, ya que los resultados suelen ser a largo plazo.",
+      },
+    ]}
+  />
+
+  <ContactSection />
+  <Certificaciones />
+  <Footer />
+</Layout>

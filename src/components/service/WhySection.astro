@@ -1,0 +1,99 @@
+---
+import ChipOvertitle from "../ui/ChipOvertitle.astro";
+import Glow from "../ui/Glow.astro";
+import Icon from "../ui/Icon.astro";
+
+interface Props {
+  chipText: string;
+  heading: string;
+  description: string;
+  listHeading: string;
+  listItems: string[];
+  calloutIcon?: string;
+  calloutText: string;
+}
+
+const {
+  chipText,
+  heading,
+  description,
+  listHeading,
+  listItems,
+  calloutIcon,
+  calloutText,
+} = Astro.props;
+---
+
+<section class="relative py-16 md:py-24">
+  <m-container class="flex flex-col gap-18">
+    <Glow
+      class="w-screen -translate-x-1/2 -top-100 bg-brand-gris/5 h-160 -z-1"
+    />
+    <!-- Header Section -->
+    <m-row class="flex flex-col items-center mb-12 text-center md:mb-8">
+      <div class="flex justify-center mb-6">
+        <ChipOvertitle text={chipText} />
+      </div>
+
+      <h2
+        class="text-4xl md:text-5xl font-display text-brand-dark leading-[1.15] tracking-tight mb-8 mx-auto"
+      >
+        {heading}
+      </h2>
+      <p
+        class="max-w-4xl mx-auto text-base leading-relaxed md:text-lg text-brand-gris"
+        set:html={description}
+      />
+    </m-row>
+    <!-- Content Rows -->
+
+    <m-row class="flex-col gap-12 lg:flex-row lg:gap-16 lg:items-center">
+      <!-- Left Column: List -->
+      <m-col class="flex flex-col w-full text-sm lg:w-1/2">
+        <h3 class="mb-8 text-2xl md:text-3xl font-display text-brand-dark">
+          {listHeading}
+        </h3>
+        <ul class="space-y-4">
+          {
+            listItems.map((item) => (
+              <li class="flex items-center gap-5">
+                <span class="flex items-center justify-center rounded-full size-8 bg-brand-dark shrink-0">
+                  <Icon
+                    name="check"
+                    size={16}
+                    class="stroke-2 text-brand-fondo"
+                  />
+                </span>
+                <span class="text-base text-brand-gris">{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </m-col>
+
+      <!-- Right Column: Callout Card -->
+      <m-col class="flex flex-col w-full text-sm lg:w-1/2">
+        <div
+          class="relative flex flex-col items-center p-8 overflow-hidden text-center bg-brand-celeste/10 rounded-2xl md:p-12"
+        >
+          <Glow
+            class="w-full -translate-x-1/2 -top-5 left-full h-100 bg-brand-celeste opacity-15"
+          />
+          <Glow
+            class="w-full -translate-x-1/2 top-30 -left-50 h-200 bg-brand-celeste opacity-15"
+          />
+          {
+            calloutIcon && (
+              <div class="flex items-center justify-center w-12 h-12 mb-8 text-white rounded-full bg-brand-dark">
+                <Icon name={calloutIcon} size={32} fill={1} />
+              </div>
+            )
+          }
+          <p class="mx-auto text-base md:text-lg text-brand-dark/90 leading">
+            {calloutText}
+          </p>
+        </div>
+      </m-col>
+    </m-row>
+  </m-container>
+</section>

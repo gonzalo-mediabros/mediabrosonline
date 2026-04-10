@@ -8,24 +8,29 @@ const { question } = Astro.props;
 ---
 
 <details
-  class="group border-b border-slate-200 py-6 lg:py-8 w-full transition-all"
+  class="w-full py-6 transition-all lg:py-4 px-2 border-b border-brand-gris/10 hover:bg-brand-dark/2"
 >
   <summary
-    class="text-xl lg:text-2xl font-display font-bold text-brand-dark flex items-start lg:items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden hover:text-brand-celeste transition-colors"
+    class="text-xl lg:text-1xl font-display font-bold text-brand-dark flex items-start lg:items-center justify-between cursor-pointer list-none [&::-webkit-details-marker]:hidden transition-colors"
   >
     <span class="flex-1">{question}</span>
     <div
-      class="flex items-center justify-center shrink-0 w-10 h-10 rounded-full bg-slate-50 text-brand-celeste group-hover:bg-brand-celeste/10 transition-all mt-0.5 lg:mt-0"
+      class="flex items-center justify-center shrink-0 w-10 h-10 rounded-full bg-slate-50 text-brand-dark group-hover:bg-brand-celeste/10 transition-all mt-0.5 lg:mt-0"
     >
-      <span class="group-open:hidden flex items-center justify-center transition-transform">
+      <span
+        class="flex items-center justify-center transition-transform group-open:hidden"
+      >
         <Icon name="add" size={24} />
       </span>
-      <span class="hidden group-open:flex items-center justify-center transition-transform">
+      <span
+        class="items-center justify-center hidden transition-transform group-open:flex"
+      >
         <Icon name="remove" size={24} />
       </span>
     </div>
   </summary>
-  <div class="text-slate-600 mt-5 text-lg pr-14 leading-relaxed">
+  <!-- Respuesta -->
+  <div class="text-sm leading-relaxed md:text-base text-brand-gris mt-4 mb-2">
     <slot />
   </div>
 </details>

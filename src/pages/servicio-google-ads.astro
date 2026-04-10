@@ -5,11 +5,11 @@ import HeroSmall from "../components/ui/HeroSmall.astro";
 import Certificaciones from "../components/ui/Certificaciones.astro";
 import Footer from "../components/ui/Footer.astro";
 import ContactSection from "../components/ui/ContactSection.astro";
-import ResultadosMedibles from "../components/google-ads/ResultadosMedibles.astro";
-import TiposCampanas from "../components/google-ads/TiposCampanas.astro";
-import PorQueGoogleAds from "../components/google-ads/PorQueGoogleAds.astro";
-import CtaBanner from "../components/google-ads/CtaBanner.astro";
-import FaqsSection from "../components/google-ads/FaqsSection.astro";
+import DescriptionSection from "../components/service/DescriptionSection.astro";
+import FeaturesSection from "../components/service/FeaturesSection.astro";
+import WhySection from "../components/service/WhySection.astro";
+import CtaSection from "../components/service/CtaSection.astro";
+import FAQSection from "../components/service/FAQSection.astro";
 
 const { pathname } = Astro.url;
 ---
@@ -18,7 +18,6 @@ const { pathname } = Astro.url;
   title="Google Ads | Mediabros Online"
   description="Google Ads como motor principal de generación de demanda y leads calificados"
 >
-  <!-- ----- HERO ----- -->
   <Navigation pathname={pathname} />
   <HeroSmall
     title="Google Ads"
@@ -26,14 +25,117 @@ const { pathname } = Astro.url;
     subtitle="Google Ads como motor principal de generación de demanda y leads calificados"
   />
 
-  <ResultadosMedibles />
-  <TiposCampanas />
-  <PorQueGoogleAds />
-  <CtaBanner />
-  <FaqsSection />
+  <DescriptionSection
+    chipText="Más leads con Google Ads"
+    heading="Resultados medibles"
+    description="Google Ads es uno de los canales más efectivos para generar oportunidades comerciales cuando el objetivo es captar usuarios con intención real de compra o contratación. A diferencia de otros medios, Google permite impactar a personas que ya están buscando activamente una solución, un servicio o un proveedor."
+    ctaLabel="Consúltanos"
+    ctaHref="#contacto"
+    rightContent="image"
+    imageSrc="imgs/google-ads/Google-Ads.webp"
+    imageAlt="Google Ads"
+  />
+
+  <FeaturesSection
+    chipText="Campañas en Google Ads"
+    heading="Tipos de campañas de Google Ads"
+    description="La red publicitaria de Google Ads ofrece diferentes tipos de campañas para poder cumplir con los objetivos de tu empresa y captar a tu publico objetivo en las diferentes etapas de su proceso de compra."
+    sectionIconSrc="iconos/ico-google-ads.png"
+    sectionIconAlt="Google Ads"
+    items={[
+      {
+        iconSrc: "imgs/google-ads/ico-google.png",
+        iconAlt: "Google Search",
+        title: "Google Search",
+        description: "Si tu producto o servicio tiene búsquedas este tipo de campañas son la prioridad ya que generan tráfico caliente y conversiones.",
+      },
+      {
+        iconSrc: "imgs/google-ads/ico-display.png",
+        iconAlt: "Google Display",
+        title: "Google Display",
+        description: "Ideal para darnos a conocer ó hacer seguimiento de nuestros clientes potenciales en la red publicitaria de sitios más grande.",
+      },
+      {
+        iconSrc: "imgs/google-ads/ico-youtube.png",
+        iconAlt: "YouTube",
+        title: "YouTube",
+        description: "Con una gran variedad de formatos podemos encontrar a nuestro público objetivo cuando mira contenidos en YouTube.",
+      },
+      {
+        iconSrc: "imgs/google-ads/ico-max-perfo.png",
+        iconAlt: "Max Performance",
+        title: "Max Performance",
+        description: "Campañas basadas en objetivos que permiten acceder a todo el inventario de la red publicitaria de Google y encontrar a tu público.",
+      },
+    ]}
+  />
+
+  <WhySection
+    chipText="Más leads con Google Ads"
+    heading="¿Por qué Google Ads es clave para tu empresa?"
+    description="Google Ads permite conectar la oferta de una empresa con la demanda existente en el mercado. Cuando alguien busca un servicio o solución específica, la intención ya está creada. El desafío no es generar interés, sino <strong>estar presente en el momento correcto con el mensaje adecuado.</strong>"
+    listHeading="Especialmente efectivo cuando:"
+    listItems={[
+      "El proceso de decisión comienza con una búsqueda.",
+      "El ticket promedio justifica una inversión publicitaria.",
+      "Se busca captar leads con intención concreta.",
+      "El negocio necesita resultados medibles y escalables.",
+    ]}
+    calloutIcon="emoji_events"
+    calloutText="Somos expertos en el diseño de estrategias de Google Ads, enfocadas en transformar búsquedas en clientes. Nos enfocamos maximizar resultados con crecimiento real para tu negocio, con un flujo continuo de optimización basado en datos."
+  />
+
+  <CtaSection
+    chipText="Google Ads"
+    heading="¿Es el canal adecuado para tu empresa?"
+    description="Podemos analizar tu mercado, tu ticket promedio y tu estrategia actual para definir cómo aprovechar Google Ads dentro de un plan de generación de demanda."
+    ctaLabel="Consúltanos"
+    ctaHref="#contacto"
+  />
+
+  <FAQSection
+    heading="Aprende todo sobre Google Ads"
+    faqs={[
+      {
+        question: "¿Qué es Google Ads?",
+        answer: "<strong>Google Ads</strong> es una plataforma publicitaria desarrollada por <strong>Google</strong>, que permite a los anunciantes mostrar anuncios relevantes y específicos en los resultados de búsqueda de <strong>Google</strong>, en sitios web que forman parte de la red de <strong>Google</strong>. Anteriormente conocida como <strong>Google AdWords</strong>, <strong>Google Ads</strong> funciona mediante un sistema de subasta donde los anunciantes pujan por la oportunidad de mostrar sus anuncios a los usuarios que realizan búsquedas utilizando palabras clave específicas o que visitan sitios web relevantes para sus productos o servicios. Los anuncios pueden aparecer en forma de texto, imágenes, videos o en otros formatos, y los anunciantes solo pagan cuando los usuarios hacen clic en sus anuncios o realizan ciertas acciones predefinidas, como completar un formulario o realizar una compra. <strong>Google Ads</strong> es una herramienta poderosa para las empresas que desean aumentar su visibilidad en línea, generar tráfico a su sitio web y alcanzar a su audiencia objetivo de manera efectiva.",
+      },
+      {
+        question: "¿Cómo funciona Google Ads?",
+        answer: "<strong>Google Ads</strong> funciona mediante un sistema de subastas. Cuando un usuario realiza una búsqueda, <strong>Google Ads</strong> realiza una subasta en tiempo real entre los anunciantes que han pujado por las palabras clave relevantes para esa búsqueda. El anuncio que gana la subasta es el que se muestra al usuario en la primera posición.",
+      },
+      {
+        question: "¿Cuánto cuesta Google Ads?",
+        answer: "El costo de <strong>Google Ads</strong> depende de varios factores, como el presupuesto que establezcas, las palabras clave por las que pujas, la calidad de tus anuncios y la relevancia de tu público objetivo. No hay un costo mínimo para utilizar <strong>Google Ads</strong>, y puedes establecer un presupuesto diario o mensual que se ajuste a tus necesidades.",
+      },
+      {
+        question: "¿Qué tipos de anuncios puedo crear con Google Ads?",
+        answer: "<strong>Google Ads</strong> ofrece una variedad de tipos de anuncios, incluyendo:<ul class=\"mt-3 space-y-2\"><li><strong>Anuncios de texto:</strong> Son anuncios breves que aparecen en los resultados de búsqueda de <strong>Google</strong>.</li><li><strong>Anuncios gráficos:</strong> Son anuncios que incluyen imágenes o videos, y se pueden mostrar en sitios web asociados y aplicaciones móviles.</li><li><strong>Anuncios de video:</strong> Son anuncios que se reproducen automáticamente cuando un usuario visita un sitio web o una aplicación móvil.</li><li><strong>Anuncios de shopping:</strong> Son anuncios que muestran productos con su precio e imagen, y permiten a los usuarios comprar directamente desde el anuncio.</li></ul>",
+      },
+      {
+        question: "¿Cómo puedo medir el rendimiento de mis campañas de Google Ads?",
+        answer: "<strong>Google Ads</strong> ofrece una variedad de herramientas para medir el rendimiento de tus campañas, como:<ul class=\"mt-3 space-y-2\"><li><strong>Impresiones:</strong> El número de veces que se ha mostrado tu anuncio.</li><li><strong>Clics:</strong> El número de veces que se ha hecho clic en tu anuncio.</li><li><strong>CTR (tasa de clics):</strong> El porcentaje de impresiones que ha resultado en un clic.</li><li><strong>Conversiones:</strong> El número de veces que un usuario ha realizado una acción deseada, como realizar una compra o registrarse para recibir un boletín informativo.</li></ul>",
+      },
+      {
+        question: "¿Cómo puedo usar Google Ads para promocionar mis servicios?",
+        answer: "<strong>Google Ads</strong> ofrece una variedad de herramientas para que las empresas de servicios promocionen sus servicios, como anuncios de texto, anuncios gráficos, anuncios de video y anuncios de shopping. Puedes usar estas herramientas para llegar a clientes potenciales que buscan servicios como los tuyos en tu área local.",
+      },
+      {
+        question: "¿Cómo puedo usar Google Ads para generar leads para mi empresa de servicios?",
+        answer: "<strong>Google Ads</strong> puede ser una herramienta eficaz para generar leads para tu empresa de servicios. Puedes utilizar formularios de leads en tus anuncios para capturar la información de contacto de los clientes potenciales, y luego puedes utilizar esa información para seguir adelante con ellos.",
+      },
+      {
+        question: "¿Cómo puedo usar Google Ads para promocionar ofertas especiales y descuentos?",
+        answer: "<strong>Google Ads</strong> te permite promocionar ofertas especiales y descuentos en tus anuncios. Esto puede ser una excelente manera de atraer nuevos clientes y aumentar tus ventas.",
+      },
+      {
+        question: "¿Cómo puedo usar Google Ads para reorientar a los clientes que ya han visitado mi sitio web?",
+        answer: "<strong>Google Ads</strong> te permite reorientar a los clientes que ya han visitado tu sitio web. Esto puede ser una excelente manera de mantener a los clientes interesados en tu negocio y animarlos a volver a tu sitio web.",
+      },
+    ]}
+  />
 
   <ContactSection />
-
   <Certificaciones />
   <Footer />
 </Layout>

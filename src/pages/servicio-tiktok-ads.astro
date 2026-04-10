@@ -1,0 +1,104 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/ui/Navigation.astro";
+import HeroSmall from "../components/ui/HeroSmall.astro";
+import Certificaciones from "../components/ui/Certificaciones.astro";
+import Footer from "../components/ui/Footer.astro";
+import ContactSection from "../components/ui/ContactSection.astro";
+import DescriptionSection from "../components/service/DescriptionSection.astro";
+import FeaturesSection from "../components/service/FeaturesSection.astro";
+import WhySection from "../components/service/WhySection.astro";
+import CtaSection from "../components/service/CtaSection.astro";
+import FAQSection from "../components/service/FAQSection.astro";
+
+const { pathname } = Astro.url;
+---
+
+<Layout
+  title="TikTok Ads | Mediabros Online"
+  description="TikTok Ads como canal estratégico para generar demanda y leads calificados"
+>
+  <Navigation pathname={pathname} />
+  <HeroSmall
+    title="TikTok Ads"
+    icon="ico-tiktok.png"
+    subtitle="TikTok Ads como canal estratégico para generar demanda y leads calificados"
+  />
+
+  <DescriptionSection
+    chipText="Más leads con TikTok Ads"
+    heading="Resultados medibles"
+    description="TikTok dejó de ser una plataforma exclusivamente de entretenimiento para convertirse en uno de los canales con mayor capacidad de generar atención y demanda. Cuando se utiliza de forma estratégica, TikTok Ads permite llegar a potenciales clientes de <strong>ticket medio y medio-alto</strong>, tanto en modelos B2B como B2C, con costos competitivos y gran volumen de alcance."
+    ctaLabel="Consúltanos"
+    ctaHref="#contacto"
+    rightContent="image"
+    imageSrc="imgs/tiktok-ads/tiktok-ads-1.webp"
+    imageAlt="TikTok Ads"
+  />
+
+  <FeaturesSection
+    chipText="Campañas en TikTok Ads"
+    heading="Tipos de campañas de TikTok"
+    description="Según los objetivos y la etapa del funnel, trabajamos diferentes tipos de campañas en TikTok Ads. Cada campaña responde a una función específica dentro de la estrategia general."
+    sectionIconSrc="iconos/ico-tiktok.png"
+    sectionIconAlt="TikTok Ads"
+    items={[
+      {
+        title: "Campañas de tráfico",
+        description: "Implementamos campañas de tráfico calificado para llevar usuarios a landing pages estratégicas.",
+      },
+      {
+        title: "Generación de leads",
+        description: "Desarrollamos campañas de generación de leads para captar datos de potenciales clientes.",
+      },
+      {
+        title: "Remarketing",
+        description: "Diseñamos estrategias de remarketing para impactar a usuarios que ya interactuaron con el contenido o el sitio.",
+      },
+      {
+        title: "Campañas de reconocimiento",
+        description: "Utilizamos campañas de reconocimiento cuando el foco está en instalar una propuesta de valor antes de la conversión directa.",
+      },
+    ]}
+  />
+
+  <WhySection
+    chipText="Más leads con TikTok Ads"
+    heading="¿Por qué hacer publicidad en TikTok Ads?"
+    description="TikTok se destaca por su capacidad de captar atención genuina. A diferencia de otras plataformas, el contenido no se consume de forma pasiva: el usuario interactúa, observa y decide rápidamente si algo le interesa o no."
+    listHeading="TikTok es un canal ideal para:"
+    listItems={[
+      "Generar demanda en mercados competitivos.",
+      "Escalar volumen de contactos.",
+      "Testear mensajes y propuestas de valor.",
+      "Reducir el costo por lead en determinadas etapas del funnel.",
+    ]}
+    calloutText="TikTok Ads funciona muy bien para empresas que venden servicios o productos de <strong>ticket medio o medio-alto</strong>, donde el proceso de decisión no es inmediato pero sí influenciable por el mensaje correcto."
+  />
+
+  <CtaSection
+    chipText="TikTok Ads"
+    heading="¿Es adecuado para tu empresa?"
+    description="Podemos analizar tu mercado, tu ticket promedio y tu proceso comercial para definir si TikTok Ads puede ser un canal rentable dentro de tu estrategia digital."
+    ctaLabel="Consúltanos"
+    ctaHref="#contacto"
+  />
+
+  <FAQSection
+    heading="Aprende todo sobre TikTok Ads"
+    faqs={[
+      {
+        question: "¿Qué es TikTok Ads?",
+        answer: "<strong>TikTok Ads</strong> es la plataforma publicitaria de TikTok que permite a los anunciantes mostrar anuncios a su audiencia objetivo dentro de la aplicación. Funciona mediante un sistema de subasta donde los anunciantes pujan por mostrar sus anuncios a los usuarios que coinciden con su segmentación, pagando solo cuando los usuarios interactúan con sus anuncios.",
+      },
+      {
+        question: "¿Cómo funciona TikTok Ads?",
+        answer: "<strong>TikTok Ads</strong> funciona mediante un sistema de subastas en tiempo real. Cuando un usuario abre la aplicación, el sistema determina qué anuncios mostrar en función de la segmentación definida por el anunciante, el presupuesto disponible y la relevancia del contenido para el usuario.",
+      },
+    ]}
+  />
+
+  <ContactSection />
+  <Certificaciones />
+  <Footer />
+</Layout>

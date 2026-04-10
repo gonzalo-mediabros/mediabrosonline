@@ -1,4 +1,7 @@
 ---
+import Glow from "./Glow.astro";
+import ImageBackground from "./ImageBackground.astro";
+
 interface Props {
   title: string;
   subtitle?: string;
@@ -12,34 +15,34 @@ const BASE = import.meta.env.BASE_URL;
 
 <!-- --------------- HERO SMALL  --------------- -->
 <section
-  class="relative flex flex-col px-0 py-0 overflow-hidden xl:py-6 bg-brand-fondo xl:px-14"
+  class="relative flex flex-col px-0 py-0 overflow-hidden isolate xl:py-6 bg-brand-fondo xl:px-14"
 >
-  <!-- Content Wrapper -->
-  <div
-    class="relative z-10 flex flex-col items-center justify-center min-h-[40vh] pb-20 pt-36 overflow-hidden text-white bg-brand-celeste rounded-4xl"
+  <m-container
+    class="relative z-10 flex flex-col items-center justify-center min-h-[40vh] pb-20 pt-36 overflow-hidden text-white bg-brand-celeste rounded-4xl isolate"
   >
-    <div
-      class="absolute top-0 left-3/3 -translate-x-1/2 w-full max-w-4xl h-100 bg-brand-dark opacity-10 blur-[120px] rounded-full pointer-events-none -z-10"
-    >
-    </div>
-    <m-container>
-      <m-row class="flex-col items-center text-center">
-        <m-col class="max-w-3xl space-y-4 items-center">
-          <img src={`${BASE}iconos/${icon}`} alt={title} class="size-16" />
-          <h1
-            class="text-4xl sm:text-5xl md:text-7xl font-display leading-[1.1] tracking-tight"
-          >
-            {title}
-          </h1>
-          {
-            subtitle && (
-              <h2 class="max-w-sm mx-auto text-lg leading-tight md:text-xl text-white/80 font-display font-normal leading">
-                {subtitle}
-              </h2>
-            )
-          }
-        </m-col>
-      </m-row>
-    </m-container>
-  </div>
+    <Glow
+      class="top-0 w-full max-w-4xl -translate-x-1/2 left-3/3 h-100 bg-brand-dark opacity-10 -z-10"
+    />
+    <ImageBackground
+      src={BASE + "pattern-ondulado.svg"}
+      class="inset-0 w-full h-full"
+    />
+    <m-row class="z-10 flex-col items-center text-center">
+      <m-col class="items-center max-w-3xl space-y-4">
+        <img src={`${BASE}iconos/${icon}`} alt={title} class="size-16" />
+        <h1
+          class="text-4xl sm:text-5xl md:text-7xl font-display leading-[1.1] tracking-tight"
+        >
+          {title}
+        </h1>
+        {
+          subtitle && (
+            <h2 class="max-w-sm mx-auto text-lg font-normal leading-tight md:text-xl text-white/80 font-display leading">
+              {subtitle}
+            </h2>
+          )
+        }
+      </m-col>
+    </m-row>
+  </m-container>
 </section>
