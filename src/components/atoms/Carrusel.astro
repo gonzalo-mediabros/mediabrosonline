@@ -1,0 +1,93 @@
+---
+// Carrusel.astro — powered by Swiper.js
+// Each direct slot child must be wrapped in <div class="swiper-slide">
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+interface Props {
+  slidesPerView?: number | "auto";
+  slidesPerViewMd?: number;
+  slidesPerViewLg?: number;
+  gap?: number;
+  autoplay?: number | false;
+  loop?: boolean;
+  navigation?: boolean;
+  pagination?: boolean;
+}
+
+const {
+  slidesPerView = 1,
+  slidesPerViewMd,
+  slidesPerViewLg,
+  gap = 24,
+  autoplay = false,
+  loop = true,
+  navigation = false,
+  pagination = false,
+} = Astro.props;
+
+const id = `swiper-${Math.random().toString(36).slice(2, 8)}`;
+
+const config = {
+  slidesPerView,
+  spaceBetween: gap,
+  loop,
+  autoplay: autoplay !== false ? { delay: autoplay, disableOnInteraction: false } : false,
+  navigation,
+  pagination: pagination ? { clickable: true } : false,
+  breakpoints: {
+    ...(slidesPerViewMd !== undefined && { 768: { slidesPerView: slidesPerViewMd } }),
+    ...(slidesPerViewLg !== undefined && { 1024: { slidesPerView: slidesPerViewLg } }),
+  },
+};
+---
+
+<div
+  id={id}
+  class="swiper"
+  data-config={JSON.stringify(config)}
+>
+  <div class="swiper-wrapper">
+    <slot />
+  </div>
+
+  {navigation && (
+    <>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </>
+  )}
+
+  {pagination && <div class="swiper-pagination"></div>}
+</div>
+
+<script>
+  import Swiper from "swiper";
+  import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
+  document.querySelectorAll<HTMLElement>(".swiper[data-config]").forEach((el) => {
+    const raw = el.getAttribute("data-config");
+    if (!raw) return;
+
+    const cfg = JSON.parse(raw);
+    const modules = [];
+    if (cfg.navigation) modules.push(Navigation);
+    if (cfg.pagination) modules.push(Pagination);
+    if (cfg.autoplay) modules.push(Autoplay);
+
+    new Swiper(el, { ...cfg, modules });
+  });
+</script>
+
+<style is:global>
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: var(--color-brand-celeste);
+  }
+
+  .swiper-pagination-bullet-active {
+    background: var(--color-brand-celeste);
+  }
+</style>

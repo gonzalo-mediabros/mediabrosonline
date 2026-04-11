@@ -64,7 +64,7 @@ const {
                     class="stroke-2 text-brand-fondo"
                   />
                 </span>
-                <span class="text-base text-brand-gris">{item}</span>
+                <span class="text-base text-brand-gris" set:html={item} />
               </li>
             ))
           }
@@ -74,26 +74,29 @@ const {
       <!-- Right Column: Callout Card -->
       <m-col class="flex flex-col w-full text-sm lg:w-1/2">
         <div
-          class="relative flex flex-col items-center p-8 overflow-hidden text-center bg-brand-celeste/10 rounded-2xl md:p-12"
+          class="relative w-full rounded-3xl overflow-clip p-2 bg-brand-dark/1"
         >
-          <Glow
-            class="w-full -translate-x-1/2 -top-5 left-full h-100 bg-brand-celeste opacity-15"
-          />
-          <Glow
-            class="w-full -translate-x-1/2 top-30 -left-50 h-200 bg-brand-celeste opacity-15"
-          />
-          {
-            calloutIcon && (
-              <div class="flex items-center justify-center w-12 h-12 mb-8 text-white rounded-full bg-brand-dark">
-                <Icon name={calloutIcon} size={32} fill={1} />
-              </div>
-            )
-          }
-          <p
-            class="mx-auto text-base md:text-lg text-brand-dark/90 leading-relaxed"
+          <div
+            class="relative flex flex-col items-center p-8 overflow-hidden text-center bg-brand-celeste/10 rounded-2xl md:p-12"
           >
-            {calloutText}
-          </p>
+            <Glow
+              class="w-full -translate-x-1/2 -top-5 left-full h-100 bg-brand-celeste opacity-15"
+            />
+            <Glow
+              class="w-full -translate-x-1/2 top-30 -left-50 h-200 bg-brand-celeste opacity-15"
+            />
+            {
+              calloutIcon && (
+                <div class="flex items-center justify-center w-12 h-12 mb-8 text-white rounded-full bg-brand-dark">
+                  <Icon name={calloutIcon} size={32} fill={1} />
+                </div>
+              )
+            }
+            <p
+              class="mx-auto text-base md:text-lg text-brand-dark/90 leading-relaxed"
+              set:html={calloutText}
+            />
+          </div>
         </div>
       </m-col>
     </m-row>

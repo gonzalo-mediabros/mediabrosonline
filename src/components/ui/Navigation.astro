@@ -1,159 +1,41 @@
 ---
 import Icon from "../atoms/Icon.astro";
+import NavDesktop from "./NavDesktop.astro";
+import NavMobile from "./NavMobile.astro";
+import { getNavItems } from "../../data/navigation";
 
 interface Props {
+  theme?: "dark" | "light";
   pathname?: string;
+  logo?: string;
 }
 
-interface ServiceItem {
-  label: string;
-  icon: string;
-    href?: string;
-}
-
-interface NavItem {
-  label: string;
-  href?: string;
-  dropdown?: boolean;
-  children?: ServiceItem[];
-}
-
-
-
-const { pathname = "/" } = Astro.props;
+const { theme = "dark", pathname = "/", logo } = Astro.props;
 const BASE = import.meta.env.BASE_URL;
+const navItems = getNavItems(BASE);
 
-const navItems: NavItem[] = [
-  { label: "Inicio", href: BASE },
-  {
-    label: "Servicios",
-    dropdown: true,
-    children: [
-      { label: "Google Ads",    icon: `${BASE}imgs/iconos/ico-google-ads.png`   , href: `${BASE}servicio-google-ads` },
-      { label: "Meta Ads",      icon: `${BASE}imgs/iconos/ico-meta.png`         , href: `${BASE}servicio-meta-ads` },
-      { label: "LinkedIn Ads",  icon: `${BASE}imgs/iconos/ico-linkedin.png`     , href: `${BASE}servicio-linkedin-ads` },
-      { label: "Tiktok Ads",    icon: `${BASE}imgs/iconos/ico-tiktok.png`       , href: `${BASE}servicio-tiktok-ads` },
-      { label: "Content SEO",   icon: `${BASE}imgs/iconos/ico-seo-content.png`  , href: `${BASE}servicio-content-seo` },
-      { label: "Technical SEO", icon: `${BASE}imgs/iconos/ico-seo-technical.png`, href: `${BASE}servicio-technical-seo` },
-      { label: "Local SEO",     icon: `${BASE}imgs/iconos/ico-seo-local.png`    , href: `${BASE}servicio-local-seo` },
-      { label: "Asesoramiento", icon: `${BASE}imgs/iconos/ico-asesoramiento.png`, href: `${BASE}servicio-asesoramiento` },
-    ],
-  },
-  { label: "Agencia",  href: `${BASE}agencia`  },
-  { label: "Clientes", href: `${BASE}clientes` },
-  { label: "Contacto", href: `${BASE}contacto` },
-];
-
-const regularItems  = navItems.filter((item) => !item.dropdown);
-const dropdownItems = navItems.filter((item) =>  item.dropdown);
-
-const isActive = (href: string) => {
-  const normalized = href.endsWith("/") ? href : `${href}/`;
-  const current    = pathname.endsWith("/") ? pathname : `${pathname}/`;
-  return current === normalized;
-};
+const defaultLogo = theme === "dark" ? `${BASE}imgs/logo-blanco.svg` : `${BASE}imgs/logo.svg`;
+const logoStatic = logo ? `${BASE}imgs/${logo}` : defaultLogo;
+const logoSticky = `${BASE}imgs/logo.svg`;
+const staticTextClass = theme === "dark" ? "text-white" : "text-brand-dark";
 ---
 
-<!-- ----------------------------------------- HEADER ----------------------------------------- -->
+<!-- -------------------------- STATIC HEADER -------------------------- -->
 <header
-  id="main-header"
-  class="absolute top-0 left-0 right-0 z-20 py-5 text-white md:top-15 xl:px-16"
+  id="header-static"
+  class:list={[
+    "absolute top-0 left-0 right-0 z-20 py-5 md:top-15 xl:px-16",
+    staticTextClass,
+  ]}
 >
-  <m-container class="font-display lg:max-w-[calc(100%-100px)]"]>
+  <m-container class="font-display lg:max-w-[calc(100%-100px)]">
     <m-row class="flex-row items-center justify-between">
-
       <a href={BASE}>
-        <img id="main-logo" src={`${BASE}imgs/logo-blanco.svg`} alt="Mediabros online" />
+        <img src={logoStatic} alt="Mediabros online" class="h-10" />
       </a>
 
-      <!-- Desktop nav -->
-      <nav class="items-center hidden gap-6 text-lg md:flex">
+      <NavDesktop navItems={navItems} pathname={pathname} theme={theme} />
 
-        {navItems.map((item) => (
-          <Fragment>
-
-            {/* Regular link */}
-            {!item.dropdown && (
-              <a
-                href={item.href}
-                class:list={[
-                  "transition-colors hover:text-brand-celeste",
-                  isActive(item.href!) && "text-brand-celeste",
-                ]}
-              >
-                {item.label}
-              </a>
-            )}
-
-            {/* Dropdown trigger + panel */}
-            {item.dropdown && (
-              <div class="relative" id="services-trigger-wrap">
-
-                <a 
-                  href={item.href}
-                  id="services-trigger"
-                  aria-expanded="false"
-                  aria-haspopup="true"
-                  class="flex items-center gap-1 p-0 text-lg transition-colors bg-transparent border-0 cursor-pointer hover:text-brand-celeste text-inherit"
-                >
-                  {item.label}
-                  <Icon
-                    id="services-chevron"
-                    name="expand_more"
-                    size={16}
-                    class="transition-transform duration-200"
-                  />
-                </a>
-
-                <!--
-                  Outer div: handles scale + opacity animation.
-                  Inner div: handles backdrop-blur.
-                  (transform + backdrop-filter conflict on same element)
-                -->
-                <div
-                  id="services-dropdown"
-                  role="menu"
-                  class="absolute mt-4 transition-all duration-200 origin-top scale-95 -translate-x-1/2 opacity-0 pointer-events-none left-1/2 top-10 w-120"
-                >
-                  <div class="relative p-4 border shadow-2xl rounded-2xl border-white/5 bg-brand-dark/95 backdrop-blur-xl">
-
-                    <!-- Arrow pointing up to trigger -->
-                    <div
-                      class="absolute w-0 h-0 -translate-x-1/2 left-1/2"
-                      style="top: -8px; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 8px solid rgba(31, 33, 61, 0.95);"
-                    ></div>
-
-                    <ul class="grid grid-cols-2 gap-x-6 gap-y-2" role="none">
-                      {item.children?.map((svc) => (
-                        <li role="none">
-                          <a
-                             href={svc.href}
-                            role="menuitem"
-                            class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors no-underline text-md text-white/90 hover:text-white hover:bg-white/10"
-                          >
-                            <div class="flex items-center justify-center rounded-full bg-white/15 size-9 shrink-0">
-                              <img src={svc.icon} alt="" class="object-contain size-9" />
-                            </div>
-                            <span class="font-semibold font-display whitespace-nowrap">
-                              {svc.label}
-                            </span>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-
-                  </div>
-                </div>
-
-              </div>
-            )}
-
-          </Fragment>
-        ))}
-
-      </nav>
-
-      <!-- Burger (mobile) -->
       <button
         id="burger-btn"
         class="p-1 bg-transparent border-0 cursor-pointer md:hidden text-inherit"
@@ -162,210 +44,60 @@ const isActive = (href: string) => {
       >
         <Icon name="menu" size={32} />
       </button>
-
     </m-row>
   </m-container>
 </header>
 
-<!-- ----------------------------------------- MOBILE MENU ----------------------------------------- -->
-<div
-  id="mobile-menu"
-  class="fixed inset-0 flex pointer-events-none z-60 md:hidden font-display"
+<!-- -------------------------- STICKY HEADER -------------------------- -->
+<header
+  id="header-sticky"
+  class="fixed top-0 left-0 right-0 z-20 py-3 transition-all duration-300 ease-in-out -translate-y-full opacity-0 bg-brand-fondo border-b border-brand-gris/15 text-brand-dark xl:px-16"
   aria-hidden="true"
 >
-  <div
-    id="mobile-overlay"
-    class="absolute inset-0 transition-opacity duration-300 opacity-0 bg-black/60"
-  ></div>
+  <m-container class="font-display lg:max-w-[calc(100%-100px)]">
+    <m-row class="flex-row items-center justify-between">
+      <a href={BASE}>
+        <img src={logoSticky} alt="Mediabros online" class="h-9" />
+      </a>
 
-  <div
-    id="mobile-panel"
-    class="relative flex flex-col w-4/5 h-full max-w-sm ml-auto overflow-y-auto transition-transform duration-300 translate-x-full bg-brand-dark"
-  >
-    <!-- Header -->
-    <div class="flex items-center justify-between px-6 py-5 border-b border-white/10">
-      <img src={`${BASE}imgs/logo-blanco.svg`} alt="Mediabros online" class="h-10" />
+      <NavDesktop navItems={navItems} pathname={pathname} theme="light" />
+
       <button
-        id="close-btn"
-        class="p-1 text-white bg-transparent border-0 cursor-pointer"
-        aria-label="Cerrar menú"
+        id="burger-btn-sticky"
+        class="p-1 bg-transparent border-0 cursor-pointer md:hidden text-inherit"
+        aria-label="Abrir menú"
+        aria-expanded="false"
       >
-        <Icon name="close" size={28} />
+        <Icon name="menu" size={32} />
       </button>
-    </div>
+    </m-row>
+  </m-container>
+</header>
 
-    <!-- Nav links -->
-    <nav class="flex flex-col px-4 py-4">
+<!-- -------------------------- MOBILE MENU -------------------------- -->
+<NavMobile navItems={navItems} pathname={pathname} BASE={BASE} />
 
-      {regularItems.map((item) => (
-        <a
-          href={item.href}
-          class:list={[
-            "flex items-center px-4 py-3.5 rounded-xl text-md font-medium transition-colors no-underline",
-            isActive(item.href!)
-              ? "text-brand-celeste bg-white/5"
-              : "text-white/80 hover:text-white hover:bg-white/10",
-          ]}
-        >
-          {item.label}
-        </a>
-      ))}
-
-      {dropdownItems.map((item) => (
-        <div class="pt-4 mt-2 border-t border-white/10">
-          <p class="px-4 mb-2 text-sm tracking-widest uppercase text-white/40">
-            {item.label}
-          </p>
-          {item.children?.map((svc) => (
-            <a
-              href="#services-multichannel"
-              class="flex items-center gap-3 px-4 py-3 no-underline transition-colors rounded-xl text-md text-white/80 hover:text-white hover:bg-white/10"
-            >
-              <div class="flex items-center justify-center rounded-full bg-white/15 size-9 shrink-0">
-                <img src={svc.icon} alt="" class="object-contain size-5" />
-              </div>
-              <span class="font-semibold font-display">{svc.label}</span>
-            </a>
-          ))}
-        </div>
-      ))}
-
-    </nav>
-  </div>
-</div>
-
-<!-- ----------------------------------------- STYLES ----------------------------------------- -->
-<style>
-  #main-header {
-    transition:
-      background-color 300ms ease,
-      box-shadow 300ms ease,
-      backdrop-filter 300ms ease,
-      padding 300ms ease;
-  }
-
-  #main-header.is-sticky {
-    position: fixed;
-    top: 0;
-    padding-top: 0.75rem;
-    padding-bottom:   0.75rem;
-    animation: nav-slide-in 300ms ease forwards;
-  }
-
-  #main-logo {
-    transition: height 300ms ease;
-  }
-
-  #main-header.is-sticky #main-logo {
-    height: 2.5rem;
-  }
-
-  @keyframes nav-slide-in {
-    from { transform: translateY(-100%); }
-    to   { transform: translateY(0);     }
-  }
-</style>
-
-<!-- ----------------------------------------- SCRIPT ----------------------------------------- -->
+<!-- -------------------------- SCRIPT -------------------------- -->
 <script>
   const STICKY_THRESHOLD = 400;
+  const stickyHeader = document.getElementById("header-sticky")!;
+  const burgerBtnSticky = document.getElementById("burger-btn-sticky");
+  const burgerBtn = document.getElementById("burger-btn");
 
-  // Elements
-  const header            = document.getElementById("main-header")!;
-  const burgerBtn         = document.getElementById("burger-btn")!;
-  const closeBtn          = document.getElementById("close-btn")!;
-  const mobileMenu        = document.getElementById("mobile-menu")!;
-  const mobilePanel       = document.getElementById("mobile-panel")!;
-  const mobileOverlay     = document.getElementById("mobile-overlay")!;
-  const servicesTrigger   = document.getElementById("services-trigger")!;
-  const servicesTriggerWrap = document.getElementById("services-trigger-wrap")!;
-  const servicesDropdown  = document.getElementById("services-dropdown")!;
-  const servicesChevron   = document.getElementById("services-chevron")!;
-
-  // ── Mobile menu ──────────────────────────────────────────────
-  const openMobile = () => {
-    mobileMenu.classList.remove("pointer-events-none");
-    mobileMenu.setAttribute("aria-hidden", "false");
-    mobileOverlay.classList.add("opacity-100");
-    mobilePanel.classList.remove("translate-x-full");
-    burgerBtn.setAttribute("aria-expanded", "true");
-  };
-
-  const closeMobile = () => {
-    mobileMenu.classList.add("pointer-events-none");
-    mobileMenu.setAttribute("aria-hidden", "true");
-    mobileOverlay.classList.remove("opacity-100");
-    mobilePanel.classList.add("translate-x-full");
-    burgerBtn.setAttribute("aria-expanded", "false");
-  };
-
-  burgerBtn.addEventListener("click", openMobile);
-  closeBtn.addEventListener("click", closeMobile);
-  mobileOverlay.addEventListener("click", closeMobile);
-  mobilePanel.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMobile));
-
-  // ── Services dropdown ─────────────────────────────────────────
-  const OPEN   = ["opacity-100", "pointer-events-auto", "scale-100"];
-  const CLOSED = ["opacity-0",   "pointer-events-none", "scale-95" ];
-
-  let closeTimer: ReturnType<typeof setTimeout> | null = null;
-
-  const cancelClose = () => {
-    if (closeTimer !== null) { clearTimeout(closeTimer); closeTimer = null; }
-  };
-
-  const openDropdown = () => {
-    cancelClose();
-    servicesDropdown.classList.remove(...CLOSED);
-    servicesDropdown.classList.add(...OPEN);
-    servicesTrigger.setAttribute("aria-expanded", "true");
-    servicesChevron.classList.add("rotate-180");
-  };
-
-  const closeDropdown = () => {
-    cancelClose();
-    servicesDropdown.classList.remove(...OPEN);
-    servicesDropdown.classList.add(...CLOSED);
-    servicesTrigger.setAttribute("aria-expanded", "false");
-    servicesChevron.classList.remove("rotate-180");
-  };
-
-  servicesTrigger.addEventListener("click", (e) => {
-    e.stopPropagation();
-    servicesDropdown.classList.contains("opacity-0") ? openDropdown() : closeDropdown();
-  });
-
-  servicesTriggerWrap.addEventListener("mouseleave", () => {
-    closeTimer = setTimeout(closeDropdown, 2000);
-  });
-  servicesTriggerWrap.addEventListener("mouseenter", cancelClose);
-
-  document.addEventListener("click",   (e) => { !servicesTriggerWrap.contains(e.target as Node) && closeDropdown(); });
-  document.addEventListener("keydown",  (e) => { e.key === "Escape" && (closeDropdown(), closeMobile()); });
-
-  servicesDropdown.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeDropdown));
-
-  // ── Sticky header ─────────────────────────────────────────────
-  const STICKY_CLASSES = ["bg-brand-fondo", "backdrop-blur-xl",  "border-b", "border-brand-gris/20", "text-brand-dark"];
-  const NON_STICKY_CLASSES = ["text-white"];
-  const mainLogo = document.getElementById("main-logo") as HTMLImageElement;
-
-  const updateHeader = () => {
+  const updateSticky = () => {
     if (window.scrollY >= STICKY_THRESHOLD) {
-      header.classList.remove(...NON_STICKY_CLASSES);
-      header.classList.add("is-sticky", ...STICKY_CLASSES);
-      if (mainLogo && mainLogo.src.includes("logo-blanco.svg")) {
-        mainLogo.src = mainLogo.src.replace("logo-blanco.svg", "logo.svg");
-      }
+      stickyHeader.classList.remove("-translate-y-full", "opacity-0");
+      stickyHeader.classList.add("translate-y-0", "opacity-100");
+      stickyHeader.removeAttribute("aria-hidden");
     } else {
-      header.classList.remove("is-sticky", ...STICKY_CLASSES);
-      header.classList.add(...NON_STICKY_CLASSES);
-      if (mainLogo && !mainLogo.src.includes("logo-blanco.svg") && mainLogo.src.includes("logo.svg")) {
-        mainLogo.src = mainLogo.src.replace("logo.svg", "logo-blanco.svg");
-      }
+      stickyHeader.classList.remove("translate-y-0", "opacity-100");
+      stickyHeader.classList.add("-translate-y-full", "opacity-0");
+      stickyHeader.setAttribute("aria-hidden", "true");
     }
   };
 
-  window.addEventListener("scroll", updateHeader, { passive: true });
-  updateHeader();
+  burgerBtnSticky?.addEventListener("click", () => burgerBtn?.click());
+
+  window.addEventListener("scroll", updateSticky, { passive: true });
+  updateSticky();
 </script>

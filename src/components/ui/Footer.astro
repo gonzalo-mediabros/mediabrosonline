@@ -16,16 +16,18 @@ const BASE = import.meta.env.BASE_URL;
     <m-container>
       <!-- Top grid: 4 columns -->
       <m-row
-        class="flex-col flex-wrap py-20 gap-y-6 gap-x-2 lg:space-between lg:flex-row"
+        class="flex-col flex-wrap py-20 gap-y-16 gap-x-2 lg:space-between lg:flex-row lg:gap-y-6"
       >
         <!-- Col 1: Logo + Tagline + Social -->
-        <m-col class="flex flex-col items-start gap-6">
+        <m-col class="flex flex-col items-center gap-6 lg:items-start">
           <img
             src={`${BASE}imgs/logo.svg`}
             alt="Mediabros"
-            class="justify-start object-contain h-12 align-start"
+            class="object-contain h-12"
           />
-          <p class="text-sm leading-relaxed text-brand-gris">
+          <p
+            class="text-sm leading-relaxed text-center text-brand-gris lg:text-left"
+          >
             Agencia de marketing digital especializada en generación de leads
             para empresas B2B y B2C.
           </p>
@@ -71,13 +73,13 @@ const BASE = import.meta.env.BASE_URL;
         </m-col>
 
         <!-- Col 2: Servicios -->
-        <m-col class="flex flex-col gap-4 grow-2 lg:ml-20">
+        <m-col class="hidden flex-col gap-4 lg:flex grow-2 lg:ml-20">
           <h3
             class="mb-2 text-sm font-semibold tracking-widest text-white uppercase font-display"
           >
             Servicios
           </h3>
-          <div class="grid grid-cols-2 gap-2">
+          <div class="grid grid-cols-2 gap-4">
             {
               [
                 "Google Ads",
@@ -103,7 +105,7 @@ const BASE = import.meta.env.BASE_URL;
         </m-col>
 
         <!-- Col 3: Contenido -->
-        <m-col class="flex flex-col gap-4">
+        <m-col class="hidden flex-col gap-4 lg:flex">
           <h3
             class="mb-2 text-sm font-semibold tracking-widest text-white uppercase font-display"
           >
@@ -129,7 +131,7 @@ const BASE = import.meta.env.BASE_URL;
         </m-col>
 
         <!-- Col 4: Contacto internacional -->
-        <m-col class="flex flex-col gap-4">
+        <m-col class="flex flex-col items-center gap-4 lg:items-start">
           <h3
             class="mb-2 text-sm font-semibold tracking-widest text-white uppercase font-display"
           >
@@ -166,16 +168,16 @@ const BASE = import.meta.env.BASE_URL;
 
       <!-- Bottom bar -->
       <m-row
-        class="flex flex-col items-center justify-between gap-4 py-6 border-t border-white/8 sm:flex-row"
+        class="flex flex-col items-center justify-between gap-6 py-6 border-t border-white/8 lg:flex-row"
       >
         <m-col>
-          <p class="text-xs text-brand-gris">
+          <p class="text-xs text-center text-brand-gris lg:text-left">
             <span class="text-white"
               >© MediaBros {new Date().getFullYear()}
             </span>· Todos los derechos reservados
           </p>
         </m-col>
-        <m-col class="flex flex-row justify-end gap-6">
+        <m-col class="flex flex-col items-center gap-4 lg:flex-row lg:justify-end lg:gap-6">
           <a
             href=""
             class="text-xs transition-colors duration-200 text-brand-gris hover:text-white"

@@ -1,0 +1,64 @@
+---
+interface Props {
+  speed?: number;
+  gap?: string;
+  pauseOnHover?: boolean;
+  direction?: "left" | "right";
+}
+
+const {
+  speed = 30,
+  gap = "gap-12",
+  pauseOnHover = true,
+  direction = "left",
+} = Astro.props;
+---
+
+<div
+  class="carousel-loop-outer"
+  data-pause={pauseOnHover ? "true" : "false"}
+  style={`--ticker-speed: ${speed}s; --ticker-direction: ${direction === "right" ? "reverse" : "normal"};`}
+>
+  <div class:list={["carousel-loop-track", gap]}>
+    <div class:list={["carousel-loop-set", gap]}>
+      <slot />
+    </div>
+    <!-- Duplicate set for seamless loop -->
+    <div class:list={["carousel-loop-set", gap]} aria-hidden="true">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style>
+  .carousel-loop-outer {
+    overflow: clip;
+    width: 100%;
+  }
+
+  .carousel-loop-track {
+    display: flex;
+    width: max-content;
+    animation: ticker var(--ticker-speed, 30s) linear infinite;
+    animation-direction: var(--ticker-direction, normal);
+  }
+
+  .carousel-loop-outer[data-pause="true"] .carousel-loop-track:hover {
+    animation-play-state: paused;
+  }
+
+  .carousel-loop-set {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  @keyframes ticker {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>

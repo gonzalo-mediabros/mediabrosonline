@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import ThemePanel from "../components/dev/ThemePanel.astro";
 
 interface Props {
   title: string;
@@ -75,5 +76,6 @@ const { pathname } = Astro.url;
   </head>
   <body>
     <slot />
+    {import.meta.env.DEV && <ThemePanel />}
   </body>
 </html>

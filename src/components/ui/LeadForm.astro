@@ -20,7 +20,7 @@ const isDark = theme === "dark";
 // Contenedor principal
 const containerClasses = isDark
   ? "bg-[rgba(22,26,41,0.8)] backdrop-blur-xl border border-white/10 rounded-xl  shadow-[0_40px_100px_-20px_rgba(0,0,0,0.5)]"
-  : "bg-white rounded-xl shadow-premium  border border-slate-100";
+  : "bg-white rounded-xl   border border-slate-100";
 
 // Título y Subtítulo
 const titleClasses = isDark
@@ -45,7 +45,7 @@ const inputClasses = isDark
 const formId = `lead-form-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
-<div class={containerClasses + " p-4 sm:p-10"}>
+<div class={containerClasses + " px-4 py-10 sm:px-10"}>
   {title && <h3 class={titleClasses}>{title}</h3>}
   {subtitle && <p class={subtitleClasses}>{subtitle}</p>}
 
