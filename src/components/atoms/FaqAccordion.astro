@@ -8,10 +8,10 @@ const { question } = Astro.props;
 ---
 
 <details
-  class="w-full px-2 transition-all border-b border-brand-gris/10 hover:bg-brand-dark/2 open:bg-brand-celeste/5 open:pl-8 open:hover:bg-brand-celeste/5"
+  class="w-full px-2 transition-all border-b border-brand-gris/10 hover:bg-brand-dark/2 open:bg-brand-primary/5 open:pl-8 open:hover:bg-brand-primary/5"
 >
   <summary
-    class="text-md lg:text-lg font-display font-bold text-brand-dark flex items-start lg:items-center justify-between cursor-pointer list-none [&::-webkit-details-marker]:hidden transition-colors py-4 lg:py-6"
+    class="text-md lg:text-lg font-display font-bold text-brand-foreground flex items-start lg:items-center justify-between cursor-pointer list-none [&::-webkit-details-marker]:hidden transition-colors py-4 lg:py-6"
   >
     <h3 class="flex-1">{question}</h3>
 
@@ -27,7 +27,7 @@ const { question } = Astro.props;
     </span>
   </summary>
   <!-- Respuesta -->
-  <div class="mt-0 mb-8 text-sm leading-normal md:text-md text-brand-gris">
+  <div class="mt-0 mb-8 text-sm leading-normal md:text-md text-brand-muted">
     <slot />
   </div>
 </details>

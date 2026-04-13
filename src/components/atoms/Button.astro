@@ -23,7 +23,7 @@ const Tag = isLink ? "a" : "button";
 
 const variants = {
   celeste: {
-    pill: "bg-brand-celeste hover:bg-brand-celeste-hover text-white ",
+    pill: "bg-brand-primary hover:bg-brand-primary-hover text-white ",
     circle: "bg-white/10",
   },
   dark: {
@@ -31,7 +31,7 @@ const variants = {
     circle: "bg-white/5",
   },
   white: {
-    pill: "bg-white hover:bg-brand-pastel-gris text-brand-dark",
+    pill: "bg-brand-surface hover:bg-brand-bg-alt text-brand-foreground",
     circle: "bg-brand-dark",
   },
 };
@@ -49,7 +49,7 @@ const currVariant = variants[variant];
     className,
   ]}
 >
-  <Glow class="top-0 z-10 left-10 w-200 h-200 bg-brand-celeste/40" />
+  <Glow class="top-0 z-10 left-10 w-200 h-200 bg-brand-primary/40" />
   <span class="flex-1 text-center">{label}</span>
   <span
     class:list={[

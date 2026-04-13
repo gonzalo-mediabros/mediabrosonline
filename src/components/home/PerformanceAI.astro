@@ -6,11 +6,11 @@ import ImageBackground from "../atoms/ImageBackground.astro";
 const BASE = import.meta.env.BASE_URL;
 ---
 
-<section id="performance-ai" class="py-16 md:py-24 bg-brand-fondo isolate">
+<section id="performance-ai" class="py-16 md:py-24 bg-brand-bg isolate">
   <m-container>
     <!-- Outer Blue Container -->
     <div
-      class="relative flex items-center p-6 overflow-hidden bg-brand-celeste rounded-xl shadow-blue md:p-10 lg:p-10 min-h-150 shadow-card"
+      class="relative flex items-center p-6 overflow-hidden bg-brand-primary rounded-xl shadow-blue md:p-10 lg:p-10 min-h-150 shadow-sm"
     >
       <ImageBackground
         src={BASE + "imgs/pattern-ondulado.svg"}
@@ -18,10 +18,10 @@ const BASE = import.meta.env.BASE_URL;
       />
 
       <Glow
-        class="w-screen -translate-x-1/2 top-1/2 left-1/2 h-100 bg-brand-celeste opacity-85"
+        class="w-screen -translate-x-1/2 top-1/2 left-1/2 h-100 bg-brand-primary opacity-85"
       />
       <Glow
-        class="top-0 w-full max-w-4xl -translate-x-1/2 opacity-100 left-0/3 h-100 bg-brand-turquesa/10"
+        class="top-0 w-full max-w-4xl -translate-x-1/2 opacity-100 left-0/3 h-100 bg-brand-accent-2/10"
       />
       <m-row
         class="relative z-10 flex-col items-center gap-12 lg:flex-row lg:gap-16"
@@ -64,8 +64,12 @@ const BASE = import.meta.env.BASE_URL;
         <m-col class="lg:w-[55%] flex-none flex flex-col gap-6 w-full shrink">
           <!-- Card 1: MIA -->
           <div
-            class="flex flex-col items-start gap-6 p-6 transition-colors rounded-lg bg-brand-dark md:p-8 sm:flex-row sm:items-center sm:gap-8 hover:bg-brand-dark/95"
+            class="relative flex flex-col items-start gap-6 px-6 py-8 transition-colors rounded-lg bg-brand-dark md:px-6 md:py-12 sm:flex-row sm:items-center sm:gap-8 hover:bg-brand-dark/95 border border-brand-dark"
           >
+            >
+            <Glow
+              class="top-0 left-100 w-125 h-125 bg-brand-primary opacity-20"
+            />
             <!-- Icon -->
             <div class="shrink-0 w-24 md:w-27.5 flex justify-center">
               <img src={`${BASE}imgs/ico-MIA.svg`} alt="" />
@@ -73,11 +77,11 @@ const BASE = import.meta.env.BASE_URL;
             <!-- Text -->
             <div class="flex flex-col">
               <h3
-                class="mb-2 tracking-tight text-brand-celeste font-display text-md"
+                class="mb-2 tracking-tight text-brand-primary font-display text-md"
               >
                 MIA: MediaBros Intelligent Automation
               </h3>
-              <p class="text-sm leading-tight text-brand-pastel-gris/80">
+              <p class="text-sm leading-tight text-brand-bg-alt/80">
                 Optimizaciones automáticas y monitoreo constante para mejorar
                 performance y reducir costos
               </p>
@@ -86,8 +90,11 @@ const BASE = import.meta.env.BASE_URL;
 
           <!-- Card 2: App -->
           <div
-            class="flex flex-col items-start gap-6 p-6 transition-colors rounded-lg bg-brand-dark md:p-8 sm:flex-row sm:items-center sm:gap-8 hover:bg-brand-dark/95"
+            class="relative flex flex-col items-start gap-6 px-6 py-8 transition-colors rounded-lg bg-brand-dark md:px-6 md:py-12 sm:flex-row sm:items-center sm:gap-8 hover:bg-brand-dark/95 border border-brand-dark"
           >
+            <Glow
+              class="top-0 left-80 w-125 h-125 bg-brand-primary opacity-10"
+            />
             <!-- Icon -->
             <div class="shrink-0 w-24 md:w-27.5 flex justify-center">
               <img src={`${BASE}imgs/ico-mb-suite.svg`} alt="" />
@@ -95,11 +102,11 @@ const BASE = import.meta.env.BASE_URL;
             <!-- Text -->
             <div class="flex flex-col">
               <h3
-                class="mb-2 tracking-tight text-brand-celeste font-display text-md"
+                class="mb-2 tracking-tight text-brand-primary font-display text-md"
               >
                 MediaBros App
               </h3>
-              <p class="text-sm leading-tight text-brand-pastel-gris/80">
+              <p class="text-sm leading-tight text-brand-bg-alt/80">
                 Portal de clientes con estrategia, reportes y performance en
                 tiempo real. Toda la información clara, centralizada y
                 disponible cuando la necesitás.

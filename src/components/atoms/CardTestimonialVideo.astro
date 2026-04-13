@@ -26,11 +26,11 @@ const defaultThumb = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 <div
   id="testimonial-card"
   class:list={[
-    "bg-slate-50 rounded-xl overflow-hidden shadow-card border border-slate-100 flex flex-col",
+    "bg-slate-50 rounded-xl overflow-hidden shadow-sm border border-slate-100 flex flex-col",
     className,
   ]}
 >
-  <div class="w-full bg-white relative h-52">
+  <div class="w-full bg-brand-surface relative h-52">
     {
       videoUrl ? (
         <div class="video-container w-full h-full" data-video-id={videoId}>
@@ -45,7 +45,7 @@ const defaultThumb = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
           <div id="player-slot" class="w-full h-full" />
         </div>
       ) : (
-        <div class="w-full h-60 bg-brand-celeste flex items-center justify-center text-white/50">
+        <div class="w-full h-60 bg-brand-primary flex items-center justify-center text-white/50">
           <Icon name="play_circle" size={48} />
         </div>
       )
@@ -63,7 +63,7 @@ const defaultThumb = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
       "{quote}"
     </p>
     <div>
-      <p class="font-bold text-brand-dark">{authorName}</p>
+      <p class="font-bold text-brand-foreground">{authorName}</p>
       <p class="text-sm text-slate-500">{authorRole}</p>
     </div>
   </div>

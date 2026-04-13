@@ -4,135 +4,118 @@
 /* ===== LAYER 1: Primitivos de marca ===== */
 @theme {
   /* Colors — paleta cruda (genera utilities bg-brand-*, text-brand-*, etc.) */
-  --color-brand-dark:           #171931;
-  --color-brand-dark-2:         #141724;
-  --color-brand-gris:           #4e6286;
-  --color-brand-celeste:        #148bef;
-  --color-brand-celeste-hover:  #0e6bc8;
-  --color-brand-verde:          #c6ff95;
-  --color-brand-turquesa:       #a1f9f4;
-  --color-brand-pastel-celeste: #dbe9f8;
-  --color-brand-pastel-gris:    #f0f3fb;
-  --color-brand-pastel-verde:   #e9f5e4;
-  --color-brand-fondo:          #f7f8ff;
+  /* Primitivos activos: dark, dark-2, gris, pastel-verde (usados en componentes) */
+  --color-brand-dark: #171931;
+  --color-brand-dark-2: #141724;
+  --color-brand-gris: #4e6286;
+  --color-brand-pastel-verde: #e9f5e4;
+  /* brand-celeste, brand-verde, brand-turquesa, brand-fondo, brand-pastel-* → eliminados: */
+  /* los componentes usan los tokens semánticos (brand-primary, brand-accent, etc.) */
 
   /* Radius — escala completa con nombres estándar Tailwind */
-  --radius-xs:  4px;
-  --radius-sm:  8px;
-  --radius-md:  12px;
-  --radius-lg:  16px;
-  --radius-xl:  24px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
   --radius-2xl: 32px;
   --radius-3xl: 40px;
   --radius-4xl: 9999px;
 
   /* Shadows — escala estándar */
-  --shadow-sm: 0 1px 3px rgba(31, 33, 61, 0.05), 0 4px 16px rgba(31, 33, 61, 0.08);
+  --shadow-sm:
+    0 1px 3px rgba(31, 33, 61, 0.05), 0 4px 16px rgba(31, 33, 61, 0.08);
   --shadow-md: 0 4px 12px rgba(31, 33, 61, 0.1);
   --shadow-lg: 0 8px 30px rgba(31, 33, 61, 0.14);
 
   /* Text sizes — escala completa (valores default Tailwind v4) */
-  --text-xs:   0.75rem;
-  --text-sm:   0.9rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.9rem;
   --text-base: 1rem;
-  --text-lg:   1.125rem;
-  --text-xl:   1.25rem;
-  --text-2xl:  1.5rem;
-  --text-3xl:  1.875rem;
-  --text-4xl:  2.25rem;
-  --text-5xl:  3rem;
-  --text-6xl:  3.75rem;
-  --text-7xl:  4.5rem;
-  --text-8xl:  6rem;
-  --text-9xl:  8rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --text-7xl: 4.5rem;
+  --text-8xl: 6rem;
+  --text-9xl: 8rem;
 
   /* Widths */
   --width-content: 1400px;
-  --width-wide:    90rem;
-  --width-full:    100%;
+  --width-wide: 90rem;
+  --width-full: 100%;
 
   /* Fonts */
-  --font-sans:    "Inter", sans-serif;
+  --font-sans: "Inter", sans-serif;
   --font-display: "Red Hat Display", sans-serif;
 
   /* Breakpoints */
-  --breakpoint-xs:  320px;
-  --breakpoint-sm:  640px;
-  --breakpoint-md:  768px;
-  --breakpoint-lg:  1024px;
-  --breakpoint-xl:  1280px;
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
   --breakpoint-3xl: 1920px;
 }
 
 /* ===== LAYER 2: Tokens semánticos ===== */
-/* Resuelven CSS vars — soportan dark/light mode */
-@theme inline {
+/* Valores light mode — IntelliSense los resuelve como colores */
+/* Dark mode sobreescribe las mismas variables en .dark */
+@theme {
   /* Surfaces */
-  --color-brand-bg:            var(--bg);
-  --color-brand-bg-alt:        var(--bg-alt);
-  --color-brand-surface:       var(--surface);
-  --color-brand-surface-hover: var(--surface-hover);
+  --color-brand-bg: #f7f8ff;
+  --color-brand-bg-alt: #f0f3fb;
+  --color-brand-surface: #ffffff;
+  --color-brand-surface-hover: #f8fafc;
 
   /* Text */
-  --color-brand-foreground:       var(--foreground);
-  --color-brand-muted:            var(--muted);
-  --color-brand-muted-foreground: var(--muted-foreground);
+  --color-brand-foreground: #171931;
+  --color-brand-muted: #4e6286;
+  --color-brand-muted-foreground: #9ca3af;
 
   /* Actions */
-  --color-brand-primary:            var(--primary);
-  --color-brand-primary-hover:      var(--primary-hover);
-  --color-brand-primary-foreground: var(--primary-foreground);
+  --color-brand-primary: #148bef;
+  --color-brand-primary-hover: #0e6bc8;
+  --color-brand-primary-foreground: #ffffff;
 
   /* Accents */
-  --color-brand-accent:   var(--accent);
-  --color-brand-accent-2: var(--accent-2);
+  --color-brand-accent: #c6ff95;
+  --color-brand-accent-2: #a1f9f4;
 
   /* Borders */
-  --color-brand-border:        var(--border);
-  --color-brand-border-subtle: var(--border-subtle);
+  --color-brand-border: #dbe9f8;
+  --color-brand-border-subtle: #e8ecf4;
 }
 
-/* ===== Light mode values ===== */
+/* ===== Utility variables ===== */
 :root {
-  --bg:                 #f7f8ff;
-  --bg-alt:             #f0f3fb;
-  --surface:            #ffffff;
-  --surface-hover:      #f8fafc;
-  --foreground:         #171931;
-  --muted:              #4e6286;
-  --muted-foreground:   #9ca3af;
-  --primary:            #148bef;
-  --primary-hover:      #0e6bc8;
-  --primary-foreground: #ffffff;
-  --accent:             #c6ff95;
-  --accent-2:           #a1f9f4;
-  --border:             #dbe9f8;
-  --border-subtle:      #e8ecf4;
-
-  --font-size-base:  17px;
-  --section-py-sm:   3rem;
-  --section-py-lg:   5rem;
-  --section-py-xl:   7rem;
+  --font-size-base: 17px;
+  --section-py-sm: 3rem;
+  --section-py-lg: 5rem;
+  --section-py-xl: 7rem;
 }
 
-/* ===== Dark mode values (listo para activar) ===== */
+/* ===== Dark mode overrides (listo para activar) ===== */
 /* @custom-variant dark (&:where(.dark, .dark *)); */
 .dark {
-  --bg:                 #0f1121;
-  --bg-alt:             #171931;
-  --surface:            #1e2140;
-  --surface-hover:      #252850;
-  --foreground:         #e2e8f0;
-  --muted:              #94a3b8;
-  --muted-foreground:   #64748b;
-  --primary:            #4da6ff;
-  --primary-hover:      #148bef;
-  --primary-foreground: #0f1121;
-  --accent:             #c6ff95;
-  --accent-2:           #a1f9f4;
-  --border:             #2d3456;
-  --border-subtle:      #1e2140;
+  --color-brand-bg: #0f1121;
+  --color-brand-bg-alt: #171931;
+  --color-brand-surface: #1e2140;
+  --color-brand-surface-hover: #252850;
+  --color-brand-foreground: #e2e8f0;
+  --color-brand-muted: #94a3b8;
+  --color-brand-muted-foreground: #64748b;
+  --color-brand-primary: #4da6ff;
+  --color-brand-primary-hover: #148bef;
+  --color-brand-primary-foreground: #0f1121;
+  --color-brand-accent: #c6ff95;
+  --color-brand-accent-2: #a1f9f4;
+  --color-brand-border: #2d3456;
+  --color-brand-border-subtle: #1e2140;
 }
 
 /* ===== Base styles ===== */
@@ -146,17 +129,22 @@
   body {
     background: var(--color-brand-bg);
     color: var(--color-brand-foreground);
+    background: url("../public/imgs/grad.png") repeat;
+    background-size: cover;
+    background-position: top;
   }
 
   @media (max-width: 767px) {
     :root {
-      --radius-md:  8px;
-      --radius-lg:  12px;
-      --radius-xl:  16px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
       --radius-2xl: 20px;
     }
   }
-
+  section {
+    background: transparent !important;
+  }
   m-container {
     display: block;
     width: 100%;
@@ -199,15 +187,15 @@
 /* ===== Utilities ===== */
 @layer utilities {
   .section-py-sm {
-    padding-top:    var(--section-py-sm);
+    padding-top: var(--section-py-sm);
     padding-bottom: var(--section-py-sm);
   }
   .section-py-lg {
-    padding-top:    var(--section-py-lg);
+    padding-top: var(--section-py-lg);
     padding-bottom: var(--section-py-lg);
   }
   .section-py-xl {
-    padding-top:    var(--section-py-xl);
+    padding-top: var(--section-py-xl);
     padding-bottom: var(--section-py-xl);
   }
 }

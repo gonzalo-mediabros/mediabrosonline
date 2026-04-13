@@ -1,0 +1,500 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Button from "../components/atoms/Button.astro";
+import ChipOvertitle from "../components/atoms/ChipOvertitle.astro";
+import Chip from "../components/atoms/Chip.astro";
+import CardBenefit from "../components/atoms/CardBenefit.astro";
+import CardService from "../components/atoms/CardService.astro";
+import CardTestimonial from "../components/atoms/CardTestimonial.astro";
+import FaqAccordion from "../components/atoms/FaqAccordion.astro";
+import Icon from "../components/atoms/Icon.astro";
+import Glow from "../components/atoms/Glow.astro";
+import ImageBackground from "../components/atoms/ImageBackground.astro";
+
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Theme Preview — Mediabros" description="Design system preview">
+
+  <!-- NAV DEV -->
+  <nav class="sticky top-0 z-50 bg-brand-surface/95 backdrop-blur border-b border-brand-border-subtle">
+    <m-container>
+      <div class="flex items-center gap-1 py-2 overflow-x-auto" style="scrollbar-width:none">
+        <span class="font-display font-bold text-white text-sm shrink-0 mr-3 px-3 py-1.5 bg-brand-primary rounded-full">Theme</span>
+        {["hero","tipografía","colores","botones","chips","cards","servicios","stats","testimonios","faq","cta"].map(s => (
+          <a href={`#${s}`} class="shrink-0 px-3 py-1.5 text-xs font-medium text-brand-muted hover:text-brand-foreground hover:bg-brand-bg rounded-full transition-colors whitespace-nowrap">{s}</a>
+        ))}
+      </div>
+    </m-container>
+  </nav>
+
+  <!-- ─── HERO DARK ─────────────────────────────────────────────────────── -->
+  <section id="hero" class="relative flex flex-col min-h-screen px-0 py-0 overflow-hidden xl:py-6 bg-brand-bg 2xl:px-14">
+    <div class="relative z-10 flex flex-col flex-1 pb-12 overflow-hidden text-white pt-26 bg-brand-dark md:rounded-3xl">
+      <ImageBackground src={`${BASE}imgs/pattern-ondulado.svg`} class="inset-0 w-full h-full opacity-5 mix-blend-luminosity" />
+      <Glow class="w-screen -translate-x-1/2 top-1/2 left-1/2 h-100 bg-brand-primary opacity-5 -z-10" />
+
+      <m-row class="z-10 flex flex-col justify-center flex-1 py-16 text-center md:py-24">
+        <m-container>
+          <m-row class="flex-col items-center gap-6">
+            <m-col class="flex flex-col max-w-4xl gap-5 items-center">
+              <div class="flex gap-2 justify-center flex-wrap">
+                <Chip text="brand-dark · bg hero" icon="dark_mode" class="border-white/20 text-white/70 bg-white/5" />
+                <Chip text="md:rounded-3xl" icon="rounded_corner" class="border-white/20 text-white/70 bg-white/5" />
+              </div>
+              <p class="text-xs font-mono text-white/30 tracking-widest uppercase">h1 · font-display · font-bold · text-4xl→7xl · leading-none</p>
+              <h1 class="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl font-display leading-none">
+                Este es el<br />Heading Principal
+              </h1>
+              <p class="text-xs font-mono text-white/30 tracking-widest uppercase mt-1">h2 · font-display · text-brand-accent · text-xl→3xl</p>
+              <h2 class="text-xl font-bold md:text-3xl font-display text-brand-accent">
+                Subtítulo en brand-accent — text-3xl
+              </h2>
+              <p class="text-xs font-mono text-white/30 tracking-widest uppercase mt-1">p · text-lg · text-white/70 · leading-relaxed · max-w-2xl</p>
+              <p class="max-w-2xl mx-auto text-lg leading-relaxed text-white/70">
+                Párrafo descriptivo del hero. Usa <code class="text-brand-accent/80 font-mono text-sm">text-lg</code>, color <code class="text-brand-accent/80 font-mono text-sm">white/70</code> y <code class="text-brand-accent/80 font-mono text-sm">leading-relaxed</code>. Se limita a <code class="text-brand-accent/80 font-mono text-sm">max-w-2xl</code>.
+              </p>
+              <div class="flex flex-wrap gap-3 justify-center mt-2">
+                <Button label="variant=celeste" href="#botones" variant="celeste" />
+                <Button label="variant=white" href="#botones" variant="white" />
+              </div>
+            </m-col>
+          </m-row>
+        </m-container>
+      </m-row>
+    </div>
+  </section>
+
+  <!-- ─── TIPOGRAFÍA ───────────────────────────────────────────────────── -->
+  <section id="tipografía" class="py-16 md:py-24 bg-brand-bg isolate">
+    <m-container>
+      <m-col class="mb-12 gap-3">
+        <ChipOvertitle text="font-display — Red Hat Display" />
+        <h2 class="text-4xl md:text-5xl font-display text-brand-foreground leading-[1.1] tracking-tight">
+          Escala tipográfica completa
+        </h2>
+      </m-col>
+
+      <m-row class="md:flex-row gap-12 items-start">
+        <!-- Display scale -->
+        <m-col class="gap-5 bg-brand-surface rounded-2xl p-8 border border-brand-border-subtle">
+          <p class="text-xs font-mono text-brand-muted uppercase tracking-widest mb-2">font-display / headings</p>
+          <div class="space-y-3 divide-y divide-brand-border-subtle">
+            {[
+              { size: "text-7xl", label: "text-7xl · 4.5rem", sample: "Display Hero" },
+              { size: "text-5xl", label: "text-5xl · 3rem",   sample: "Heading 1" },
+              { size: "text-4xl", label: "text-4xl · 2.25rem", sample: "Heading 2" },
+              { size: "text-3xl", label: "text-3xl · 1.875rem", sample: "Heading 3" },
+              { size: "text-2xl", label: "text-2xl · 1.5rem",  sample: "Heading 4" },
+              { size: "text-xl",  label: "text-xl · 1.25rem",  sample: "Heading 5" },
+            ].map(({ size, label, sample }) => (
+              <div class="flex items-baseline justify-between gap-4 pt-3 first:pt-0">
+                <span class:list={["font-display font-bold text-brand-foreground leading-none", size]}>{sample}</span>
+                <span class="text-xs font-mono text-brand-muted shrink-0">{label}</span>
+              </div>
+            ))}
+          </div>
+        </m-col>
+
+        <!-- Body scale -->
+        <m-col class="gap-5 bg-brand-surface rounded-2xl p-8 border border-brand-border-subtle">
+          <p class="text-xs font-mono text-brand-muted uppercase tracking-widest mb-2">font-sans — Inter / body</p>
+          <div class="space-y-5 divide-y divide-brand-border-subtle">
+            {[
+              { size: "text-xl",   leading: "leading-relaxed", color: "text-brand-foreground", label: "text-xl · foreground" },
+              { size: "text-lg",   leading: "leading-relaxed", color: "text-brand-foreground", label: "text-lg · foreground" },
+              { size: "text-base", leading: "leading-relaxed", color: "text-brand-muted",      label: "text-base · muted" },
+              { size: "text-sm",   leading: "leading-relaxed", color: "text-brand-muted",      label: "text-sm · muted" },
+              { size: "text-xs",   leading: "leading-normal",  color: "text-brand-muted",      label: "text-xs · muted" },
+            ].map(({ size, leading, color, label }) => (
+              <div class="pt-4 first:pt-0">
+                <p class:list={[size, leading, color]}>
+                  Párrafo de ejemplo para mostrar tamaño y color de texto. Altura de línea <code class="font-mono opacity-60">{leading}</code>.
+                </p>
+                <span class="text-xs font-mono text-brand-muted/60 mt-1 block">{label}</span>
+              </div>
+            ))}
+          </div>
+        </m-col>
+      </m-row>
+    </m-container>
+  </section>
+
+  <!-- ─── COLORES ──────────────────────────────────────────────────────── -->
+  <section id="colores" class="py-16 md:py-20 bg-brand-bg-alt">
+    <m-container>
+      <m-col class="mb-10 gap-3">
+        <ChipOvertitle text="@theme inline — tokens semánticos" />
+        <h2 class="text-4xl font-display text-brand-foreground leading-[1.1] tracking-tight">Paleta de colores</h2>
+        <p class="text-brand-muted">Los tokens resuelven variables CSS y soportan dark/light mode sin cambiar clases.</p>
+      </m-col>
+
+      <!-- Surfaces -->
+      <div class="mb-8">
+        <p class="text-xs font-mono text-brand-muted uppercase tracking-widest mb-4">Surfaces</p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {[
+            { bg: "bg-brand-bg",            border: "border-brand-border-subtle", token: "--bg",          name: "brand-bg" },
+            { bg: "bg-brand-bg-alt",        border: "border-brand-border-subtle", token: "--bg-alt",      name: "brand-bg-alt" },
+            { bg: "bg-brand-surface",       border: "border-brand-border-subtle", token: "--surface",     name: "brand-surface" },
+            { bg: "bg-brand-surface-hover", border: "border-brand-border-subtle", token: "--surface-hover", name: "brand-surface-hover" },
+          ].map(({ bg, border, token, name }) => (
+            <div class="flex flex-col gap-2">
+              <div class:list={["h-16 rounded-xl border", bg, border]} />
+              <span class="text-xs font-mono text-brand-foreground font-medium">{name}</span>
+              <span class="text-xs font-mono text-brand-muted">{token}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Actions + Accents -->
+      <div class="mb-8">
+        <p class="text-xs font-mono text-brand-muted uppercase tracking-widest mb-4">Actions & Accents</p>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+          {[
+            { bg: "bg-brand-primary",       token: "--primary",   name: "brand-primary" },
+            { bg: "bg-brand-primary-hover", token: "--primary-hover", name: "brand-primary-hover" },
+            { bg: "bg-brand-accent",        token: "--accent",    name: "brand-accent" },
+            { bg: "bg-brand-accent-2",      token: "--accent-2",  name: "brand-accent-2" },
+            { bg: "bg-brand-dark",          token: "brand-dark",  name: "brand-dark" },
+          ].map(({ bg, token, name }) => (
+            <div class="flex flex-col gap-2">
+              <div class:list={["h-16 rounded-xl", bg]} />
+              <span class="text-xs font-mono text-brand-foreground font-medium">{name}</span>
+              <span class="text-xs font-mono text-brand-muted">{token}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Text tokens en uso real -->
+      <div>
+        <p class="text-xs font-mono text-brand-muted uppercase tracking-widest mb-4">Text tokens en contexto</p>
+        <div class="flex flex-wrap gap-3">
+          {[
+            { cls: "text-brand-foreground bg-brand-surface border-brand-border-subtle", label: "foreground" },
+            { cls: "text-brand-muted bg-brand-surface border-brand-border-subtle", label: "muted" },
+            { cls: "text-brand-primary bg-brand-surface border-brand-border-subtle", label: "primary" },
+            { cls: "text-white bg-brand-dark border-white/10", label: "white on dark" },
+            { cls: "text-brand-accent bg-brand-dark border-white/10", label: "accent on dark" },
+          ].map(({ cls, label }) => (
+            <div class:list={["px-5 py-3 rounded-xl border flex items-center gap-3", cls]}>
+              <span class="text-2xl font-display font-black leading-none">Aa</span>
+              <span class="text-xs font-mono opacity-60">{label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </m-container>
+  </section>
+
+  <!-- ─── BOTONES ──────────────────────────────────────────────────────── -->
+  <section id="botones" class="py-16 md:py-20 bg-brand-bg">
+    <m-container>
+      <m-col class="mb-10 gap-3">
+        <ChipOvertitle text="Button.astro — 3 variantes" />
+        <h2 class="text-4xl font-display text-brand-foreground leading-[1.1] tracking-tight">Botones en contexto</h2>
+      </m-col>
+      <m-row class="md:flex-row gap-5">
+        <m-col class="bg-brand-surface rounded-2xl p-8 border border-brand-border-subtle gap-5">
+          <p class="text-xs font-mono text-brand-muted uppercase tracking-widest">Sobre fondo claro</p>
+          <div class="flex flex-wrap gap-4 items-center">
+            <Button label="Empezar ahora" href="#" variant="celeste" />
+            <Button label="Ver más info" href="#" variant="white" />
+            <Button label="Contactanos" href="#" variant="dark" />
+          </div>
+          <div class="flex gap-2 flex-wrap mt-1">
+            <code class="text-xs bg-brand-bg px-2 py-1 rounded font-mono text-brand-primary">celeste</code>
+            <code class="text-xs bg-brand-bg px-2 py-1 rounded font-mono text-brand-muted">white</code>
+            <code class="text-xs bg-brand-bg px-2 py-1 rounded font-mono text-brand-muted">dark</code>
+          </div>
+        </m-col>
+        <m-col class="bg-brand-dark rounded-2xl p-8 relative overflow-hidden gap-5">
+          <Glow class="top-0 right-0 w-64 h-64 bg-brand-primary/20" />
+          <p class="text-xs font-mono text-white/30 uppercase tracking-widest relative z-10">Sobre fondo oscuro</p>
+          <div class="flex flex-wrap gap-4 items-center relative z-10">
+            <Button label="Empezar ahora" href="#" variant="celeste" />
+            <Button label="Ver más info" href="#" variant="white" />
+            <Button label="Contactanos" href="#" variant="dark" />
+          </div>
+        </m-col>
+      </m-row>
+    </m-container>
+  </section>
+
+  <!-- ─── CHIPS ────────────────────────────────────────────────────────── -->
+  <section id="chips" class="py-16 md:py-20 bg-brand-bg-alt">
+    <m-container>
+      <m-col class="mb-10 gap-3">
+        <ChipOvertitle text="Chip.astro + ChipOvertitle.astro" />
+        <h2 class="text-4xl font-display text-brand-foreground leading-[1.1] tracking-tight">Chips y overtitles</h2>
+      </m-col>
+      <m-row class="md:flex-row gap-5">
+        <!-- Chip variantes -->
+        <m-col class="bg-brand-surface rounded-2xl p-8 border border-brand-border-subtle gap-4">
+          <p class="text-xs font-mono text-brand-muted uppercase tracking-widest">Chip — color vía className</p>
+          <div class="flex flex-wrap gap-3">
+            <Chip text="Performance" icon="trending_up" class="bg-brand-primary/10 text-brand-primary border-brand-primary/20" />
+            <Chip text="Certificado" icon="verified" class="bg-brand-accent/40 text-brand-dark border-brand-accent/50" />
+            <Chip text="Novedad" icon="star" class="bg-brand-accent-2/30 text-brand-dark border-brand-accent-2/40" />
+            <Chip text="Pro" icon="workspace_premium" class="bg-brand-dark text-white border-brand-dark" />
+            <Chip text="Activo" icon="check_circle" class="bg-green-50 text-green-700 border-green-200" />
+            <Chip text="text-xs · uppercase · tracking-wide" class="bg-brand-bg border-brand-border-subtle text-brand-muted" />
+          </div>
+        </m-col>
+        <!-- ChipOvertitle -->
+        <m-col class="bg-brand-surface rounded-2xl p-8 border border-brand-border-subtle gap-6">
+          <p class="text-xs font-mono text-brand-muted uppercase tracking-widest">ChipOvertitle — theme light / dark</p>
+          <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-2">
+              <ChipOvertitle text="Título de sección — light" theme="light" />
+              <code class="text-xs font-mono text-brand-muted">theme="light" · border-brand-dark/80 · text-brand-foreground</code>
+            </div>
+            <div class="bg-brand-dark rounded-xl p-5 flex flex-col gap-2">
+              <ChipOvertitle text="Título de sección — dark" theme="dark" />
+              <code class="text-xs font-mono text-white/30">theme="dark" · border-white/80 · text-white</code>
+            </div>
+          </div>
+        </m-col>
+      </m-row>
+    </m-container>
+  </section>
+
+  <!-- ─── CARDS ────────────────────────────────────────────────────────── -->
+  <section id="cards" class="py-16 md:py-24 bg-brand-bg isolate">
+    <m-container>
+      <m-col class="mb-12 gap-3">
+        <ChipOvertitle text="CardBenefit.astro — 4 columnas" />
+        <h2 class="text-4xl md:text-5xl font-display text-brand-foreground leading-[1.1] tracking-tight max-w-2xl">
+          Cards con ícono, título y descripción
+        </h2>
+        <p class="text-brand-muted text-lg max-w-xl leading-relaxed">
+          <code class="font-mono text-sm text-brand-primary">bg-brand-bg</code> · border sutil · hover lift + shadow · ícono en <code class="font-mono text-sm text-brand-primary">bg-brand-primary</code>.
+        </p>
+      </m-col>
+      <m-row class="md:flex-row gap-4">
+        <CardBenefit
+          icon="palette"
+          title="CardBenefit — layout"
+          description="m-col con flex-row en desktop. Ícono 48×48 en bg-brand-primary redondeado. Título en font-display text-lg. Descripción text-sm text-text-muted."
+        />
+        <CardBenefit
+          icon="grid_view"
+          title="Grid 4 columnas"
+          description="m-row con md:flex-row + gap-4. Cada card es un m-col que crece con flex:1. En mobile apilan verticalmente sin media queries manuales."
+        />
+        <CardBenefit
+          icon="shadow"
+          title="Hover: lift + shadow"
+          description="transition-all hover:-translate-y-1 hover:shadow-lg hover:border-brand-primary/20. El border sutil se convierte en primary al hacer hover."
+        />
+        <CardBenefit
+          icon="token"
+          title="bg-brand-bg y border"
+          description="Fondo brand-bg (no surface) con border border-black/3. Funciona tanto en sección bg-brand-bg-alt como en bg-brand-bg directamente."
+        />
+      </m-row>
+    </m-container>
+  </section>
+
+  <!-- ─── SERVICIOS — CardService ──────────────────────────────────────── -->
+  <section id="servicios" class="py-16 md:py-24 bg-brand-dark relative overflow-hidden isolate">
+    <ImageBackground src={`${BASE}imgs/pattern-ondulado.svg`} class="inset-0 w-full h-full opacity-10 mix-blend-luminosity" />
+    <Glow class="-top-20 left-1/4 w-150 h-100 bg-brand-primary/15" />
+    <m-container class="relative z-10">
+      <m-col class="mb-12 gap-3">
+        <ChipOvertitle text="CardService.astro — theme light / dark" theme="dark" />
+        <h2 class="text-4xl md:text-5xl font-display text-white leading-[1.1] tracking-tight max-w-2xl">
+          Dos variantes: sobre fondo claro y oscuro
+        </h2>
+        <p class="text-white/50 text-lg max-w-xl leading-relaxed">
+          Prop <code class="font-mono text-sm text-brand-accent">theme="light"</code> y <code class="font-mono text-sm text-brand-accent">theme="dark"</code>. El hover en light cambia todo el card a <code class="font-mono text-sm text-brand-accent">bg-brand-dark</code>.
+        </p>
+      </m-col>
+      <p class="text-xs font-mono text-white/30 uppercase tracking-widest mb-4">theme="dark"</p>
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 mb-10">
+        <CardService icon={`${BASE}imgs/iconos/ico-google-ads.png`}    iconAlt="Google Ads"    title="Google Ads"    content="Ícono 56×56 en bg-white/10 redondeado. Título text-xl font-display. Contenido text-sm leading-snug. Flecha en esquina inferior derecha." link="#" theme="dark" />
+        <CardService icon={`${BASE}imgs/iconos/ico-meta.png`}           iconAlt="Meta Ads"      title="Meta Ads"      content="theme='dark': bg-brand-dark fijo, texto en white y white/80. Sin efecto hover de cambio de color —  ya está en la versión oscura." link="#" theme="dark" />
+        <CardService icon={`${BASE}imgs/iconos/ico-linkedin.png`}       iconAlt="LinkedIn Ads"  title="LinkedIn Ads"  content="Padding p-6 lg:p-8. El m-col del grid tiene flex:1 por lo que todas las cards estiran al mismo alto en la fila." link="#" theme="dark" />
+        <CardService icon={`${BASE}imgs/iconos/ico-seo-technical.png`}  iconAlt="Technical SEO" title="Technical SEO" content="no-underline en el anchor. cursor-pointer. Transición duration-300 en colores. Funciona como link de navegación a página de servicio." link="#" theme="dark" />
+      </div>
+      <p class="text-xs font-mono text-white/30 uppercase tracking-widest mb-4">theme="light" — hover convierte a dark</p>
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <CardService icon={`${BASE}imgs/iconos/ico-tiktok.png`}         iconAlt="TikTok Ads"    title="TikTok Ads"    content="theme='light': bg-brand-surface. Al hover: bg-brand-dark + todo el texto cambia a white/white/80. Transición suave en todos los colores." link="#" theme="light" />
+        <CardService icon={`${BASE}imgs/iconos/ico-seo-content.png`}    iconAlt="Content SEO"   title="Content SEO"   content="El ícono pasa de bg-brand-bg a bg-white/10 en hover. La flecha pasa de text-brand-muted a text-white. Coordina 4 elementos de color." link="#" theme="light" />
+        <CardService icon={`${BASE}imgs/iconos/ico-seo-local.png`}      iconAlt="Local SEO"     title="Local SEO"     content="Sombra shadow-sm en estado normal, shadow-lg en hover junto con -translate-y-1. Solo aplica en theme='light'." link="#" theme="light" />
+        <CardService icon={`${BASE}imgs/iconos/ico-asesoramiento.png`}  iconAlt="Asesoramiento" title="Asesoramiento" content="El grid usa grid-cols-1 / md:grid-cols-2 / lg:grid-cols-4 con gap-5. Mismo patrón que ServicesGrid.astro en home." link="#" theme="light" />
+      </div>
+    </m-container>
+  </section>
+
+  <!-- ─── STATS + 2-COL FEATURE ────────────────────────────────────────── -->
+  <section id="stats" class="py-16 md:py-24 bg-brand-bg isolate">
+    <m-container>
+      <!-- Stats row -->
+      <m-row class="md:flex-row gap-0 border border-brand-border-subtle rounded-2xl overflow-hidden mb-16 bg-brand-surface">
+        {[
+          { value: "text-5xl", label: "font-display · font-black · text-brand-primary · leading-none" },
+          { value: "text-4xl", label: "Tamaño heading stats — scale según viewport" },
+          { value: "text-sm",  label: "Label debajo · text-brand-muted · max-w-32 · text-center" },
+          { value: "border-l", label: "Divisor: border-l border-brand-border-subtle en md+" },
+        ].map((stat, i) => (
+          <m-col class:list={[
+            "items-center text-center py-8 px-6",
+            i > 0 ? "border-t md:border-t-0 md:border-l border-brand-border-subtle" : "",
+          ]}>
+            <span class:list={["font-display font-black text-brand-primary leading-none", stat.value]}>{stat.value}</span>
+            <span class="text-xs text-brand-muted mt-2 leading-tight max-w-36 mx-auto font-mono">{stat.label}</span>
+          </m-col>
+        ))}
+      </m-row>
+
+      <!-- 2-col feature (patrón FeaturesSection) -->
+      <div class="p-8 bg-brand-surface rounded-3xl md:p-12 lg:p-16 border border-brand-border-subtle">
+        <m-row class="flex-col items-start gap-12 lg:flex-row lg:gap-16 lg:items-center">
+          <m-col class="flex flex-col justify-center w-full lg:w-1/2 gap-5">
+            <ChipOvertitle text="FeaturesSection — patrón 2 col" />
+            <h2 class="text-4xl md:text-5xl font-display text-brand-foreground leading-[1.15] tracking-tight">
+              Columna izquierda: contexto y encabezado
+            </h2>
+            <p class="text-base leading-relaxed md:text-lg text-brand-muted">
+              Columna fija <code class="font-mono text-sm text-brand-primary">lg:w-1/2</code> a la izquierda. Contiene chip, h2 en <code class="font-mono text-sm text-brand-primary">text-4xl→5xl</code> y párrafo en <code class="font-mono text-sm text-brand-primary">text-brand-muted</code>. Wrapper: <code class="font-mono text-sm text-brand-primary">bg-brand-surface rounded-3xl p-8→16</code>.
+            </p>
+          </m-col>
+          <m-col class="flex flex-col w-full lg:w-1/2">
+            {[
+              { icon: "format_list_bulleted", title: "Lista de ítems con ícono", description: "Cada ítem usa flex items-start gap-4. Ícono en span size-12 con bg-linear-to-bl from-brand-primary/15. Border-b border-brand-bg-alt entre ítems." },
+              { icon: "space_bar", title: "Espaciado: py-6 entre ítems", description: "El último ítem elimina el border-b y el padding-bottom. El primero elimina el padding-top. Se maneja con index y array.length." },
+              { icon: "font_download", title: "Título: text-lg font-display", description: "h3 en font-display text-brand-foreground mb-1.5. Descripción en text-sm leading-relaxed text-brand-muted." },
+              { icon: "grid_3x3", title: "Columna derecha shrink", description: "m-col con clase shrink permite que la columna se adapte al contenido. No crece más allá de su contenido natural en desktop." },
+            ].map(({ icon, title, description }, i, arr) => (
+              <div class:list={["flex items-start gap-4 py-6 border-b border-brand-bg-alt", i === 0 ? "pt-0" : "", i === arr.length - 1 ? "pb-0 border-b-0" : ""]}>
+                <div class="flex items-center rounded-full bg-brand-bg p-1">
+                  <span class="inline-flex items-center justify-center size-12 shrink-0 rounded-xl bg-linear-to-bl from-brand-primary/15 to-brand-primary/10">
+                    <Icon fill={1} name={icon} size={26} class="text-brand-primary" />
+                  </span>
+                </div>
+                <div>
+                  <h3 class="text-lg font-display text-brand-foreground mb-1.5">{title}</h3>
+                  <p class="text-sm leading-relaxed text-brand-muted">{description}</p>
+                </div>
+              </div>
+            ))}
+          </m-col>
+        </m-row>
+      </div>
+    </m-container>
+  </section>
+
+  <!-- ─── TESTIMONIOS ──────────────────────────────────────────────────── -->
+  <section id="testimonios" class="py-16 md:py-24 bg-brand-bg-alt isolate">
+    <m-container>
+      <m-col class="mb-12 gap-3">
+        <ChipOvertitle text="CardTestimonial.astro — 3 columnas" />
+        <h2 class="text-4xl md:text-5xl font-display text-brand-foreground leading-[1.1] tracking-tight max-w-2xl">
+          Cards de testimonio en fondo alt
+        </h2>
+      </m-col>
+      <m-row class="md:flex-row gap-5">
+        <CardTestimonial
+          quote="bg-slate-50 · rounded-xl · p-8 · shadow-sm · border border-slate-100. Las estrellas son 5× Icon name='star' fill=1 class='text-amber-400'. El quote es italic text-lg text-slate-700."
+          authorName="Nombre Apellido"
+          authorRole="Rol · Empresa — text-sm text-slate-500 max-w-50"
+          authorImage={`${BASE}imgs/team/fer.webp`}
+        />
+        <CardTestimonial
+          quote="La foto del autor es 56×56 rounded-full border border-slate-200 shadow-sm. El nombre es font-bold text-brand-foreground text-lg. Separados del quote por border-t border-slate-100 pt-6."
+          authorName="Nombre Apellido"
+          authorRole="El flex-1 en el quote hace que todas las cards estiren al mismo alto en la fila"
+          authorImage={`${BASE}imgs/team/fer.webp`}
+        />
+        <CardTestimonial
+          quote="Las 3 cards usan m-row con md:flex-row gap-5. Cada una es un m-col con flex:1. En mobile se apilan. El espaciado de la sección es section-py-lg o py-16 md:py-24."
+          authorName="Nombre Apellido"
+          authorRole="Fondo de sección: bg-brand-bg-alt · contrasta con bg-brand-bg adyacente"
+          authorImage={`${BASE}imgs/team/fer.webp`}
+        />
+      </m-row>
+    </m-container>
+  </section>
+
+  <!-- ─── FAQ ──────────────────────────────────────────────────────────── -->
+  <section id="faq" class="py-16 md:py-24 bg-brand-bg isolate">
+    <m-container>
+      <m-row class="flex-col items-start gap-12 lg:flex-row lg:gap-16">
+        <m-col class="flex flex-col gap-5 lg:max-w-sm shrink-0 lg:sticky lg:top-24">
+          <ChipOvertitle text="FaqAccordion.astro" />
+          <h2 class="text-4xl font-display text-brand-foreground leading-[1.15] tracking-tight">
+            Acordeón con <code class="font-mono text-3xl text-brand-primary">details</code> nativo
+          </h2>
+          <p class="text-brand-muted leading-relaxed text-sm">
+            Usa <code class="font-mono text-brand-primary">details/summary</code> HTML nativo. Open state con selector CSS <code class="font-mono text-brand-primary">open:</code>. Sin JavaScript. El ícono + / − se maneja con <code class="font-mono text-brand-primary">group-open:</code>.
+          </p>
+          <Button label="Ver código" href="#" variant="dark" />
+        </m-col>
+        <m-col>
+          <FaqAccordion question="¿Qué estilos tiene el summary en estado cerrado?">
+            <p>text-md lg:text-lg font-display font-bold text-brand-foreground. flex items-center justify-between. cursor-pointer. list-none para ocultar la flecha nativa del browser. py-4 lg:py-6 de padding vertical.</p>
+          </FaqAccordion>
+          <FaqAccordion question="¿Cómo cambia el fondo al abrir?">
+            <p>El details tiene <code class="font-mono text-brand-primary">open:bg-brand-primary/5 open:pl-8 open:hover:bg-brand-primary/5</code>. El hover en estado cerrado es <code class="font-mono text-brand-primary">hover:bg-brand-dark/2</code>. Transición con transition-all.</p>
+          </FaqAccordion>
+          <FaqAccordion question="¿Dónde va el contenido de la respuesta?">
+            <p>En el slot del componente. El div contenedor tiene <code class="font-mono text-brand-primary">mt-0 mb-8 text-sm leading-normal md:text-md text-brand-muted</code>. Puede recibir HTML arbitrario vía slot, incluyendo párrafos, listas o código.</p>
+          </FaqAccordion>
+          <FaqAccordion question="¿El separador inferior siempre está visible?">
+            <p>Sí — <code class="font-mono text-brand-primary">border-b border-brand-gris/10</code> en el details. Si querés quitar el último separador, hay que manejarlo desde el padre con <code class="font-mono text-brand-primary">last:border-b-0</code> o un wrapper.</p>
+          </FaqAccordion>
+          <FaqAccordion question="¿Cómo se usa en la página?">
+            <p>Se importa FaqAccordion y se usa como <code class="font-mono text-brand-primary">&lt;FaqAccordion question="..."&gt;respuesta&lt;/FaqAccordion&gt;</code>. Puede ir dentro de un layout 2-col como este (sticky left + scroll right) o en columna simple con max-w acotado.</p>
+          </FaqAccordion>
+        </m-col>
+      </m-row>
+    </m-container>
+  </section>
+
+  <!-- ─── CTA — brand-primary full bleed ───────────────────────────────── -->
+  <section id="cta" class="py-14 md:py-24 bg-brand-bg">
+    <m-container class="relative w-full overflow-hidden rounded-xl bg-brand-primary/90">
+      <ImageBackground src={`${BASE}imgs/pattern-ondulado.svg`} class="inset-0 w-full h-full opacity-100" />
+      <Glow class="w-screen -translate-x-1/2 top-1/2 left-1/2 h-100 bg-brand-primary opacity-85" />
+      <Glow class="top-0 w-full max-w-4xl -translate-x-1/2 opacity-100 left-0 h-100 bg-brand-accent-2/10" />
+      <m-row class="relative z-10 flex-col items-center gap-16 px-2 py-10 lg:flex-row md:p-10 lg:pr-10 lg:pl-20 lg:py-10">
+        <m-col class="flex-1 gap-6">
+          <ChipOvertitle text="ContactSection / CTA — brand-primary bg" theme="dark" />
+          <h2 class="text-4xl leading-tight text-white md:text-5xl lg:text-6xl font-display">
+            Sección con fondo brand-primary
+          </h2>
+          <p class="leading-relaxed text-white/90 text-lg">
+            Wrapper: <code class="font-mono text-sm bg-white/10 px-1.5 py-0.5 rounded">m-container rounded-xl overflow-hidden</code>. El color de fondo es <code class="font-mono text-sm bg-white/10 px-1.5 py-0.5 rounded">bg-brand-primary/90</code> con <code class="font-mono text-sm bg-white/10 px-1.5 py-0.5 rounded">ImageBackground</code> del patrón ondulado encima y dos <code class="font-mono text-sm bg-white/10 px-1.5 py-0.5 rounded">Glow</code> para profundidad.
+          </p>
+        </m-col>
+        <m-col class="flex-1 bg-brand-dark/30 rounded-2xl p-8 backdrop-blur-sm border border-white/10 gap-4">
+          <p class="text-white/50 text-xs font-mono uppercase tracking-widest">Columna derecha — puede ser un form o info</p>
+          <p class="text-white text-lg font-display font-bold">Layout: lg:flex-row con gap-16</p>
+          <p class="text-white/70 text-sm leading-relaxed">Cada columna es un <code class="font-mono">m-col flex-1</code>. En mobile se apilan con flex-col. El padding interno varía: <code class="font-mono">px-2 py-10</code> mobile → <code class="font-mono">lg:pl-20 lg:pr-10 lg:py-10</code> desktop.</p>
+          <div class="flex flex-wrap gap-3 mt-2">
+            <Button label="Acción principal" href="#" variant="white" />
+            <Button label="Secundaria" href="#" variant="dark" />
+          </div>
+        </m-col>
+      </m-row>
+    </m-container>
+  </section>
+
+  <!-- ─── FOOTER MÍNIMO ────────────────────────────────────────────────── -->
+  <footer class="bg-brand-dark border-t border-white/5 py-6">
+    <m-container>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3">
+        <span class="font-display font-bold text-white">Mediabros — Theme Preview</span>
+        <div class="flex gap-4 text-sm text-white/30">
+          <a href="/" class="hover:text-white transition-colors">Home</a>
+          <a href="/theme" class="text-brand-primary">Theme</a>
+          <a href="/test" class="hover:text-white transition-colors">Test</a>
+        </div>
+      </div>
+    </m-container>
+  </footer>
+
+</Layout>

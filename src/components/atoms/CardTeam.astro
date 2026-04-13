@@ -3,18 +3,18 @@ import Icon from "./Icon.astro";
 const BASE = import.meta.env.BASE_URL;
 ---
 
-<section id="team-card" class="py-20 bg-brand-fondo">
+<section id="team-card" class="py-20 bg-brand-bg">
   <m-container>
     <m-row class="justify-center">
       <!-- Team Card Component -->
       <div
-        class="flex flex-col items-center w-full p-10 text-center transition-shadow duration-300 bg-white max-w-85 rounded-xl shadow-card hover:shadow-card-hover"
+        class="flex flex-col items-center w-full p-10 text-center transition-shadow duration-300 bg-brand-surface max-w-85 rounded-xl shadow-sm hover:shadow-lg"
       >
         <!-- Image Area: Independent Background + Photo -->
         <!-- Contenedor relativo que permite que una imagen PNG con transparencia sobresalga por arriba -->
         <div class="relative flex items-end justify-center w-40 mb-6 h-44">
           <!-- Elemento Independiente: Círculo de color de fondo -->
-          <div class="absolute bottom-0 w-40 h-40 rounded-full bg-brand-verde">
+          <div class="absolute bottom-0 w-40 h-40 rounded-full bg-brand-accent">
           </div>
 
           <!-- Placeholder de Foto -->
@@ -29,13 +29,13 @@ const BASE = import.meta.env.BASE_URL;
         <!-- Name and Social Icon -->
         <div class="flex items-center justify-center gap-2 mb-3">
           <h3
-            class="text-2xl font-bold leading-none font-display text-brand-dark"
+            class="text-2xl font-bold leading-none font-display text-brand-foreground"
           >
             Fernando
           </h3>
           <a
             href="#"
-            class="flex items-center transition-colors text-brand-dark hover:text-brand-celeste"
+            class="flex items-center transition-colors text-brand-foreground hover:text-brand-primary"
             aria-label="LinkedIn Profile"
           >
             <Icon lib="social" name="simple-icons:linkedin" size={20} />
@@ -44,7 +44,7 @@ const BASE = import.meta.env.BASE_URL;
           <!-- Role -->
         </div>
         <p
-          class="text-xs font-medium tracking-wide uppercase text-brand-gris sm:text-sm"
+          class="text-xs font-medium tracking-wide uppercase text-brand-muted sm:text-sm"
         >
           Chief Technology Officer
         </p>

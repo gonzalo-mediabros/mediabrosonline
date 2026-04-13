@@ -20,11 +20,11 @@ const services = [
 <!-- --------------- BIG HERO  --------------- -->
 <section
   id="hero"
-  class="relative flex flex-col min-h-screen px-0 py-0 overflow-hidden xl:py-6 bg-brand-fondo 2xl:px-14"
+  class="relative flex flex-col min-h-screen px-0 py-0 overflow-hidden xl:py-6 bg-brand-bg 2xl:px-14"
 >
   <!-- Content Wrapper -->
   <div
-    class="relative z-10 flex flex-col flex-1 pb-12 overflow-hidden text-white pt-26 bg-brand-dark md:rounded-4xl"
+    class="relative z-10 flex flex-col flex-1 pb-12 overflow-hidden text-white pt-26 bg-brand-dark md:rounded-3xl"
   >
     <!-- bg image -->
     <ImageBackground
@@ -38,7 +38,7 @@ const services = [
     />
     <!-- bg gradient -->
     <Glow
-      class="w-screen -translate-x-1/2 top-1/2 left-1/2 h-100 bg-brand-celeste opacity-5 -z-10"
+      class="w-screen -translate-x-1/2 top-1/2 left-1/2 h-100 bg-brand-primary opacity-5 -z-10"
     />
     <Glow
       class="bottom-0 w-full max-w-4xl -translate-x-1/2 left-2/3 h-100 bg-brand-dark opacity-80 -z-10"
@@ -57,12 +57,12 @@ const services = [
               Generación de leads<br />para empresas
             </h1>
             <h2
-              class="text-xl font-bold md:text-3xl font-display text-brand-verde"
+              class="text-xl font-bold md:text-3xl font-display text-brand-accent"
             >
               B2B y B2C - Ticket medio / alto
             </h2>
             <p
-              class="max-w-2xl mx-auto text-lg leading-relaxed md:text-xl text-brand-pastel-gris"
+              class="max-w-2xl mx-auto text-lg leading-relaxed md:text-xl text-brand-bg-alt"
             >
               Estrategia y gestión de campañas para generar demanda constante y
               oportunidades reales.
@@ -92,11 +92,11 @@ const services = [
               <div
                 class={`snap-center sm:snap-start shrink-0 w-65 md:w-75 flex items-center gap-4 rounded-lg p-6 md:p-6 cursor-pointer group transition-colors ${
                   service.isActive
-                    ? "bg-white/10 border border-white/20 shadow-card"
+                    ? "bg-white/10 border border-white/20 shadow-sm"
                     : "bg-white/5 border border-white/10 hover:bg-white/10"
                 }`}
               >
-                <div class="flex items-center justify-center bg-white rounded-full size-13 shrink-0">
+                <div class="flex items-center justify-center bg-brand-surface rounded-full size-13 shrink-0">
                   <img
                     src={`${import.meta.env.BASE_URL}imgs/iconos/${service.icon}`}
                     alt={`${service.name} Icon`}

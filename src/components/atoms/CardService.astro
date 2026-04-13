@@ -18,9 +18,9 @@ const isLight = theme === "light";
 <a
   href={link}
   class:list={[
-    "group flex flex-col rounded-xl p-6 lg:p-8 shadow-card transition-all duration-300 cursor-pointer no-underline",
+    "group flex flex-col rounded-xl p-6 lg:p-8 shadow-sm transition-all duration-300 cursor-pointer no-underline",
     isLight
-      ? "bg-white hover:shadow-card-hover hover:bg-brand-dark hover:-translate-y-1"
+      ? "bg-brand-surface hover:shadow-lg hover:bg-brand-dark hover:-translate-y-1"
       : "bg-brand-dark",
   ]}
 >
@@ -28,7 +28,7 @@ const isLight = theme === "light";
     <div
       class:list={[
         "flex items-center justify-center transition-colors rounded-full size-14 shrink-0",
-        isLight ? "bg-brand-fondo group-hover:bg-white/10" : "bg-white/10",
+        isLight ? "bg-brand-bg group-hover:bg-white/10" : "bg-white/10",
       ]}
     >
       <img src={icon} alt={iconAlt} class="object-contain size-12" />
@@ -36,7 +36,7 @@ const isLight = theme === "light";
     <h3
       class:list={[
         "text-xl font-display  tracking-tight transition-colors",
-        isLight ? "text-brand-dark group-hover:text-white" : "text-white",
+        isLight ? "text-brand-foreground group-hover:text-white" : "text-white",
       ]}
     >
       {title}
@@ -45,7 +45,7 @@ const isLight = theme === "light";
   <p
     class:list={[
       "text-sm leading-snug transition-colors flex-1 mb-2",
-      isLight ? "text-brand-gris group-hover:text-white/80" : "text-white/80",
+      isLight ? "text-brand-muted group-hover:text-white/80" : "text-white/80",
     ]}
   >
     {content}
@@ -53,7 +53,7 @@ const isLight = theme === "light";
   <div
     class:list={[
       "flex items-center self-end justify-center w-8 h-8 mt-auto transition-colors rounded-full",
-      isLight ? "bg-brand-fondo group-hover:bg-white/10" : "bg-white/10",
+      isLight ? "bg-brand-bg group-hover:bg-white/10" : "bg-white/10",
     ]}
   >
     <!-- flecha -->
@@ -62,7 +62,7 @@ const isLight = theme === "light";
       size={18}
       class:list={[
         "transition-colors",
-        isLight ? "text-brand-gris group-hover:text-white" : "text-white",
+        isLight ? "text-brand-muted group-hover:text-white" : "text-white",
       ]}
     />
   </div>

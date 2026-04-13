@@ -17,7 +17,7 @@ const navItems = getNavItems(BASE);
 const defaultLogo = theme === "dark" ? `${BASE}imgs/logo-blanco.svg` : `${BASE}imgs/logo.svg`;
 const logoStatic = logo ? `${BASE}imgs/${logo}` : defaultLogo;
 const logoSticky = `${BASE}imgs/logo.svg`;
-const staticTextClass = theme === "dark" ? "text-white" : "text-brand-dark";
+const staticTextClass = theme === "dark" ? "text-white" : "text-brand-foreground";
 ---
 
 <!-- -------------------------- STATIC HEADER -------------------------- -->
@@ -51,7 +51,7 @@ const staticTextClass = theme === "dark" ? "text-white" : "text-brand-dark";
 <!-- -------------------------- STICKY HEADER -------------------------- -->
 <header
   id="header-sticky"
-  class="fixed top-0 left-0 right-0 z-20 py-3 transition-all duration-300 ease-in-out -translate-y-full opacity-0 bg-brand-fondo border-b border-brand-gris/15 text-brand-dark xl:px-16"
+  class="fixed top-0 left-0 right-0 z-20 py-3 transition-all duration-300 ease-in-out -translate-y-full opacity-0 bg-brand-bg border-b border-brand-gris/15 text-brand-foreground xl:px-16"
   aria-hidden="true"
 >
   <m-container class="font-display lg:max-w-[calc(100%-100px)]">

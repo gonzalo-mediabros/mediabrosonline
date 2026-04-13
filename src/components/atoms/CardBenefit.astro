@@ -11,11 +11,11 @@ const { icon, title, description, class: className = "" } = Astro.props;
 
 <m-col
   class:list={[
-    "bg-brand-fondo rounded-xl flex-row items-start gap-4 border border-black/3 transition-all hover:-translate-y-1 hover:shadow-card-hover hover:border-brand-celeste/20 p-6 md:p-8",
+    "bg-brand-bg rounded-xl flex-row items-start gap-4 border border-black/3 transition-all hover:-translate-y-1 hover:shadow-lg hover:border-brand-primary/20 p-6 md:p-8",
     className,
   ]}
 >
-  <div class="w-12 h-12 bg-brand-celeste rounded-md flex items-center justify-center text-white shrink-0">
+  <div class="w-12 h-12 bg-brand-primary rounded-md flex items-center justify-center text-white shrink-0">
     <span class="material-symbols-outlined">{icon}</span>
   </div>
   <div>

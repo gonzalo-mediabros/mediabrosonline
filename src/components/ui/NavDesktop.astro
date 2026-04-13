@@ -17,13 +17,13 @@ const isActive = (href: string) => {
 };
 
 // Theme-driven classes — computed in frontmatter, never in template
-const linkBase     = "transition-colors hover:text-brand-celeste text-lg";
-const linkActive   = "text-brand-celeste";
-const linkInactive = theme === "dark" ? "text-white/90" : "text-brand-dark";
+const linkBase     = "transition-colors hover:text-brand-primary text-lg";
+const linkActive   = "text-brand-primary";
+const linkInactive = theme === "dark" ? "text-white/90" : "text-brand-foreground";
 
 const dropdownPanelClass = theme === "dark"
   ? "relative p-4 border shadow-2xl rounded-2xl border-white/5 bg-brand-dark/95 backdrop-blur-xl"
-  : "relative p-4 border rounded-2xl border-brand-gris/15 bg-white shadow-card";
+  : "relative p-4 border rounded-2xl border-brand-gris/15 bg-brand-surface shadow-sm";
 
 const dropdownArrowColor = theme === "dark"
   ? "rgba(23, 25, 49, 0.95)"
@@ -31,7 +31,7 @@ const dropdownArrowColor = theme === "dark"
 
 const dropdownItemClass = theme === "dark"
   ? "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors no-underline text-sm text-white/90 hover:text-white hover:bg-white/10"
-  : "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors no-underline text-sm text-brand-dark/80 hover:text-brand-dark hover:bg-brand-dark/5";
+  : "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors no-underline text-sm text-brand-foreground/80 hover:text-brand-foreground hover:bg-brand-dark/5";
 
 const iconContainerClass = theme === "dark"
   ? "flex items-center justify-center rounded-full bg-white/15 size-9 shrink-0"
