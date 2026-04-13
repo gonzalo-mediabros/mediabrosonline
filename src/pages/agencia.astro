@@ -1,0 +1,148 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/ui/Navigation.astro";
+import HeroSmall from "../components/ui/HeroSmall.astro";
+import Breadcrumb from "../components/atoms/Breadcrumb.astro";
+import ChipOvertitle from "../components/atoms/ChipOvertitle.astro";
+import CardTeam from "../components/atoms/CardTeam.astro";
+import CardCta from "../components/atoms/CardCta.astro";
+import FAQSection from "../components/service/FAQSection.astro";
+import PerformanceAI from "../components/home/PerformanceAI.astro";
+import Certificaciones from "../components/ui/Certificaciones.astro";
+import Footer from "../components/ui/Footer.astro";
+import { team } from "../data/team.ts";
+
+const { pathname } = Astro.url;
+---
+
+<Layout
+  title="Agencia | Mediabros Online"
+  description="Somos una agencia de marketing digital especializada en generar demanda y potenciar el crecimiento de empresas B2B."
+>
+  <Navigation pathname={pathname} />
+
+  <HeroSmall
+    title="Marketing Digital orientado a resultados"
+    subtitle="Tecnología propia y estrategias de generación de demanda."
+  />
+
+  <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Agencia" }]} />
+
+  <!-- Nativos Digitales -->
+  <section class="py-16 md:py-20 bg-brand-bg">
+    <m-container>
+      <m-row class="gap-10 md:gap-16 items-center">
+        <m-col class="md:w-1/2">
+          <ChipOvertitle text="Somos" />
+          <h2 class="mt-4 text-4xl md:text-5xl font-display leading-tight text-brand-foreground">
+            Nativos digitales
+          </h2>
+        </m-col>
+        <m-col class="md:w-1/2">
+          <p class="text-base leading-relaxed text-brand-muted">
+            Somos una agencia de marketing digital especializada en generar demanda y potenciar el crecimiento de empresas B2B. Combinamos tecnología propia, data y creatividad para desarrollar estrategias que convierten audiencias en clientes. Trabajamos con equipos comprometidos, metodologías ágiles y una cultura orientada a resultados medibles.
+          </p>
+        </m-col>
+      </m-row>
+    </m-container>
+  </section>
+
+  <!-- Grilla del equipo -->
+  <section class="py-16 md:py-20 bg-brand-bg">
+    <m-container>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+        {team.map((member) => (
+          <CardTeam
+            name={member.name}
+            role={member.role}
+            image={member.image}
+            linkedinUrl={member.linkedinUrl}
+          />
+        ))}
+      </div>
+    </m-container>
+  </section>
+
+  <!-- Cómo trabajamos -->
+  <section class="py-16 md:py-20 bg-brand-surface">
+    <m-container>
+      <div class="mb-10">
+        <ChipOvertitle text="Proceso" />
+        <h2 class="mt-4 text-4xl md:text-5xl font-display leading-tight text-brand-foreground">
+          Cómo trabajamos
+        </h2>
+      </div>
+      <m-row class="gap-6">
+        <m-col class="flex-1 min-w-0">
+          <p class="text-4xl font-display font-bold text-brand-primary mb-3">01</p>
+          <h3 class="text-xl font-display font-bold text-brand-foreground mb-2">Kick Off</h3>
+          <p class="text-sm leading-relaxed text-brand-muted">Entendemos tu negocio, objetivos y mercado para alinear estrategia y equipo.</p>
+        </m-col>
+        <m-col class="flex-1 min-w-0">
+          <p class="text-4xl font-display font-bold text-brand-primary mb-3">02</p>
+          <h3 class="text-xl font-display font-bold text-brand-foreground mb-2">Desarrollo de estrategia</h3>
+          <p class="text-sm leading-relaxed text-brand-muted">Diseñamos un plan personalizado con canales, mensajes y métricas claras.</p>
+        </m-col>
+        <m-col class="flex-1 min-w-0">
+          <p class="text-4xl font-display font-bold text-brand-primary mb-3">03</p>
+          <h3 class="text-xl font-display font-bold text-brand-foreground mb-2">Implementación</h3>
+          <p class="text-sm leading-relaxed text-brand-muted">Ejecutamos con agilidad, tecnología propia y foco en resultados.</p>
+        </m-col>
+        <m-col class="flex-1 min-w-0">
+          <p class="text-4xl font-display font-bold text-brand-primary mb-3">04</p>
+          <h3 class="text-xl font-display font-bold text-brand-foreground mb-2">Medición de resultados</h3>
+          <p class="text-sm leading-relaxed text-brand-muted">Analizamos datos en tiempo real y optimizamos continuamente.</p>
+        </m-col>
+      </m-row>
+    </m-container>
+  </section>
+
+  <PerformanceAI />
+
+  <!-- CTAs -->
+  <section class="py-16 md:py-20 bg-brand-bg">
+    <m-container>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <CardCta
+          variant="dark"
+          overtitle="TRABAJEMOS JUNTOS"
+          title="¿Estás listo para hacer crecer tu empresa?"
+          buttonLabel="Consúltanos"
+          buttonHref="/contacto"
+        />
+        <CardCta
+          variant="light"
+          overtitle="ÚNETE A NUESTRO EQUIPO"
+          title="Solo para apasionados por el mundo digital"
+          buttonLabel="Búsquedas"
+          buttonHref="/oportunidades"
+        />
+      </div>
+    </m-container>
+  </section>
+
+  <FAQSection
+    heading="Preguntas frecuentes"
+    faqs={[
+      {
+        question: "¿Qué tipos de empresas son sus clientes?",
+        answer: "Trabajamos principalmente con empresas B2B de industrias como logística, tecnología, salud, construcción y servicios profesionales que buscan escalar su generación de demanda.",
+      },
+      {
+        question: "¿Cuánto tiempo lleva ver resultados?",
+        answer: "Los primeros indicadores se ven en 30-60 días. Resultados consolidados generalmente entre 3 y 6 meses, dependiendo del canal y la estrategia.",
+      },
+      {
+        question: "¿Tienen experiencia en mi industria?",
+        answer: "Trabajamos con más de 100 empresas en LATAM en diversas industrias. Antes de proponer una estrategia, hacemos un análisis profundo de tu mercado y competencia.",
+      },
+      {
+        question: "¿Qué los diferencia de otras agencias?",
+        answer: "Tecnología propia para automatización y reporting, equipo especializado por canal, y un modelo de trabajo transparente orientado a métricas de negocio, no solo de marketing.",
+      },
+    ]}
+  />
+
+  <Certificaciones />
+  <Footer />
+</Layout>

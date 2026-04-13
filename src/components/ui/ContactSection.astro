@@ -1,39 +1,23 @@
 ---
 import ChipOvertitle from "../atoms/ChipOvertitle.astro";
-import Glow from "../atoms/Glow.astro";
-import ImageBackground from "../atoms/ImageBackground.astro";
+import CardSection from "../atoms/CardSection.astro";
 import LeadForm from "./LeadForm.astro";
 
 const BASE = import.meta.env.BASE_URL;
 ---
 
 <section id="contacto" class="py-14 md:py-24 bg-brand-bg">
-  <m-container
-    class="relative w-full overflow-hidden rounded-xl shadow-blue bg-brand-primary/90"
-  >
-    <!-- Main Card Wrapper with Blue Background -->
-
-    <!-- <ImageBackground
-          src={`${BASE}imgs/home/bg.team.webp`}
-          alt="Fondo de equipo trabajando"
-          class="absolute inset-0 object-cover w-full opacity-4 mix-blend-luminosity h-[150%] -top-70"
-        /> -->
-    <ImageBackground
-      src={BASE + "imgs/pattern-ondulado.svg"}
-      class="inset-0 w-full h-full opacity-120"
-    />
-    <Glow
-      class="w-screen -translate-x-1/2 top-1/2 left-1/2 h-100 bg-brand-primary opacity-85"
-    />
-    <Glow
-      class="top-0 w-full max-w-4xl -translate-x-1/2 opacity-100 left-0/3 h-100 bg-brand-accent-2/10"
-    />
-
-    <!-- Content -->
-
-    <m-row
-      class="relative z-10 flex-col items-center gap-20 px-2 py-10 lg:flex-row md:p-10 lg:pr-10 lg:pl-20 lg:py-10"
+  <m-container>
+    <CardSection
+      variant="primary"
+      glowStyle="dual"
+      backgroundPattern={BASE + "imgs/pattern-ondulado.svg"}
+      backgroundPatternOpacity={1.2}
+      class="flex items-center px-2 py-10 lg:pr-10 lg:pl-20 lg:py-10 md:p-10"
     >
+      <m-row
+        class="flex-col items-center gap-20 lg:flex-row"
+      >
       <!-- Left Column: Text Content -->
       <m-col class="flex-1 w-full lg:w-1/2">
         <!-- Tag/Badge -->
@@ -62,5 +46,6 @@ const BASE = import.meta.env.BASE_URL;
         <LeadForm theme="light" />
       </m-col>
     </m-row>
+    </CardSection>
   </m-container>
 </section>

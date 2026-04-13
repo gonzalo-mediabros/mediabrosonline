@@ -1,0 +1,196 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/ui/Navigation.astro";
+import HeroSmall from "../components/ui/HeroSmall.astro";
+import Breadcrumb from "../components/atoms/Breadcrumb.astro";
+import ChipOvertitle from "../components/atoms/ChipOvertitle.astro";
+import Carrusel from "../components/atoms/Carrusel.astro";
+import CardTestimonial from "../components/atoms/CardTestimonial.astro";
+import CardCta from "../components/atoms/CardCta.astro";
+import Certificaciones from "../components/ui/Certificaciones.astro";
+import Footer from "../components/ui/Footer.astro";
+import { CLIENTS } from "../data/clients.ts";
+
+const { pathname } = Astro.url;
+const BASE = import.meta.env.BASE_URL;
+
+const industries = [
+  { label: "Seguridad", slug: "seguridad" },
+  { label: "Logística", slug: "logistica" },
+  { label: "E. Renovables", slug: "energias-renovables" },
+  { label: "Servicios", slug: "servicios" },
+  { label: "Maquinaria", slug: "maquinaria" },
+  { label: "Industria", slug: "industria" },
+  { label: "Construcción", slug: "construccion" },
+  { label: "Salud", slug: "salud" },
+  { label: "Alimentos", slug: "alimentos" },
+  { label: "Automotriz", slug: "automotriz" },
+  { label: "Mobiliario", slug: "mobiliario" },
+  { label: "Mayoreo", slug: "mayoreo" },
+];
+
+const testimonials = [
+  {
+    quote: "Gracias a Mediabros logramos triplicar nuestros leads en 6 meses.",
+    authorName: "Gato Dumas",
+    authorRole: "Escuela de Cocina",
+    authorImage: `${BASE}imgs/clientes/gato-dumas.webp`,
+  },
+  {
+    quote: "El equipo entiende el negocio B2B. Nos ayudaron a posicionarnos en un mercado muy competitivo.",
+    authorName: "Bandera",
+    authorRole: "Empresa de Seguridad",
+    authorImage: `${BASE}imgs/clientes/bandera.webp`,
+  },
+  {
+    quote: "La estrategia digital que implementaron transformó nuestra presencia online y nuestras ventas.",
+    authorName: "La Areté",
+    authorRole: "Institución Educativa",
+    authorImage: `${BASE}imgs/clientes/la-arete.webp`,
+  },
+  {
+    quote: "Profesionalismo y resultados medibles desde el primer mes de trabajo.",
+    authorName: "Cliente LATAM",
+    authorRole: "Industria Logística",
+    authorImage: `${BASE}imgs/clientes/logo-placeholder.webp`,
+  },
+  {
+    quote: "Mediabros nos ayudó a entender nuestros datos y tomar mejores decisiones de marketing.",
+    authorName: "Cliente LATAM",
+    authorRole: "Servicios Profesionales",
+    authorImage: `${BASE}imgs/clientes/logo-placeholder.webp`,
+  },
+  {
+    quote: "Excelente comunicación y equipo comprometido con nuestros objetivos.",
+    authorName: "Cliente LATAM",
+    authorRole: "Tecnología",
+    authorImage: `${BASE}imgs/clientes/logo-placeholder.webp`,
+  },
+  {
+    quote: "Superaron nuestras expectativas en cada campaña que lanzamos juntos.",
+    authorName: "Cliente LATAM",
+    authorRole: "Salud",
+    authorImage: `${BASE}imgs/clientes/logo-placeholder.webp`,
+  },
+  {
+    quote: "Una agencia que realmente entiende el mundo B2B y sabe cómo generar demanda real.",
+    authorName: "Cliente LATAM",
+    authorRole: "Construcción",
+    authorImage: `${BASE}imgs/clientes/logo-placeholder.webp`,
+  },
+];
+---
+
+<Layout
+  title="Clientes | Mediabros Online"
+  description="El éxito de nuestros clientes es el nuestro. Conocé las historias de empresas que crecieron con Mediabros."
+>
+  <Navigation pathname={pathname} />
+
+  <HeroSmall
+    title="Clientes"
+    subtitle="El éxito de nuestros clientes es el nuestro"
+  />
+
+  <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Clientes" }]} />
+
+  <!-- Testimonios -->
+  <section class="py-16 md:py-20 bg-brand-bg">
+    <m-container>
+      <div class="mb-10">
+        <ChipOvertitle text="Historias de éxito" />
+        <h2 class="mt-4 text-4xl md:text-5xl font-display leading-tight text-brand-foreground">
+          Testimonios de nuestros clientes
+        </h2>
+      </div>
+      <Carrusel slidesPerView={1} slidesPerViewMd={2} navigation={true} pagination={true}>
+        {testimonials.map((t) => (
+          <div class="swiper-slide">
+            <CardTestimonial
+              quote={t.quote}
+              authorName={t.authorName}
+              authorRole={t.authorRole}
+              authorImage={t.authorImage}
+            />
+          </div>
+        ))}
+      </Carrusel>
+    </m-container>
+  </section>
+
+  <!-- CTA ancho completo -->
+  <section class="py-10 bg-brand-bg">
+    <m-container>
+      <CardCta
+        variant="dark"
+        overtitle=""
+        title="Únete a +100 empresas en LATAM que confían en nosotros"
+        buttonLabel="Consúltanos"
+        buttonHref="/contacto"
+      />
+    </m-container>
+  </section>
+
+  <!-- Empresas con las que trabajamos -->
+  <section class="py-16 md:py-20 bg-brand-surface">
+    <m-container>
+      <m-row class="gap-10 md:gap-16 items-start">
+        <m-col class="md:w-1/2">
+          <ChipOvertitle text="Relaciones de confianza" />
+          <h2 class="mt-4 text-4xl md:text-5xl font-display leading-tight text-brand-foreground">
+            Empresas con las que trabajamos
+          </h2>
+        </m-col>
+        <m-col class="md:w-1/2 space-y-4">
+          <p class="text-base leading-relaxed text-brand-muted">
+            En Mediabros construimos relaciones de largo plazo con nuestros clientes. No buscamos cuentas, buscamos socios estratégicos que quieran crecer de manera sostenida.
+          </p>
+          <p class="text-base leading-relaxed text-brand-muted">
+            Trabajamos con empresas de más de 12 industrias en Argentina, México, Colombia y toda la región LATAM.
+          </p>
+        </m-col>
+      </m-row>
+    </m-container>
+  </section>
+
+  <!-- Grilla de industrias -->
+  <section class="py-16 bg-brand-surface">
+    <m-container>
+      <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+        {industries.map((industry) => (
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-16 h-16 rounded-xl bg-brand-bg flex items-center justify-center overflow-hidden">
+              <img
+                src={`${BASE}imgs/clientes/industrias/${industry.slug}.webp`}
+                alt={industry.label}
+                class="w-10 h-10 object-contain"
+                onerror="this.style.display='none'"
+              />
+            </div>
+            <span class="text-xs font-medium text-center text-brand-muted uppercase tracking-wide">
+              {industry.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </m-container>
+  </section>
+
+  <!-- Logos de clientes -->
+  <section class="py-16 md:py-20 bg-brand-bg">
+    <m-container>
+      <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
+        {CLIENTS.map((client) => (
+          <img
+            src={`${BASE}imgs/clientes/logos/${client.url}`}
+            alt={client.name}
+            class="w-full h-10 object-contain grayscale hover:grayscale-0 transition-all duration-300"
+          />
+        ))}
+      </div>
+    </m-container>
+  </section>
+
+  <Certificaciones />
+  <Footer />
+</Layout>

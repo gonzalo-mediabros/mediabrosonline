@@ -5,6 +5,7 @@
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import Icon from "./Icon.astro";
 
 interface Props {
   slidesPerView?: number | "auto";
@@ -15,6 +16,7 @@ interface Props {
   loop?: boolean;
   navigation?: boolean;
   pagination?: boolean;
+  theme?: "light" | "dark";
 }
 
 const {
@@ -26,6 +28,7 @@ const {
   loop = true,
   navigation = false,
   pagination = false,
+  theme = "light",
 } = Astro.props;
 
 const id = `swiper-${Math.random().toString(36).slice(2, 8)}`;
@@ -35,8 +38,8 @@ const config = {
   spaceBetween: gap,
   loop,
   autoplay: autoplay !== false ? { delay: autoplay, disableOnInteraction: false } : false,
-  navigation,
-  pagination: pagination ? { clickable: true } : false,
+  navigation: navigation ? { prevEl: `#${id} .carousel-nav-prev`, nextEl: `#${id} .carousel-nav-next` } : false,
+  pagination: pagination ? { clickable: true, el: `#${id} .swiper-pagination` } : false,
   breakpoints: {
     ...(slidesPerViewMd !== undefined && { 768: { slidesPerView: slidesPerViewMd } }),
     ...(slidesPerViewLg !== undefined && { 1024: { slidesPerView: slidesPerViewLg } }),
@@ -46,21 +49,28 @@ const config = {
 
 <div
   id={id}
-  class="swiper"
+  class="swiper group"
   data-config={JSON.stringify(config)}
+  data-theme={theme}
 >
   <div class="swiper-wrapper">
     <slot />
   </div>
 
-  {navigation && (
-    <>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-    </>
-  )}
-
-  {pagination && <div class="swiper-pagination"></div>}
+  <div class="flex flex-col md:flex-row items-center justify-between gap-6 mt-10">
+    {pagination && <div class="swiper-pagination !static !w-fit !m-0"></div>}
+    
+    {navigation && (
+      <div class="swiper-controls flex gap-3">
+        <div class="carousel-nav-prev !w-11 !h-11 rounded-full border flex items-center justify-center transition-all cursor-pointer select-none">
+          <Icon name="arrow_back" size={20} />
+        </div>
+        <div class="carousel-nav-next !w-11 !h-11 rounded-full border flex items-center justify-center transition-all cursor-pointer select-none">
+          <Icon name="arrow_forward" size={20} />
+        </div>
+      </div>
+    )}
+  </div>
 </div>
 
 <script>
@@ -82,12 +92,39 @@ const config = {
 </script>
 
 <style is:global>
-  .swiper-button-prev,
-  .swiper-button-next {
-    color: var(--color-brand-primary);
+  @reference "../../styles/global.css";
+
+  /* Base color for light theme */
+  .swiper[data-theme="light"] .carousel-nav-prev,
+  .swiper[data-theme="light"] .carousel-nav-next {
+    @apply border-brand-border text-brand-foreground bg-white hover:bg-brand-primary hover:text-white hover:border-brand-primary shadow-sm;
+  }
+
+  /* Base color for dark theme */
+  .swiper[data-theme="dark"] .carousel-nav-prev,
+  .swiper[data-theme="dark"] .carousel-nav-next {
+    @apply border-white/10 text-white bg-white/5 hover:bg-brand-primary hover:border-brand-primary;
+  }
+
+  /* Swiper navigation states */
+  .swiper-button-disabled {
+    @apply opacity-30 cursor-not-allowed !grayscale;
+  }
+
+  /* Pagination styles */
+  .swiper-pagination-bullet {
+    @apply bg-brand-muted opacity-30 duration-300 transition-all;
   }
 
   .swiper-pagination-bullet-active {
-    background: var(--color-brand-primary);
+    @apply !opacity-100 !bg-brand-primary !w-8 !rounded-full;
+  }
+
+  .swiper[data-theme="dark"] .swiper-pagination-bullet {
+    @apply bg-white opacity-20;
+  }
+
+  .swiper[data-theme="dark"] .swiper-pagination-bullet-active {
+    @apply !bg-brand-accent !opacity-100;
   }
 </style>

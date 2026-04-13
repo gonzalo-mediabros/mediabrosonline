@@ -1,6 +1,7 @@
 ---
 import ChipOvertitle from "../atoms/ChipOvertitle.astro";
 import Button from "../atoms/Button.astro";
+import CardSection from "../atoms/CardSection.astro";
 import Glow from "../atoms/Glow.astro";
 
 interface Props {
@@ -15,16 +16,12 @@ const { chipText, heading, description, ctaLabel, ctaHref } = Astro.props;
 ---
 
 <section class="py-16 isolate md:py-20 bg-brand-bg">
-  <m-container
-    class="relative flex items-center px-6 py-10 overflow-hidden bg-brand-dark rounded-xl shadow-blue/10 md:p-10 lg:p-16 shadow"
-  >
-    <Glow
-      class="top-0 w-full -translate-x-1/2 left-100 h-100 bg-brand-dark opacity-20"
-    />
-    <Glow
-      class="w-full -translate-x-1/2 top-30 -left-120 h-200 bg-brand-primary opacity-15"
-    />
-
+  <m-container>
+    <CardSection
+      variant="dark"
+      glowStyle="dual"
+      class="flex items-center justify-center px-6 py-10 md:p-10 lg:p-16"
+    >
     <m-row
       class="relative z-10 flex flex-col items-center justify-center w-full gap-12 lg:gap-16"
     >
@@ -47,5 +44,6 @@ const { chipText, heading, description, ctaLabel, ctaHref } = Astro.props;
         <Button label={ctaLabel} href={ctaHref} variant="celeste" />
       </m-col>
     </m-row>
+    </CardSection>
   </m-container>
 </section>
