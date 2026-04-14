@@ -1,0 +1,147 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroSmall from "../components/ui/HeroSmall.astro";
+import Breadcrumb from "../components/atoms/Breadcrumb.astro";
+import Certificaciones from "../components/ui/Certificaciones.astro";
+import Footer from "../components/ui/Footer.astro";
+import CardCta from "../components/atoms/CardCta.astro";
+import ChipOvertitle from "../components/atoms/ChipOvertitle.astro";
+import FAQSection from "../components/service/FAQSection.astro";
+
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: "FAQs" },
+];
+
+const faqsMarketing = [
+  {
+    question: "¿Has definido a tu publico objetivo?",
+    answer: "Conocer a los clientes objetivo es esencial para desarrollar una estrategia de marketing digital efectiva. Se deben investigar detalladamente las características demográficas, intereses y comportamientos de compra de la audiencia objetivo para poder dirigirse a ellos de manera efectiva."
+  },
+  {
+    question: "¿Cuáles son las fortalezas y debilidades de tu empresa?",
+    answer: "Es importante evaluar las fortalezas y debilidades de la empresa en cuanto a su presencia en línea, recursos disponibles y habilidades de marketing. Esto permitirá identificar las áreas en las que se debe enfocar y mejorar la estrategia de marketing digital."
+  },
+  {
+    question: "¿Has definido tu mensaje único de ventas (USP)?",
+    answer: "El USP es lo que distingue a tu empresa de sus competidores y debe ser una parte integral de la estrategia de marketing digital. El USP debe ser claro y fácil de comunicar a la audiencia objetivo."
+  },
+  {
+    question: "¿Cuáles son tus objetivos de Marketing Digital?",
+    answer: "Es importante establecer objetivos de marketing digital claros y medibles para poder evaluar el éxito de la estrategia y realizar ajustes según sea necesario."
+  },
+  {
+    question: "¿Qué presupuesto debo asignar a mi estrategia de Marketing Digital?",
+    answer: "El presupuesto va a depender de varios factores, entre ellos, tamaño de nuestra audiencia, medios en los que vamos a pautar, demanda y estacionalidad. MediaBros te ayuda a definir tu presupuesto, ¡no dudes en consultarnos!"
+  }
+];
+
+const faqsGoogleAds = [
+  {
+    question: "¿Qué resultado tendrán mis campañas?",
+    answer: "El resultado dependerá de la calidad de los anuncios, las palabras clave seleccionadas, el presupuesto y el seguimiento regular. No hay garantía de resultados específicos pero optimizamos cada factor para maximizar el rendimiento."
+  },
+  {
+    question: "¿Por qué no veo mis anuncios?",
+    answer: "A diferencia de la publicidad tradicional, los anuncios digitales rotan según diversos factores para mostrarse a quienes tienen más chances de convertir."
+  },
+  {
+    question: "¿Cómo deben ser mis banners para display?",
+    answer: "Deben tener el logo, una frase vendedora y un CTA claro. Tamaños recomendados: 728x90, 300x250, 300x600, entre otros."
+  }
+];
+
+const faqsMetaAds = [
+  {
+    question: "¿Cuáles son los objetivos que podemos alcanzar con las campañas en Meta Ads?",
+    answer: "Reconocimiento de marca, tráfico, interacción, generación de clientes potenciales, conversiones y ventas del catálogo. Meta Ads permite segmentar con precisión y alcanzar a usuarios con alta intención de compra en Facebook e Instagram."
+  },
+  {
+    question: "¿Cómo deben ser los banners para las campañas de Meta Ads?",
+    answer: "Las imágenes no deben tener llamado a la acción ni superar el 20% de texto. Formatos recomendados: NewsFeed 1200x628px, Historias 1080x1920px, Reels en MP4/MOV (mín. 500x888px, ratio 9:16), Carrusel hasta 10 imágenes de 1080x1080px."
+  }
+];
+
+const faqsLinkedInAds = [
+  {
+    question: "¿Cuáles son las ventajas de las campañas en LinkedIn Ads?",
+    answer: "LinkedIn permite segmentar por industria, título profesional y ubicación geográfica. Es ideal para alcanzar decisores de negocios con alta tasa de conversión, ya que los usuarios están en una mentalidad profesional y orientada al trabajo. Los anuncios se integran nativamente con el feed."
+  },
+  {
+    question: "¿Cuáles son los tipos de campañas disponibles en LinkedIn Ads?",
+    answer: "Display, patrocinio, texto, video, carrusel, conversión, brand awareness, eventos y Mensajes InMail. Cada formato se adapta a distintos objetivos: desde aumentar la visibilidad de marca hasta generar registros y leads calificados B2B."
+  }
+];
+
+const faqsSEO = [
+  {
+    question: "¿En qué consiste el servicio de SEO de MediaBros?",
+    answer: "MediaBros se especializa en Technical SEO y Linkbuilding. Realizamos diagnósticos con software avanzado para detectar oportunidades de mejora en la visibilidad orgánica del sitio."
+  },
+  {
+    question: "¿MediaBros implementa las optimizaciones?",
+    answer: "Sí, la agencia implementa las mejoras derivadas de la auditoría inicial. Para ello es necesario que el cliente otorgue acceso al administrador de contenidos del sitio (CMS) y acceso FTP."
+  },
+  {
+    question: "¿Qué significa Technical SEO?",
+    answer: "Technical SEO son las prácticas de optimización que se enfocan en la estructura técnica del sitio: velocidad de carga, rastreo e indexación, experiencia móvil, título y descripción de páginas, y tecnologías de seguimiento. El objetivo es que los motores de búsqueda puedan rastrear, entender y clasificar adecuadamente el contenido."
+  },
+  {
+    question: "¿En qué consiste el Link Building?",
+    answer: "Link building es la adquisición de backlinks desde otros sitios web hacia el tuyo. Los motores de búsqueda consideran cada enlace como un 'voto' de confianza. MediaBros realiza intercambio de enlaces exclusivamente con clientes que trabajan con la agencia y que cuentan con sitios confiables y contenido relevante."
+  }
+];
+
+const faqsGA4 = [
+  {
+    question: "¿Cuáles son las ventajas de Google Analytics 4 (GA4)?",
+    answer: "GA4 ofrece integración nativa con Google Ads, análisis basado en eventos para mayor detalle de las acciones de usuario, seguimiento de experiencia del usuario, audiencias personalizadas avanzadas, mejor gestión de privacidad, interfaz más intuitiva y mayor flexibilidad para recopilar datos de múltiples fuentes (web, apps, dispositivos)."
+  }
+];
+
+const title = "Preguntas Frecuentes (FAQs) | Mediabros Online";
+const description = "Respuestas a las dudas más comunes sobre Marketing Digital, Google Ads, SEO y analítica.";
+---
+
+<Layout title={title} description={description}>
+  <HeroSmall
+    title="FAQs"
+    subtitle="Las respuestas a las preguntas más frecuentes."
+    backgroundImage="pattern-ondulado.svg"
+  />
+
+  <Breadcrumb items={breadcrumbItems} />
+
+  <main class="bg-brand-bg pb-12">
+    <section class="py-16">
+      <m-container>
+        <ChipOvertitle text="Orientación" />
+        <h2 class="text-4xl md:text-5xl font-display text-brand-foreground mt-4">
+          Información útil para <br class="hidden md:block" /> tu estrategia de Marketing Digital
+        </h2>
+      </m-container>
+    </section>
+
+    <FAQSection heading="Marketing Digital" faqs={faqsMarketing} />
+    <FAQSection heading="Google Ads" faqs={faqsGoogleAds} />
+    <FAQSection heading="Meta Ads" faqs={faqsMetaAds} />
+    <FAQSection heading="LinkedIn Ads" faqs={faqsLinkedInAds} />
+    <FAQSection heading="Posicionamiento SEO" faqs={faqsSEO} />
+    <FAQSection heading="Google Analytics - GA4" faqs={faqsGA4} />
+
+    <section class="py-16 md:py-24">
+      <m-container>
+        <CardCta
+          variant="dark"
+          overtitle="¿No encontraste tu respuesta?"
+          title="Consultanos directamente y despejá todas tus dudas"
+          buttonLabel="Contacto"
+          buttonHref="/contacto"
+        />
+      </m-container>
+    </section>
+  </main>
+
+  <Certificaciones />
+  <Footer />
+</Layout>

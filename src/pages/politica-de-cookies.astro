@@ -1,0 +1,81 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroSmall from "../components/ui/HeroSmall.astro";
+import Breadcrumb from "../components/atoms/Breadcrumb.astro";
+import Certificaciones from "../components/ui/Certificaciones.astro";
+import Footer from "../components/ui/Footer.astro";
+
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: "Política de Cookies" },
+];
+
+const title = "Política de Cookies | Mediabros Online";
+const description = "Cómo usamos las cookies en mediabrosonline.com para mejorar tu experiencia de navegación.";
+---
+
+<Layout title={title} description={description}>
+  <HeroSmall
+    title="Política de Cookies"
+    subtitle="Cómo usamos las cookies en mediabrosonline.com."
+    backgroundImage="pattern-ondulado.svg"
+  />
+
+  <Breadcrumb items={breadcrumbItems} />
+
+  <main class="py-16 md:py-24 bg-brand-bg">
+    <m-container>
+      <div class="max-w-4xl mx-auto flex flex-col gap-6 
+        [&_h2]:text-2xl [&_h2]:font-display [&_h2]:font-bold [&_h2]:text-brand-foreground [&_h2]:mt-8 [&_h2]:mb-4
+        [&_h3]:text-xl [&_h3]:font-display [&_h3]:font-bold [&_h3]:text-brand-foreground [&_h3]:mt-6 [&_h3]:mb-3
+        [&_p]:text-brand-muted [&_p]:leading-relaxed [&_p]:mb-4
+        [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-2 [&_ul]:mb-4
+        [&_li]:text-brand-muted
+        [&_strong]:text-brand-muted [&_strong]:font-bold">
+        <h2>1. ¿Qué son las cookies?</h2>
+        <p>
+          Las cookies son pequeños archivos de texto que los sitios web que visita instalan en su computadora o dispositivo móvil. Se utilizan ampliamente para que los sitios web funcionen o funcionen de manera más eficiente, así como para proporcionar información a los propietarios del sitio.
+        </p>
+
+        <h2>2. Tipos de cookies que usamos</h2>
+        <h3>Cookies Técnicas y Funcionales</h3>
+        <p>
+          Son esenciales para que nuestro sitio funcione correctamente. Incluyen, por ejemplo, cookies que le permiten navegar por las distintas secciones y utilizar servicios de seguridad.
+        </p>
+        
+        <h3>Cookies Analíticas</h3>
+        <p>
+          Nos permiten reconocer y contar el número de visitantes y ver cómo se mueven por nuestro sitio web cuando lo están utilizando. Esto nos ayuda a mejorar el funcionamiento de nuestro sitio, por ejemplo, asegurando que los usuarios encuentren lo que buscan fácilmente. Utilizamos principalmente <strong>Google Analytics</strong>.
+        </p>
+
+        <h3>Cookies Publicitarias</h3>
+        <p>
+          Estas cookies registran su visita a nuestro sitio web, las páginas que ha visitado y los enlaces que ha seguido. Utilizamos esta información para que nuestro sitio web y la publicidad que se muestra en él sean más relevantes para sus intereses. Podemos compartir esta información con terceros, como <strong>Google Ads</strong> y <strong>Meta Ads</strong>.
+        </p>
+
+        <h2>3. Cómo gestionar o deshabilitar las cookies</h2>
+        <p>
+          Usted puede bloquear las cookies activando la configuración de su navegador que le permite rechazar la instalación de todas o algunas de las cookies. Sin embargo, si utiliza la configuración de su navegador para bloquear todas las cookies (incluidas las cookies esenciales), es posible que no pueda acceder a la totalidad o a partes de nuestro sitio.
+        </p>
+        <ul>
+          <li>Para Chrome: herramientas &gt; configuración &gt; privacidad y seguridad.</li>
+          <li>Para Firefox: herramientas &gt; opciones &gt; privacidad y seguridad.</li>
+          <li>Para Safari: preferencias &gt; privacidad.</li>
+        </ul>
+
+        <h2>4. Cambios en esta política</h2>
+        <p>
+          Cualquier cambio que realicemos en nuestra política de cookies en el futuro se publicará en esta página. Por favor, consulte con frecuencia para ver las actualizaciones.
+        </p>
+
+        <h2>5. Contacto</h2>
+        <p>
+          Si tiene alguna duda sobre esta Política de Cookies, puede contactarnos en info@mediabrosonline.com.
+        </p>
+      </div>
+    </m-container>
+  </main>
+
+  <Certificaciones />
+  <Footer />
+</Layout>

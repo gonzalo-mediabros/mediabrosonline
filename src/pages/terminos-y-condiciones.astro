@@ -1,0 +1,75 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroSmall from "../components/ui/HeroSmall.astro";
+import Breadcrumb from "../components/atoms/Breadcrumb.astro";
+import Certificaciones from "../components/ui/Certificaciones.astro";
+import Footer from "../components/ui/Footer.astro";
+
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: "Términos y Condiciones" },
+];
+
+const title = "Términos y Condiciones | Mediabros Online";
+const description = "Condiciones de uso del sitio y los servicios de Mediabros Online. Información legal para clientes y usuarios.";
+---
+
+<Layout title={title} description={description}>
+  <HeroSmall
+    title="Términos y Condiciones"
+    subtitle="Condiciones de uso del sitio y los servicios de Mediabros Online."
+    backgroundImage="pattern-ondulado.svg"
+  />
+
+  <Breadcrumb items={breadcrumbItems} />
+
+  <main class="py-16 md:py-24 bg-brand-bg">
+    <m-container>
+      <div class="max-w-4xl mx-auto flex flex-col gap-6 
+        [&_h2]:text-2xl [&_h2]:font-display [&_h2]:font-bold [&_h2]:text-brand-foreground [&_h2]:mt-8 [&_h2]:mb-4
+        [&_p]:text-brand-muted [&_p]:leading-relaxed [&_p]:mb-4
+        [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-2 [&_ul]:mb-4
+        [&_li]:text-brand-muted
+        [&_strong]:text-brand-muted [&_strong]:font-bold
+        [&_a]:text-brand-primary [&_a]:underline font-medium">
+        <h2>1. Aceptación de los términos</h2>
+        <p>
+          Al acceder y utilizar este sitio web (mediabrosonline.com), usted acepta estar sujeto a los siguientes términos y condiciones de uso. Si no está de acuerdo con alguna parte de estos términos, le solicitamos que no utilice nuestro sitio web.
+        </p>
+
+        <h2>2. Uso del sitio web</h2>
+        <p>
+          El contenido de este sitio es para su información general y uso personal exclusivamente. Está sujeto a cambios sin previo aviso. Mediabros se reserva el derecho de restringir el acceso a ciertas áreas del sitio o a todo el sitio a su discreción.
+        </p>
+
+        <h2>3. Propiedad intelectual</h2>
+        <p>
+          Este sitio web contiene material que es propiedad de o está licenciado a Mediabros. Este material incluye, pero no se limita a, el diseño, la disposición, el aspecto, la apariencia y los gráficos. La reproducción está prohibida salvo de conformidad con el aviso de copyright, que forma parte de estos términos y condiciones.
+        </p>
+
+        <h2>4. Limitación de responsabilidad</h2>
+        <p>
+          Ni nosotros ni terceros ofrecemos ninguna garantía en cuanto a la exactitud, puntualidad, rendimiento, integridad o idoneidad de la información y los materiales encontrados u ofrecidos en este sitio web para cualquier propósito particular. Usted reconoce que dicha información y materiales pueden contener inexactitudes o errores y excluimos expresamente la responsabilidad por tales inexactitudes o errores en la máxima medida permitida por la ley.
+        </p>
+
+        <h2>5. Modificaciones</h2>
+        <p>
+          Mediabros puede revisar estos términos de uso para su sitio web en cualquier momento sin previo aviso. Al utilizar este sitio web, usted acepta estar sujeto a la versión actual de estos términos y condiciones.
+        </p>
+
+        <h2>6. Ley aplicable y jurisdicción</h2>
+        <p>
+          El uso de este sitio web y cualquier disputa que surja de dicho uso están sujetos a las leyes de la República Argentina. Cualquier acción legal relacionada con estos términos se llevará a cabo exclusivamente ante los tribunales competentes de la Ciudad Autónoma de Buenos Aires.
+        </p>
+
+        <h2>7. Contacto</h2>
+        <p>
+          Si tiene alguna pregunta sobre estos Términos y Condiciones, puede contactarnos a través de nuestra página de <a href={`${import.meta.env.BASE_URL}contacto`}>contacto</a> o enviando un correo electrónico a administracion@mediabrosonline.com.
+        </p>
+      </div>
+    </m-container>
+  </main>
+
+  <Certificaciones />
+  <Footer />
+</Layout>

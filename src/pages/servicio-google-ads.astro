@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Navigation from "../components/ui/Navigation.astro";
+import Breadcrumb from "../components/atoms/Breadcrumb.astro";
 import HeroSmall from "../components/ui/HeroSmall.astro";
 import Certificaciones from "../components/ui/Certificaciones.astro";
 import Footer from "../components/ui/Footer.astro";
@@ -23,6 +24,13 @@ const { pathname } = Astro.url;
     title="Google Ads"
     icon="ico-google-ads.png"
     subtitle="Google Ads como motor principal de generación de demanda y leads calificados"
+  />
+  <Breadcrumb
+    items={[
+      { label: "Home", href: "/" },
+      { label: "Servicios", href: "/#servicios" },
+      { label: "Google Ads" },
+    ]}
   />
 
   <DescriptionSection

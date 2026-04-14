@@ -26,7 +26,8 @@ const {
 } = Astro.props;
 
 // Prioridad: ogImage > image > default
-const finalImage = ogImage || image || `${import.meta.env.BASE_URL}assets/og-image.jpg`;
+const finalImage =
+  ogImage || image || `${import.meta.env.BASE_URL}assets/og-image.jpg`;
 const socialImage = new URL(finalImage, Astro.site || Astro.url).href;
 
 const shouldNoIndex = GLOBAL_NOINDEX || noindex;
@@ -64,6 +65,14 @@ const { pathname } = Astro.url;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
 
+    <!-- Google Fonts: Red Hat Display + Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Google Material Icons & Symbols -->
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -77,5 +86,21 @@ const { pathname } = Astro.url;
   <body>
     <slot />
     {import.meta.env.DEV && <ThemePanel />}
+    <script>
+      import Lenis from "lenis";
+
+      const lenis = new Lenis({
+        duration: 0.8,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+      });
+
+      function raf(time: number) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+    </script>
   </body>
 </html>

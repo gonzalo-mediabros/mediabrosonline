@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Navigation from "../components/ui/Navigation.astro";
+import Breadcrumb from "../components/atoms/Breadcrumb.astro";
 import HeroSmall from "../components/ui/HeroSmall.astro";
 import Certificaciones from "../components/ui/Certificaciones.astro";
 import Footer from "../components/ui/Footer.astro";
@@ -23,6 +24,13 @@ const { pathname } = Astro.url;
     title="Google Analytics"
     icon="ico-analytics-1.png"
     subtitle="Medición, análisis y toma de decisiones basada en datos"
+  />
+  <Breadcrumb
+    items={[
+      { label: "Home", href: "/" },
+      { label: "Servicios", href: "/#servicios" },
+      { label: "Google Analytics" },
+    ]}
   />
 
   <DescriptionSection

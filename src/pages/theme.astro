@@ -13,7 +13,6 @@ import ImageBackground from "../components/atoms/ImageBackground.astro";
 import CardCta from "../components/atoms/CardCta.astro";
 import CardSection from "../components/atoms/CardSection.astro";
 import Carrusel from "../components/atoms/Carrusel.astro";
-import CarruselLoop from "../components/atoms/CarruselLoop.astro";
 
 const BASE = import.meta.env.BASE_URL;
 ---
@@ -523,22 +522,22 @@ const BASE = import.meta.env.BASE_URL;
   <section id="carruseles" class="py-16 md:py-24 bg-brand-bg isolate overflow-hidden">
     <m-container>
       <m-col class="mb-12 gap-3">
-        <ChipOvertitle text="Carrusel.astro + CarruselLoop.astro" />
+        <ChipOvertitle text="Carrusel.astro" />
         <h2 class="text-4xl md:text-5xl font-display text-brand-foreground leading-[1.1] tracking-tight">
           Carruseles y Logos Ticker
         </h2>
       </m-col>
 
-      <!-- CarruselLoop (Logos) -->
+      <!-- Carrusel freeMode — CSS ticker -->
       <div class="mb-16">
-        <p class="text-xs font-mono text-brand-muted uppercase tracking-widest mb-6">CarruselLoop — CSS puro, sin saltos</p>
-        <CarruselLoop speed={20} gap="gap-16">
+        <p class="text-xs font-mono text-brand-muted uppercase tracking-widest mb-6">Carrusel freeMode — CSS ticker, sin saltos</p>
+        <Carrusel ticker={true} speed={1} slidesPerView="auto" gap={64}>
           {[1,2,3,4,5,6].map(i => (
             <div class="grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
                <img src={`${BASE}imgs/iconos/ico-google-ads.png`} alt="Logo" class="h-12 w-auto object-contain" />
             </div>
           ))}
-        </CarruselLoop>
+        </Carrusel>
       </div>
 
       <!-- Carrusel (Swiper) — Light -->
@@ -546,7 +545,7 @@ const BASE = import.meta.env.BASE_URL;
         <p class="text-xs font-mono text-brand-muted uppercase tracking-widest mb-6">Carrusel Swiper — Light Theme (Default)</p>
         <Carrusel slidesPerView={1} slidesPerViewMd={2} slidesPerViewLg={3} gap={20} pagination={true} navigation={true}>
           {[1,2,3,4,5].map(i => (
-            <div class="swiper-slide h-auto">
+            <div class="embla__slide h-auto">
               <div class="bg-brand-surface border border-brand-border-subtle p-8 rounded-2xl h-full flex flex-col gap-4">
                 <span class="text-brand-primary font-bold">Slide {i}</span>
                 <p class="text-brand-muted text-sm">Este es un slide interactivo usando Swiper.js en su versión clara.</p>
@@ -562,7 +561,7 @@ const BASE = import.meta.env.BASE_URL;
         <p class="text-xs font-mono text-white/30 uppercase tracking-widest mb-6 relative z-10">Carrusel Swiper — Dark Theme</p>
         <Carrusel slidesPerView={1} slidesPerViewMd={2} slidesPerViewLg={3} gap={20} pagination={true} navigation={true} theme="dark">
           {[1,2,3,4,5].map(i => (
-            <div class="swiper-slide h-auto">
+            <div class="embla__slide h-auto">
               <div class="bg-white/5 border border-white/10 p-8 rounded-2xl h-full flex flex-col gap-4 relative z-10">
                 <span class="text-brand-accent font-bold">Slide {i}</span>
                 <p class="text-white/60 text-sm">Versión oscura con arrows y paginación adaptada automáticamente vía prop.</p>

@@ -13,37 +13,43 @@ const BASE = import.meta.env.BASE_URL;
 ---
 
 <div
-  class="flex flex-col items-center w-full p-10 text-center transition-shadow duration-300 bg-brand-surface max-w-85 rounded-xl shadow-sm hover:shadow-lg"
+  class="flex flex-col items-center w-full p-8 text-center transition-shadow duration-300 bg-brand-surface rounded-xl shadow-sm hover:shadow-lg"
 >
   <!-- Image Area -->
-  <div class="relative flex items-end justify-center w-40 mb-6 h-44">
-    <div class="absolute bottom-0 w-40 h-40 rounded-full bg-brand-accent"></div>
+  <div class="relative flex items-end justify-center size-35 mb-6">
+    <div class="absolute bottom-0 size-35 rounded-full bg-brand-accent"></div>
     <img
       src={`${BASE}imgs/team/${image}`}
       alt={name}
-      class="relative z-10 w-32.5 h-37.5 object-cover rounded-t-full rounded-b-2xl"
+      class="relative z-10 size-32.5 object-cover rounded-t-full rounded-b-2xl saturate-0"
     />
   </div>
 
   <!-- Name and Social Icon -->
   <div class="flex items-center justify-center gap-2 mb-3">
-    <h3 class="text-2xl font-bold leading-none font-display text-brand-foreground">
+    <h3
+      class="text-2xl font-bold leading-none font-display text-brand-foreground"
+    >
       {name}
     </h3>
-    {linkedinUrl && (
-      <a
-        href={linkedinUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex items-center transition-colors text-brand-foreground hover:text-brand-primary"
-        aria-label={`LinkedIn de ${name}`}
-      >
-        <Icon lib="social" name="simple-icons:linkedin" size={20} />
-      </a>
-    )}
+    {
+      linkedinUrl && (
+        <a
+          href={linkedinUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center transition-colors text-brand-foreground hover:text-brand-primary"
+          aria-label={`LinkedIn de ${name}`}
+        >
+          <Icon lib="social" name="simple-icons:linkedin" size={20} />
+        </a>
+      )
+    }
   </div>
 
-  <p class="text-xs font-medium tracking-wide uppercase text-brand-muted sm:text-sm">
+  <p
+    class="text-xs font-medium tracking-wide uppercase text-brand-muted sm:text-sm"
+  >
     {role}
   </p>
 </div>

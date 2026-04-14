@@ -6,7 +6,29 @@ interface Props {
 }
 
 const { variant = "dark" } = Astro.props;
-const BASE = import.meta.env.BASE_URL;
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const services = [
+  { name: "Google Ads", href: "/servicio-google-ads" },
+  { name: "Meta Ads", href: "/servicio-meta-ads" },
+  { name: "TikTok Ads", href: "/servicio-tiktok-ads" },
+  { name: "LinkedIn Ads", href: "/servicio-linkedin-ads" },
+  { name: "Bing Ads", href: "/servicio-bing-ads" },
+  { name: "Local SEO", href: "/servicio-local-seo" },
+  { name: "Content SEO", href: "/servicio-content-seo" },
+  { name: "Technical SEO", href: "/servicio-technical-seo" },
+  { name: "Google Analytics", href: "/servicio-google-analytics" },
+  { name: "Asesoramiento", href: "/servicio-asesoramiento" },
+];
+
+const contentLinks = [
+  { name: "Agencia", href: "/agencia" },
+  { name: "Testimonios", href: "/clientes" },
+  { name: "Blog", href: "/blog" },
+  { name: "Oportunidades", href: "/oportunidades" },
+  { name: "FAQs", href: "/faqs" },
+  { name: "Contacto", href: "/contacto" },
+];
 ---
 
 <!-- ----- FOOTER ----- -->
@@ -20,11 +42,13 @@ const BASE = import.meta.env.BASE_URL;
       >
         <!-- Col 1: Logo + Tagline + Social -->
         <m-col class="flex flex-col items-center gap-6 lg:items-start">
-          <img
-            src={`${BASE}imgs/logo.svg`}
-            alt="Mediabros"
-            class="object-contain h-12"
-          />
+          <a href={`${BASE}/`}>
+            <img
+              src={`${BASE}/imgs/logo.svg`}
+              alt="Mediabros"
+              class="object-contain h-12"
+            />
+          </a>
           <p
             class="text-sm leading-relaxed text-center text-brand-muted lg:text-left"
           >
@@ -81,23 +105,12 @@ const BASE = import.meta.env.BASE_URL;
           </h3>
           <div class="grid grid-cols-2 gap-4">
             {
-              [
-                "Google Ads",
-                "Meta Ads",
-                "TikTok Ads",
-                "LinkedIn Ads",
-                "Bing Ads",
-                "Local SEO",
-                "Content SEO",
-                "Technical SEO",
-                "Google Analytics",
-                "Asesoramiento",
-              ].map((s) => (
+              services.map((s) => (
                 <a
-                  href=""
+                  href={`${BASE}${s.href}`}
                   class="text-sm transition-colors duration-200 text-brand-muted hover:text-brand-primary"
                 >
-                  {s}
+                  {s.name}
                 </a>
               ))
             }
@@ -112,19 +125,12 @@ const BASE = import.meta.env.BASE_URL;
             Contenido
           </h3>
           {
-            [
-              "Agencia",
-              "Testimonios",
-              "Blog",
-              "Oportunidades",
-              "FAQs",
-              "Contacto",
-            ].map((s) => (
+            contentLinks.map((s) => (
               <a
-                href=""
+                href={`${BASE}${s.href}`}
                 class="text-sm transition-colors duration-200 text-brand-muted hover:text-brand-primary"
               >
-                {s}
+                {s.name}
               </a>
             ))
           }
@@ -150,7 +156,7 @@ const BASE = import.meta.env.BASE_URL;
                 class="flex items-center gap-2 text-sm transition-colors duration-200 text-brand-muted hover:text-white group whitespace-nowrap"
               >
                 <img
-                  src={`${BASE}imgs/flags/${c.flag}.svg`}
+                  src={`${BASE}/imgs/flags/${c.flag}.svg`}
                   alt={c.label}
                   class="object-contain w-5 h-auto shrink-0"
                 />
@@ -179,12 +185,12 @@ const BASE = import.meta.env.BASE_URL;
         </m-col>
         <m-col class="flex flex-col items-center gap-4 lg:flex-row lg:justify-end lg:gap-6">
           <a
-            href=""
+            href={`${BASE}/politica-de-privacidad`}
             class="text-xs transition-colors duration-200 text-brand-muted hover:text-white"
             >Políticas de Privacidad</a
           >
           <a
-            href=""
+            href={`${BASE}/terminos-y-condiciones`}
             class="text-xs transition-colors duration-200 text-brand-muted hover:text-white"
             >Términos de Uso</a
           >

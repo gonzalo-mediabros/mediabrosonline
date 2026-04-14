@@ -2,19 +2,14 @@
 import Icon from "../atoms/Icon.astro";
 import Glow from "../atoms/Glow.astro";
 import ImageBackground from "../atoms/ImageBackground.astro";
+import Carrusel from "../atoms/Carrusel.astro";
+import { getNavItems } from "../../data/navigation";
 
 const BASE = import.meta.env.BASE_URL;
 
-const services = [
-  { name: "Technical SEO", icon: "ico-seo-technical.png", isActive: false },
-  { name: "Google Ads", icon: "ico-google-ads.png", isActive: false },
-  { name: "Meta Ads", icon: "ico-meta.png", isActive: false },
-  { name: "LinkedIn Ads", icon: "ico-linkedin.png", isActive: false },
-  { name: "TikTok Ads", icon: "ico-tiktok.png", isActive: false },
-  { name: "Content SEO", icon: "ico-seo-content.png", isActive: false },
-  { name: "Local SEO", icon: "ico-seo-local.png", isActive: false },
-  { name: "Asesoramiento", icon: "ico-asesoramiento.png", isActive: false },
-];
+const navItems = getNavItems(BASE);
+const services =
+  navItems.find((item) => item.label === "Servicios")?.children || [];
 ---
 
 <!-- --------------- BIG HERO  --------------- -->
@@ -43,7 +38,7 @@ const services = [
     <Glow
       class="bottom-0 w-full max-w-4xl -translate-x-1/2 left-2/3 h-100 bg-brand-dark opacity-80 -z-10"
     />
-    <!-- bg image end-->
+
     <!-- Main Hero Text -->
     <m-row
       class="z-10 flex flex-col justify-center flex-1 py-16 text-center md:py-24"
@@ -73,60 +68,43 @@ const services = [
     </m-row>
 
     <!-- cards carrusel -->
-    <m-row class="z-10 mt-auto">
-      <m-container class="relative">
-        <!-- Visual Left Arrow -->
-        <div
-          class="absolute left-0 z-20 items-center justify-center hidden w-12 h-12 transition-colors -translate-y-1/2 border rounded-full cursor-pointer top-1/2 lg:flex bg-brand-dark/80 border-white/10 backdrop-blur-md hover:bg-white/10"
-        >
-          <Icon name="chevron_left" size={24} class="text-white" />
-        </div>
-
-        <!-- Scrollable Cards Container -->
-        <div
-          class="flex gap-4 px-2 pb-4 overflow-x-auto md:gap-6 snap-x snap-mandatory lg:px-16"
-          style="scrollbar-width: none;"
-        >
-          {
-            services.map((service) => (
-              <div
-                class={`snap-center sm:snap-start shrink-0 w-65 md:w-75 flex items-center gap-4 rounded-lg p-6 md:p-6 cursor-pointer group transition-colors ${
-                  service.isActive
-                    ? "bg-white/10 border border-white/20 shadow-sm"
-                    : "bg-white/5 border border-white/10 hover:bg-white/10"
-                }`}
-              >
+    <m-row class="z-10 w-full px-26">
+      <Carrusel
+        ticker={true}
+        speed={2}
+        slidesPerView="auto"
+        loop={true}
+        autoplay={0}
+        pauseOnHover={true}
+        arrowsPosition="sides"
+        navigation={true}
+        arrowsX="out"
+        theme="dark"
+      >
+        {
+          services.map((service) => (
+            <a href={service.href}>
+              <div class="w-65 md:w-75 flex items-center gap-4 rounded-lg p-6 cursor-pointer group transition-colors bg-white/5 border border-white/10 hover:bg-white/10">
                 <div class="flex items-center justify-center bg-brand-surface rounded-full size-13 shrink-0">
                   <img
-                    src={`${import.meta.env.BASE_URL}imgs/iconos/${service.icon}`}
-                    alt={`${service.name} Icon`}
+                    src={service.icon}
+                    alt={`${service.label} Icon`}
                     class="size-11"
                   />
                 </div>
                 <div class="flex-1 text-base font-semibold text-left font-display md:text-lg">
-                  {service.name}
+                  {service.label}
                 </div>
                 <Icon
                   name="arrow_forward"
                   size={16}
-                  class={`text-sm transition-colors ${
-                    service.isActive
-                      ? "text-white"
-                      : "text-white/40 group-hover:text-white"
-                  }`}
+                  class="text-sm text-white/40 group-hover:text-white transition-colors"
                 />
               </div>
-            ))
-          }
-        </div>
-
-        <!-- Visual Right Arrow -->
-        <div
-          class="absolute right-0 z-20 items-center justify-center hidden transition-colors -translate-y-1/2 border rounded-full cursor-pointer top-1/2 size-12 lg:flex bg-brand-dark/80 border-white/10 backdrop-blur-md hover:bg-white/10"
-        >
-          <Icon name="chevron_right" size={24} class="text-white" />
-        </div>
-      </m-container>
+            </a>
+          ))
+        }
+      </Carrusel>
     </m-row>
   </div>
 </section>

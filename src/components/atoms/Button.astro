@@ -2,7 +2,7 @@
 import Glow from "./Glow.astro";
 import Icon from "./Icon.astro";
 
-interface Props {
+interface Props extends astroHTML.JSX.AnchorHTMLAttributes, astroHTML.JSX.ButtonHTMLAttributes {
   label: string;
   href?: string;
   type?: "button" | "submit" | "reset";
@@ -16,6 +16,7 @@ const {
   type = "button",
   variant = "celeste",
   class: className,
+  ...rest
 } = Astro.props;
 
 const isLink = !!href;
@@ -42,6 +43,7 @@ const currVariant = variants[variant];
 <Tag
   href={isLink ? href : undefined}
   type={!isLink ? type : undefined}
+  {...rest}
   class:list={[
     "inline-flex items-center gap-3 pl-6 pr-1 py-1 rounded-full font-medium font-display transition-colors no-underline relative overflow-clip",
     isLink ? "cursor-pointer" : "border-none cursor-pointer",

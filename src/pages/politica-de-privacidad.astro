@@ -1,0 +1,86 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroSmall from "../components/ui/HeroSmall.astro";
+import Breadcrumb from "../components/atoms/Breadcrumb.astro";
+import Certificaciones from "../components/ui/Certificaciones.astro";
+import Footer from "../components/ui/Footer.astro";
+
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: "Política de Privacidad" },
+];
+
+const title = "Política de Privacidad | Mediabros Online";
+const description = "Información sobre cómo tratamos y protegemos tus datos personales en Mediabros Online.";
+---
+
+<Layout title={title} description={description}>
+  <HeroSmall
+    title="Política de Privacidad"
+    subtitle="Tu privacidad es importante para nosotros."
+    backgroundImage="pattern-ondulado.svg"
+  />
+
+  <Breadcrumb items={breadcrumbItems} />
+
+  <main class="py-16 md:py-24 bg-brand-bg">
+    <m-container>
+      <div class="max-w-4xl mx-auto flex flex-col gap-6 
+        [&_h2]:text-2xl [&_h2]:font-display [&_h2]:font-bold [&_h2]:text-brand-foreground [&_h2]:mt-8 [&_h2]:mb-4
+        [&_p]:text-brand-muted [&_p]:leading-relaxed [&_p]:mb-4
+        [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-2 [&_ul]:mb-4
+        [&_li]:text-brand-muted
+        [&_strong]:text-brand-muted [&_strong]:font-bold">
+        <h2>1. Responsable del tratamiento de datos</h2>
+        <p>
+          Mediabros Online (en adelante, "nosotros"), con domicilio en la República Argentina, es el responsable del tratamiento de sus datos personales. Nos comprometemos a proteger su privacidad y a tratar sus datos de manera transparente y segura, de conformidad con la Ley de Protección de Datos Personales N° 25.326.
+        </p>
+
+        <h2>2. Datos que recopilamos</h2>
+        <p>Podemos recopilar y tratar los siguientes datos:</p>
+        <ul>
+          <li>Información facilitada a través de formularios en nuestro sitio web (nombre, email, teléfono, empresa).</li>
+          <li>Información proporcionada al postularse a oportunidades laborales (CV, perfil de LinkedIn).</li>
+          <li>Datos de navegación recopilados a través de cookies (ver nuestra Política de Cookies).</li>
+        </ul>
+
+        <h2>3. Finalidad del tratamiento</h2>
+        <p>Sus datos se utilizarán para:</p>
+        <ul>
+          <li>Atender sus consultas y solicitudes de presupuesto.</li>
+          <li>Gestionar sus postulaciones laborales.</li>
+          <li>Mejorar nuestro sitio web y servicios mediante análisis estadísticos.</li>
+          <li>Enviar información comercial relacionada con nuestros servicios si usted lo ha autorizado.</li>
+        </ul>
+
+        <h2>4. Derechos del usuario</h2>
+        <p>
+          Como titular de los datos, usted tiene derecho a acceder, rectificar, actualizar o suprimir sus datos personales de nuestra base de datos en cualquier momento. Para ejercer estos derechos, envíe un correo electrónico a <strong>administracion@mediabrosonline.com</strong> incluyendo una prueba de su identidad.
+        </p>
+
+        <h2>5. Seguridad de los datos</h2>
+        <p>
+          Hemos implementado medidas de seguridad técnicas y organizativas para evitar la pérdida, el mal uso, la alteración o el acceso no autorizado a sus datos personales. Sin embargo, debido a la naturaleza de Internet, no podemos garantizar una seguridad absoluta.
+        </p>
+
+        <h2>6. Transferencias internacionales</h2>
+        <p>
+          Mediabros utiliza servicios de terceros (como Google Analytics o CRM en la nube) que pueden estar ubicados fuera de Argentina. Al utilizar nuestro sitio, usted acepta que sus datos puedan ser transferidos y tratados en países con normativas de protección de datos diferentes.
+        </p>
+
+        <h2>7. Cambios en la política</h2>
+        <p>
+          Nos reservamos el derecho de modificar esta política en cualquier momento. La versión actualizada se publicará siempre en esta página.
+        </p>
+
+        <h2>8. Contacto</h2>
+        <p>
+          Para cualquier duda sobre esta Política o sobre el tratamiento de sus datos, puede escribirnos a administracion@mediabrosonline.com.
+        </p>
+      </div>
+    </m-container>
+  </main>
+
+  <Certificaciones />
+  <Footer />
+</Layout>

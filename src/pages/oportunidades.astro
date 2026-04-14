@@ -1,0 +1,284 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroSmall from "../components/ui/HeroSmall.astro";
+import Breadcrumb from "../components/atoms/Breadcrumb.astro";
+import Certificaciones from "../components/ui/Certificaciones.astro";
+import Footer from "../components/ui/Footer.astro";
+import CardCta from "../components/atoms/CardCta.astro";
+import ChipOvertitle from "../components/atoms/ChipOvertitle.astro";
+import Button from "../components/atoms/Button.astro";
+
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: "Oportunidades" },
+];
+
+const openPositions = [
+  {
+    title: "Campaign Manager",
+    shortDescription:
+      "Implementación, análisis e optimización de campañas de Google Ads y Meta Ads. 2+ años de experiencia.",
+    fullContent: `
+      <p>Como Campaign Manager tendrás un rol clave en la <strong>implementación, análisis e optimización</strong> de campañas de Google Ads y Meta Ads buscando maximizar el valor generado a nuestros clientes. Si tenés más de <strong>2 años de experiencia</strong> en posiciones similares, sos apasionado por el mundo digital y buscás unirte a un equipo con buen clima y altamente productivo, esta oportunidad es para vos.</p>
+  <h4>Tareas y responsabilidades</h4>
+      <ul>
+        <li><strong>Implementar, monitorear y analizar</strong> campañas de Paid Media en canales de Search, Social y Display generando valor para clientes B2B y B2C.</li>
+        <li>Responsable de la <strong>optimización en el día a día</strong> asegurando la entrega de las campañas y el alcance de los objetivos, realizando ajustes en los creativos, los copys, la configuración y las audiencias.</li>
+        <li><strong>Excelente comunicación</strong> y asesoramiento directo a clientes manejando herramientas de Google Ads, Meta Business Manager, Google Analytics, Data Studio y otras plataformas complementarias.</li>
+        <li>Realizar <strong>análisis de rendimiento</strong>, preparar informes periódicos de los principales indicadores e identificar tendencias y oportunidades de mejoras.</li>
+        <li>Desarrollar y adoptar procesos que mejoren la productividad y los resultados, compartiendo mejores prácticas con el equipo.</li>
+      </ul>
+<h4>Requisitos para aplicar</h4>
+      <ul>
+        <li><strong>2 años de experiencia</strong> implementando y optimizando campañas de Google Ads, Facebook Ads e Instagram Ads.</li>
+        <li>Capacidad de <strong>análisis crítico y aprendizaje autodidacta.</strong></li>
+        <li>Experiencia manejando múltiples tareas, priorizando y ejecutando en tiempo y forma.</li>
+        <li>Conocimientos básicos de Tag Manager, Google Analytics y Merchant Center.</li>
+        <li><strong>Ser residente de Argentina con disponibilidad full-time.</strong></li>
+        <li>Es un plus: tener experiencia con Tag Manager, Google Analytics, Merchant Center y / o haber trabajado en agencias de marketing por más de 1 año.</li>
+      </ul>
+    `,
+  },
+  {
+    title: "Sr. Paid Media Expert",
+    shortDescription:
+      "Diseño y optimización avanzada de estrategias de Paid Media buscando maximizar el ROI. 3+ años de experiencia.",
+    fullContent: `
+      <p>Como Paid Media Expert tendrás un rol clave en el <strong>diseño, la implementación y la optimización de campañas</strong> de Google Ads y Meta Ads buscando maximizar el valor generado a nuestros clientes. Si tenés <strong>3 años de experiencia</strong> en implementación y optimización de campañas de Paid Media, sos apasionado por el mundo digital y buscás unirte a un equipo con buen clima y altamente productivo, esta oportunidad es para vos.</p>
+  <h4>Tareas y responsabilidades</h4>
+      <ul>
+        <li><strong>Serás responsable de implementaciones avanzadas, monitorear y analizar campañas</strong> de Paid Media en canales de Search, Social y Display generando valor para clientes B2B y B2C.</li>
+        <li><strong>Optimizar estrategias en el día a día</strong> asegurando la entrega de las campañas y el alcance de los objetivos, realizando ajustes en los creativos, los copys, la configuración y las audiencias.</li>
+        <li><strong>Excelente comunicación</strong> y asesoramiento directo a clientes manejando herramientas de Google Ads, Meta Business Manager, Google Analytics, Data Studio y otras plataformas complementarias.</li>
+        <li>Realizar <strong>análisis de rendimiento,</strong> preparar informes periódicos de los principales indicadores e identificar tendencias y oportunidades de mejoras.</li>
+        <li>Desarrollar y adoptar procesos que mejoren la productividad y los resultados, compartiendo mejores prácticas con el equipo.</li>
+      </ul>
+<h4>Requisitos para aplicar</h4>
+      <ul>
+        <li><strong>3 años de experiencia</strong> implementando, analizando keywords y optimizando campañas de Google Ads, Facebook Ads e Instagram Ads.</li>
+        <li><strong>Experto técnico</strong> de Paid Media. Aprendizaje autodidacta.</li>
+        <li>Ser detallista, tener capacidad de priorización y pensamiento crítico.</li>
+        <li>Conocimientos básicos de Tag Manager, Google Analytics y Merchant Center.</li>
+        <li>Ser residente de Argentina con disponibilidad full-time.</li>
+      </ul>
+    `,
+  },
+  {
+    title: "Paid Media Strategist",
+    shortDescription:
+      "Estratega enfocado en entender necesidades de clientes y crear estructuras de pauta digital de alto impacto.",
+    fullContent: `
+      <p>Como Paid Media Strategist tendrás un rol clave en el <strong>armado de estrategias de paid media buscando maximizar el valor generado a nuestros clientes</strong>. Si tenés más de 3 años de experiencia en posiciones similares, sos apasionado por el mundo digital y buscás unirte a un equipo con buen clima y altamente productivo, esta oportunidad es para vos.</p>
+  <h4>Tareas y responsabilidades</h4>
+      <ul>
+        <li>Serás el responsable de <strong>entender las necesidades de nuestros clientes y crear estructuras de campañas</strong> digitales que maximicen el valor de su inversión, implementando mejores prácticas de Paid Media.</li>
+        <li>Realizar <strong>estudios de keywords, implementar, optimizar y monitorear</strong> campañas de Paid Media en canales de Search, Social y Display asegurando la entrega de las campaña, la llegada al mercado objetivo y la maximización del ROAS.</li>
+        <li>Tener <strong>excelente comunicación interna y externa</strong> y desarrollar relaciones a largo plazo con la cartera de clientes asignada.</li>
+        <li>Realizar análisis de rendimiento, <strong>identificar tendencias y oportunidades</strong> de mejoras combinando información de Google Ads, Meta Business Manager, Google Analytics, Data Studio y otras plataformas complementarias.</li>
+      </ul>
+<h4>Requisitos para aplicar</h4>
+      <ul>
+        <li><strong>Al menos 3 años de experiencia y excelente dominio</strong> de Google Ads, Meta Ads y Marketing Digital en general.</li>
+        <li>Aprendizaje autodidacta, capacidad de análisis crítico, identificación de tendencias y generación de conclusiones.</li>
+        <li>Ser residente de Argentina con disponibilidad full-time.</li>
+      </ul>
+    `,
+  },
+  {
+    title: "Diseñador Gráfico / Web",
+    shortDescription:
+      "Creación de piezas publicitarias, banners y diseño UX enfocado en conversiones.",
+    fullContent: `
+      <p>Como Diseñador gráfico tendrás un rol clave en el armado de piezas para promocionar los productos y servicios de nuestros clientes y mejorar la experiencia de sus usuarios en la web. Si tenés 2 años de experiencia realizando tareas similares, sos apasionado por el mundo digital y buscás unirte a un equipo con buen clima y altamente productivo, esta oportunidad es para vos.</p>
+  <h4>Tareas y responsabilidades</h4>
+      <ul>
+        <li>Serás el responsable de diseñar las piezas de campañas y UX de los sitios web de nuestros clientes.</li>
+        <li>Crear y validar los diseños de banners publicitarios, logos e imágenes para ser usadas en las campañas de Paid Media en canales de Search, Social y Display.</li>
+        <li>Maquetar y diseñar páginas web y landing pages, implementando estrategias de SEO y programando la publicación de artículos.</li>
+      </ul>
+<h4>Requisitos para aplicar</h4>
+      <ul>
+        <li>2 años de experiencia como diseñador en agencia o freelance (Es un plus tener experiencia en marketing digital).</li>
+        <li>Aprendizaje autodidacta, capacidad de manejar múltiples tareas, priorizando y tomando acción.</li>
+        <li>Manejo de pack de Adobe, edición básica de video y (no excluyente) WordPress.</li>
+        <li>Ser residente de Argentina con disponibilidad full time.</li>
+      </ul>
+    `,
+  },
+];
+
+const title = "Oportunidades Laborales | Mediabros Online";
+const description =
+  "Sumate al equipo de Mediabros. Buscamos apasionados por el marketing digital con ganas de crecer en un entorno dinámico.";
+---
+
+<Layout title={title} description={description}>
+  <HeroSmall
+    title="Oportunidades Laborales"
+    subtitle="Solo para apasionados por el mundo digital."
+    backgroundImage="pattern-ondulado.svg"
+  />
+
+  <Breadcrumb items={breadcrumbItems} />
+
+  <main class="bg-brand-bg">
+    {/* Intro Section */}
+    <section class="py-16 md:py-24">
+      <m-container>
+        <m-row class="gap-12 items-start">
+          <m-col class="lg:w-1/2 flex flex-col gap-6">
+            <ChipOvertitle text="Sumate al equipo" />
+            <h2
+              class="text-4xl md:text-5xl font-display text-brand-foreground tracking-tight"
+            >
+              Trabajá en Mediabros
+            </h2>
+          </m-col>
+          <m-col class="lg:w-1/2">
+            <p class="text-lg text-brand-muted leading-relaxed">
+              En Mediabros buscamos personas con pasión por el marketing
+              digital, mentalidad data-driven y ganas de crecer en un equipo
+              dinámico. Trabajamos con metodologías ágiles, tecnología propia y
+              clientes B2B de toda LATAM. Valoramos la autonomía, la
+              comunicación clara y el foco en resultados.
+            </p>
+          </m-col>
+        </m-row>
+      </m-container>
+    </section>
+
+    {/* Benefits Grid */}
+    <section class="py-16 bg-brand-bg-alt">
+      <m-container>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="flex flex-col gap-4">
+            <span class="material-icons text-brand-primary text-4xl"
+              >trending_up</span
+            >
+            <h3 class="text-xl font-display font-bold text-brand-foreground">
+              Crecimiento profesional
+            </h3>
+            <p class="text-sm text-brand-muted">
+              Acceso a capacitaciones, certificaciones y un entorno de
+              aprendizaje continuo.
+            </p>
+          </div>
+          <div class="flex flex-col gap-4">
+            <span class="material-icons text-brand-primary text-4xl"
+              >groups</span
+            >
+            <h3 class="text-xl font-display font-bold text-brand-foreground">
+              Equipo multidisciplinario
+            </h3>
+            <p class="text-sm text-brand-muted">
+              Trabajá con especialistas en SEO, Paid Media, Analytics y
+              Desarrollo.
+            </p>
+          </div>
+          <div class="flex flex-col gap-4">
+            <span class="material-icons text-brand-primary text-4xl"
+              >laptop_mac</span
+            >
+            <h3 class="text-xl font-display font-bold text-brand-foreground">
+              Flexibilidad
+            </h3>
+            <p class="text-sm text-brand-muted">
+              Modalidad híbrida/remota con foco en resultados, no en horarios.
+            </p>
+          </div>
+          <div class="flex flex-col gap-4">
+            <span class="material-icons text-brand-primary text-4xl"
+              >public</span
+            >
+            <h3 class="text-xl font-display font-bold text-brand-foreground">
+              Impacto real
+            </h3>
+            <p class="text-sm text-brand-muted">
+              Tu trabajo impacta directamente en los resultados de empresas de
+              toda LATAM.
+            </p>
+          </div>
+        </div>
+      </m-container>
+    </section>
+
+    {/* Positions Section */}
+    <section class="py-16 md:py-24">
+      <m-container>
+        <h2
+          class="text-3xl md:text-4xl font-display text-brand-foreground mb-12"
+        >
+          Búsquedas activas
+        </h2>
+
+        <div class="grid grid-cols-1 gap-8 mb-16">
+          {
+            openPositions.map((pos) => (
+              <div class="p-8 border border-brand-border-subtle rounded-2xl bg-brand-surface hover:border-brand-primary/30 transition-colors">
+                <details class="group">
+                  <summary class="list-none cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div class="flex flex-col gap-2">
+                      <h3 class="text-3xl font-display font-bold text-brand-foreground group-hover:text-brand-primary transition-colors">
+                        {pos.title}
+                      </h3>
+                      <p class="text-brand-muted max-w-2xl leading-relaxed">
+                        {pos.shortDescription}
+                      </p>
+                    </div>
+                    <div class="flex items-center gap-2 text-brand-primary font-bold text-sm uppercase tracking-wider whitespace-nowrap">
+                      <span class="group-open:hidden">Ver detalles</span>
+                      <span class="hidden group-open:block">Cerrar</span>
+                      <span class="material-icons transition-transform group-open:rotate-180">
+                        expand_more
+                      </span>
+                    </div>
+                  </summary>
+                  {/* detalle */}
+                  <div
+                    class="mt-12 pt-12 border-t border-brand-border-subtle flex flex-col gap-5
+                    [&_h4]:text-base [&_h4]:font-bold [&_h4]:text-brand-foreground [&_h4]:mt-4 [&_h4]:mb-4
+                    [&_p]:text-brand-muted [&_p]:leading-relaxed
+                    [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-2
+                    [&_li]:text-brand-muted
+                    [&_strong]:text-brand-muted [&_strong]:font-bold"
+                  >
+                    <div set:html={pos.fullContent} />
+
+                    {/* banner te interesa la propuesta */}
+                    <div class="mt-12 flex flex-col sm:flex-row items-center gap-6 p-8 bg-brand-bg rounded-xl">
+                      <div class="flex-1 text-center sm:text-left">
+                        <p class="text-lg font-bold text-brand-foreground mb-1">
+                          ¿Te interesa la propuesta?
+                        </p>
+                        <p class="text-sm text-brand-muted">
+                          Envianos tus datos completando el formulario de
+                          postulación.
+                        </p>
+                      </div>
+                      <Button
+                        label="Postularse ahora"
+                        href="https://forms.gle/e2VTEdJJ4i7YQ28j9"
+                        target="_blank"
+                      />
+                    </div>
+                  </div>
+                </details>
+              </div>
+            ))
+          }
+        </div>
+
+        <CardCta
+          variant="dark"
+          overtitle="¿No encontraste tu posición?"
+          title="Envianos tu CV de todos modos"
+          buttonLabel="Escribinos"
+          buttonHref="mailto:jobs@mediabrosonline.com"
+        />
+      </m-container>
+    </section>
+  </main>
+
+  <Certificaciones />
+  <Footer />
+</Layout>

@@ -5,78 +5,104 @@ import HeroSmall from "../components/ui/HeroSmall.astro";
 import Breadcrumb from "../components/atoms/Breadcrumb.astro";
 import ChipOvertitle from "../components/atoms/ChipOvertitle.astro";
 import Carrusel from "../components/atoms/Carrusel.astro";
-import CardTestimonial from "../components/atoms/CardTestimonial.astro";
+import CardTestimonialVideo from "../components/atoms/CardTestimonialVideo.astro";
 import CardCta from "../components/atoms/CardCta.astro";
+import Icon from "../components/atoms/Icon.astro";
 import Certificaciones from "../components/ui/Certificaciones.astro";
 import Footer from "../components/ui/Footer.astro";
 import { CLIENTS } from "../data/clients.ts";
+import Button from "../components/atoms/Button.astro";
 
 const { pathname } = Astro.url;
 const BASE = import.meta.env.BASE_URL;
 
 const industries = [
-  { label: "Seguridad", slug: "seguridad" },
-  { label: "Logística", slug: "logistica" },
-  { label: "E. Renovables", slug: "energias-renovables" },
-  { label: "Servicios", slug: "servicios" },
-  { label: "Maquinaria", slug: "maquinaria" },
-  { label: "Industria", slug: "industria" },
-  { label: "Construcción", slug: "construccion" },
-  { label: "Salud", slug: "salud" },
-  { label: "Alimentos", slug: "alimentos" },
-  { label: "Automotriz", slug: "automotriz" },
-  { label: "Mobiliario", slug: "mobiliario" },
-  { label: "Mayoreo", slug: "mayoreo" },
+  { label: "Seguridad", icon: "security" },
+  { label: "Logística", icon: "local_shipping" },
+  { label: "E. Renovables", icon: "energy_savings_leaf" },
+  { label: "Servicios", icon: "support_agent" },
+  { label: "Maquinaria", icon: "precision_manufacturing" },
+  { label: "Industria", icon: "factory" },
+  { label: "Construcción", icon: "architecture" },
+  { label: "Salud", icon: "medical_services" },
+  { label: "Alimentos", icon: "restaurant" },
+  { label: "Automotriz", icon: "directions_car" },
+  { label: "Mobiliario", icon: "chair" },
+  { label: "Mayoreo", icon: "store" },
 ];
 
 const testimonials = [
   {
-    quote: "Gracias a Mediabros logramos triplicar nuestros leads en 6 meses.",
-    authorName: "Gato Dumas",
-    authorRole: "Escuela de Cocina",
-    authorImage: `${BASE}imgs/clientes/gato-dumas.webp`,
+    quote:
+      "Desde 2018 trabajamos con Mediabros con muy buenos resultados, logrando un crecimiento sostenido de interesados en nuestros cursos y la confianza para seguir trabajando juntos.",
+    authorName: "Lucas Silva",
+    authorRole: "Instituto Gato Dumas",
+    videoUrl: "https://www.youtube.com/embed/dtq26W-1fj0",
+    thumbnail:
+      "https://mediabrosonline.com/new/wp-content/uploads/2025/12/Gato-Dumas.webp",
   },
   {
-    quote: "El equipo entiende el negocio B2B. Nos ayudaron a posicionarnos en un mercado muy competitivo.",
-    authorName: "Bandera",
-    authorRole: "Empresa de Seguridad",
-    authorImage: `${BASE}imgs/clientes/bandera.webp`,
+    quote:
+      "Nuestra experiencia con Mediabros ha sido excelente. Son profesionales muy capacitados y su plataforma me permite ver de forma práctica los resultados de nuestras campañas en Google Ads y Meta Ads.",
+    authorName: "Luismar Vargas",
+    authorRole: "Centro Médico Bandera",
+    videoUrl: "https://www.youtube.com/embed/GfW_YOXZnuk",
+    thumbnail:
+      "https://mediabrosonline.com/new/wp-content/uploads/2025/12/bandera.png",
   },
   {
-    quote: "La estrategia digital que implementaron transformó nuestra presencia online y nuestras ventas.",
-    authorName: "La Areté",
-    authorRole: "Institución Educativa",
-    authorImage: `${BASE}imgs/clientes/la-arete.webp`,
+    quote:
+      "Encontramos en Mediabros un gran partner para SEO y paid media. Logramos duplicar el tráfico de nuestros clientes y obtener muy buenos indicadores de conversión, llegando al público correcto.",
+    authorName: "Eliana Tunarroza",
+    authorRole: "La Areté / Institución Educativa",
+    videoUrl: "https://www.youtube.com/embed/7-yxVGgZwzc",
+    thumbnail:
+      "https://mediabrosonline.com/new/wp-content/uploads/2025/12/La-Arete.webp",
   },
   {
-    quote: "Profesionalismo y resultados medibles desde el primer mes de trabajo.",
-    authorName: "Cliente LATAM",
-    authorRole: "Industria Logística",
-    authorImage: `${BASE}imgs/clientes/logo-placeholder.webp`,
+    quote:
+      "Con Mediabros tuvimos una experiencia muy satisfactoria, con comunicación clara desde el inicio y un plan de trabajo alineado a nuestras necesidades. Ejecutaron estrategias de forma constante.",
+    authorName: "Adrian Reyes",
+    authorRole: "Caliza",
+    videoUrl: "https://www.youtube.com/embed/qodfPZ9d-AQ",
+    thumbnail:
+      "https://mediabrosonline.com/new/wp-content/uploads/2025/12/CALIZA_.webp",
   },
   {
-    quote: "Mediabros nos ayudó a entender nuestros datos y tomar mejores decisiones de marketing.",
-    authorName: "Cliente LATAM",
-    authorRole: "Servicios Profesionales",
-    authorImage: `${BASE}imgs/clientes/logo-placeholder.webp`,
+    quote:
+      "Con Mediabros hemos tenido una experiencia muy positiva. Son un equipo profesional, comprometido y estructurado, adaptándose completamente a nuestras necesidades y presupuestos.",
+    authorName: "Felipe Canales",
+    authorRole: "Nearway",
+    videoUrl: "https://www.youtube.com/embed/74R_hErDmFg",
+    thumbnail:
+      "https://mediabrosonline.com/new/wp-content/uploads/2025/12/Nearway_.jpg",
   },
   {
-    quote: "Excelente comunicación y equipo comprometido con nuestros objetivos.",
-    authorName: "Cliente LATAM",
-    authorRole: "Tecnología",
-    authorImage: `${BASE}imgs/clientes/logo-placeholder.webp`,
+    quote:
+      "Con Mediabros hemos tenido una experiencia excelente. Son un equipo altamente profesional y resolutivo, siempre dispuestos a orientarnos en las mejores decisiones. Una de las mejores agencias.",
+    authorName: "Sara Zambrano Morón",
+    authorRole: "Llegó",
+    videoUrl: "https://www.youtube.com/embed/_4Rw2-iD_Xc",
+    thumbnail:
+      "https://mediabrosonline.com/new/wp-content/uploads/2025/12/Zambrano.webp",
   },
   {
-    quote: "Superaron nuestras expectativas en cada campaña que lanzamos juntos.",
-    authorName: "Cliente LATAM",
-    authorRole: "Salud",
-    authorImage: `${BASE}imgs/clientes/logo-placeholder.webp`,
+    quote:
+      "En 2021 comenzamos a trabajar con Mediabros como partner de performance para anuncios digitales. Optimizamos campañas y terminamos aumentando considerablemente la tasa de conversión.",
+    authorName: "Esteban Airaldo",
+    authorRole: "Sueno Dorado",
+    videoUrl: "https://www.youtube.com/embed/bCyTzYDvmvw",
+    thumbnail:
+      "https://mediabrosonline.com/new/wp-content/uploads/2025/12/Sueno-Dorado.webp",
   },
   {
-    quote: "Una agencia que realmente entiende el mundo B2B y sabe cómo generar demanda real.",
-    authorName: "Cliente LATAM",
-    authorRole: "Construcción",
-    authorImage: `${BASE}imgs/clientes/logo-placeholder.webp`,
+    quote:
+      "Con Mediabros trabajamos performance y SEO para el lanzamiento del ecommerce. En pocos meses lograron posicionar categorías clave en el puesto número uno de Google, generando consultas relevantes.",
+    authorName: "Agustín Tiscornia",
+    authorRole: "Electrocity",
+    videoUrl: "https://www.youtube.com/embed/DCpicQIYcVA",
+    thumbnail:
+      "https://mediabrosonline.com/new/wp-content/uploads/2025/12/Electrocity_.webp",
   },
 ];
 ---
@@ -99,21 +125,26 @@ const testimonials = [
     <m-container>
       <div class="mb-10">
         <ChipOvertitle text="Historias de éxito" />
-        <h2 class="mt-4 text-4xl md:text-5xl font-display leading-tight text-brand-foreground">
+        <h2
+          class="mt-4 text-4xl md:text-5xl font-display leading-tight text-brand-foreground"
+        >
           Testimonios de nuestros clientes
         </h2>
       </div>
-      <Carrusel slidesPerView={1} slidesPerViewMd={2} navigation={true} pagination={true}>
-        {testimonials.map((t) => (
-          <div class="swiper-slide">
-            <CardTestimonial
-              quote={t.quote}
-              authorName={t.authorName}
-              authorRole={t.authorRole}
-              authorImage={t.authorImage}
-            />
-          </div>
-        ))}
+      <Carrusel slidesPerView={3} navigation={true} pagination={true}>
+        {
+          testimonials.map((t) => (
+            <div class="embla__slide mb-12">
+              <CardTestimonialVideo
+                quote={t.quote}
+                authorName={t.authorName}
+                authorRole={t.authorRole}
+                videoUrl={t.videoUrl}
+                thumbnail={t.thumbnail}
+              />
+            </div>
+          ))
+        }
       </Carrusel>
     </m-container>
   </section>
@@ -137,16 +168,21 @@ const testimonials = [
       <m-row class="gap-10 md:gap-16 items-start">
         <m-col class="md:w-1/2">
           <ChipOvertitle text="Relaciones de confianza" />
-          <h2 class="mt-4 text-4xl md:text-5xl font-display leading-tight text-brand-foreground">
+          <h2
+            class="mt-4 text-4xl md:text-5xl font-display leading-tight text-brand-foreground"
+          >
             Empresas con las que trabajamos
           </h2>
         </m-col>
         <m-col class="md:w-1/2 space-y-4">
           <p class="text-base leading-relaxed text-brand-muted">
-            En Mediabros construimos relaciones de largo plazo con nuestros clientes. No buscamos cuentas, buscamos socios estratégicos que quieran crecer de manera sostenida.
+            En Mediabros construimos relaciones de largo plazo con nuestros
+            clientes. No buscamos cuentas, buscamos socios estratégicos que
+            quieran crecer de manera sostenida.
           </p>
           <p class="text-base leading-relaxed text-brand-muted">
-            Trabajamos con empresas de más de 12 industrias en Argentina, México, Colombia y toda la región LATAM.
+            Trabajamos con empresas de más de 12 industrias en Argentina,
+            México, Colombia y toda la región LATAM.
           </p>
         </m-col>
       </m-row>
@@ -157,21 +193,18 @@ const testimonials = [
   <section class="py-16 bg-brand-surface">
     <m-container>
       <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-        {industries.map((industry) => (
-          <div class="flex flex-col items-center gap-3">
-            <div class="w-16 h-16 rounded-xl bg-brand-bg flex items-center justify-center overflow-hidden">
-              <img
-                src={`${BASE}imgs/clientes/industrias/${industry.slug}.webp`}
-                alt={industry.label}
-                class="w-10 h-10 object-contain"
-                onerror="this.style.display='none'"
-              />
+        {
+          industries.map((industry) => (
+            <div class="flex flex-col items-center gap-3">
+              <div class="w-16 h-16 rounded-xl bg-brand-bg flex items-center justify-center text-brand-celeste">
+                <Icon name={industry.icon} size={32} />
+              </div>
+              <span class="text-xs font-medium text-center text-brand-muted uppercase tracking-wide">
+                {industry.label}
+              </span>
             </div>
-            <span class="text-xs font-medium text-center text-brand-muted uppercase tracking-wide">
-              {industry.label}
-            </span>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </m-container>
   </section>
@@ -179,17 +212,75 @@ const testimonials = [
   <!-- Logos de clientes -->
   <section class="py-16 md:py-20 bg-brand-bg">
     <m-container>
-      <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
-        {CLIENTS.map((client) => (
-          <img
-            src={`${BASE}imgs/clientes/logos/${client.url}`}
-            alt={client.name}
-            class="w-full h-10 object-contain grayscale hover:grayscale-0 transition-all duration-300"
-          />
-        ))}
+      <div
+        id="clients-grid"
+        class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 md:gap-8 items-center"
+      >
+        {
+          CLIENTS.map((client, index) => (
+            <img
+              src={`${BASE}imgs/clientes/logos/${client.url}`}
+              alt={client.name}
+              loading="lazy"
+              class:list={[
+                "w-full h-24 md:h-32 object-contain grayscale hover:grayscale-0 transition-all duration-500 mix-blend-multiply client-logo",
+                index >= 14
+                  ? "hidden opacity-0 translate-y-4"
+                  : "block opacity-100 translate-y-0",
+              ]}
+            />
+          ))
+        }
       </div>
+
+      {
+        CLIENTS.length > 14 && (
+          <div class="mt-16 flex justify-center">
+            <Button
+              type="button"
+              id="load-more-clients"
+              variant="celeste"
+              label="Ver más "
+            />
+          </div>
+        )
+      }
     </m-container>
   </section>
+
+  <script>
+    function setupLoadMore() {
+      const btn = document.getElementById("load-more-clients");
+      const hiddenLogos = document.querySelectorAll(".client-logo.hidden");
+
+      if (!btn || hiddenLogos.length === 0) return;
+
+      btn.addEventListener("click", () => {
+        hiddenLogos.forEach((logo, index) => {
+          // Primero mostramos el elemento (quitamos hidden)
+          logo.classList.remove("hidden");
+
+          // Pequeño delay para asegurar que el navegador registre el cambio antes de la animación
+          setTimeout(() => {
+            logo.classList.remove("opacity-0", "translate-y-4");
+            logo.classList.add("opacity-100", "translate-y-0");
+          }, index * 30); // Efecto cascada de 30ms por logo
+        });
+
+        // Ocultar el botón con una transición suave
+        btn.style.opacity = "0";
+        btn.style.pointerEvents = "none";
+        setTimeout(() => {
+          btn.parentElement?.remove();
+        }, 300);
+      });
+    }
+
+    // Inicialización
+    setupLoadMore();
+    // Soporte para Astro View Transitions
+    document.addEventListener("astro:after-swap", setupLoadMore);
+  </script>
 
   <Certificaciones />
   <Footer />
