@@ -1,0 +1,157 @@
+---
+import Form from "../form/Form.astro";
+import LeadForm from "../atoms/LeadForm.astro";
+import Input from "../form/Input.astro";
+
+// Form Demo: campos simples
+const formDemoFields = [
+  {
+    type: "input",
+    name: "nombre",
+    label: "Nombre",
+    placeholder: "Tu nombre completo",
+    required: true,
+  },
+  {
+    type: "input",
+    name: "email",
+    label: "Email",
+    inputType: "email",
+    placeholder: "tu@email.com",
+    required: true,
+  },
+  {
+    type: "textarea",
+    name: "mensaje",
+    label: "Mensaje",
+    placeholder: "Cuéntanos cómo podemos ayudarte",
+    rows: 4,
+    required: true,
+  },
+];
+
+// LeadForm Demo: campos diversos
+const leadFormFields = [
+  {
+    type: "input",
+    name: "nombre",
+    label: "Nombre completo",
+    inputType: "text",
+    required: true,
+  },
+  {
+    type: "input",
+    name: "email",
+    label: "Email",
+    inputType: "email",
+    required: true,
+  },
+  {
+    type: "select",
+    name: "tema",
+    label: "Tema de interés",
+    required: true,
+    options: [
+      { value: "diseño", label: "Diseño web" },
+      { value: "marketing", label: "Marketing digital" },
+      { value: "desarrollo", label: "Desarrollo custom" },
+      { value: "otro", label: "Otro" },
+    ],
+  },
+  {
+    type: "checkbox",
+    name: "terminos",
+    label: "Acepto los términos y condiciones",
+    required: true,
+  },
+];
+---
+
+<div class="space-y-12 p-8">
+  <!-- Form Demo: versión desnuda, sin presentación -->
+  <section>
+    <h2 class="text-2xl font-bold mb-4">Form Component Demo</h2>
+    <p class="text-gray-600 mb-6">
+      Versión desnuda: solo el formulario, sin decoración. Aceptar solo campos
+      como props.
+    </p>
+
+    <div class="border border-gray-200 rounded-lg p-6 bg-gray-50">
+      <Form
+        fields={formDemoFields}
+        buttonText="Enviar consulta"
+        theme="light"
+      />
+    </div>
+  </section>
+
+  <!-- LeadForm Demo: Light theme -->
+  <section>
+    <h2 class="text-2xl font-bold mb-4">
+      LeadForm Component Demo — Light Theme
+    </h2>
+    <p class="text-gray-600 mb-6">
+      LeadForm con presentación completa: título, subtítulo, y footer opcional.
+    </p>
+
+    <LeadForm
+      title="Solicitar consulta"
+      subtitle="Cuéntanos tus necesidades y uno de nuestros especialistas se contactará contigo."
+      buttonText="Agendar consulta"
+      theme="light"
+      fields={leadFormFields}
+    >
+      <fragment slot="footer">
+        <div class="footer-item">
+          <span class="material-symbols-outlined">shield_check</span>
+          <span>Datos seguros</span>
+        </div>
+        <div class="footer-item">
+          <span class="material-symbols-outlined">schedule</span>
+          <span>Respuesta en 24h</span>
+        </div>
+      </fragment>
+    </LeadForm>
+  </section>
+
+  <!-- LeadForm Demo: Dark theme -->
+  <section>
+    <h2 class="text-2xl font-bold mb-4">
+      LeadForm Component Demo — Dark Theme
+    </h2>
+    <p class="text-gray-600 mb-6">
+      LeadForm con tema oscuro y variantes de presentación.
+    </p>
+
+    <LeadForm
+      title="Asesoramiento personalizado"
+      subtitle="Completa tus datos y nos ponemos en contacto."
+      buttonText="Agendar reunión"
+      theme="dark"
+      fields={leadFormFields}
+    >
+      <fragment slot="footer">
+        <div class="footer-item">
+          <span class="material-symbols-outlined">verified_user</span>
+          <span>Confidencial</span>
+        </div>
+        <div class="footer-item">
+          <span class="material-symbols-outlined">support_agent</span>
+          <span>Soporte dedicado</span>
+        </div>
+      </fragment>
+    </LeadForm>
+  </section>
+</div>
+
+<style>
+  :global(.footer-item) {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+  }
+
+  :global(.material-symbols-outlined) {
+    font-size: 0.75rem;
+  }
+</style>

@@ -1,0 +1,47 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/ui/Navigation.astro";
+import Footer from "../components/ui/Footer.astro";
+import HeroSmall from "../components/ui/HeroSmall.astro";
+import Breadcrumb from "../components/atoms/Breadcrumb.astro";
+import SidebarBlog from "../components/ui/SidebarBlog.astro";
+import CardBlog from "../components/atoms/CardBlog.astro";
+import { mainPosts } from "../data/blog";
+
+const { pathname } = Astro.url;
+---
+
+<Layout title="Blog | Mediabros" description="Noticias, novedades y estrategias de marketing digital de Mediabros">
+  <Navigation pathname={pathname} logo="logo-text-blanco.svg" />
+  
+  <HeroSmall title="Blog" subtitle="Novedades, estrategias e insights del mundo publicitario" />
+  
+  <Breadcrumb 
+    items={[
+      { label: "Inicio", href: "/" },
+      { label: "Blog" }
+    ]} 
+  />
+
+  <section class="section-py-sm">
+    <m-container>
+      <div class="flex flex-col lg:flex-row lg:items-start gap-10">
+        <!-- Main Content -->
+        <div class="flex-1 min-w-0 flex flex-col gap-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {mainPosts.map((post) => (
+              <CardBlog {...post} variant="default" />
+            ))}
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="lg:w-80 shrink-0 sticky top-24">
+          <SidebarBlog />
+        </div>
+      </div>
+    </m-container>
+  </section>
+
+  <Footer />
+</Layout>

@@ -13,6 +13,8 @@ import ImageBackground from "../components/atoms/ImageBackground.astro";
 import CardCta from "../components/atoms/CardCta.astro";
 import CardSection from "../components/atoms/CardSection.astro";
 import Carrusel from "../components/atoms/Carrusel.astro";
+import Form from "../components/form/Form.astro";
+import LeadForm from "../components/atoms/LeadForm.astro";
 
 const BASE = import.meta.env.BASE_URL;
 ---
@@ -24,7 +26,7 @@ const BASE = import.meta.env.BASE_URL;
     <m-container>
       <div class="flex items-center gap-1 py-2 overflow-x-auto" style="scrollbar-width:none">
         <span class="font-display font-bold text-white text-sm shrink-0 mr-3 px-3 py-1.5 bg-brand-primary rounded-full">Theme</span>
-        {["hero","tipografía","colores","botones","chips","cards","servicios","stats","testimonios","faq","cta","card-section","carruseles"].map(s => (
+        {["hero","tipografía","colores","botones","chips","cards","servicios","stats","testimonios","faq","cta","card-section","carruseles","formularios"].map(s => (
           <a href={`#${s}`} class="shrink-0 px-3 py-1.5 text-xs font-medium text-brand-muted hover:text-brand-foreground hover:bg-brand-bg rounded-full transition-colors whitespace-nowrap">{s}</a>
         ))}
       </div>
@@ -666,6 +668,102 @@ const BASE = import.meta.env.BASE_URL;
               <p class="text-sm text-white/80">Glows personalizados. Podés cambiar el color para diferentes contextos.</p>
             </m-col>
           </CardSection>
+        </m-col>
+      </m-row>
+    </m-container>
+  </section>
+
+  <!-- ─── FORMULARIOS ────────────────────────────────────────────────── -->
+  <section id="formularios" class="py-16 md:py-24 bg-brand-bg isolate">
+    <m-container>
+      <m-col class="mb-12 gap-3">
+        <ChipOvertitle text="Form.astro + LeadForm.astro" />
+        <h2 class="text-4xl md:text-5xl font-display text-brand-foreground leading-[1.1] tracking-tight max-w-2xl">
+          Sistema modular de formularios
+        </h2>
+        <p class="text-brand-muted text-lg max-w-xl leading-relaxed">
+          <code class="font-mono text-sm text-brand-primary">Form.astro</code> — orquestador sin presentación.
+          <code class="font-mono text-sm text-brand-primary">LeadForm.astro</code> — wrapper presentacional con título, subtítulo y footer.
+        </p>
+      </m-col>
+
+      <!-- Form desnuda -->
+      <div class="mb-16">
+        <p class="text-xs font-mono text-brand-muted uppercase tracking-widest mb-4">Form.astro — sin presentación · theme="light"</p>
+        <div class="border border-brand-border-subtle rounded-2xl p-8 bg-brand-surface max-w-xl">
+          <Form
+            fields={[
+              { type: "input", name: "nombre", label: "Nombre", placeholder: "Tu nombre completo", required: true },
+              { type: "input", name: "email", label: "Email", inputType: "email", placeholder: "tu@email.com", required: true },
+              { type: "textarea", name: "mensaje", label: "Mensaje", placeholder: "¿En qué podemos ayudarte?", rows: 4 },
+            ]}
+            buttonText="Enviar consulta"
+            theme="light"
+          />
+        </div>
+      </div>
+
+      <!-- LeadForm light + dark -->
+      <m-row class="md:flex-row gap-8 items-start">
+        <m-col>
+          <p class="text-xs font-mono text-brand-muted uppercase tracking-widest mb-4">LeadForm · theme="light"</p>
+          <LeadForm
+            title="Solicitar consulta"
+            subtitle="Cuéntanos tus necesidades y un especialista se contactará contigo."
+            buttonText="Agendar consulta"
+            theme="light"
+            fields={[
+              { type: "input", name: "nombre", label: "Nombre completo", inputType: "text", required: true },
+              { type: "input", name: "email", label: "Email", inputType: "email", required: true },
+              { type: "select", name: "tema", label: "Tema de interés", required: true, options: [
+                { value: "diseño", label: "Diseño web" },
+                { value: "marketing", label: "Marketing digital" },
+                { value: "desarrollo", label: "Desarrollo custom" },
+              ]},
+              { type: "checkbox", name: "terminos", label: "Acepto los términos y condiciones", required: true },
+            ]}
+          >
+            <fragment slot="footer">
+              <div class="footer-item">
+                <span class="material-symbols-outlined">shield_check</span>
+                <span>Datos seguros</span>
+              </div>
+              <div class="footer-item">
+                <span class="material-symbols-outlined">schedule</span>
+                <span>Respuesta en 24h</span>
+              </div>
+            </fragment>
+          </LeadForm>
+        </m-col>
+        <m-col>
+          <p class="text-xs font-mono text-brand-muted uppercase tracking-widest mb-4">LeadForm · theme="dark"</p>
+          <LeadForm
+            title="Asesoramiento personalizado"
+            subtitle="Completa tus datos y nos ponemos en contacto."
+            buttonText="Agendar reunión"
+            theme="dark"
+            fields={[
+              { type: "input", name: "nombre", label: "Nombre completo", inputType: "text", required: true },
+              { type: "input", name: "email", label: "Email", inputType: "email", required: true },
+              { type: "select", name: "tema", label: "Tema de interés", required: true, options: [
+                { value: "diseño", label: "Diseño web" },
+                { value: "marketing", label: "Marketing digital" },
+                { value: "desarrollo", label: "Desarrollo custom" },
+              ]},
+              { type: "checkbox", name: "terminos", label: "Acepto los términos y condiciones", required: true },
+            ]}
+          >
+            <fragment slot="footer">
+              <div class="footer-item">
+                <span class="material-symbols-outlined">verified_user</span>
+                <span>Confidencial</span>
+              </div>
+              <div class="footer-item">
+                <span class="material-symbols-outlined">support_agent</span>
+                <span>Soporte dedicado</span>
+              </div>
+            </fragment>
+          </LeadForm>
         </m-col>
       </m-row>
     </m-container>

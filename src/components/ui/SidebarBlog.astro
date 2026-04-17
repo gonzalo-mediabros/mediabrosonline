@@ -1,0 +1,63 @@
+---
+import CardSection from "../atoms/CardSection.astro";
+import CardBlog from "../atoms/CardBlog.astro";
+import Button from "../atoms/Button.astro";
+import { categories, sidebarPosts } from "../../data/blog";
+---
+
+<aside class="flex flex-col gap-10">
+  <!-- Categorías -->
+  <div>
+    <h3 class="text-sm font-semibold uppercase tracking-widest text-brand-muted mb-4">
+      Categorías
+    </h3>
+    <ul class="flex flex-col gap-2">
+      {categories.map((cat, index) => (
+        <li>
+          <a
+            href="#"
+            class:list={[
+              "block px-4 py-3 rounded-xl text-sm font-medium transition-colors border",
+              index === 0 
+                ? "bg-brand-primary text-white border-brand-primary" 
+                : "bg-brand-surface text-brand-foreground border-brand-border-subtle hover:border-brand-primary/30"
+            ]}
+          >
+            {cat}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Últimas Notas -->
+  <div>
+    <h3 class="text-sm font-semibold uppercase tracking-widest text-brand-muted mb-4">
+      Últimas notas
+    </h3>
+    <div class="flex flex-col gap-4">
+      {sidebarPosts.map((post) => (
+        <CardBlog
+          variant="compact"
+          {...post}
+        />
+      ))}
+    </div>
+  </div>
+
+  <!-- Banner CTA -->
+  <div>
+    <h3 class="text-sm font-semibold uppercase tracking-widest text-brand-muted mb-4 hidden">
+      Consultoría
+    </h3>
+    <CardSection variant="primary" glowStyle="single" class="!px-6 !py-8 text-center flex flex-col items-center gap-6">
+      <h4 class="text-2xl font-bold font-display text-white leading-tight">
+        ¿Deseas aumentar tus clientes potenciales?
+      </h4>
+      <p class="text-white/90 text-sm leading-relaxed">
+        Si quieres que tu sitio web reciba tráfico calificado de potenciales clientes y no sabes qué acciones son las adecuadas para tu empresa no dudes en consultarnos!
+      </p>
+      <Button href={`${import.meta.env.BASE_URL}contacto`} label="Consultar ahora" variant="white" class="w-full justify-center mt-2" />
+    </CardSection>
+  </div>
+</aside>

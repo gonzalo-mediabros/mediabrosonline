@@ -1,0 +1,107 @@
+---
+interface Props {
+  name: string;
+  label: string;
+  required?: boolean;
+  theme?: "light" | "dark";
+  checked?: boolean;
+  error?: string;
+  id?: string;
+}
+
+const {
+  name,
+  label,
+  required = false,
+  theme = "light",
+  checked = false,
+  error,
+  id,
+} = Astro.props;
+
+const inputId = id ?? `checkbox-${Math.random().toString(36).slice(2, 11)}`;
+const isDark = theme === "dark";
+
+const labelClasses = isDark
+  ? "text-sm text-slate-300 cursor-pointer leading-snug"
+  : "text-sm text-brand-foreground cursor-pointer leading-snug";
+---
+
+<div class="flex flex-col gap-1">
+  <label class="flex items-start gap-2.5 cursor-pointer" for={inputId}>
+    <span class:list={["cb-wrap", isDark ? "cb-dark" : "cb-light"]}>
+      <input
+        type="checkbox"
+        id={inputId}
+        name={name}
+        checked={checked}
+        required={required}
+        class="cb-input"
+      />
+      <span class="cb-box" aria-hidden="true">
+        <span class="material-symbols-outlined cb-icon">check</span>
+      </span>
+    </span>
+    <span class={labelClasses}>{label}</span>
+  </label>
+  {error && <span class="text-xs text-red-400">{error}</span>}
+</div>
+
+<style>
+  .cb-wrap {
+    position: relative;
+    width: 1.125rem;
+    height: 1.125rem;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+    display: block;
+  }
+
+  .cb-input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .cb-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    transition: background-color 0.15s, border-color 0.15s;
+    pointer-events: none;
+  }
+
+  .cb-light .cb-box {
+    background: white;
+    border: 1.5px solid #cbd5e1;
+  }
+
+  .cb-dark .cb-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .cb-input:checked ~ .cb-box {
+    background-color: var(--color-brand-primary);
+    border-color: var(--color-brand-primary);
+  }
+
+  .cb-icon {
+    font-size: 0.875rem !important;
+    line-height: 1;
+    color: white;
+    display: none;
+  }
+
+  .cb-input:checked ~ .cb-box .cb-icon {
+    display: block;
+  }
+</style>
