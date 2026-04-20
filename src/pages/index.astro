@@ -11,12 +11,19 @@ import ServicesGrid from "../components/home/ServicesGrid.astro";
 import ClientsCarousel from "../components/home/ClientsCarousel.astro";
 
 const { pathname } = Astro.url;
+
+const SEO = {
+  title: "🥇 Agencia de Marketing Digital | MediaBros Marketing Digital",
+  description: "Agencia de Marketing Digital. Google Partner Premier. Expertos en Google Ads, Instagram Ads, Facebook Ads y Posicionamiento Web. +15 años de experiencia.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website",
+  ogImage: undefined,  // no definida en JSON → usa default del Layout
+  ogImageAlt: "Mediabros Online — Agencia de Marketing Digital",
+  noindex: false,
+};
 ---
 
-<Layout
-  title="Mediabros - Rediseño Estratégico"
-  description="Genera leads de calidad para tu empresa con una estrategia de marketing digital probada. Curso online gratuito en 45 minutos."
->
+<Layout {...SEO}>
   <Navigation pathname={pathname} logo="logo-text-blanco.svg" />
   <HeroBig />
   <QualifiedLeads />

@@ -1,45 +1,33 @@
 ---
 import "../styles/global.css";
+import SEO from "../components/SEO/SEO.astro";
 import ThemePanel from "../components/dev/ThemePanel.astro";
 
 interface Props {
   title: string;
   description: string;
   ogImage?: string;
-  image?: string; // Para compatibilidad
+  ogImageAlt?: string;
   canonicalURL?: string;
+  ogType?: "website" | "article";
   noindex?: boolean;
-  ogType?: string;
 }
-
-// MASTER SWITCH: Si es true, fuerza noindex en todo el sitio
-const GLOBAL_NOINDEX = true;
 
 const {
   title,
   description,
   ogImage,
-  image,
-  noindex = true,
-  ogType = "website",
-  canonicalURL = Astro.url.href,
+  canonicalURL,
+  noindex,
+  ogType,
+  ogImageAlt,
 } = Astro.props;
-
-// Prioridad: ogImage > image > default
-const finalImage =
-  ogImage || image || `${import.meta.env.BASE_URL}assets/og-image.jpg`;
-const socialImage = new URL(finalImage, Astro.site || Astro.url).href;
-
-const shouldNoIndex = GLOBAL_NOINDEX || noindex;
-
-const { pathname } = Astro.url;
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    {shouldNoIndex && <meta name="robots" content="noindex,nofollow" />}
     <meta name="viewport" content="width=device-width" />
     <link
       rel="icon"
@@ -48,22 +36,15 @@ const { pathname } = Astro.url;
     />
     <meta name="generator" content={Astro.generator} />
 
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalURL} />
-
-    <!-- OpenGraph -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={socialImage} />
-    <meta property="og:type" content={ogType} />
-    <meta property="og:url" content={Astro.url.href} />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={socialImage} />
+    <SEO
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      canonicalURL={canonicalURL}
+      noindex={noindex}
+      ogType={ogType}
+      ogImageAlt={ogImageAlt}
+    />
 
     <!-- Google Fonts: Red Hat Display + Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -83,6 +64,7 @@ const { pathname } = Astro.url;
       rel="stylesheet"
     />
   </head>
+
   <body>
     <slot />
 

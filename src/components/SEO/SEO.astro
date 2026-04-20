@@ -1,0 +1,94 @@
+---
+const SITE = {
+  name: "Mediabros Online",
+  locale: "es_ES",
+  defaultOgImage: `${import.meta.env.BASE_URL}imgs/og-image-1200x630.jpg`,
+  logo: `${import.meta.env.BASE_URL}logo.svg`,
+  socials: [
+    "https://www.linkedin.com/company/mediabros-marketing-digital/",
+    "https://www.instagram.com/mediabrosmkt/",
+    "https://www.facebook.com/MediaBrosMKT",
+  ],
+} as const;
+
+const NOINDEX_GLOBAL = true;
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  canonicalURL?: string;
+  ogType?: "website" | "article";
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  ogImage,
+  ogImageAlt,
+  canonicalURL = Astro.url.href,
+  ogType = "website",
+  noindex = false,
+} = Astro.props;
+
+const base = Astro.site ?? Astro.url;
+const siteUrl = new URL(import.meta.env.BASE_URL, base).href;
+const ogImageUrl = new URL(ogImage ?? SITE.defaultOgImage, base).href;
+const logoUrl = new URL(SITE.logo, base).href;
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE.name,
+    url: siteUrl,
+    logo: logoUrl,
+    sameAs: SITE.socials,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    url: siteUrl,
+    name: SITE.name,
+  },
+];
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta
+  name="robots"
+  content={NOINDEX_GLOBAL || noindex ? "noindex,nofollow" : "index,follow"}
+/>
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph -->
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:locale" content={SITE.locale} />
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={ogImageAlt ?? title} />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+
+<!-- Structured Data -->
+{
+  jsonLd.map((schema) => (
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(schema)}
+    />
+  ))
+}
