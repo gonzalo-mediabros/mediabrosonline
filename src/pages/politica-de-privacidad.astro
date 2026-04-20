@@ -10,11 +10,16 @@ const breadcrumbItems = [
   { label: "Política de Privacidad" },
 ];
 
-const title = "Política de Privacidad | Mediabros Online";
-const description = "Información sobre cómo tratamos y protegemos tus datos personales en Mediabros Online.";
+const SEO = {
+  title: "Política de Privacidad | Mediabros Online",
+  description: "Le rogamos lea detenidamente esta Política de Privacidad para comprender cómo será tratada su Información Personal.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website" as const,
+  noindex: false,
+};
 ---
 
-<Layout title={title} description={description}>
+<Layout {...SEO}>
   <HeroSmall
     title="Política de Privacidad"
     subtitle="Tu privacidad es importante para nosotros."

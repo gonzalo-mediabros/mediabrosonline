@@ -13,12 +13,17 @@ import CtaSection from "../components/service/CtaSection.astro";
 import FAQSection from "../components/service/FAQSection.astro";
 
 const { pathname } = Astro.url;
+
+const SEO = {
+  title: "Google Analytics - GA4 | Mediabros Online",
+  description: "Realizamos un control diario de las campañas lo cual nos facilita mucho la interpretación de los reportes al finalizar el período de 30 días.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website" as const,
+  noindex: false,
+};
 ---
 
-<Layout
-  title="Google Analytics | Mediabros Online"
-  description="Medición, análisis y toma de decisiones basada en datos"
->
+<Layout {...SEO}>
   <Navigation pathname={pathname} />
   <HeroSmall
     title="Google Analytics"

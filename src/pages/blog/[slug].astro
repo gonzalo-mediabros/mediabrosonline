@@ -46,9 +46,19 @@ const avatarPath = post.author.avatar
   : null;
 
 const { pathname } = Astro.url;
+
+const SEO = {
+  title: post.seo.title,
+  description: post.seo.description,
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "article" as const,
+  ogImage: post.image ?? undefined,
+  ogImageAlt: post.title,
+  noindex: false,
+};
 ---
 
-<Layout title={post.seo.title} description={post.seo.description}>
+<Layout {...SEO}>
   <Navigation pathname={pathname} logo="logo-text-blanco.svg" />
 
   <HeroSmall title={post.title} />

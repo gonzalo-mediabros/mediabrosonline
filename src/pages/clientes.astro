@@ -16,6 +16,14 @@ import Button from "../components/atoms/Button.astro";
 const { pathname } = Astro.url;
 const BASE = import.meta.env.BASE_URL;
 
+const SEO = {
+  title: "Clientes | Agencia de Marketing Digital",
+  description: "Te invitamos a conocer las marcas que confían en nosotros. Más de 15 años de experiencia en el mundo online y más de 500 proyectos realizados.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website",
+  noindex: false,
+};
+
 const industries = [
   { label: "Seguridad", icon: "security" },
   { label: "Logística", icon: "local_shipping" },
@@ -107,10 +115,7 @@ const testimonials = [
 ];
 ---
 
-<Layout
-  title="Clientes | Mediabros Online"
-  description="El éxito de nuestros clientes es el nuestro. Conocé las historias de empresas que crecieron con Mediabros."
->
+<Layout {...SEO}>
   <Navigation pathname={pathname} />
 
   <HeroSmall

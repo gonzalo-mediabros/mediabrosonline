@@ -13,12 +13,17 @@ import CtaSection from "../components/service/CtaSection.astro";
 import FAQSection from "../components/service/FAQSection.astro";
 
 const { pathname } = Astro.url;
+
+const SEO = {
+  title: "Asesoramiento en Marketing Digital | Mediabros Online",
+  description: "Acompañamiento estratégico en marketing digital. Equipo dedicado para planificar, optimizar y escalar tu presencia online con criterio y experiencia.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website" as const,
+  noindex: false,
+};
 ---
 
-<Layout
-  title="Asesoramiento | Mediabros Online"
-  description="Acompañamiento, criterio y equipo dedicado para desarrollar la estrategia digital"
->
+<Layout {...SEO}>
   <Navigation pathname={pathname} />
   <HeroSmall
     title="Asesoramiento"

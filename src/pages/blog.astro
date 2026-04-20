@@ -6,11 +6,20 @@ const [{ posts, totalPages }, recentPosts] = await Promise.all([
   fetchPostsPaginated(1, 9),
   fetchPosts(4),
 ]);
+
+const SEO = {
+  title: "Blog de Marketing Digital | Mediabros Online",
+  description: "Artículos, guías y novedades sobre marketing digital, Google Ads, SEO y redes sociales. Blog de Mediabros, agencia Google Partner Premier.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website" as const,
+  ogImage: undefined,
+  ogImageAlt: "Blog de Marketing Digital | Mediabros Online",
+  noindex: false,
+};
 ---
 
 <BlogListLayout
-  title="Blog | Mediabros"
-  description="Noticias, novedades y estrategias de marketing digital de Mediabros"
+  {...SEO}
   heroTitle="Blog"
   breadcrumbItems={[{ label: "Inicio", href: "/" }, { label: "Blog" }]}
   posts={posts}

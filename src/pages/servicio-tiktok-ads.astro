@@ -13,12 +13,17 @@ import CtaSection from "../components/service/CtaSection.astro";
 import FAQSection from "../components/service/FAQSection.astro";
 
 const { pathname } = Astro.url;
+
+const SEO = {
+  title: "TikTok Ads — Publicidad en TikTok | Mediabros Online",
+  description: "Creamos y gestionamos campañas de TikTok Ads para marcas que quieren llegar a audiencias jóvenes y generar conversiones a menor costo.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website" as const,
+  noindex: false,
+};
 ---
 
-<Layout
-  title="TikTok Ads | Mediabros Online"
-  description="TikTok Ads como canal estratégico para generar demanda y leads calificados"
->
+<Layout {...SEO}>
   <Navigation pathname={pathname} />
   <HeroSmall
     title="TikTok Ads"

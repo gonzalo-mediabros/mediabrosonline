@@ -9,6 +9,14 @@ import Footer from "../components/ui/Footer.astro";
 
 const { pathname } = Astro.url;
 
+const SEO = {
+  title: "Baja de cliente | Mediabros Online",
+  description: "Formulario de baja de cliente. Completá este formulario si necesitás dar de baja algún servicio de Mediabros y nos pondremos en contacto.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website" as const,
+  noindex: true,
+};
+
 const fields = [
   { type: "input", name: "nombre_empresa", label: "Nombre de empresa", inputType: "text", required: true },
   { type: "input", name: "nombre_contacto", label: "Nombre y apellido del contacto", inputType: "text", required: true },
@@ -62,10 +70,7 @@ const fields = [
 ] as const;
 ---
 
-<Layout
-  title="Baja de cliente | Mediabros Online"
-  description="Lamentamos que te vayas. Completá el formulario para procesar tu baja de Mediabros Online."
->
+<Layout {...SEO}>
   <Navigation pathname={pathname} />
 
   <HeroSmall

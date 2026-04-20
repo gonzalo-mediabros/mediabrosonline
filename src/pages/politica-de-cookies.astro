@@ -10,11 +10,16 @@ const breadcrumbItems = [
   { label: "Política de Cookies" },
 ];
 
-const title = "Política de Cookies | Mediabros Online";
-const description = "Cómo usamos las cookies en mediabrosonline.com para mejorar tu experiencia de navegación.";
+const SEO = {
+  title: "Política de Cookies | Mediabros Online",
+  description: "Cómo usamos las cookies en mediabrosonline.com para mejorar tu experiencia de navegación.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website" as const,
+  noindex: false,
+};
 ---
 
-<Layout title={title} description={description}>
+<Layout {...SEO}>
   <HeroSmall
     title="Política de Cookies"
     subtitle="Cómo usamos las cookies en mediabrosonline.com."

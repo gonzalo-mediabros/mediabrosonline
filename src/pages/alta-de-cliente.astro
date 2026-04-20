@@ -9,6 +9,14 @@ import Footer from "../components/ui/Footer.astro";
 
 const { pathname } = Astro.url;
 
+const SEO = {
+  title: "Alta de cliente | Mediabros Online",
+  description: "Alta de cliente. Agencia MediaBros: Tráfico calificado y conversiones. Servicios Paid Media, Posicionamiento y Análisis.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website" as const,
+  noindex: true,
+};
+
 const fields = [
   { type: "input", name: "nombre", label: "Nombre", inputType: "text", required: true },
   { type: "input", name: "email", label: "Email", inputType: "email", required: true },
@@ -69,10 +77,7 @@ const fields = [
 ] as const;
 ---
 
-<Layout
-  title="Alta de cliente | Mediabros Online"
-  description="Completá tus datos para iniciar la relación comercial con Mediabros Online."
->
+<Layout {...SEO}>
   <Navigation pathname={pathname} />
 
   <HeroSmall

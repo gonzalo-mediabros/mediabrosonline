@@ -107,12 +107,16 @@ const openPositions = [
   },
 ];
 
-const title = "Oportunidades Laborales | Mediabros Online";
-const description =
-  "Sumate al equipo de Mediabros. Buscamos apasionados por el marketing digital con ganas de crecer en un entorno dinámico.";
+const SEO = {
+  title: "Oportunidades Laborales | Mediabros Online",
+  description: "Oportunidades laborales. Agencia de Marketing Digital. Google Partner Premier. Más de 15 años de experiencia.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website" as const,
+  noindex: false,
+};
 ---
 
-<Layout title={title} description={description}>
+<Layout {...SEO}>
   <HeroSmall
     title="Oportunidades Laborales"
     subtitle="Solo para apasionados por el mundo digital."

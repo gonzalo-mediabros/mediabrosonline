@@ -13,12 +13,17 @@ import CtaSection from "../components/service/CtaSection.astro";
 import FAQSection from "../components/service/FAQSection.astro";
 
 const { pathname } = Astro.url;
+
+const SEO = {
+  title: "Posicionamiento en Google Maps. Google Mi Negocio",
+  description: "Administramos tu perfil comercial en Google Mi Negocio, para que tu local pueda aparecer en las búsquedas en Google Maps. Creamos tu perfil comercial.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website" as const,
+  noindex: false,
+};
 ---
 
-<Layout
-  title="Local SEO | Mediabros Online"
-  description="Local SEO como complemento para mejorar la visibilidad geográfica de la empresa"
->
+<Layout {...SEO}>
   <Navigation pathname={pathname} />
   <HeroSmall
     title="Local SEO"

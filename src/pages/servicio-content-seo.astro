@@ -13,12 +13,17 @@ import CtaSection from "../components/service/CtaSection.astro";
 import FAQSection from "../components/service/FAQSection.astro";
 
 const { pathname } = Astro.url;
+
+const SEO = {
+  title: "Content SEO — Posicionamiento con Contenidos | Mediabros Online",
+  description: "Estrategia de contenidos orientada a SEO. Creamos artículos y landing pages que posicionan en Google y atraen tráfico orgánico calificado.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website" as const,
+  noindex: false,
+};
 ---
 
-<Layout
-  title="Content SEO | Mediabros Online"
-  description="Contenido estratégico para mejorar el posicionamiento y atraer tráfico calificado"
->
+<Layout {...SEO}>
   <Navigation pathname={pathname} />
   <HeroSmall
     title="Content SEO"

@@ -8,12 +8,17 @@ import Certificaciones from "../components/ui/Certificaciones.astro";
 import Footer from "../components/ui/Footer.astro";
 
 const { pathname } = Astro.url;
+
+const SEO = {
+  title: "Contacto - Envianos tu consulta! | MediaBros",
+  description: "Con sede central en Buenos Aires, brindamos servicios de marketing digital en todo Latinoamérica, Estados Unidos, Canadá y varios países de Europa.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website",
+  noindex: false,
+};
 ---
 
-<Layout
-  title="Contacto | Mediabros Online"
-  description="La comunicación es una ventana de oportunidades. Contactate con el equipo de Mediabros."
->
+<Layout {...SEO}>
   <Navigation pathname={pathname} />
 
   <HeroSmall

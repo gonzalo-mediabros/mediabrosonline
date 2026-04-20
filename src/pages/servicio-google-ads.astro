@@ -13,12 +13,17 @@ import CtaSection from "../components/service/CtaSection.astro";
 import FAQSection from "../components/service/FAQSection.astro";
 
 const { pathname } = Astro.url;
+
+const SEO = {
+  title: "Anuncios en Google Ads | Agencia Google Partners",
+  description: "Somos especialistas en Google Ads, analizamos y optimizamos los resultados. Campañas de marketing digital en Google Ads. Agencia certificada Google Partner.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website" as const,
+  noindex: false,
+};
 ---
 
-<Layout
-  title="Google Ads | Mediabros Online"
-  description="Google Ads como motor principal de generación de demanda y leads calificados"
->
+<Layout {...SEO}>
   <Navigation pathname={pathname} />
   <HeroSmall
     title="Google Ads"

@@ -99,11 +99,16 @@ const faqsGA4 = [
   }
 ];
 
-const title = "Preguntas Frecuentes (FAQs) | Mediabros Online";
-const description = "Respuestas a las dudas más comunes sobre Marketing Digital, Google Ads, SEO y analítica.";
+const SEO = {
+  title: "Preguntas Frecuentes (FAQs) | Mediabros Online",
+  description: "Preguntas frecuentes. Agencia de Marketing Digital. Google Partner Premier. Más de 15 años de experiencia.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website" as const,
+  noindex: false,
+};
 ---
 
-<Layout title={title} description={description}>
+<Layout {...SEO}>
   <HeroSmall
     title="FAQs"
     subtitle="Las respuestas a las preguntas más frecuentes."

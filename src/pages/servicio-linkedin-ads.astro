@@ -13,12 +13,17 @@ import CtaSection from "../components/service/CtaSection.astro";
 import FAQSection from "../components/service/FAQSection.astro";
 
 const { pathname } = Astro.url;
+
+const SEO = {
+  title: "Campañas en LinkedIn - LinkedIn Ads | Mediabros Online",
+  description: "Linkedin Ads nos permite crear campañas y mensajes apuntados a ejecutivos de empresas y a personas tomadoras de decisiones.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website" as const,
+  noindex: false,
+};
 ---
 
-<Layout
-  title="LinkedIn Ads | Mediabros Online"
-  description="LinkedIn Ads para generar leads de alto valor en procesos comerciales consultivos"
->
+<Layout {...SEO}>
   <Navigation pathname={pathname} />
   <HeroSmall
     title="LinkedIn Ads"

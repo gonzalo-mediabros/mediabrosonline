@@ -12,6 +12,11 @@ import type { NormalizedPost } from "../types/wordpress";
 interface Props {
   title: string;
   description: string;
+  canonicalURL?: string;
+  ogType?: "website" | "article";
+  ogImage?: string;
+  ogImageAlt?: string;
+  noindex?: boolean;
   heroTitle: string;
   breadcrumbItems: { label: string; href?: string }[];
   posts: NormalizedPost[];
@@ -26,6 +31,11 @@ interface Props {
 const {
   title,
   description,
+  canonicalURL,
+  ogType,
+  ogImage,
+  ogImageAlt,
+  noindex,
   heroTitle,
   breadcrumbItems,
   posts,
@@ -40,7 +50,7 @@ const {
 const { pathname } = Astro.url;
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} canonicalURL={canonicalURL} ogType={ogType} ogImage={ogImage} ogImageAlt={ogImageAlt} noindex={noindex}>
   <Navigation pathname={pathname} logo="logo-text-blanco.svg" />
 
   <HeroSmall

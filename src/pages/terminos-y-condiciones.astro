@@ -10,11 +10,16 @@ const breadcrumbItems = [
   { label: "Términos y Condiciones" },
 ];
 
-const title = "Términos y Condiciones | Mediabros Online";
-const description = "Condiciones de uso del sitio y los servicios de Mediabros Online. Información legal para clientes y usuarios.";
+const SEO = {
+  title: "Términos y Condiciones | Mediabros Online",
+  description: "Condiciones de uso del sitio y los servicios de Mediabros Online. Información legal para clientes y usuarios.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website" as const,
+  noindex: false,
+};
 ---
 
-<Layout title={title} description={description}>
+<Layout {...SEO}>
   <HeroSmall
     title="Términos y Condiciones"
     subtitle="Condiciones de uso del sitio y los servicios de Mediabros Online."

@@ -13,12 +13,17 @@ import CtaSection from "../components/service/CtaSection.astro";
 import FAQSection from "../components/service/FAQSection.astro";
 
 const { pathname } = Astro.url;
+
+const SEO = {
+  title: "Bing Ads — Microsoft Advertising | Mediabros Online",
+  description: "Gestionamos campañas en Microsoft Advertising (Bing Ads) para captar audiencias corporativas y demanda B2B a menor costo que Google.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website" as const,
+  noindex: false,
+};
 ---
 
-<Layout
-  title="Bing Ads | Mediabros Online"
-  description="Bing Ads como canal complementario para captar demanda específica y audiencias corporativas"
->
+<Layout {...SEO}>
   <Navigation pathname={pathname} />
   <HeroSmall
     title="Bing Ads"

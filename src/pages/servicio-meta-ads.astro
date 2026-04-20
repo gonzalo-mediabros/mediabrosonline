@@ -13,12 +13,17 @@ import CtaSection from "../components/service/CtaSection.astro";
 import FAQSection from "../components/service/FAQSection.astro";
 
 const { pathname } = Astro.url;
+
+const SEO = {
+  title: "Meta Ads — Campañas en Facebook e Instagram | Mediabros Online",
+  description: "Agencia especializada en Meta Ads. Creamos y optimizamos campañas de publicidad en Facebook e Instagram para maximizar tu retorno de inversión.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website" as const,
+  noindex: false,
+};
 ---
 
-<Layout
-  title="Meta Ads | Mediabros Online"
-  description="Publicidad en Meta Ads orientada a generación de leads calificados"
->
+<Layout {...SEO}>
   <Navigation pathname={pathname} />
   <HeroSmall
     title="Meta Ads"
