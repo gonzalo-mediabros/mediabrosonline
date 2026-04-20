@@ -1,0 +1,52 @@
+---
+import BlogListLayout from "../../../../../layouts/BlogListLayout.astro";
+import { fetchCategories, fetchPostsByCategory, fetchPosts } from "../../../../../lib/wordpress";
+import type { WPCategory } from "../../../../../types/wordpress";
+
+export async function getStaticPaths() {
+  const categories = await fetchCategories();
+  const paths: { params: { slug: string; page: string }; props: { category: WPCategory } }[] = [];
+
+  await Promise.all(
+    categories.map(async (cat) => {
+      const { totalPages } = await fetchPostsByCategory(cat.id, 1, 9);
+      for (let p = 2; p <= totalPages; p++) {
+        paths.push({ params: { slug: cat.slug, page: String(p) }, props: { category: cat } });
+      }
+    })
+  );
+
+  return paths;
+}
+
+interface Props {
+  category: WPCategory;
+}
+
+const { category } = Astro.props;
+const page = parseInt(Astro.params.page, 10);
+
+const [{ posts, totalPages }, recentPosts] = await Promise.all([
+  fetchPostsByCategory(category.id, page, 9),
+  fetchPosts(4),
+]);
+---
+
+<BlogListLayout
+  title={`${category.name} — Página ${page} | Blog Mediabros`}
+  description={`Artículos sobre ${category.name} en el blog de Mediabros`}
+  heroTitle={category.name}
+  breadcrumbItems={[
+    { label: "Inicio", href: "/" },
+    { label: "Blog", href: "/blog" },
+    { label: category.name, href: `/blog/categoria/${category.slug}` },
+    { label: `Página ${page}` },
+  ]}
+  posts={posts}
+  totalPages={totalPages}
+  currentPage={page}
+  recentPosts={recentPosts}
+  baseUrl={`/blog/categoria/${category.slug}`}
+  currentCategory={category.slug}
+  emptyText="No hay artículos en esta categoría todavía."
+/>

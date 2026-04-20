@@ -1,63 +1,105 @@
 ---
-import CardSection from "../atoms/CardSection.astro";
 import CardBlog from "../atoms/CardBlog.astro";
 import Button from "../atoms/Button.astro";
-import { categories, sidebarPosts } from "../../data/blog";
+import { fetchCategories } from "../../lib/wordpress";
+import type { NormalizedPost } from "../../types/wordpress";
+
+interface Props {
+  recentPosts: NormalizedPost[];
+  currentCategory?: string;
+}
+
+const { recentPosts, currentCategory } = Astro.props;
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const wpCategories = await fetchCategories();
 ---
 
-<aside class="flex flex-col gap-10">
+<aside class="flex flex-col gap-8">
+
   <!-- Categorías -->
-  <div>
-    <h3 class="text-sm font-semibold uppercase tracking-widest text-brand-muted mb-4">
+  <div class="flex flex-col gap-3">
+    <span class="text-xs font-semibold uppercase tracking-widest text-brand-muted-foreground">
       Categorías
-    </h3>
-    <ul class="flex flex-col gap-2">
-      {categories.map((cat, index) => (
+    </span>
+    <ul class="flex flex-col">
+      <li>
+        <a
+          href={`${BASE}/blog`}
+          class:list={[
+            "flex items-center gap-2 py-2 text-sm transition-colors border-l-2 pl-3",
+            currentCategory === undefined
+              ? "border-brand-primary text-brand-primary font-semibold"
+              : "border-transparent text-brand-muted hover:text-brand-foreground hover:border-brand-border font-medium",
+          ]}
+        >
+          Todas
+        </a>
+      </li>
+      {wpCategories.map((cat) => (
         <li>
           <a
-            href="#"
+            href={`${BASE}/blog/categoria/${cat.slug}`}
             class:list={[
-              "block px-4 py-3 rounded-xl text-sm font-medium transition-colors border",
-              index === 0 
-                ? "bg-brand-primary text-white border-brand-primary" 
-                : "bg-brand-surface text-brand-foreground border-brand-border-subtle hover:border-brand-primary/30"
+              "flex items-center gap-2 py-2 text-sm transition-colors border-l-2 pl-3",
+              currentCategory === cat.slug
+                ? "border-brand-primary text-brand-primary font-semibold"
+                : "border-transparent text-brand-muted hover:text-brand-foreground hover:border-brand-border font-medium",
             ]}
           >
-            {cat}
+            {cat.name}
           </a>
         </li>
       ))}
     </ul>
   </div>
 
+  <!-- Divider -->
+  <hr class="border-brand-border-subtle" />
+
   <!-- Últimas Notas -->
-  <div>
-    <h3 class="text-sm font-semibold uppercase tracking-widest text-brand-muted mb-4">
+  <div class="flex flex-col gap-4">
+    <span class="text-xs font-semibold uppercase tracking-widest text-brand-muted-foreground">
       Últimas notas
-    </h3>
-    <div class="flex flex-col gap-4">
-      {sidebarPosts.map((post) => (
-        <CardBlog
-          variant="compact"
-          {...post}
-        />
+    </span>
+    <div class="flex flex-col divide-y divide-brand-border-subtle">
+      {recentPosts.map((post) => (
+        <div class="py-4 first:pt-0 last:pb-0">
+          <CardBlog
+            variant="compact"
+            image={post.image ?? "/imgs/placeholder.png"}
+            category={post.category}
+            title={post.title}
+            date={post.date}
+            slug={post.slug}
+          />
+        </div>
       ))}
     </div>
   </div>
 
+  <!-- Divider -->
+  <hr class="border-brand-border-subtle" />
+
   <!-- Banner CTA -->
-  <div>
-    <h3 class="text-sm font-semibold uppercase tracking-widest text-brand-muted mb-4 hidden">
-      Consultoría
-    </h3>
-    <CardSection variant="primary" glowStyle="single" class="!px-6 !py-8 text-center flex flex-col items-center gap-6">
-      <h4 class="text-2xl font-bold font-display text-white leading-tight">
-        ¿Deseas aumentar tus clientes potenciales?
+  <div class="rounded-xl bg-brand-dark px-6 py-8 flex flex-col gap-5">
+    <div class="flex flex-col gap-2">
+      <span class="text-xs font-semibold uppercase tracking-widest text-brand-accent/70">
+        Aumentá tu presencia
+      </span>
+      <h4 class="text-lg font-bold font-display text-white leading-snug">
+        ¿Querés más clientes potenciales?
       </h4>
-      <p class="text-white/90 text-sm leading-relaxed">
-        Si quieres que tu sitio web reciba tráfico calificado de potenciales clientes y no sabes qué acciones son las adecuadas para tu empresa no dudes en consultarnos!
-      </p>
-      <Button href={`${import.meta.env.BASE_URL}contacto`} label="Consultar ahora" variant="white" class="w-full justify-center mt-2" />
-    </CardSection>
+    </div>
+    <p class="text-sm text-white/60 leading-relaxed">
+      Te ayudamos a atraer tráfico calificado y convertir visitas en oportunidades reales.
+    </p>
+    <Button
+      href={`${BASE}/contacto`}
+      label="Consultar ahora"
+      variant="white"
+      class="w-full justify-center"
+    />
   </div>
+
 </aside>

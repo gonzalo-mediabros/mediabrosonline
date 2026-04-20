@@ -1,0 +1,33 @@
+---
+import BlogListLayout from "../../../layouts/BlogListLayout.astro";
+import { fetchPostsPaginated, fetchPosts } from "../../../lib/wordpress";
+
+export async function getStaticPaths() {
+  const { totalPages } = await fetchPostsPaginated(1, 9);
+  return Array.from({ length: totalPages - 1 }, (_, i) => ({
+    params: { page: String(i + 2) },
+  }));
+}
+
+const page = parseInt(Astro.params.page, 10);
+const [{ posts, totalPages }, recentPosts] = await Promise.all([
+  fetchPostsPaginated(page, 9),
+  fetchPosts(4),
+]);
+---
+
+<BlogListLayout
+  title={`Blog — Página ${page} | Mediabros`}
+  description="Noticias, novedades y estrategias de marketing digital de Mediabros"
+  heroTitle="Blog"
+  breadcrumbItems={[
+    { label: "Inicio", href: "/" },
+    { label: "Blog", href: "/blog" },
+    { label: `Página ${page}` },
+  ]}
+  posts={posts}
+  totalPages={totalPages}
+  currentPage={page}
+  recentPosts={recentPosts}
+  baseUrl="/blog"
+/>

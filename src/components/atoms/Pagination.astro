@@ -1,0 +1,69 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  baseUrl: string; // e.g. "/blog" or "/blog/categoria/seo"
+}
+
+const { currentPage, totalPages, baseUrl } = Astro.props;
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+function pageUrl(page: number) {
+  if (page === 1) return `${BASE}${baseUrl}`;
+  return `${BASE}${baseUrl}/page/${page}`;
+}
+
+// Show 3 page numbers centered around current page
+const start = Math.max(1, Math.min(currentPage - 1, totalPages - 2));
+const end = Math.min(totalPages, start + 2);
+const pages = Array.from({ length: end - start + 1 }, (_, i) => start + i);
+---
+
+{totalPages > 1 && (
+  <nav aria-label="Paginación" class="flex items-center justify-center gap-2 mt-10">
+    {currentPage > 1 ? (
+      <a
+        href={pageUrl(currentPage - 1)}
+        class="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-brand-muted hover:text-brand-primary hover:bg-brand-surface transition-colors border border-brand-border-subtle"
+      >
+        <span class="material-symbols-outlined text-base leading-none">chevron_left</span>
+        Anterior
+      </a>
+    ) : (
+      <span class="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-brand-border opacity-40 border border-brand-border-subtle cursor-not-allowed">
+        <span class="material-symbols-outlined text-base leading-none">chevron_left</span>
+        Anterior
+      </span>
+    )}
+
+    {pages.map((page) => (
+      <a
+        href={pageUrl(page)}
+        aria-current={page === currentPage ? "page" : undefined}
+        class:list={[
+          "w-10 h-10 flex items-center justify-center rounded-lg text-sm font-semibold transition-colors border",
+          page === currentPage
+            ? "bg-brand-primary text-white border-brand-primary"
+            : "text-brand-muted hover:text-brand-primary hover:bg-brand-surface border-brand-border-subtle",
+        ]}
+      >
+        {page}
+      </a>
+    ))}
+
+    {currentPage < totalPages ? (
+      <a
+        href={pageUrl(currentPage + 1)}
+        class="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-brand-muted hover:text-brand-primary hover:bg-brand-surface transition-colors border border-brand-border-subtle"
+      >
+        Siguiente
+        <span class="material-symbols-outlined text-base leading-none">chevron_right</span>
+      </a>
+    ) : (
+      <span class="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-brand-border opacity-40 border border-brand-border-subtle cursor-not-allowed">
+        Siguiente
+        <span class="material-symbols-outlined text-base leading-none">chevron_right</span>
+      </span>
+    )}
+  </nav>
+)}

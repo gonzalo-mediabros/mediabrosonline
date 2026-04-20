@@ -85,6 +85,7 @@ const { pathname } = Astro.url;
   </head>
   <body>
     <slot />
+
     {import.meta.env.DEV && <ThemePanel />}
     <script>
       import Lenis from "lenis";

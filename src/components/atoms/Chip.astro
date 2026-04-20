@@ -2,21 +2,33 @@
 interface Props {
   text: string;
   icon?: string;
+  size?: "sm" | "md";
   class?: string;
 }
 
-const { text, icon = "verified", class: className = "" } = Astro.props;
+const { text, icon = "verified", size = "md", class: className = "" } = Astro.props;
+
+const sizeClasses = {
+  sm: "px-2 py-0.5 text-xs gap-1",
+  md: "px-2.5 py-1 text-sm gap-1.5",
+};
+
+const iconSizeClasses = {
+  sm: "text-sm",
+  md: "text-base",
+};
 ---
 
 <span
   class:list={[
-    "self-start inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wide border",
+    "self-start inline-flex items-center rounded-full font-bold uppercase tracking-wide border",
+    sizeClasses[size],
     className,
   ]}
 >
   {
     icon && (
-      <span class="material-symbols-outlined leading-none text-sm">{icon}</span>
+      <span class:list={["material-symbols-outlined leading-none", iconSizeClasses[size]]}>{icon}</span>
     )
   }
   {text}

@@ -37,5 +37,11 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss(), removeHtmlComments],
+    optimizeDeps: {
+      include: ["embla-carousel", "embla-carousel-auto-scroll"],
+    },
   },
+  devToolbar: {
+    enabled: true,
+  }
 });

@@ -1,0 +1,94 @@
+---
+import Layout from "./Layout.astro";
+import Navigation from "../components/ui/Navigation.astro";
+import Footer from "../components/ui/Footer.astro";
+import HeroSmall from "../components/ui/HeroSmall.astro";
+import Breadcrumb from "../components/atoms/Breadcrumb.astro";
+import SidebarBlog from "../components/ui/SidebarBlog.astro";
+import CardBlog from "../components/atoms/CardBlog.astro";
+import Pagination from "../components/atoms/Pagination.astro";
+import type { NormalizedPost } from "../types/wordpress";
+
+interface Props {
+  title: string;
+  description: string;
+  heroTitle: string;
+  breadcrumbItems: { label: string; href?: string }[];
+  posts: NormalizedPost[];
+  totalPages: number;
+  currentPage: number;
+  recentPosts: NormalizedPost[];
+  baseUrl: string;
+  currentCategory?: string;
+  emptyText?: string;
+}
+
+const {
+  title,
+  description,
+  heroTitle,
+  breadcrumbItems,
+  posts,
+  totalPages,
+  currentPage,
+  recentPosts,
+  baseUrl,
+  currentCategory,
+  emptyText = "No hay artículos disponibles en este momento.",
+} = Astro.props;
+
+const { pathname } = Astro.url;
+---
+
+<Layout title={title} description={description}>
+  <Navigation pathname={pathname} logo="logo-text-blanco.svg" />
+
+  <HeroSmall
+    title={heroTitle}
+    subtitle="Novedades, estrategias e insights del mundo publicitario"
+  />
+
+  <Breadcrumb items={breadcrumbItems} />
+
+  <section class="section-py-sm">
+    <m-container>
+      <div class="flex flex-col lg:flex-row lg:items-start gap-30">
+        <div class="flex-1 min-w-0 flex flex-col gap-8">
+          {
+            posts.length === 0 ? (
+              <p class="text-brand-muted text-center py-16">{emptyText}</p>
+            ) : (
+              <div class="flex flex-col gap-6">
+                {posts.map((post) => (
+                  <CardBlog
+                    image={post.image ?? "/imgs/placeholder.png"}
+                    category={post.category}
+                    title={post.title}
+                    excerpt={post.excerpt}
+                    date={post.date}
+                    slug={post.slug}
+                    variant="default"
+                  />
+                ))}
+              </div>
+            )
+          }
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            baseUrl={baseUrl}
+          />
+        </div>
+
+        <div class="lg:w-74 shrink-0 sticky top-24">
+          <SidebarBlog
+            recentPosts={recentPosts}
+            currentCategory={currentCategory}
+          />
+        </div>
+      </div>
+    </m-container>
+  </section>
+
+  <Footer />
+</Layout>

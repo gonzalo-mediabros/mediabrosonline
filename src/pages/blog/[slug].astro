@@ -6,111 +6,102 @@ import HeroSmall from "../../components/ui/HeroSmall.astro";
 import Breadcrumb from "../../components/atoms/Breadcrumb.astro";
 import SidebarBlog from "../../components/ui/SidebarBlog.astro";
 import Chip from "../../components/atoms/Chip.astro";
-import { singlePostMock } from "../../data/blog";
+import {
+  fetchAllSlugs,
+  fetchPostBySlug,
+  fetchPosts,
+} from "../../lib/wordpress";
 
-// TODO: Reemplazar por getStaticPaths real cuando se integren colecciones o CMS.
-export function getStaticPaths() {
-  return [
-    { params: { slug: "estrategias-liderar-serps-2026" } },
-    { params: { slug: "ejemplo-de-post" } },
-    { params: { slug: "maximiza-roi-segmentacion-predictiva" } },
-    { params: { slug: "metricas-ocultas-ecommerce" } },
-    { params: { slug: "generacion-leads-b2b" } },
-    { params: { slug: "tendencias-automatizacion-marketing" } },
-    { params: { slug: "revolucion-video-corto-publicidad" } }
-  ];
+export async function getStaticPaths() {
+  const slugs = await fetchAllSlugs();
+  if (!slugs.length) {
+    console.warn(
+      "[wordpress] fetchAllSlugs returned empty — no blog detail pages will be generated",
+    );
+  }
+  return slugs.map((slug) => ({ params: { slug } }));
 }
 
 const { slug } = Astro.params;
 
-// Usamos el mock por defecto para cualquiera de las páginas estáticas generadas
-const post = singlePostMock;
+const [post, recentPosts] = await Promise.all([
+  fetchPostBySlug(slug),
+  fetchPosts(4),
+]);
 
-const BASE = import.meta.env.BASE_URL;
-// TODO: El archivo public/imgs/placeholder.png será nuestro fallback temporal
-const imagePath = post.image.startsWith('http') ? post.image : `${BASE.replace(/\/$/, '')}/${post.image.replace(/^\//, '')}`;
-const avatarPath = post.author.avatar.startsWith('http') ? post.author.avatar : `${BASE.replace(/\/$/, '')}/${post.author.avatar.replace(/^\//, '')}`;
+if (!post) {
+  return new Response(null, { status: 404 });
+}
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+const imagePath = post.image
+  ? post.image.startsWith("http")
+    ? post.image
+    : `${BASE}/${post.image.replace(/^\//, "")}`
+  : `${BASE}/imgs/placeholder.png`;
+const avatarPath = post.author.avatar
+  ? post.author.avatar.startsWith("http")
+    ? post.author.avatar
+    : `${BASE}/${post.author.avatar.replace(/^\//, "")}`
+  : null;
 
 const { pathname } = Astro.url;
 ---
 
-<Layout title={`${post.title} | Blog Mediabros`} description="Detalle del post del blog de Mediabros">
+<Layout title={post.seo.title} description={post.seo.description}>
   <Navigation pathname={pathname} logo="logo-text-blanco.svg" />
 
   <HeroSmall title={post.title} />
-  
-  <Breadcrumb 
+
+  <Breadcrumb
     items={[
       { label: "Inicio", href: "/" },
       { label: "Blog", href: "/blog" },
-      { label: post.title }
-    ]} 
+      { label: post.title },
+    ]}
   />
 
   <section class="section-py-sm">
     <m-container>
-      <div class="flex flex-col lg:flex-row lg:items-start gap-10">
+      <div class="flex flex-col lg:flex-row lg:items-start gap-30">
         <!-- Main Content -->
-        <article class="flex-1 min-w-0 flex flex-col">
-          <div class="rounded-3xl overflow-hidden w-full aspect-video border border-brand-border-subtle mb-10">
-            <img 
-              src={imagePath} 
-              alt={post.title} 
-              class="w-full h-full object-cover bg-brand-border-subtle" 
+        <article
+          class="flex-1 min-w-0 flex flex-col bg-white p-12 max-w-7xl rounded-3xl"
+        >
+          <div
+            class="rounded-3xl overflow-hidden w-full aspect-video border border-brand-border-subtle mb-10"
+          >
+            <img
+              src={imagePath}
+              alt={post.title}
+              class="w-full h-full object-cover bg-brand-border-subtle"
               loading="eager"
             />
           </div>
-          
-          <div class="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-brand-border-subtle">
+
+          <div
+            class="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-brand-border-subtle"
+          >
             <div class="flex items-center gap-4">
-              <Chip text={post.category} class="bg-brand-bg-alt border-brand-border" />
-              <span class="text-sm font-medium text-brand-muted">{post.date}</span>
-            </div>
-            
-            <div class="flex items-center gap-3">
-              <img src={avatarPath} alt={post.author.name} class="w-10 h-10 rounded-full object-cover border border-brand-border bg-brand-border-subtle" />
-              <div class="flex flex-col">
-                <span class="text-brand-foreground font-semibold text-sm leading-tight">{post.author.name}</span>
-                <span class="text-brand-muted text-xs font-medium">{post.author.role}</span>
-              </div>
+              <Chip
+                text={post.category}
+                class="bg-brand-bg-alt border-brand-border"
+              />
+              <span class="text-sm font-medium text-brand-muted"
+                >{post.date}</span
+              >
             </div>
           </div>
 
-          <div class="flex flex-col gap-6 text-brand-foreground text-lg leading-relaxed">
-            <p>
-              En el mundo dinámico del posicionamiento web, mantenerse en la cima de los resultados de búsqueda requiere más que optimización básica. Aquí exploramos cómo las nuevas métricas de interacción impulsadas por la inteligencia artificial están redefiniendo lo que Google considera un resultado "relevante".
-            </p>
-            
-            <h2 class="text-3xl font-display font-bold mt-6 mb-2 text-brand-foreground leading-tight">
-              Interactividad por sobre todas las cosas
-            </h2>
-            <p>
-              El principal factor de cambio de 2026 ha sido el abandono casi definitivo de las señales de autoridad antiguas, centrándose exclusivamente en métricas de retención en página. 
-            </p>
-
-            <h3 class="text-2xl font-display font-semibold mt-4 mb-2 text-brand-foreground leading-tight">
-              Claves para el éxito a largo plazo
-            </h3>
-            <ul class="list-disc pl-6 flex flex-col gap-2 marker:text-brand-primary">
-              <li>El tiempo de permanencia es la nueva moneda de cambio.</li>
-              <li>Asegura que tu contenido incluya microinteracciones.</li>
-              <li>Elimina fricción de UX que haga saltar al usuario.</li>
-            </ul>
-
-            <div class="p-8 bg-brand-bg-alt rounded-2xl border border-brand-border mt-4 mb-4">
-              <strong class="text-xl font-display block mb-2 text-brand-foreground">Nota del autor:</strong>
-              No tengas miedo de recortar contenido si no aporta valor inmediato. A veces menos texto y más elementos visuales consiguen una tasa de retención muy superior.
-            </div>
-            
-            <p>
-              El resumen de este año es claro: enfócate en el humano detrás de la pantalla, resuelve su intención de búsqueda lo más rápido posible y ofrécele una experiencia sin fricciones ni elementos intrusivos.
-            </p>
-          </div>
+          <div
+            class="wp-content flex flex-col gap-4 text-brand-foreground text-lg leading-relaxed [&_h2]:text-3xl [&_h2]:font-display [&_h2]:font-bold [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-brand-foreground [&_h2]:leading-tight [&_h3]:text-2xl [&_h3]:font-display [&_h3]:font-semibold [&_h3]:mt-6 [&_h3]:mb-2 [&_h3]:text-brand-foreground [&_h3]:leading-tight [&_h4]:text-xl [&_h4]:font-display [&_h4]:font-semibold [&_h4]:mt-4 [&_h4]:mb-2 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-2 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:flex [&_ol]:flex-col [&_ol]:gap-2 [&_a]:text-brand-primary [&_a]:underline [&_a:hover]:no-underline [&_blockquote]:border-l-4 [&_blockquote]:border-brand-primary [&_blockquote]:pl-6 [&_blockquote]:italic [&_blockquote]:text-brand-muted [&_img]:rounded-2xl [&_img]:w-full [&_strong]:font-semibold [&_strong]:text-brand-foreground"
+            set:html={post.content}
+          />
         </article>
 
         <!-- Sidebar -->
-        <div class="lg:w-80 shrink-0 sticky top-24">
-          <SidebarBlog />
+        <div class="lg:w-74 shrink-0 sticky top-24">
+          <SidebarBlog recentPosts={recentPosts} />
         </div>
       </div>
     </m-container>

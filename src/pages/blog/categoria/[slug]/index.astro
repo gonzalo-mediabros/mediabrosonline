@@ -1,0 +1,41 @@
+---
+import BlogListLayout from "../../../../layouts/BlogListLayout.astro";
+import { fetchCategories, fetchPostsByCategory, fetchPosts } from "../../../../lib/wordpress";
+import type { WPCategory } from "../../../../types/wordpress";
+
+export async function getStaticPaths() {
+  const categories = await fetchCategories();
+  return categories.map((cat) => ({
+    params: { slug: cat.slug },
+    props: { category: cat },
+  }));
+}
+
+interface Props {
+  category: WPCategory;
+}
+
+const { category } = Astro.props;
+const [{ posts, totalPages }, recentPosts] = await Promise.all([
+  fetchPostsByCategory(category.id, 1, 9),
+  fetchPosts(4),
+]);
+---
+
+<BlogListLayout
+  title={`${category.name} | Blog Mediabros`}
+  description={`Artículos sobre ${category.name} en el blog de Mediabros`}
+  heroTitle={category.name}
+  breadcrumbItems={[
+    { label: "Inicio", href: "/" },
+    { label: "Blog", href: "/blog" },
+    { label: category.name },
+  ]}
+  posts={posts}
+  totalPages={totalPages}
+  currentPage={1}
+  recentPosts={recentPosts}
+  baseUrl={`/blog/categoria/${category.slug}`}
+  currentCategory={category.slug}
+  emptyText="No hay artículos en esta categoría todavía."
+/>
