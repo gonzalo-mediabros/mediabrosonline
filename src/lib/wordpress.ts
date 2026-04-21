@@ -1,4 +1,4 @@
-import type { WPPost, WPCategory, NormalizedPost } from "../types/wordpress";
+import type { WPPost, WPCategory, NormalizedPost } from "./wordpress-types";
 
 const WP_API_BASE = "https://mediabrosonline.com/wp-json/wp/v2";
 

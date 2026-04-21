@@ -2,7 +2,7 @@
 import CardBlog from "../atoms/CardBlog.astro";
 import Button from "../atoms/Button.astro";
 import { fetchCategories } from "../../lib/wordpress";
-import type { NormalizedPost } from "../../types/wordpress";
+import type { NormalizedPost } from "../../lib/wordpress-types";
 
 interface Props {
   recentPosts: NormalizedPost[];
