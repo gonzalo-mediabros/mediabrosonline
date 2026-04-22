@@ -1,5 +1,9 @@
 name: Rebuild desde CMS
 
+concurrency:
+  group: cms-rebuild
+  cancel-in-progress: true
+
 on:
   repository_dispatch:
     types: [cms-rebuild]
