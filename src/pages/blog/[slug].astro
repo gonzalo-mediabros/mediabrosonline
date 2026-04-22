@@ -38,12 +38,7 @@ const imagePath = post.image
   ? post.image.startsWith("http")
     ? post.image
     : `${BASE}/${post.image.replace(/^\//, "")}`
-  : `${BASE}/imgs/placeholder.png`;
-const avatarPath = post.author.avatar
-  ? post.author.avatar.startsWith("http")
-    ? post.author.avatar
-    : `${BASE}/${post.author.avatar.replace(/^\//, "")}`
-  : null;
+  : `${BASE}/imgs/placeholder.jpg`;
 
 const { pathname } = Astro.url;
 

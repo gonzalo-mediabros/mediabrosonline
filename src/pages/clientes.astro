@@ -22,7 +22,7 @@ const SEO = {
   canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
   ogType: "website",
   noindex: false,
-};
+} as const;
 
 const industries = [
   { label: "Seguridad", icon: "security" },

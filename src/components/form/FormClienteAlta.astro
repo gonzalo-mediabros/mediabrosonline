@@ -1,0 +1,113 @@
+---
+import Form from "./Form.astro";
+import FormStep from "./FormStep.astro";
+import Input from "./Input.astro";
+import Select from "./Select.astro";
+import Radio from "./Radio.astro";
+import Checkbox from "./Checkbox.astro";
+
+const tipoOrganizacionOptions = [
+  { value: "sociedad", label: "Sociedad" },
+  { value: "individual", label: "Individual o Prop. único" },
+  { value: "otra", label: "Otra" },
+];
+
+const tamanoEmpresaOptions = [
+  { value: "1-10", label: "1–10" },
+  { value: "11-50", label: "11–50" },
+  { value: "51-200", label: "51–200" },
+  { value: "201-500", label: "201–500" },
+  { value: "501-1000", label: "501–1000" },
+  { value: "+1000", label: "+1000" },
+];
+
+const metodoPagoOptions = [
+  { value: "tarjeta", label: "Tarjeta de crédito" },
+  { value: "transferencia_usa", label: "Transferencia Internacional USA" },
+  { value: "transferencia_arg", label: "Transferencia Bancaria ARG" },
+];
+---
+
+<div class="bg-white rounded-xl p-10">
+  <Form
+    actions={["https://usebasin.com/f/FORM_ID_ALTA"]}
+    buttonText="Registrar alta"
+    successTitle="¡Alta registrada!"
+    successMessage="Te confirmamos los datos por email a la brevedad."
+  >
+    <FormStep label="Datos de contacto">
+      <Input name="nombre" label="Nombre" type="text" required />
+      <Input name="email" label="Email" type="email" required />
+      <Input name="telefono" label="Teléfono" type="tel" required />
+      <Input name="website" label="Website" type="text" required />
+    </FormStep>
+    <FormStep label="Datos de empresa">
+      <Select
+        name="tipo_organizacion"
+        label="Tipo de organización"
+        options={tipoOrganizacionOptions}
+        required
+      />
+      <Select
+        name="tamano_empresa"
+        label="Tamaño de empresa"
+        options={tamanoEmpresaOptions}
+        required
+      />
+      <Input name="razon_social" label="Razón social" type="text" required />
+      <Input
+        name="nombre_comercial"
+        label="Nombre comercial"
+        type="text"
+        required
+      />
+      <Input name="tax_id" label="TAX ID" type="text" required />
+    </FormStep>
+    <FormStep label="Dirección">
+      <Input name="pais" label="País" type="text" required />
+      <Input
+        name="estado_provincia"
+        label="Estado / Provincia"
+        type="text"
+        required
+      />
+      <Input name="localidad" label="Localidad" type="text" required />
+      <Input name="direccion" label="Dirección" type="text" required />
+      <Input name="zip" label="ZIP code" type="text" required />
+    </FormStep>
+    <FormStep label="Facturación y cierre">
+      <Input name="responsable" label="Responsable" type="text" required />
+      <Input name="cargo" label="Cargo" type="text" required />
+      <Input
+        name="telefono_contacto"
+        label="Teléfono de contacto"
+        type="tel"
+        required
+      />
+      <Input
+        name="email_contacto"
+        label="Email de contacto"
+        type="email"
+        required
+      />
+      <Input
+        name="email_facturacion"
+        label="Email de facturación"
+        type="email"
+        required
+      />
+      <Radio
+        name="metodo_pago"
+        label="Método de pago"
+        options={metodoPagoOptions}
+        required
+        direction="row"
+      />
+      <Checkbox
+        name="acepta_propuesta"
+        label="Acepto la propuesta comercial presentada"
+        required
+      />
+    </FormStep>
+  </Form>
+</div>

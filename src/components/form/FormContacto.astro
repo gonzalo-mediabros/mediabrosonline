@@ -1,0 +1,18 @@
+---
+import Form from "./Form.astro";
+import Input from "./Input.astro";
+import Textarea from "./Textarea.astro";
+---
+
+<Form
+  actions={["https://hook.us2.make.com/eexxgw1f6h8hlyzmcgy96im9seghr2h4"]}
+  theme="light"
+  successTitle="¡Mensaje enviado!"
+  successMessage="Nos ponemos en contacto a la brevedad."
+>
+  <Input name="nombre" label="Nombre" type="text" required theme="light" />
+  <Input name="email" label="Email" type="email" required theme="light" />
+  <Input name="telefono" label="Teléfono" type="tel" theme="light" />
+  <Input name="web" label="Sitio web" type="url" theme="light" />
+  <Textarea name="mensaje" label="Mensaje" required theme="light" />
+</Form>

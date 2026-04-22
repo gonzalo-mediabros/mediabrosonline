@@ -1,0 +1,11 @@
+---
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<div data-form-step data-step-label={label} class="flex flex-col gap-4">
+  <slot />
+</div>

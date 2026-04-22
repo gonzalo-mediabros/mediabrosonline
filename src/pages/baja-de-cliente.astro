@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Navigation from "../components/ui/Navigation.astro";
 import HeroSmall from "../components/ui/HeroSmall.astro";
 import Breadcrumb from "../components/atoms/Breadcrumb.astro";
-import Form from "../components/form/Form.astro";
+import FormClienteBaja from "../components/form/FormClienteBaja.astro";
 import Certificaciones from "../components/ui/Certificaciones.astro";
 import Footer from "../components/ui/Footer.astro";
 
@@ -11,63 +11,12 @@ const { pathname } = Astro.url;
 
 const SEO = {
   title: "Baja de cliente | Mediabros Online",
-  description: "Formulario de baja de cliente. Completá este formulario si necesitás dar de baja algún servicio de Mediabros y nos pondremos en contacto.",
+  description:
+    "Formulario de baja de cliente. Completá este formulario si necesitás dar de baja algún servicio de Mediabros y nos pondremos en contacto.",
   canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
   ogType: "website" as const,
   noindex: true,
 };
-
-const fields = [
-  { type: "input", name: "nombre_empresa", label: "Nombre de empresa", inputType: "text", required: true },
-  { type: "input", name: "nombre_contacto", label: "Nombre y apellido del contacto", inputType: "text", required: true },
-  { type: "input", name: "telefono", label: "Teléfono", inputType: "tel" },
-  {
-    type: "select",
-    name: "motivo",
-    label: "Motivo",
-    options: [
-      { value: "prioridades", label: "Cambio de prioridades internas" },
-      { value: "presupuesto", label: "Limitaciones de presupuesto" },
-      { value: "otra_agencia", label: "Decisión de trabajar con otra agencia" },
-      { value: "resultados", label: "Resultados distintos a los esperados" },
-      { value: "otro", label: "Otro" },
-    ],
-  },
-  { type: "input", name: "otro_motivo", label: "Especificar otro motivo", inputType: "text" },
-  { type: "input", name: "fecha_finalizacion", label: "Fecha de finalización", inputType: "date" },
-  {
-    type: "checkbox",
-    name: "facturas_saldadas",
-    label: "Confirmo que las facturas pendientes están saldadas",
-    required: true,
-  },
-  {
-    type: "radio",
-    name: "contacto_asesor",
-    label: "¿Querés que un asesor te contacte?",
-    options: [
-      { value: "si", label: "Sí" },
-      { value: "no", label: "No" },
-    ],
-  },
-  {
-    type: "radio",
-    name: "acceso_reportes",
-    label: "¿Mantener acceso a reportes?",
-    options: [
-      { value: "si", label: "Sí" },
-      { value: "no", label: "No" },
-    ],
-  },
-  { type: "textarea", name: "valorable", label: "¿Qué fue lo más valioso de trabajar con nosotros?" },
-  { type: "textarea", name: "mejoras", label: "¿Qué podríamos mejorar?" },
-  {
-    type: "checkbox",
-    name: "confirma_baja",
-    label: "Confirmo que deseo procesar la baja de mi cuenta",
-    required: true,
-  },
-] as const;
 ---
 
 <Layout {...SEO}>
@@ -78,18 +27,17 @@ const fields = [
     subtitle="Lamentamos que te vayas. Completá el formulario para procesar tu baja."
   />
 
-  <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Baja de cliente" }]} />
+  <Breadcrumb
+    items={[{ label: "Home", href: "/" }, { label: "Baja de cliente" }]}
+  />
 
   <main class="py-16 md:py-24 bg-brand-bg">
     <m-container>
       <div class="max-w-4xl mx-auto">
-        <!-- TODO: Reemplazar FORM_ID_BAJA con el ID real de Usebasin -->
-        <Form
-          fields={fields as any}
-          action="https://usebasin.com/f/FORM_ID_BAJA"
-          buttonText="Solicitar baja"
-          theme="light"
-        />
+        <h2 class="text-center text-3xl font-display font-semibold mb-8">
+          Completá tus datos para iniciar el proceso de baja.
+        </h2>
+        <FormClienteBaja />
       </div>
     </m-container>
   </main>

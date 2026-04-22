@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Navigation from "../components/ui/Navigation.astro";
 import HeroSmall from "../components/ui/HeroSmall.astro";
 import Breadcrumb from "../components/atoms/Breadcrumb.astro";
-import Form from "../components/form/Form.astro";
+import FormClienteAlta from "../components/form/FormClienteAlta.astro";
 import Certificaciones from "../components/ui/Certificaciones.astro";
 import Footer from "../components/ui/Footer.astro";
 
@@ -11,70 +11,12 @@ const { pathname } = Astro.url;
 
 const SEO = {
   title: "Alta de cliente | Mediabros Online",
-  description: "Alta de cliente. Agencia MediaBros: Tráfico calificado y conversiones. Servicios Paid Media, Posicionamiento y Análisis.",
+  description:
+    "Alta de cliente. Agencia MediaBros: Tráfico calificado y conversiones. Servicios Paid Media, Posicionamiento y Análisis.",
   canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
   ogType: "website" as const,
   noindex: true,
 };
-
-const fields = [
-  { type: "input", name: "nombre", label: "Nombre", inputType: "text", required: true },
-  { type: "input", name: "email", label: "Email", inputType: "email", required: true },
-  { type: "input", name: "telefono", label: "Teléfono", inputType: "tel" },
-  { type: "input", name: "website", label: "Website", inputType: "url" },
-  {
-    type: "select",
-    name: "tipo_organizacion",
-    label: "Tipo de organización",
-    options: [
-      { value: "sociedad", label: "Sociedad" },
-      { value: "individual", label: "Individual o Prop. único" },
-      { value: "otra", label: "Otra" },
-    ],
-  },
-  {
-    type: "select",
-    name: "tamano_empresa",
-    label: "Tamaño de empresa",
-    options: [
-      { value: "1-10", label: "1–10" },
-      { value: "11-50", label: "11–50" },
-      { value: "51-200", label: "51–200" },
-      { value: "201-500", label: "201–500" },
-      { value: "501-1000", label: "501–1000" },
-      { value: "+1000", label: "+1000" },
-    ],
-  },
-  { type: "input", name: "razon_social", label: "Razón social", inputType: "text", required: true },
-  { type: "input", name: "nombre_comercial", label: "Nombre comercial", inputType: "text" },
-  { type: "input", name: "tax_id", label: "TAX ID", inputType: "text" },
-  { type: "input", name: "pais", label: "País", inputType: "text" },
-  { type: "input", name: "estado_provincia", label: "Estado / Provincia", inputType: "text" },
-  { type: "input", name: "localidad", label: "Localidad", inputType: "text" },
-  { type: "input", name: "direccion", label: "Dirección", inputType: "text" },
-  { type: "input", name: "zip", label: "ZIP code", inputType: "text" },
-  { type: "input", name: "responsable", label: "Responsable", inputType: "text", required: true },
-  { type: "input", name: "cargo", label: "Cargo", inputType: "text" },
-  { type: "input", name: "telefono_contacto", label: "Teléfono de contacto", inputType: "tel" },
-  { type: "input", name: "email_contacto", label: "Email de contacto", inputType: "email" },
-  { type: "input", name: "email_facturacion", label: "Email de facturación", inputType: "email" },
-  {
-    type: "radio",
-    name: "metodo_pago",
-    label: "Método de pago",
-    options: [
-      { value: "tarjeta", label: "Tarjeta de crédito" },
-      { value: "transferencia_usa", label: "Transferencia Internacional USA" },
-      { value: "transferencia_arg", label: "Transferencia Bancaria ARG" },
-    ],
-  },
-  {
-    type: "checkbox",
-    name: "acepta_propuesta",
-    label: "Acepto la propuesta comercial presentada",
-    required: true,
-  },
-] as const;
 ---
 
 <Layout {...SEO}>
@@ -82,21 +24,21 @@ const fields = [
 
   <HeroSmall
     title="Alta de cliente"
-    subtitle="Completá tus datos para iniciar la relación comercial."
+    subtitle="Agencia MediaBros: Tráfico calificado y conversiones"
   />
 
-  <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Alta de cliente" }]} />
+  <Breadcrumb
+    items={[{ label: "Home", href: "/" }, { label: "Alta de cliente" }]}
+  />
 
   <main class="py-16 md:py-24 bg-brand-bg">
     <m-container>
       <div class="max-w-4xl mx-auto">
-        <!-- TODO: Reemplazar FORM_ID_ALTA con el ID real de Usebasin -->
-        <Form
-          fields={fields as any}
-          action="https://usebasin.com/f/FORM_ID_ALTA"
-          buttonText="ENVIAR"
-          theme="light"
-        />
+        <h2 class="text-center text-3xl font-display font-semibold mb-8">
+          Completá tus datos para comenzar.
+        </h2>
+
+        <FormClienteAlta />
       </div>
     </m-container>
   </main>

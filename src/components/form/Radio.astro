@@ -12,6 +12,8 @@ interface Props {
   theme?: "light" | "dark";
   value?: string;
   error?: string;
+  direction?: "row" | "col";
+  showIf?: object;
 }
 
 const {
@@ -22,6 +24,8 @@ const {
   theme = "light",
   value,
   error,
+  direction = "col",
+  showIf,
 } = Astro.props;
 
 const isDark = theme === "dark";
@@ -35,23 +39,29 @@ const optionLabelClasses = isDark
   : "text-sm text-brand-foreground cursor-pointer leading-snug";
 ---
 
-<fieldset class="flex flex-col gap-1.5">
-  {label && <legend class={legendClasses}>{label}</legend>}
-  <div class="flex flex-col gap-2">
-    {options.map((o) => (
-      <div class="flex items-center gap-2.5">
-        <input
-          type="radio"
-          id={`${name}-${o.value}`}
-          name={name}
-          value={o.value}
-          checked={o.value === value}
-          required={required}
-          class="size-4 shrink-0 accent-brand-primary cursor-pointer"
-        />
-        <label for={`${name}-${o.value}`} class={optionLabelClasses}>{o.label}</label>
-      </div>
-    ))}
+<fieldset {...(showIf ? { "data-show-if": JSON.stringify(showIf), hidden: true } : {})}>
+  <div class="flex flex-col gap-4">
+    {label && <legend class={legendClasses}>{label}</legend>}
+    <div class={`flex gap-2 ${direction === "row" ? "flex-row flex-wrap" : "flex-col"}`}>
+      {
+        options.map((o) => (
+          <div class="flex items-center gap-2.5">
+            <input
+              type="radio"
+              id={`${name}-${o.value}`}
+              name={name}
+              value={o.value}
+              checked={o.value === value}
+              required={required}
+              class="size-4 shrink-0 accent-brand-primary cursor-pointer"
+            />
+            <label for={`${name}-${o.value}`} class={optionLabelClasses}>
+              {o.label}
+            </label>
+          </div>
+        ))
+      }
+    </div>
+    {error && <span class="text-xs text-red-400">{error}</span>}
   </div>
-  {error && <span class="text-xs text-red-400">{error}</span>}
 </fieldset>

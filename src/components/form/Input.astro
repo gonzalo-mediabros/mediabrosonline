@@ -9,6 +9,7 @@ interface Props {
   value?: string;
   error?: string;
   id?: string;
+  showIf?: object;
 }
 
 const {
@@ -21,6 +22,7 @@ const {
   value,
   error,
   id,
+  showIf,
 } = Astro.props;
 
 const inputId = id ?? `input-${Math.random().toString(36).substr(2, 9)}`;
@@ -35,7 +37,7 @@ const inputClasses = isDark
   : "w-full bg-slate-50 border border-slate-200 rounded-md px-4 py-3 text-brand-foreground focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition-colors";
 ---
 
-<div class="flex flex-col gap-1.5">
+<div class="flex flex-col gap-1.5" {...(showIf ? { "data-show-if": JSON.stringify(showIf), hidden: true } : {})}>
   <label for={inputId} class={labelClasses}>{label}</label>
   <input
     type={type}

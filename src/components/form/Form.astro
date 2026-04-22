@@ -1,162 +1,495 @@
 ---
 import Button from "../atoms/Button.astro";
-import Input from "./Input.astro";
-import Textarea from "./Textarea.astro";
-import Select from "./Select.astro";
-import Checkbox from "./Checkbox.astro";
-import Radio from "./Radio.astro";
-
-interface FieldBase {
-  name: string;
-  label?: string;
-  required?: boolean;
-  value?: string;
-  error?: string;
-}
-
-interface InputField extends FieldBase {
-  type: "input";
-  inputType?: string;
-  placeholder?: string;
-  label: string;
-}
-
-interface TextareaField extends FieldBase {
-  type: "textarea";
-  placeholder?: string;
-  rows?: number;
-  label: string;
-}
-
-interface SelectField extends FieldBase {
-  type: "select";
-  options: { value: string; label: string }[];
-  label: string;
-}
-
-interface CheckboxField extends FieldBase {
-  type: "checkbox";
-  checked?: boolean;
-  label: string;
-}
-
-interface RadioField extends FieldBase {
-  type: "radio";
-  options: { value: string; label: string }[];
-  label?: string;
-}
-
-type Field =
-  | InputField
-  | TextareaField
-  | SelectField
-  | CheckboxField
-  | RadioField;
 
 interface Props {
-  fields: Field[];
+  actions?: string[]; // URLs a donde enviar el formulario - ["mock"] para testing local
+  redirect?: string;
+  successTitle?: string;
+  successMessage?: string;
   buttonText?: string;
   theme?: "light" | "dark";
   class?: string;
   id?: string;
-  action?: string;
 }
 
 const {
-  fields,
+  actions = [],
+  redirect,
+  successTitle = "¡Enviado!",
+  successMessage,
   buttonText = "Enviar",
   theme = "light",
   class: className,
   id,
-  action,
 } = Astro.props;
 
-const formId = id ?? `form-${Math.random().toString(36).substr(2, 9)}`;
+const formId = id ?? crypto.randomUUID();
+const isDark = theme === "dark";
 ---
 
-<form
-  id={formId}
-  class:list={["flex flex-col gap-5", className]}
-  action={action}
-  method={action ? "POST" : undefined}
-  onsubmit={action ? undefined : "event.preventDefault();"}
->
+<div data-form-wrapper id={`wrapper-${formId}`} class="relative">
+  <form id={formId} novalidate class:list={["flex flex-col gap-5", className]}>
+    <slot />
+
+    <div data-form-nav class="flex flex-col sm:flex-row gap-3 mt-6">
+      <button
+        data-prev
+        type="button"
+        class:list={[
+          "hidden items-center justify-center px-6 py-1 rounded-full font-medium font-display transition-colors whitespace-nowrap w-full sm:w-auto shrink-0",
+          isDark
+            ? "bg-brand-dark-2 hover:bg-brand-dark text-white"
+            : "bg-brand-bg-alt hover:bg-brand-border text-brand-foreground",
+        ]}
+      >
+        Anterior
+      </button>
+      <Button
+        label={buttonText}
+        type="submit"
+        data-submit
+        variant={isDark ? "dark" : "celeste"}
+        class="w-full sm:w-auto justify-between"
+      />
+    </div>
+    <p
+      data-form-error
+      class:list={[
+        "hidden text-sm mt-1",
+        isDark ? "text-red-400" : "text-red-600",
+      ]}
+    >
+      Ocurrió un error al enviar. Por favor, intentá de nuevo.
+    </p>
+  </form>
+
   {
-    fields.map((field) => {
-      if (field.type === "input") {
-        return (
-          <Input
-            name={field.name}
-            label={field.label}
-            type={field.inputType ?? "text"}
-            placeholder={field.placeholder}
-            required={field.required}
-            theme={theme}
-            value={field.value}
-            error={field.error}
-          />
-        );
+    successMessage && (
+      <div
+        data-success
+        class:list={[
+          "hidden flex-col items-center justify-center gap-6 py-12 text-center",
+          isDark ? "text-white" : "text-brand-foreground",
+        ]}
+      >
+        <span
+          class="material-symbols-outlined text-brand-primary leading-none select-none"
+          style="font-size: 7rem; font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;"
+        >
+          check_circle
+        </span>
+        <div class="flex flex-col gap-2">
+          <h3
+            class:list={[
+              "text-2xl font-display font-semibold",
+              isDark ? "text-white" : "text-brand-foreground",
+            ]}
+          >
+            {successTitle}
+          </h3>
+          <p
+            class:list={[
+              "text-base",
+              isDark ? "text-slate-300" : "text-brand-muted",
+            ]}
+          >
+            {successMessage}
+          </p>
+        </div>
+        <button
+          data-reset
+          type="button"
+          class:list={[
+            "mt-2 text-sm font-medium underline underline-offset-4 transition-opacity hover:opacity-70",
+            isDark ? "text-slate-400" : "text-brand-muted",
+          ]}
+        >
+          Enviar otro mensaje
+        </button>
+      </div>
+    )
+  }
+</div>
+
+<script is:inline define:vars={{ formId, actions, redirect, buttonText }}>
+  (function () {
+    const wrapper = document.getElementById("wrapper-" + formId);
+    if (!wrapper) return;
+
+    const form = document.getElementById(formId);
+    const submitBtn = form.querySelector("[data-submit]");
+    const submitLabel = submitBtn
+      ? submitBtn.querySelector("span.flex-1")
+      : null;
+    const prevBtn = form.querySelector("[data-prev]");
+    const successEl = wrapper.querySelector("[data-success]");
+    const resetBtn = successEl ? successEl.querySelector("[data-reset]") : null;
+
+    const errorEl = form.querySelector("[data-form-error]");
+    const steps = Array.from(form.querySelectorAll("[data-form-step]"));
+    const isMultistep = steps.length > 0;
+    let currentStep = 0;
+
+    form.addEventListener("invalid", function (e) {
+      var el = e.target;
+      if (el && !el.hasAttribute("data-select-input")) el.setAttribute("data-invalid", "");
+    }, true);
+
+    form.addEventListener("input", function (e) {
+      var el = e.target;
+      if (el && el.validity && el.validity.valid) el.removeAttribute("data-invalid");
+    }, true);
+
+    form.addEventListener("change", function (e) {
+      var el = e.target;
+      if (el && el.validity && el.validity.valid) el.removeAttribute("data-invalid");
+    }, true);
+
+    if (resetBtn) {
+      resetBtn.addEventListener("click", function () {
+        form.reset();
+        form.querySelectorAll("[data-invalid]").forEach(function (el) { el.removeAttribute("data-invalid"); });
+        form.querySelectorAll("[data-select-trigger][aria-invalid]").forEach(function (el) { el.removeAttribute("aria-invalid"); });
+        updateConditionals();
+        currentStep = 0;
+        if (isMultistep) {
+          steps.forEach(function (step, i) {
+            step.hidden = i !== 0;
+          });
+          updateUI();
+        }
+        successEl.classList.add("hidden");
+        successEl.classList.remove("flex");
+        form.classList.remove("hidden");
+      });
+    }
+
+    if (isMultistep) {
+      steps.forEach(function (step, i) {
+        step.hidden = i !== 0;
+      });
+
+      const indicator = buildIndicator(steps, 0);
+      const firstStep = form.querySelector("[data-form-step]");
+      form.insertBefore(indicator, firstStep);
+
+      if (prevBtn) {
+        prevBtn.addEventListener("click", function () {
+          if (currentStep > 0) {
+            steps[currentStep].hidden = true;
+            currentStep--;
+            steps[currentStep].hidden = false;
+            updateUI();
+          }
+        });
       }
-      if (field.type === "textarea") {
-        return (
-          <Textarea
-            name={field.name}
-            label={field.label}
-            placeholder={field.placeholder}
-            required={field.required}
-            theme={theme}
-            value={field.value}
-            error={field.error}
-            rows={field.rows}
-          />
-        );
+
+      updateUI();
+    }
+
+    function getFieldValue(fieldName) {
+      var inputs = form.querySelectorAll('[name="' + fieldName + '"]');
+      if (!inputs.length) return "";
+      var first = inputs[0];
+      if (first.type === "checkbox") return first.checked ? (first.value || "on") : "";
+      if (first.type === "radio") {
+        for (var i = 0; i < inputs.length; i++) {
+          if (inputs[i].checked) return inputs[i].value;
+        }
+        return "";
       }
-      if (field.type === "select") {
-        return (
-          <Select
-            name={field.name}
-            label={field.label}
-            options={field.options}
-            required={field.required}
-            theme={theme}
-            value={field.value}
-            error={field.error}
-          />
-        );
+      return first.value;
+    }
+
+    function cmp(a, b) {
+      var na = parseFloat(a), nb = parseFloat(b);
+      if (!isNaN(na) && !isNaN(nb)) return na - nb;
+      return a < b ? -1 : a > b ? 1 : 0;
+    }
+
+    function evalCond(cond) {
+      if (cond.and) return cond.and.every(evalCond);
+      if (cond.or) return cond.or.some(evalCond);
+      var val = getFieldValue(cond.field);
+      var target = cond.value;
+      switch (cond.is) {
+        case "==": return val == target;
+        case "!=": return val != target;
+        case ">": return cmp(val, target) > 0;
+        case ">=": return cmp(val, target) >= 0;
+        case "<": return cmp(val, target) < 0;
+        case "<=": return cmp(val, target) <= 0;
+        case "contains": return val.indexOf(String(target)) !== -1;
+        case "inArray": return Array.isArray(target) && target.indexOf(val) !== -1;
+        case "empty": return val === "";
+        case "!empty": return val !== "";
+        default: return true;
       }
-      if (field.type === "checkbox") {
-        return (
-          <Checkbox
-            name={field.name}
-            label={field.label}
-            required={field.required}
-            theme={theme}
-            checked={field.checked}
-            error={field.error}
-          />
+    }
+
+    function updateConditionals() {
+      form.querySelectorAll("[data-show-if]").forEach(function (el) {
+        var cond = JSON.parse(el.getAttribute("data-show-if"));
+        var show = evalCond(cond);
+        el.hidden = !show;
+        el.querySelectorAll("input, textarea, select").forEach(function (input) {
+          if (show) input.removeAttribute("disabled");
+          else input.setAttribute("disabled", "");
+        });
+      });
+    }
+
+    updateConditionals();
+    form.addEventListener("change", updateConditionals);
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      if (isMultistep) {
+        const fields = Array.from(
+          steps[currentStep].querySelectorAll("input, textarea, select"),
         );
+        for (let i = 0; i < fields.length; i++) {
+          if (!fields[i].reportValidity()) return;
+        }
+        if (currentStep < steps.length - 1) {
+          steps[currentStep].hidden = true;
+          currentStep++;
+          steps[currentStep].hidden = false;
+          updateUI();
+          return;
+        }
       }
-      if (field.type === "radio") {
-        return (
-          <Radio
-            name={field.name}
-            label={field.label}
-            options={field.options}
-            required={field.required}
-            theme={theme}
-            value={field.value}
-            error={field.error}
-          />
+
+      if (!isMultistep && !form.checkValidity()) {
+        var firstInvalid = Array.from(form.elements).find(function (el) {
+          return !el.validity.valid && !el.disabled && !el.hasAttribute("data-select-input");
+        });
+        if (firstInvalid) firstInvalid.reportValidity();
+        return;
+      }
+
+      const raw = new FormData(form);
+      const sanitized = new FormData();
+      raw.forEach(function (value, key) {
+        sanitized.append(
+          key,
+          typeof value === "string"
+            ? value.replace(/<[^>]*>/g, "").trim()
+            : value,
         );
+      });
+
+      setLoading(true);
+
+      let resolved = false;
+      let rejected = false;
+      form.dispatchEvent(
+        new CustomEvent("form:submit", {
+          bubbles: true,
+          detail: {
+            data: sanitized,
+            resolve: function () {
+              resolved = true;
+            },
+            reject: function () {
+              rejected = true;
+            },
+          },
+        }),
+      );
+
+      await new Promise(function (r) {
+        setTimeout(r, 50);
+      });
+
+      let success = false;
+
+      if (resolved) {
+        console.info("[Form] form:submit resuelto externamente");
+        success = true;
+      } else if (!rejected && actions.length > 0) {
+        console.info("[Form] enviando a", actions);
+        const results = await Promise.allSettled(
+          actions.map(function (url) {
+            if (url === "mock") {
+              return (async function () {
+                console.log(
+                  "[Form mock] datos enviados:",
+                  Object.fromEntries(sanitized),
+                );
+                await new Promise(function (r) {
+                  setTimeout(r, 1200);
+                });
+                return new Response(null, { status: 200 });
+              })();
+            }
+            return fetch(url, { method: "POST", body: sanitized });
+          }),
+        );
+        results.forEach(function (r, i) {
+          if (r.status === "rejected") {
+            console.error("[Form] fetch #" + i + " falló (network):", r.reason);
+          } else if (!r.value.ok) {
+            console.error(
+              "[Form] fetch #" +
+                i +
+                " respondió " +
+                r.value.status +
+                " " +
+                r.value.statusText,
+              "→",
+              actions[i],
+            );
+          } else {
+            console.info("[Form] fetch #" + i + " OK (" + r.value.status + ")");
+          }
+        });
+        success = results.some(function (r) {
+          return r.status === "fulfilled" && r.value.ok;
+        });
+      } else if (!rejected) {
+        console.info(
+          "[Form] sin actions y sin handler externo — éxito por defecto",
+        );
+        success = true;
       }
-      return null;
-    })
+
+      setLoading(false);
+
+      if (success) {
+        if (errorEl) errorEl.classList.add("hidden");
+        if (redirect) {
+          window.location.href = redirect;
+        } else if (successEl) {
+          form.classList.add("hidden");
+          successEl.classList.remove("hidden");
+          successEl.classList.add("flex");
+        }
+      } else {
+        if (errorEl) errorEl.classList.remove("hidden");
+      }
+    });
+
+    function setLoading(loading) {
+      if (!submitBtn) return;
+      submitBtn.disabled = loading;
+      if (submitLabel) {
+        submitLabel.textContent = loading ? "Enviando..." : getNextLabel();
+      }
+    }
+
+    function getNextLabel() {
+      return isMultistep && currentStep < steps.length - 1
+        ? "Siguiente"
+        : buttonText;
+    }
+
+    function updateUI() {
+      if (prevBtn) {
+        if (currentStep === 0) {
+          prevBtn.classList.remove("inline-flex");
+          prevBtn.classList.add("hidden");
+        } else {
+          prevBtn.classList.remove("hidden");
+          prevBtn.classList.add("inline-flex");
+        }
+      }
+      if (submitLabel) submitLabel.textContent = getNextLabel();
+      const indicator = form.querySelector("[data-step-indicator]");
+      if (indicator) updateIndicator(indicator, currentStep);
+    }
+
+    function getCircleClass(idx, current) {
+      if (idx < current)
+        return "relative z-10 flex items-center justify-center size-8 rounded-full text-sm font-medium shrink-0 transition-colors bg-brand-dark text-white";
+      if (idx === current)
+        return "relative z-10 flex items-center justify-center size-8 rounded-full text-sm font-medium shrink-0 transition-colors bg-brand-primary text-white ring-2 ring-brand-primary ring-offset-0";
+      return "relative z-10 flex items-center justify-center size-8 rounded-full text-sm font-medium shrink-0 transition-colors bg-brand-surface text-brand-muted ring-1 ring-brand-border";
+    }
+
+    function setCircleContent(circle, isDone, num) {
+      if (isDone) {
+        circle.innerHTML =
+          '<span class="material-symbols-outlined text-base leading-none">check</span>';
+      } else {
+        circle.textContent = String(num);
+      }
+    }
+
+    function buildIndicator(steps, current) {
+      const container = document.createElement("div");
+      container.setAttribute("data-step-indicator", "");
+      container.setAttribute(
+        "aria-label",
+        "Paso " + (current + 1) + " de " + steps.length,
+      );
+      container.className = "flex items-center mb-6";
+
+      steps.forEach(function (step, i) {
+        if (i > 0) {
+          const line = document.createElement("div");
+          line.setAttribute("data-step-line", String(i));
+          line.className =
+            "flex-1 h-px transition-colors " +
+            (i <= current ? "bg-brand-primary" : "bg-brand-border");
+          container.appendChild(line);
+        }
+
+        const circle = document.createElement("div");
+        circle.setAttribute("data-step-circle", String(i));
+        circle.className = getCircleClass(i, current);
+        circle.title = step.dataset.stepLabel || "";
+        setCircleContent(circle, i < current, i + 1);
+        container.appendChild(circle);
+      });
+
+      return container;
+    }
+
+    function updateIndicator(indicator, current) {
+      indicator.setAttribute(
+        "aria-label",
+        "Paso " + (current + 1) + " de " + steps.length,
+      );
+
+      indicator
+        .querySelectorAll("[data-step-circle]")
+        .forEach(function (circle) {
+          const idx = parseInt(circle.getAttribute("data-step-circle"), 10);
+          circle.className = getCircleClass(idx, current);
+          setCircleContent(circle, idx < current, idx + 1);
+        });
+
+      indicator.querySelectorAll("[data-step-line]").forEach(function (line) {
+        const idx = parseInt(line.getAttribute("data-step-line"), 10);
+        line.className =
+          "flex-1 h-px transition-colors " +
+          (idx <= current ? "bg-brand-primary" : "bg-brand-border");
+      });
+    }
+  })();
+</script>
+
+<style is:global>
+  input[data-invalid]:not([data-select-input]):not([type="radio"]):not([type="checkbox"]),
+  textarea[data-invalid] {
+    border-color: rgb(248 113 113);
+    box-shadow: 0 0 0 1px rgb(248 113 113);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
   }
 
-  <Button
-    label={buttonText}
-    type="submit"
-    variant={theme === "dark" ? "dark" : "celeste"}
-    class="w-full justify-between mt-1"
-  />
-</form>
+  [data-select-trigger][aria-invalid="true"] {
+    border-color: rgb(248 113 113);
+    box-shadow: 0 0 0 1px rgb(248 113 113);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  fieldset:has(input[type="radio"][data-invalid]) {
+    outline: 1.5px solid rgb(248 113 113);
+    border-radius: 8px;
+    padding: 8px;
+    transition: outline-color 0.15s;
+  }
+</style>

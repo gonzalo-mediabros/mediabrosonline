@@ -7,6 +7,7 @@ interface Props {
   checked?: boolean;
   error?: string;
   id?: string;
+  showIf?: object;
 }
 
 const {
@@ -17,6 +18,7 @@ const {
   checked = false,
   error,
   id,
+  showIf,
 } = Astro.props;
 
 const inputId = id ?? `checkbox-${Math.random().toString(36).slice(2, 11)}`;
@@ -27,7 +29,7 @@ const labelClasses = isDark
   : "text-sm text-brand-foreground cursor-pointer leading-snug";
 ---
 
-<div class="flex flex-col gap-1">
+<div class="flex flex-col gap-1" {...(showIf ? { "data-show-if": JSON.stringify(showIf), hidden: true } : {})}>
   <label class="flex items-start gap-2.5 cursor-pointer" for={inputId}>
     <span class:list={["cb-wrap", isDark ? "cb-dark" : "cb-light"]}>
       <input
@@ -103,5 +105,11 @@ const labelClasses = isDark
 
   .cb-input:checked ~ .cb-box .cb-icon {
     display: block;
+  }
+
+  .cb-input[data-invalid] ~ .cb-box {
+    border-color: rgb(248 113 113);
+    box-shadow: 0 0 0 1px rgb(248 113 113);
+    transition: border-color 0.15s, box-shadow 0.15s;
   }
 </style>

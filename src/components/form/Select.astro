@@ -13,6 +13,7 @@ interface Props {
   value?: string;
   error?: string;
   id?: string;
+  showIf?: object;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   value,
   error,
   id,
+  showIf,
 } = Astro.props;
 
 const inputId = id ?? `select-${Math.random().toString(36).substr(2, 9)}`;
@@ -50,10 +52,20 @@ const placeholderClasses = isDark ? "text-slate-500" : "text-slate-400";
 const selectedLabel = options.find((o) => o.value === value)?.label ?? "";
 ---
 
-<div class="flex flex-col gap-1.5">
+<div class="flex flex-col gap-1.5" {...(showIf ? { "data-show-if": JSON.stringify(showIf), hidden: true } : {})}>
   <label class={labelClasses}>{label}</label>
   <div class="relative">
-    <input type="hidden" id={inputId} name={name} value={value ?? ""} required={required} data-select-input />
+    <input
+      type="text"
+      id={inputId}
+      name={name}
+      value={value ?? ""}
+      required={required}
+      data-select-input
+      tabindex="-1"
+      aria-hidden="true"
+      style="position:absolute;opacity:0;pointer-events:none;width:0;height:0;"
+    />
     <button
       type="button"
       class={triggerClasses}
@@ -117,12 +129,18 @@ const selectedLabel = options.find((o) => o.value === value)?.label ?? "";
       dropdown.hidden ? open() : close();
     });
 
+    input.addEventListener("invalid", () => {
+      trigger.setAttribute("aria-invalid", "true");
+    });
+
     dropdown.querySelectorAll(`[data-select-option="${id}"]`).forEach((option) => {
       option.addEventListener("click", () => {
         const val = option.getAttribute("data-value") ?? "";
         input.value = val;
+        input.dispatchEvent(new Event("change", { bubbles: true }));
         labelEl.textContent = option.textContent?.trim() ?? "";
         labelEl.classList.remove("text-slate-400", "text-slate-500");
+        trigger.removeAttribute("aria-invalid");
         dropdown.querySelectorAll(`[data-select-option="${id}"]`).forEach((o) =>
           o.setAttribute("aria-selected", o === option ? "true" : "false")
         );

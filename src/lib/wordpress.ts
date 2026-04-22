@@ -1,6 +1,6 @@
 import type { WPPost, WPCategory, NormalizedPost } from "./wordpress-types";
 
-const WP_API_BASE = "https://mediabrosonline.com/wp-json/wp/v2";
+const WP_API_BASE = "https://cms.mediabrosonline.com/wp-json/wp/v2";
 
 const FIELDS = "id,slug,title,excerpt,content,date,author,rank_math_seo,_links,_embedded";
 

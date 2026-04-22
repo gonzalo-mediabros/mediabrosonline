@@ -91,6 +91,9 @@
   --color-brand-border-subtle: #e8ecf4;
 }
 
+/* Safelist: classes built dynamically in JS (Form.astro step indicator) */
+@source inline("bg-brand-primary bg-brand-dark bg-brand-surface text-white text-brand-muted ring-1 ring-2 ring-brand-primary ring-brand-border ring-offset-2 relative z-10 inline-flex");
+
 /* ===== Utility variables ===== */
 :root {
   --font-size-base: 17px;

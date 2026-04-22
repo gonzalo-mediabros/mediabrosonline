@@ -1,0 +1,96 @@
+---
+import Form from "./Form.astro";
+import Input from "./Input.astro";
+import Textarea from "./Textarea.astro";
+import Select from "./Select.astro";
+import Checkbox from "./Checkbox.astro";
+import Radio from "./Radio.astro";
+
+const motivoOptions = [
+  { value: "prioridades", label: "Cambio de prioridades internas" },
+  { value: "presupuesto", label: "Limitaciones de presupuesto" },
+  { value: "otra_agencia", label: "Decisión de trabajar con otra agencia" },
+  { value: "resultados", label: "Resultados distintos a los esperados" },
+  { value: "otro", label: "Otro" },
+];
+
+const yesNoOptions = [
+  { value: "si", label: "Sí" },
+  { value: "no", label: "No" },
+];
+---
+
+<div class="bg-white rounded-xl p-10">
+  <Form
+    actions={["https://usebasin.com/f/FORM_ID_BAJA", "mock"]}
+    theme="dark"
+    buttonText="Solicitar baja"
+    successTitle="Solicitud recibida"
+    successMessage="Te confirmamos la baja en breve."
+  >
+    <Input
+      name="nombre_empresa"
+      label="Nombre de empresa"
+      type="text"
+      required
+      theme="light"
+    />
+    <Input
+      name="nombre_contacto"
+      label="Nombre y apellido del contacto"
+      type="text"
+      required
+      theme="light"
+    />
+    <Input name="telefono" label="Teléfono" type="tel" theme="light" />
+    <Select
+      name="motivo"
+      label="Motivo"
+      options={motivoOptions}
+      theme="light"
+    />
+    <Input
+      name="otro_motivo"
+      label="Especificar otro motivo"
+      type="text"
+      theme="light"
+      showIf={{ field: "motivo", is: "==", value: "otro" }}
+    />
+    <Input
+      name="fecha_finalizacion"
+      label="Fecha de finalización"
+      type="date"
+      theme="light"
+    />
+    <Checkbox
+      name="facturas_saldadas"
+      label="Confirmo que las facturas pendientes están saldadas"
+      required
+      theme="light"
+    />
+    <Radio
+      name="contacto_asesor"
+      label="¿Querés que un asesor te contacte?"
+      options={yesNoOptions}
+      theme="light"
+    />
+    <Radio
+      name="acceso_reportes"
+      label="¿Mantener acceso a reportes?"
+      options={yesNoOptions}
+      theme="light"
+    />
+    <Textarea
+      name="valorable"
+      label="¿Qué fue lo más valioso de trabajar con nosotros?"
+      theme="light"
+    />
+    <Textarea name="mejoras" label="¿Qué podríamos mejorar?" theme="light" />
+    <Checkbox
+      name="confirma_baja"
+      label="Confirmo que deseo procesar la baja de mi cuenta"
+      required
+      theme="light"
+    />
+  </Form>
+</div>
