@@ -24,6 +24,8 @@ pnpm-debug.log*
 
 
 .*
+!.github/
+
 CLAUDE.md
 GEMINI.md
 /scraper
