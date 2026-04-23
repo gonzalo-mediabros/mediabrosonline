@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import SEO from "../components/SEO/SEO.astro";
 import ThemePanel from "../components/dev/ThemePanel.astro";
+import Whatsapp from "../components/atoms/Whatsapp.astro";
 
 interface Props {
   title: string;
@@ -67,8 +68,9 @@ const {
 
   <body>
     <slot />
+    <Whatsapp />
 
-    {import.meta.env.DEV && <ThemePanel />}
+    <!-- {import.meta.env.DEV && <ThemePanel />} -->
     <script>
       import Lenis from "lenis";
 

@@ -14,10 +14,12 @@ const { theme = "dark", pathname = "/", logo } = Astro.props;
 const BASE = import.meta.env.BASE_URL;
 const navItems = getNavItems(BASE);
 
-const defaultLogo = theme === "dark" ? `${BASE}imgs/logo-blanco.svg` : `${BASE}imgs/logo.svg`;
+const defaultLogo =
+  theme === "dark" ? `${BASE}imgs/logo-blanco.svg` : `${BASE}imgs/logo.svg`;
 const logoStatic = logo ? `${BASE}imgs/${logo}` : defaultLogo;
 const logoSticky = `${BASE}imgs/logo.svg`;
-const staticTextClass = theme === "dark" ? "text-white" : "text-brand-foreground";
+const staticTextClass =
+  theme === "dark" ? "text-white" : "text-brand-foreground";
 ---
 
 <!-- -------------------------- STATIC HEADER -------------------------- -->
@@ -31,7 +33,7 @@ const staticTextClass = theme === "dark" ? "text-white" : "text-brand-foreground
   <m-container class="font-display lg:max-w-[calc(100%-100px)]">
     <m-row class="flex-row items-center justify-between">
       <a href={BASE}>
-        <img src={logoStatic} alt="Mediabros online" class="h-10" />
+        <img src={logoStatic} alt="Mediabros online" class="h-12" />
       </a>
 
       <NavDesktop navItems={navItems} pathname={pathname} theme={theme} />

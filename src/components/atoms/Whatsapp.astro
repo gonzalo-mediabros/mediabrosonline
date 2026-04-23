@@ -1,0 +1,166 @@
+---
+import Icon from "./Icon.astro";
+import { whatsappContacts, whatsappMessage } from "../../data/whatsapp";
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const cleanNumber = (num: string) => num.replace(/[^\d]/g, "");
+---
+
+<div
+  class="whatsapp-container fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none"
+>
+  <!-- WhatsApp Menu -->
+  <div
+    id="wa-menu"
+    class="wa-menu mb-4 w-72 bg-brand-surface rounded-2xl shadow-lg border border-brand-border overflow-hidden opacity-0 scale-90 translate-y-4 pointer-events-none transition-all duration-200 ease-out origin-bottom-right"
+  >
+    <div class="px-5 py-4 bg-brand-surface border-b border-brand-border-subtle">
+      <p class="text-xs font-bold uppercase tracking-wider text-brand-muted">
+        Contactar
+      </p>
+    </div>
+
+    <div class="flex flex-col">
+      {
+        whatsappContacts.map((c) => (
+          <a
+            href={`https://wa.me/${cleanNumber(c.tel)}?text=${encodeURIComponent(whatsappMessage)}`}
+            target="_blank"
+            rel="noopener"
+            class="flex items-center gap-4 px-5 py-4 hover:bg-brand-bg-alt transition-colors group border-b border-brand-border-subtle last:border-none"
+          >
+            <div class="size-8 rounded-full overflow-hidden shrink-0 border border-brand-border-subtle bg-brand-bg-alt flex items-center justify-center">
+              <img
+                src={`${BASE}/imgs/flags/${c.flag}.svg`}
+                alt={c.label}
+                class="w-full h-full object-cover block scale-[1.35]"
+              />
+            </div>
+            <div class="flex flex-col">
+              <span class="text-sm font-semibold text-brand-foreground group-hover:text-brand-primary transition-colors">
+                {c.label}
+              </span>
+              <span class="text-xs text-brand-muted">{c.tel}</span>
+            </div>
+            <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
+              <Icon name="chevron_right" size={20} class="text-brand-primary" />
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Main Button -->
+  <button
+    id="wa-button"
+    class="wa-button relative w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-[0_8px_24px_rgba(37,211,102,0.2)] hover:shadow-[0_12px_32px_rgba(37,211,102,0.5)] transition-all duration-200 hover:scale-110 active:scale-95 pointer-events-auto cursor-pointer"
+    aria-label="Abrir menú de WhatsApp"
+  >
+    <!-- Badge -->
+    <div
+      id="wa-badge"
+      class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center shadow-md opacity-0 scale-0 transition-all duration-300 z-10"
+    >
+      1
+    </div>
+    <Icon
+      lib="social"
+      name="simple-icons:whatsapp"
+      size={30}
+      class="text-white"
+    />
+  </button>
+</div>
+
+<script>
+  function setupWhatsapp() {
+    const button = document.getElementById("wa-button");
+    const menu = document.getElementById("wa-menu");
+    const badge = document.getElementById("wa-badge");
+
+    if (!button || !menu) return;
+
+    // Show badge after 1s
+    setTimeout(() => {
+      if (badge && !menu.classList.contains("active")) {
+        badge.classList.remove("opacity-0", "scale-0");
+        badge.classList.add("opacity-100", "scale-100");
+      }
+    }, 3000);
+
+    button.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isActive = menu.classList.contains("active");
+
+      // Hide badge on click
+      if (badge) {
+        badge.classList.add("opacity-0", "scale-0");
+        badge.classList.remove("opacity-100", "scale-100");
+      }
+
+      if (isActive) {
+        menu.classList.remove(
+          "active",
+          "opacity-100",
+          "scale-100",
+          "translate-y-0",
+          "pointer-events-auto",
+        );
+        menu.classList.add(
+          "opacity-0",
+          "scale-90",
+          "translate-y-4",
+          "pointer-events-none",
+        );
+      } else {
+        menu.classList.add(
+          "active",
+          "opacity-100",
+          "scale-100",
+          "translate-y-0",
+          "pointer-events-auto",
+        );
+        menu.classList.remove(
+          "opacity-0",
+          "scale-90",
+          "translate-y-4",
+          "pointer-events-none",
+        );
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (
+        !menu.contains(e.target as Node) &&
+        !button.contains(e.target as Node)
+      ) {
+        menu.classList.remove(
+          "active",
+          "opacity-100",
+          "scale-100",
+          "translate-y-0",
+          "pointer-events-auto",
+        );
+        menu.classList.add(
+          "opacity-0",
+          "scale-90",
+          "translate-y-4",
+          "pointer-events-none",
+        );
+      }
+    });
+  }
+
+  // Init on load and after view transitions
+  setupWhatsapp();
+  document.addEventListener("astro:page-load", setupWhatsapp);
+</script>
+
+<style>
+  /* Extra support for old browsers or if Tailwind classes are tricky with animations */
+  .wa-menu.active {
+    display: block !important;
+  }
+</style>
