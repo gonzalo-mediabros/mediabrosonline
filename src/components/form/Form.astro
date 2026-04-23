@@ -32,18 +32,16 @@ const isDark = theme === "dark";
     <slot />
 
     <div data-form-nav class="flex flex-col sm:flex-row gap-3 mt-6">
-      <button
-        data-prev
+      <Button
+        label="Anterior"
         type="button"
-        class:list={[
-          "hidden items-center justify-center px-6 py-1 rounded-full font-medium font-display transition-colors whitespace-nowrap w-full sm:w-auto shrink-0",
-          isDark
-            ? "bg-brand-dark-2 hover:bg-brand-dark text-white"
-            : "bg-brand-bg-alt hover:bg-brand-border text-brand-foreground",
-        ]}
-      >
-        Anterior
-      </button>
+        icon={false}
+        bgColor={isDark ? "bg-brand-dark-2" : "bg-brand-bg-alt"}
+        bgHoverColor={isDark ? "hover:bg-brand-dark" : "hover:bg-brand-border"}
+        textColor={isDark ? "text-white" : "text-brand-foreground"}
+        data-prev
+        class="hidden w-full sm:w-auto"
+      />
       <Button
         label={buttonText}
         type="submit"

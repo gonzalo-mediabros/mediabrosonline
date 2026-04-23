@@ -6,7 +6,7 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
+ "dev": "set CLICK_TO_SOURCE=antigravity && astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -16,6 +16,7 @@
     "@iconify-json/simple-icons": "^1.2.77",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.1.4",
+    "astro-click-to-source": "^0.1.5",
     "astro-icon": "^1.1.5",
     "embla-carousel": "^8.6.0",
     "embla-carousel-auto-scroll": "^8.6.0",
@@ -23,4 +24,4 @@
     "simple-icons": "^16.15.0",
     "tailwindcss": "^4.2.2"
   }
-}
+} 
