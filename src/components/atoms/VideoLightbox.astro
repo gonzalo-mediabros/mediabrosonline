@@ -1,0 +1,99 @@
+---
+---
+
+<dialog
+  id="video-lightbox"
+  class="bg-transparent p-0 border-none max-w-none w-full"
+>
+  <div class="relative w-full max-w-4xl mx-auto px-4">
+    <div class="relative rounded-2xl overflow-hidden bg-black shadow-2xl">
+      <button
+        id="lightbox-close"
+        aria-label="Cerrar video"
+        class="absolute top-3 right-3 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-black/60 text-white hover:bg-black/90 transition-colors cursor-pointer border-none"
+      >
+        <span class="material-symbols-outlined text-2xl leading-none">close</span>
+      </button>
+      <div class="aspect-video w-full">
+        <iframe
+          id="lightbox-iframe"
+          src=""
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          class="w-full h-full block border-none"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<style>
+  #video-lightbox {
+    margin: auto;
+  }
+  #video-lightbox::backdrop {
+    background: rgba(0, 0, 0, 0.85);
+  }
+</style>
+
+<script>
+  function setupLightbox() {
+    const dialog = document.getElementById(
+      "video-lightbox",
+    ) as HTMLDialogElement | null;
+    const iframe = document.getElementById(
+      "lightbox-iframe",
+    ) as HTMLIFrameElement | null;
+    const closeBtn = document.getElementById("lightbox-close");
+
+    if (!dialog || !iframe) return;
+
+    function openLightbox(videoId: string) {
+      iframe!.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+      dialog!.showModal();
+    }
+
+    function closeLightbox() {
+      iframe!.src = "";
+      dialog!.close();
+    }
+
+    // Delegación global para cualquier [data-open-lightbox]
+    document.addEventListener("click", (e) => {
+      const btn = (e.target as Element).closest("[data-open-lightbox]");
+      if (!btn) return;
+      const videoId = btn.getAttribute("data-open-lightbox");
+      if (videoId) openLightbox(videoId);
+    });
+
+    // Botón X — usa once para no acumular listeners en re-setup
+    closeBtn?.addEventListener("click", closeLightbox, { once: false });
+
+    // Click en backdrop (el dialog fuera del contenido)
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) closeLightbox();
+    });
+
+    // ESC nativo
+    dialog.addEventListener("cancel", () => {
+      iframe!.src = "";
+    });
+  }
+
+  // Cerrar si estaba abierto antes de una navegación View Transitions
+  document.addEventListener("astro:before-swap", () => {
+    const dialog = document.getElementById(
+      "video-lightbox",
+    ) as HTMLDialogElement | null;
+    const iframe = document.getElementById(
+      "lightbox-iframe",
+    ) as HTMLIFrameElement | null;
+    if (dialog?.open) {
+      if (iframe) iframe.src = "";
+      dialog.close();
+    }
+  });
+
+  setupLightbox();
+  document.addEventListener("astro:after-swap", setupLightbox);
+</script>

@@ -1,5 +1,5 @@
 ---
-import FaqAccordion from "../atoms/FaqAccordion.astro";
+import FaqAccordion from "@/components/atoms/FaqAccordion.astro";
 
 interface FaqItem {
   question: string;
@@ -14,9 +14,11 @@ interface Props {
 const { heading, faqs } = Astro.props;
 ---
 
-<section class="py-16 isolate md:py-20">
+<section class="py-6 isolate md:py-10">
   <m-container class="flex flex-col gap-10">
-    <h2 class="text-4xl leading-tight md:text-5xl font-display text-brand-foreground">
+    <h2
+      class="text-4xl leading-tight md:text-5xl font-display text-brand-foreground"
+    >
       {heading}
     </h2>
 

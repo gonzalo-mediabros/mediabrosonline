@@ -1,24 +1,25 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Navigation from "../components/ui/Navigation.astro";
-import HeroSmall from "../components/ui/HeroSmall.astro";
-import Breadcrumb from "../components/atoms/Breadcrumb.astro";
-import ChipOvertitle from "../components/atoms/ChipOvertitle.astro";
-import Carrusel from "../components/atoms/Carrusel.astro";
-import CardTestimonialVideo from "../components/atoms/CardTestimonialVideo.astro";
-import CardCta from "../components/atoms/CardCta.astro";
-import Icon from "../components/atoms/Icon.astro";
-import Certificaciones from "../components/ui/Certificaciones.astro";
-import Footer from "../components/ui/Footer.astro";
-import { CLIENTS } from "../data/clients.ts";
-import Button from "../components/atoms/Button.astro";
+import Layout from "@/layouts/Layout.astro";
+import Navigation from "@/components/ui/Navigation.astro";
+import HeroSmall from "@/components/ui/HeroSmall.astro";
+import Breadcrumb from "@/components/atoms/Breadcrumb.astro";
+import ChipOvertitle from "@/components/atoms/ChipOvertitle.astro";
+import Carrusel from "@/components/atoms/Carrusel.astro";
+import CardTestimonialVideo2 from "@/components/atoms/CardTestimonialVideo2.astro";
+import CardCta from "@/components/atoms/CardCta.astro";
+import Icon from "@/components/atoms/Icon.astro";
+import Certificaciones from "@/components/ui/Certificaciones.astro";
+import Footer from "@/components/ui/Footer.astro";
+import { CLIENTS } from "@/data/clients.ts";
+import Button from "@/components/atoms/Button.astro";
 
 const { pathname } = Astro.url;
 const BASE = import.meta.env.BASE_URL;
 
 const SEO = {
   title: "Clientes | Agencia de Marketing Digital",
-  description: "Te invitamos a conocer las marcas que confían en nosotros. Más de 15 años de experiencia en el mundo online y más de 500 proyectos realizados.",
+  description:
+    "Te invitamos a conocer las marcas que confían en nosotros. Más de 15 años de experiencia en el mundo online y más de 500 proyectos realizados.",
   canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
   ogType: "website",
   noindex: false,
@@ -128,16 +129,21 @@ const testimonials = [
           Testimonios de nuestros clientes
         </h2>
       </div>
-      <Carrusel slidesPerView={3} navigation={true} pagination={true}>
+      <Carrusel
+        slidesPerView={{ base: 1, md: 1, lg: 2 }}
+        navigation={true}
+        pagination={true}
+      >
         {
           testimonials.map((t) => (
-            <div class="embla__slide mb-12">
-              <CardTestimonialVideo
+            <div class="embla__slide mb-12 h-full">
+              <CardTestimonialVideo2
                 quote={t.quote}
                 authorName={t.authorName}
                 authorRole={t.authorRole}
                 videoUrl={t.videoUrl}
                 thumbnail={t.thumbnail}
+                class="h-90"
               />
             </div>
           ))
@@ -155,6 +161,8 @@ const testimonials = [
         title="Únete a +100 empresas en LATAM que confían en nosotros"
         buttonLabel="Consúltanos"
         buttonHref="/contacto"
+        direction="row"
+        align="left"
       />
     </m-container>
   </section>
@@ -193,8 +201,8 @@ const testimonials = [
         {
           industries.map((industry) => (
             <div class="flex flex-col items-center gap-3">
-              <div class="w-16 h-16 rounded-xl bg-brand-bg flex items-center justify-center text-brand-celeste">
-                <Icon name={industry.icon} size={32} />
+              <div class="w-16 h-16 rounded-xl bg-brand-dark flex items-center justify-center text-white">
+                <Icon name={industry.icon} size={32} fill={1} />
               </div>
               <span class="text-xs font-medium text-center text-brand-muted uppercase tracking-wide">
                 {industry.label}

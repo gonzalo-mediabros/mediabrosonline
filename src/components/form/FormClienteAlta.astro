@@ -1,10 +1,10 @@
 ---
-import Form from "./Form.astro";
-import FormStep from "./FormStep.astro";
-import Input from "./Input.astro";
-import Select from "./Select.astro";
-import Radio from "./Radio.astro";
-import Checkbox from "./Checkbox.astro";
+import Form from "@/components/form/Form.astro";
+import FormStep from "@/components/form/FormStep.astro";
+import Input from "@/components/form/Input.astro";
+import Select from "@/components/form/Select.astro";
+import Radio from "@/components/form/Radio.astro";
+import Checkbox from "@/components/form/Checkbox.astro";
 
 const tipoOrganizacionOptions = [
   { value: "sociedad", label: "Sociedad" },
@@ -35,6 +35,7 @@ const metodoPagoOptions = [
     successTitle="¡Alta registrada!"
     successMessage="Te confirmamos los datos por email a la brevedad."
   >
+    <Input name="formulario" label="Formulario" type="hidden" value="ALTA DE CLIENTE" />
     <FormStep label="Datos de contacto">
       <Input name="nombre" label="Nombre" type="text" required />
       <Input name="email" label="Email" type="email" required />

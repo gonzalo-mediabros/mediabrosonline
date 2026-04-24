@@ -1,6 +1,6 @@
 ---
-import BlogListLayout from "../layouts/BlogListLayout.astro";
-import { fetchPostsPaginated, fetchPosts } from "../lib/wordpress";
+import BlogListLayout from "@/layouts/BlogListLayout.astro";
+import { fetchPostsPaginated, fetchPosts } from "@/lib/wordpress";
 
 const [{ posts, totalPages }, recentPosts] = await Promise.all([
   fetchPostsPaginated(1, 9),

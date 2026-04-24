@@ -1,9 +1,9 @@
 ---
-import Icon from "../atoms/Icon.astro";
-import Glow from "../atoms/Glow.astro";
-import ImageBackground from "../atoms/ImageBackground.astro";
-import Carrusel from "../atoms/Carrusel.astro";
-import { getNavItems } from "../../data/navigation";
+import Icon from "@/components/atoms/Icon.astro";
+import Glow from "@/components/atoms/Glow.astro";
+import ImageBackground from "@/components/atoms/ImageBackground.astro";
+import Carrusel from "@/components/atoms/Carrusel.astro";
+import { getNavItems } from "@/data/navigation";
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -19,7 +19,7 @@ const services =
 >
   <!-- Content Wrapper -->
   <div
-    class="relative z-10 flex flex-col flex-1 pb-12 overflow-hidden text-white pt-26 bg-brand-dark md:rounded-3xl"
+    class="relative z-10 flex flex-col flex-1 pb-12 overflow-hidden text-white pt-26 bg-brand-dark rounded-b-2xl md:rounded-3xl"
   >
     <!-- bg image -->
     <ImageBackground
@@ -68,7 +68,7 @@ const services =
     </m-row>
 
     <!-- cards carrusel -->
-    <m-row class="z-10 w-full px-26">
+    <m-row class="z-10 w-full px-4 xl:px-26">
       <Carrusel
         ticker={true}
         speed={2}

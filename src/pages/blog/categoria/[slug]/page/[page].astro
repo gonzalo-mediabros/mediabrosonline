@@ -1,7 +1,7 @@
 ---
-import BlogListLayout from "../../../../../layouts/BlogListLayout.astro";
-import { fetchCategories, fetchPostsByCategory, fetchPosts } from "../../../../../lib/wordpress";
-import type { WPCategory } from "../../../../../lib/wordpress-types";
+import BlogListLayout from "@/layouts/BlogListLayout.astro";
+import { fetchCategories, fetchPostsByCategory, fetchPosts } from "@/lib/wordpress";
+import type { WPCategory } from "@/lib/wordpress-types";
 
 export async function getStaticPaths() {
   const categories = await fetchCategories();

@@ -1,22 +1,22 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Navigation from "../components/ui/Navigation.astro";
-import Breadcrumb from "../components/atoms/Breadcrumb.astro";
-import HeroSmall from "../components/ui/HeroSmall.astro";
-import Certificaciones from "../components/ui/Certificaciones.astro";
-import Footer from "../components/ui/Footer.astro";
-import ContactSection from "../components/ui/ContactSection.astro";
-import DescriptionSection from "../components/service/DescriptionSection.astro";
-import FeaturesSection from "../components/service/FeaturesSection.astro";
-import WhySection from "../components/service/WhySection.astro";
-import CtaSection from "../components/service/CtaSection.astro";
-import FAQSection from "../components/service/FAQSection.astro";
+import Layout from "@/layouts/Layout.astro";
+import Navigation from "@/components/ui/Navigation.astro";
+import Breadcrumb from "@/components/atoms/Breadcrumb.astro";
+import HeroSmall from "@/components/ui/HeroSmall.astro";
+import Certificaciones from "@/components/ui/Certificaciones.astro";
+import Footer from "@/components/ui/Footer.astro";
+import ContactSection from "@/components/ui/ContactSection.astro";
+import DescriptionSection from "@/components/service/DescriptionSection.astro";
+import FeaturesSection from "@/components/service/FeaturesSection.astro";
+import WhySection from "@/components/service/WhySection.astro";
+import CtaSection from "@/components/service/CtaSection.astro";
+import FAQSection from "@/components/service/FAQSection.astro";
 
 const { pathname } = Astro.url;
 
 const SEO = {
-  title: "Posicionamiento web SEO y Posicionamiento en Google",
-  description: "Posicionamiento web SEO. Posicionamiento en Google alcanzando los primeros resultados garantizados. ¡Que tus clientes te encuentren!",
+  title: "Posicionamiento en Google Maps. Google Mi Negocio",
+  description: "Administramos tu perfil comercial en Google Mi Negocio, para que tu local pueda aparecer en las búsquedas en Google Maps. Creamos tu perfil comercial.",
   canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
   ogType: "website" as const,
   noindex: false,
@@ -26,90 +26,79 @@ const SEO = {
 <Layout {...SEO}>
   <Navigation pathname={pathname} />
   <HeroSmall
-    title="Technical SEO"
-    icon="ico-seo-technical.png"
-    subtitle="SEO técnico para mejorar visibilidad, rendimiento y capacidad de posicionamiento"
+    title="Local SEO"
+    icon="ico-seo-local.png"
+    subtitle="Local SEO como complemento para mejorar la visibilidad geográfica de la empresa"
   />
   <Breadcrumb
     items={[
       { label: "Home", href: "/" },
       { label: "Servicios", href: "/#servicios" },
-      { label: "Technical SEO" },
+      { label: "Local SEO" },
     ]}
   />
 
   <DescriptionSection
-    chipText="Más leads con Technical SEO"
-    heading="Optimización estructura"
-    description="El SEO técnico es la base sobre la que se construye cualquier estrategia de posicionamiento orgánico sólida. Sin una estructura técnica correcta, ningún contenido ni ninguna estrategia de palabras clave puede rendir al máximo."
+    chipText="Más leads con Local SEO"
+    heading="Google Business Profile"
+    description="El Local SEO es una estrategia orientada a mejorar la presencia de una empresa en búsquedas geolocalizadas, especialmente a través de su perfil en Google Business Profile (antes Google Mi Negocio)."
     ctaLabel="Consúltanos"
     ctaHref="#contacto"
     rightContent="image"
-    imageSrc="servicios/technical-seo.webp"
-    imageAlt="Technical SEO"
+    imageSrc="servicios/local-seo.webp"
+    imageAlt="Local SEO"
   />
 
   <FeaturesSection
-    chipText="Servicio de Technical SEO"
-    heading="Qué trabajamos dentro del SEO técnico"
-    description="El SEO técnico abarca múltiples aspectos del sitio web que impactan directamente en el ranking. En MediaBros trabajamos, entre otros, los siguientes ejes:"
-    sectionIconSrc="iconos/ico-seo-technical.png"
-    sectionIconAlt="Technical SEO"
+    chipText="Nuestro enfoque de Local SEO"
+    heading="Cómo trabajamos el Local SEO"
+    description="Nuestro trabajo incluye la correcta configuración del perfil de Google Business Profile, asegurándonos de que la información de la empresa esté completa, consistente y alineada con su identidad."
+    sectionIconSrc="iconos/ico-seo-local.png"
+    sectionIconAlt="Local SEO"
     items={[
       {
-        iconName: "travel_explore",
-        title: "Rastreo e indexación",
-        description: "Optimizamos la estructura del sitio para facilitar el rastreo y la indexación.",
+        iconName: "business",
+        title: "Descripción del negocio",
+        description: "Asegurándonos de que la información de la empresa esté completa y correctamente configurada.",
       },
       {
-        iconName: "build",
-        title: "Corrección de errores técnicos",
-        description: "Corregimos errores técnicos que afectan la visibilidad en buscadores.",
+        iconName: "schedule",
+        title: "Datos de contacto y horarios",
+        description: "Configuración y mantenimiento de datos de contacto, horarios y ubicación en el perfil.",
       },
       {
-        iconName: "speed",
-        title: "Velocidad de carga",
-        description: "Mejoramos la velocidad de carga y el rendimiento general del sitio.",
-      },
-      {
-        iconName: "account_tree",
-        title: "Arquitectura de URL",
-        description: "Optimizamos la arquitectura de URLs y la navegación interna.",
-      },
-      {
-        iconName: "data_object",
-        title: "Datos estructurados",
-        description: "Implementamos datos estructurados para mejorar la interpretación del contenido por parte de los buscadores.",
+        iconName: "post_add",
+        title: "Publicaciones periódicas",
+        description: "Mantenemos el perfil activo mediante publicaciones periódicas, lo que ayuda a mejorar su relevancia y visibilidad dentro del ecosistema de Google.",
       },
     ]}
   />
 
   <WhySection
-    chipText="Más leads con Technical SEO"
-    heading="¿Por qué es clave el SEO técnico?"
-    description="Un sitio puede tener buen contenido y una propuesta clara, pero si presenta errores técnicos, problemas de rendimiento o una mala arquitectura, Google simplemente no lo prioriza."
-    listHeading="El SEO técnico es fundamental cuando:"
+    chipText="Más leads con Local SEO"
+    heading="¿Qué es el Local SEO y cuándo tiene sentido?"
+    description="El Local SEO permite que una empresa aparezca con mayor relevancia cuando los usuarios realizan búsquedas asociadas a una ubicación específica. Esto incluye la correcta configuración y gestión del perfil de Google Business Profile."
+    listHeading="Local SEO tiene sentido cuando:"
     listItems={[
-      "El sitio no posiciona como debería.",
-      "El tráfico orgánico está estancado.",
-      "Existen errores de rastreo o indexación.",
-      "El sitio es lento o poco usable.",
-      "Se quiere escalar el posicionamiento en distintos países.",
+      "La empresa opera en una zona geográfica definida.",
+      "Busca reforzar su presencia local.",
+      "Necesita una ficha completa y bien optimizada.",
+      "Quiere mejorar su visibilidad en búsquedas cercanas.",
     ]}
     calloutIcon="emoji_events"
-    calloutText="En mercados competitivos, el SEO técnico no es opcional: es una condición necesaria para competir."
+    calloutText="El Local SEO es esencial y estratégico para empresas cuya captación de clientes depende de la <strong>ubicación física</strong> o de la prestación de un servicio en <strong>un área geográfica definida</strong>, convirtiéndose en un motor clave para la visibilidad en búsquedas geolocalizadas."
   />
 
   <CtaSection
-    chipText="Technical SEO"
-    heading="¿Tu sitio necesita SEO técnico?"
-    description="Podemos analizar el estado actual de tu web y definir si el SEO técnico es el paso necesario para mejorar su rendimiento y posicionamiento."
+    chipText="Local SEO"
+    heading="¿Tiene sentido el Local SEO para tu empresa?"
+    description="Podemos evaluar tu mercado, tu tipo de operación y tu estrategia digital para definir si el Local SEO puede aportar valor como complemento."
     ctaLabel="Consúltanos"
     ctaHref="#contacto"
   />
 
   <FAQSection
-    heading="Aprende todo sobre Technical SEO"
+    heading="Aprende todo sobre Local SEO"
     faqs={[
       {
         question: "¿Qué es el Posicionamiento SEO?",

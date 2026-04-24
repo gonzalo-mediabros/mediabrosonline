@@ -1,6 +1,6 @@
 ---
-import Icon from "../atoms/Icon.astro";
-import { whatsappContacts } from "../../data/whatsapp";
+import Icon from "@/components/atoms/Icon.astro";
+import { whatsappContacts } from "@/data/whatsapp";
 
 interface Props {
   variant?: "dark" | "light";
@@ -10,16 +10,16 @@ const { variant = "dark" } = Astro.props;
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 const services = [
-  { name: "Google Ads", href: "/servicio-google-ads" },
-  { name: "Meta Ads", href: "/servicio-meta-ads" },
-  { name: "TikTok Ads", href: "/servicio-tiktok-ads" },
-  { name: "LinkedIn Ads", href: "/servicio-linkedin-ads" },
-  { name: "Bing Ads", href: "/servicio-bing-ads" },
-  { name: "Local SEO", href: "/servicio-local-seo" },
-  { name: "Content SEO", href: "/servicio-content-seo" },
-  { name: "Technical SEO", href: "/servicio-technical-seo" },
-  { name: "Google Analytics", href: "/servicio-google-analytics" },
-  { name: "Asesoramiento", href: "/servicio-asesoramiento" },
+  { name: "Google Ads", href: "/servicios/google-ads" },
+  { name: "Meta Ads", href: "/servicios/meta-ads" },
+  { name: "TikTok Ads", href: "/servicios/tiktok-ads" },
+  { name: "LinkedIn Ads", href: "/servicios/linkedin-ads" },
+  { name: "Bing Ads", href: "/servicios/bing-ads" },
+  { name: "Local SEO", href: "/servicios/local-seo" },
+  { name: "Content SEO", href: "/servicios/content-seo" },
+  { name: "Technical SEO", href: "/servicios/technical-seo" },
+  { name: "Google Analytics", href: "/servicios/google-analytics" },
+  { name: "Asesoramiento", href: "/servicios/asesoramiento" },
 ];
 
 const contentLinks = [
@@ -99,11 +99,13 @@ const contentLinks = [
 
         <!-- Col 2: Servicios -->
         <m-col class="hidden flex-col gap-4 lg:flex grow-2 lg:ml-20">
-          <h3
-            class="mb-2 text-sm font-semibold tracking-widest text-white uppercase font-display"
-          >
-            Servicios
-          </h3>
+          <a href={`${BASE}/servicios`} class="hover:text-brand-primary transition-colors">
+            <h3
+              class="mb-2 text-sm font-semibold tracking-widest text-white uppercase font-display"
+            >
+              Servicios
+            </h3>
+          </a>
           <div class="grid grid-cols-2 gap-4">
             {
               services.map((s) => (

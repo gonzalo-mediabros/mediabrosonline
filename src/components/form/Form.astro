@@ -1,5 +1,5 @@
 ---
-import Button from "../atoms/Button.astro";
+import Button from "@/components/atoms/Button.astro";
 
 interface Props {
   actions?: string[]; // URLs a donde enviar el formulario - ["mock"] para testing local
@@ -40,7 +40,8 @@ const isDark = theme === "dark";
         bgHoverColor={isDark ? "hover:bg-brand-dark" : "hover:bg-brand-border"}
         textColor={isDark ? "text-white" : "text-brand-foreground"}
         data-prev
-        class="hidden w-full sm:w-auto"
+        class="w-full sm:w-auto"
+        style="display:none"
       />
       <Button
         label={buttonText}
@@ -385,13 +386,7 @@ const isDark = theme === "dark";
 
     function updateUI() {
       if (prevBtn) {
-        if (currentStep === 0) {
-          prevBtn.classList.remove("inline-flex");
-          prevBtn.classList.add("hidden");
-        } else {
-          prevBtn.classList.remove("hidden");
-          prevBtn.classList.add("inline-flex");
-        }
+        prevBtn.style.display = currentStep === 0 ? "none" : "inline-flex";
       }
       if (submitLabel) submitLabel.textContent = getNextLabel();
       const indicator = form.querySelector("[data-step-indicator]");

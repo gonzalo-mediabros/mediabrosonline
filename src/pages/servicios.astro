@@ -1,0 +1,204 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Navigation from "@/components/ui/Navigation.astro";
+import HeroSmall from "@/components/ui/HeroSmall.astro";
+import Breadcrumb from "@/components/atoms/Breadcrumb.astro";
+import ChipOvertitle from "@/components/atoms/ChipOvertitle.astro";
+import CardService from "@/components/atoms/CardService.astro";
+import Certificaciones from "@/components/ui/Certificaciones.astro";
+import Footer from "@/components/ui/Footer.astro";
+
+const { pathname } = Astro.url;
+const BASE = import.meta.env.BASE_URL;
+
+const SEO = {
+  title: "Nuestros Servicios de Marketing Digital | Mediabros Online",
+  description:
+    "Explora nuestras soluciones en Paid Media, SEO y Analítica diseñadas para generar leads y hacer crecer tu negocio.",
+  canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
+  ogType: "website" as const,
+  noindex: false,
+};
+
+const paidMediaServices = [
+  {
+    title: "Google Ads",
+    icon: "ico-google-ads.png",
+    content:
+      "Administración profesional de campañas en Search, Display, Remarketing, Shopping y Video.",
+    link: `${BASE}servicios/google-ads`,
+  },
+  {
+    title: "Meta Ads",
+    icon: "ico-meta.png",
+    content:
+      "Creamos, configuramos y administramos campañas en Facebook Ads e Instagram Ads de forma profesional.",
+    link: `${BASE}servicios/meta-ads`,
+  },
+  {
+    title: "LinkedIn Ads",
+    icon: "ico-linkedin.png",
+    content:
+      "Campañas patrocinadas en la red de profesionales mas grande del mundo. Segmentaciones específicas.",
+    link: `${BASE}servicios/linkedin-ads`,
+  },
+  {
+    title: "Tiktok Ads",
+    icon: "ico-tiktok.png",
+    content:
+      "Gestión de campañas en Tiktok Ads: configuración, segmentación y optimización para atraer tráfico.",
+    link: `${BASE}servicios/tiktok-ads`,
+  },
+  {
+    title: "Bing Ads",
+    icon: "ico-bing-ads.png",
+    content:
+      "Bing Ads como canal complementario para captar demanda específica y audiencias corporativas.",
+    link: `${BASE}servicios/bing-ads`,
+  },
+];
+
+const seoServices = [
+  {
+    title: "Content SEO",
+    icon: "ico-seo-content.png",
+    content:
+      "Redacción de contenido optimizado para SEO: relevante, estructurado y enfocado en palabras clave.",
+    link: `${BASE}servicios/content-seo`,
+  },
+  {
+    title: "Technical SEO",
+    icon: "ico-seo-technical.png",
+    content:
+      "Optimización técnica para mejorar el rendimiento e indexación en buscadores: estructura y sitemap.",
+    link: `${BASE}servicios/technical-seo`,
+  },
+  {
+    title: "Local SEO",
+    icon: "ico-seo-local.png",
+    content:
+      "Optimización del posicionamiento geolocalizado a través de Google My Business.",
+    link: `${BASE}servicios/local-seo`,
+  },
+];
+
+const analyticsServices = [
+  {
+    title: "Google Analytics",
+    icon: "ico-analytics.png",
+    content:
+      "Medición, análisis y toma de decisiones basada en datos para optimizar tu estrategia digital.",
+    link: `${BASE}servicios/google-analytics`,
+  },
+  {
+    title: "Asesoramiento",
+    icon: "ico-asesoramiento.png",
+    content:
+      "Acompañamiento, criterio y equipo dedicado para desarrollar y escalar tu estrategia digital.",
+    link: `${BASE}servicios/asesoramiento`,
+  },
+];
+---
+
+<Layout {...SEO}>
+  <Navigation pathname={pathname} />
+
+  <HeroSmall
+    title="Servicios"
+    subtitle="Estrategias integrales enfocadas en resultados y crecimiento de negocio"
+  />
+
+  <Breadcrumb
+    items={[{ label: "Home", href: `${BASE}` }, { label: "Servicios" }]}
+  />
+
+  <!-- Paid Media Section -->
+  <section class="py-10 bg-brand-bg isolate">
+    <m-container>
+      <m-row class="mb-5">
+        <ChipOvertitle text="Servicios" />
+      </m-row>
+      <m-row>
+        <m-col>
+          <h2
+            class="text-4xl md:text-5xl font-display text-brand-foreground mb-12 tracking-tight"
+          >
+            Paid Media
+          </h2>
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+            {
+              paidMediaServices.map((service) => (
+                <CardService
+                  icon={`${BASE}imgs/iconos/${service.icon}`}
+                  iconAlt={`${service.title} Icon`}
+                  title={service.title}
+                  content={service.content}
+                  link={service.link}
+                />
+              ))
+            }
+          </div>
+        </m-col>
+      </m-row>
+    </m-container>
+  </section>
+
+  <!-- SEO Section -->
+  <section class="py-10 bg-brand-bg isolate">
+    <m-container>
+      <m-row>
+        <m-col>
+          <h2
+            class="text-4xl md:text-5xl font-display text-brand-foreground mb-12 tracking-tight"
+          >
+            Posicionamiento SEO
+          </h2>
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+            {
+              seoServices.map((service) => (
+                <CardService
+                  icon={`${BASE}imgs/iconos/${service.icon}`}
+                  iconAlt={`${service.title} Icon`}
+                  title={service.title}
+                  content={service.content}
+                  link={service.link}
+                />
+              ))
+            }
+          </div>
+        </m-col>
+      </m-row>
+    </m-container>
+  </section>
+
+  <!-- Analytics Section -->
+  <section class="pt-10 pb-20 bg-brand-bg isolate">
+    <m-container>
+      <m-row>
+        <m-col>
+          <h2
+            class="text-4xl md:text-5xl font-display text-brand-foreground mb-12 tracking-tight"
+          >
+            Analytica
+          </h2>
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+            {
+              analyticsServices.map((service) => (
+                <CardService
+                  icon={`${BASE}imgs/iconos/${service.icon}`}
+                  iconAlt={`${service.title} Icon`}
+                  title={service.title}
+                  content={service.content}
+                  link={service.link}
+                />
+              ))
+            }
+          </div>
+        </m-col>
+      </m-row>
+    </m-container>
+  </section>
+
+  <Certificaciones />
+  <Footer />
+</Layout>

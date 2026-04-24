@@ -6,7 +6,7 @@
     "node": ">=22.12.0"
   },
   "scripts": {
- "dev": "set CLICK_TO_SOURCE=antigravity && astro dev",
+    "dev": "set CLICK_TO_SOURCE=antigravity && astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -23,5 +23,8 @@
     "lenis": "^1.3.21",
     "simple-icons": "^16.15.0",
     "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
-} 
+}

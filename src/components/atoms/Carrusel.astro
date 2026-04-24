@@ -1,11 +1,16 @@
 ---
 // Carrusel.astro — Powered by Embla Carousel
 
-import Icon from "./Icon.astro";
+import Icon from "@/components/atoms/Icon.astro";
+
+type SlideCount = number | "auto";
+type SlidesPerView =
+  | SlideCount
+  | { base?: SlideCount; sm?: SlideCount; md?: SlideCount; lg?: SlideCount; xl?: SlideCount; "2xl"?: SlideCount };
 
 interface Props {
   ticker?: boolean; /** true = movimiento lineal continuo vía AutoScroll */
-  slidesPerView?: number | "auto";
+  slidesPerView?: SlidesPerView;
   freeMode?: boolean; /** alias legacy de ticker — se trata como ticker=true */
   speed?: number; /** ticker: px/frame para AutoScroll (default 1) · normal: ignorado */
   pauseOnHover?: boolean; /** detiene AutoScroll/autoplay al hover */
@@ -47,13 +52,32 @@ const id = `embla-${Math.random().toString(36).slice(2, 8)}`;
 // Gap siempre numérico en px
 const gapNum = typeof gap === "number" ? gap : 24;
 
-// Tamaño de cada slide vía CSS custom property
-const slideSize =
-  slidesPerView === "auto"
-    ? "auto"
-    : slidesPerView === 1
-      ? "100%"
-      : `calc((100% - ${gapNum * ((slidesPerView as number) - 1)}px) / ${slidesPerView})`;
+const computeSlideSize = (spv: SlideCount, g: number) =>
+  spv === "auto" ? "auto" : spv === 1 ? "100%" : `calc((100% - ${g * (spv - 1)}px) / ${spv})`;
+
+// Breakpoints Tailwind v4
+const bpMap: Record<string, number> = { sm: 640, md: 768, lg: 1024, xl: 1280, "2xl": 1536 };
+
+const isResponsive = typeof slidesPerView === "object" && slidesPerView !== null;
+
+// CSS custom property inicial (base o valor simple)
+const baseSpv: SlideCount = isResponsive
+  ? ((slidesPerView as Record<string, SlideCount>).base ?? 1)
+  : (slidesPerView as SlideCount) ?? 1;
+const slideSize = computeSlideSize(baseSpv, gapNum);
+
+// Genera CSS responsive (base + breakpoints) — evita inline style para no perder por especificidad
+const responsiveCSS = isResponsive
+  ? [
+      `#${id} { --embla-slide-size: ${slideSize}; }`,
+      ...Object.entries(bpMap)
+        .filter(([bp]) => (slidesPerView as Record<string, SlideCount>)[bp] !== undefined)
+        .map(([bp, minW]) => {
+          const size = computeSlideSize((slidesPerView as Record<string, SlideCount>)[bp], gapNum);
+          return `@media (min-width: ${minW}px) { #${id} { --embla-slide-size: ${size}; } }`;
+        }),
+    ].join("\n")
+  : "";
 
 // Velocidad para AutoScroll (px/frame), default 1
 const autoScrollSpeed = speed ?? 1;
@@ -62,6 +86,8 @@ const showBottomBar = pagination || (arrowsPosition === "bottom" && navigation);
 const sidesPrevClass = arrowsX === "out" ? "-left-6" : "left-3";
 const sidesNextClass = arrowsX === "out" ? "-right-6" : "right-3";
 ---
+
+{responsiveCSS && <style is:inline set:html={responsiveCSS} />}
 
 <div class="max-w-full">
   <div
@@ -82,7 +108,7 @@ const sidesNextClass = arrowsX === "out" ? "-right-6" : "right-3";
       data-navigation={String(navigation)}
       data-direction={direction}
       data-pagination={String(pagination)}
-      style={`--embla-gap: ${gapNum}px; --embla-slide-size: ${slideSize};`}
+      style={isResponsive ? `--embla-gap: ${gapNum}px;` : `--embla-gap: ${gapNum}px; --embla-slide-size: ${slideSize};`}
     >
       <div class="embla__viewport">
         <div class="embla__container">

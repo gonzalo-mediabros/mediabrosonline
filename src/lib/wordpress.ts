@@ -1,4 +1,4 @@
-import type { WPPost, WPCategory, NormalizedPost } from "./wordpress-types";
+import type { WPPost, WPCategory, NormalizedPost } from "@/lib/wordpress-types";
 
 const WP_API_BASE = "https://cms.mediabrosonline.com/wp-json/wp/v2";
 
@@ -26,8 +26,18 @@ export function normalizePost(wp: WPPost): NormalizedPost {
   const category = terms?.[0]?.name ?? "Blog";
 
   const rawExcerpt = stripHtml(wp.excerpt?.rendered ?? "");
-  const seoTitle = wp.rank_math_seo?.title ?? `${stripHtml(wp.title.rendered)} | Blog Mediabros`;
-  const seoDesc = wp.rank_math_seo?.description ?? rawExcerpt.slice(0, 160);
+  const postTitle = stripHtml(wp.title.rendered);
+  const seoTitle = wp.rank_math_seo?.title ?? `${postTitle} | Blog Mediabros`;
+
+  const SITE_DESC = "Agencia de Marketing Digital. Google Partner Premier. Expertos en Google Ads, Meta Ads y Posicionamiento Web.";
+  const rmDesc = wp.rank_math_seo?.description?.trim() ?? "";
+  const seoDesc = rmDesc.length >= 70
+    ? rmDesc
+    : rmDesc
+      ? `${rmDesc} ${rawExcerpt}`.slice(0, 160)
+      : rawExcerpt
+        ? rawExcerpt.slice(0, 160)
+        : `${SITE_DESC} ${postTitle}`.slice(0, 160);
 
   return {
     id: wp.id,

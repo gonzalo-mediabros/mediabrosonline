@@ -1,6 +1,6 @@
 ---
-import Icon from "../atoms/Icon.astro";
-import type { NavItem } from "../../data/navigation";
+import Icon from "@/components/atoms/Icon.astro";
+import type { NavItem } from "@/data/navigation";
 
 interface Props {
   navItems: NavItem[];
@@ -95,6 +95,15 @@ const iconContainerClass = theme === "dark"
 
     </div>
 
+  ) : item.cta ? (
+
+    <a
+      href={item.href}
+      class="inline-flex items-center px-5 py-2 rounded-full font-semibold font-display text-brand-dark bg-brand-accent hover:bg-brand-accent/80 transition-colors no-underline text-base"
+    >
+      {item.label}
+    </a>
+
   ) : (
 
     <a
@@ -140,8 +149,12 @@ const iconContainerClass = theme === "dark"
     };
 
     trigger.addEventListener("click", (e) => {
-      e.stopPropagation();
-      dropdown.classList.contains("opacity-0") ? openDropdown() : closeDropdown();
+      const isChevron = (e.target as HTMLElement).closest("[data-dropdown-chevron]");
+      if (isChevron) {
+        e.preventDefault();
+        e.stopPropagation();
+        dropdown.classList.contains("opacity-0") ? openDropdown() : closeDropdown();
+      }
     });
 
     wrap.addEventListener("mouseenter", () => { cancelClose(); openDropdown(); });
