@@ -103,6 +103,26 @@ const isActive = (href: string) => {
           </div>
         ))
       }
+
+      <!-- Secondary pages -->
+      <div class="pt-4 mt-2 border-t border-white/10">
+        <span class="block px-4 mb-2 text-sm tracking-widest uppercase text-white/40">
+          Más
+        </span>
+        {[
+          { label: "Testimonios", href: `${BASE}clientes` },
+          { label: "Blog",        href: `${BASE}blog` },
+          { label: "Oportunidades", href: `${BASE}oportunidades` },
+          { label: "FAQ",         href: `${BASE}faqs` },
+        ].map((link) => (
+          <a
+            href={link.href}
+            class="flex items-center px-4 py-3 no-underline transition-colors rounded-xl text-md text-white/80 hover:text-white hover:bg-white/10"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
     </nav>
   </div>
 </div>

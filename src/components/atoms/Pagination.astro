@@ -24,15 +24,16 @@ const pages = Array.from({ length: end - start + 1 }, (_, i) => start + i);
     {currentPage > 1 ? (
       <a
         href={pageUrl(currentPage - 1)}
-        class="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-brand-muted hover:text-brand-primary hover:bg-brand-surface transition-colors border border-brand-border-subtle"
+        class="flex items-center gap-1 px-2 md:px-4 py-2 rounded-lg text-sm font-medium text-brand-muted hover:text-brand-primary hover:bg-brand-surface transition-colors border border-brand-border-subtle"
+        title="Anterior"
       >
         <span class="material-symbols-outlined text-base leading-none">chevron_left</span>
-        Anterior
+        <span class="hidden md:inline">Anterior</span>
       </a>
     ) : (
-      <span class="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-brand-border opacity-40 border border-brand-border-subtle cursor-not-allowed">
+      <span class="flex items-center gap-1 px-2 md:px-4 py-2 rounded-lg text-sm font-medium text-brand-border opacity-40 border border-brand-border-subtle cursor-not-allowed" title="Anterior">
         <span class="material-symbols-outlined text-base leading-none">chevron_left</span>
-        Anterior
+        <span class="hidden md:inline">Anterior</span>
       </span>
     )}
 
@@ -54,14 +55,15 @@ const pages = Array.from({ length: end - start + 1 }, (_, i) => start + i);
     {currentPage < totalPages ? (
       <a
         href={pageUrl(currentPage + 1)}
-        class="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-brand-muted hover:text-brand-primary hover:bg-brand-surface transition-colors border border-brand-border-subtle"
+        class="flex items-center gap-1 px-2 md:px-4 py-2 rounded-lg text-sm font-medium text-brand-muted hover:text-brand-primary hover:bg-brand-surface transition-colors border border-brand-border-subtle"
+        title="Siguiente"
       >
-        Siguiente
+        <span class="hidden md:inline">Siguiente</span>
         <span class="material-symbols-outlined text-base leading-none">chevron_right</span>
       </a>
     ) : (
-      <span class="flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium text-brand-border opacity-40 border border-brand-border-subtle cursor-not-allowed">
-        Siguiente
+      <span class="flex items-center gap-1 px-2 md:px-4 py-2 rounded-lg text-sm font-medium text-brand-border opacity-40 border border-brand-border-subtle cursor-not-allowed" title="Siguiente">
+        <span class="hidden md:inline">Siguiente</span>
         <span class="material-symbols-outlined text-base leading-none">chevron_right</span>
       </span>
     )}

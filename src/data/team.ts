@@ -21,5 +21,5 @@ export const team: TeamMember[] = [
   { name: "Eliana", role: "Digital Manager", image: "eliana.webp" },
   { name: "Gonzalo", role: "Creative Developer", image: "gon.webp" },
   { name: "Ivan", role: "Digital Manager", image: "ivan.webp" },
-  { name: "MIA", role: "MediaBros IA", image: "mia.webp" },
+  // { name: "MIA", role: "MediaBros IA", image: "mia.webp" },
 ];

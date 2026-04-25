@@ -6,7 +6,14 @@ import Icon from "@/components/atoms/Icon.astro";
 type SlideCount = number | "auto";
 type SlidesPerView =
   | SlideCount
-  | { base?: SlideCount; sm?: SlideCount; md?: SlideCount; lg?: SlideCount; xl?: SlideCount; "2xl"?: SlideCount };
+  | {
+      base?: SlideCount;
+      sm?: SlideCount;
+      md?: SlideCount;
+      lg?: SlideCount;
+      xl?: SlideCount;
+      "2xl"?: SlideCount;
+    };
 
 interface Props {
   ticker?: boolean; /** true = movimiento lineal continuo vía AutoScroll */
@@ -53,17 +60,28 @@ const id = `embla-${Math.random().toString(36).slice(2, 8)}`;
 const gapNum = typeof gap === "number" ? gap : 24;
 
 const computeSlideSize = (spv: SlideCount, g: number) =>
-  spv === "auto" ? "auto" : spv === 1 ? "100%" : `calc((100% - ${g * (spv - 1)}px) / ${spv})`;
+  spv === "auto"
+    ? "auto"
+    : spv === 1
+      ? "100%"
+      : `calc((100% - ${g * (spv - 1)}px) / ${spv})`;
 
 // Breakpoints Tailwind v4
-const bpMap: Record<string, number> = { sm: 640, md: 768, lg: 1024, xl: 1280, "2xl": 1536 };
+const bpMap: Record<string, number> = {
+  sm: 640,
+  md: 768,
+  lg: 1024,
+  xl: 1280,
+  "2xl": 1536,
+};
 
-const isResponsive = typeof slidesPerView === "object" && slidesPerView !== null;
+const isResponsive =
+  typeof slidesPerView === "object" && slidesPerView !== null;
 
 // CSS custom property inicial (base o valor simple)
 const baseSpv: SlideCount = isResponsive
   ? ((slidesPerView as Record<string, SlideCount>).base ?? 1)
-  : (slidesPerView as SlideCount) ?? 1;
+  : ((slidesPerView as SlideCount) ?? 1);
 const slideSize = computeSlideSize(baseSpv, gapNum);
 
 // Genera CSS responsive (base + breakpoints) — evita inline style para no perder por especificidad
@@ -71,9 +89,15 @@ const responsiveCSS = isResponsive
   ? [
       `#${id} { --embla-slide-size: ${slideSize}; }`,
       ...Object.entries(bpMap)
-        .filter(([bp]) => (slidesPerView as Record<string, SlideCount>)[bp] !== undefined)
+        .filter(
+          ([bp]) =>
+            (slidesPerView as Record<string, SlideCount>)[bp] !== undefined,
+        )
         .map(([bp, minW]) => {
-          const size = computeSlideSize((slidesPerView as Record<string, SlideCount>)[bp], gapNum);
+          const size = computeSlideSize(
+            (slidesPerView as Record<string, SlideCount>)[bp],
+            gapNum,
+          );
           return `@media (min-width: ${minW}px) { #${id} { --embla-slide-size: ${size}; } }`;
         }),
     ].join("\n")
@@ -108,7 +132,9 @@ const sidesNextClass = arrowsX === "out" ? "-right-6" : "right-3";
       data-navigation={String(navigation)}
       data-direction={direction}
       data-pagination={String(pagination)}
-      style={isResponsive ? `--embla-gap: ${gapNum}px;` : `--embla-gap: ${gapNum}px; --embla-slide-size: ${slideSize};`}
+      style={isResponsive
+        ? `--embla-gap: ${gapNum}px;`
+        : `--embla-gap: ${gapNum}px; --embla-slide-size: ${slideSize};`}
     >
       <div class="embla__viewport">
         <div class="embla__container">
@@ -119,7 +145,7 @@ const sidesNextClass = arrowsX === "out" ? "-right-6" : "right-3";
 
     {
       showBottomBar && (
-        <div class="flex flex-col md:flex-row items-center justify-between gap-6 mt-10">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 mt-4 md:mt-6">
           {pagination && (
             <div id={`${id}-dots`} class="embla-pagination flex gap-2" />
           )}

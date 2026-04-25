@@ -6,11 +6,7 @@ import HeroSmall from "@/components/ui/HeroSmall.astro";
 import Breadcrumb from "@/components/atoms/Breadcrumb.astro";
 import SidebarBlog from "@/components/ui/SidebarBlog.astro";
 import Chip from "@/components/atoms/Chip.astro";
-import {
-  fetchAllSlugs,
-  fetchPostBySlug,
-  fetchPosts,
-} from "@/lib/wordpress";
+import { fetchAllSlugs, fetchPostBySlug, fetchPosts } from "@/lib/wordpress";
 
 export async function getStaticPaths() {
   const slugs = await fetchAllSlugs();
@@ -67,14 +63,14 @@ const SEO = {
   />
 
   <section class="section-py-sm">
-    <m-container>
-      <div class="flex flex-col lg:flex-row lg:items-start gap-30">
+    <m-container class="px-0 md:px-5">
+      <div class="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-30">
         <!-- Main Content -->
         <article
-          class="flex-1 min-w-0 flex flex-col bg-white p-12 max-w-7xl rounded-3xl"
+          class="flex-1 min-w-0 flex flex-col bg-white p-6 md:p-12 max-w-7xl rounded-sm md:rounded-3xl"
         >
           <div
-            class="rounded-3xl overflow-hidden w-full aspect-video border border-brand-border-subtle mb-10"
+            class="rounded-sm md:rounded-3xl overflow-hidden w-full aspect-video border border-brand-border-subtle mb-10"
           >
             <img
               src={imagePath}
@@ -90,22 +86,24 @@ const SEO = {
             <div class="flex items-center gap-4">
               <Chip
                 text={post.category}
+                size="sm"
                 class="bg-brand-bg-alt border-brand-border"
+                icon={false}
               />
-              <span class="text-sm font-medium text-brand-muted"
+              <span class="text-xs font-medium text-brand-muted"
                 >{post.date}</span
               >
             </div>
           </div>
 
           <div
-            class="wp-content flex flex-col gap-4 text-brand-foreground text-lg leading-relaxed [&_h2]:text-3xl [&_h2]:font-display [&_h2]:font-bold [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-brand-foreground [&_h2]:leading-tight [&_h3]:text-2xl [&_h3]:font-display [&_h3]:font-semibold [&_h3]:mt-6 [&_h3]:mb-2 [&_h3]:text-brand-foreground [&_h3]:leading-tight [&_h4]:text-xl [&_h4]:font-display [&_h4]:font-semibold [&_h4]:mt-4 [&_h4]:mb-2 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-2 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:flex [&_ol]:flex-col [&_ol]:gap-2 [&_a]:text-brand-primary [&_a]:underline [&_a:hover]:no-underline [&_blockquote]:border-l-4 [&_blockquote]:border-brand-primary [&_blockquote]:pl-6 [&_blockquote]:italic [&_blockquote]:text-brand-muted [&_img]:rounded-2xl [&_img]:w-full [&_strong]:font-semibold [&_strong]:text-brand-foreground"
+            class="wp-content flex flex-col gap-4 text-brand-foreground text-sm leading-relaxed [&_h2]:text-xl [&_h2]:md:text-3xl [&_h2]:font-display [&_h2]:font-bold [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-brand-foreground [&_h2]:leading-tight [&_h3]:text-lg [&_h3]:md:text-2xl [&_h3]:font-display [&_h3]:font-semibold [&_h3]:mt-6 [&_h3]:mb-2 [&_h3]:text-brand-foreground [&_h3]:leading-tight [&_h4]:text-base [&_h4]:md:text-xl [&_h4]:font-display [&_h4]:font-semibold [&_h4]:mt-4 [&_h4]:mb-2 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-2 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:flex [&_ol]:flex-col [&_ol]:gap-2 [&_a]:text-brand-primary [&_a]:underline [&_a:hover]:no-underline [&_blockquote]:border-l-4 [&_blockquote]:border-brand-primary [&_blockquote]:pl-6 [&_blockquote]:italic [&_blockquote]:text-brand-muted [&_img]:rounded-2xl [&_img]:w-full [&_strong]:font-semibold [&_strong]:text-brand-foreground"
             set:html={post.content}
           />
         </article>
 
         <!-- Sidebar -->
-        <div class="lg:w-74 shrink-0 sticky top-24">
+        <div class="lg:w-74 shrink-0 sticky md:top-24 px-5 md:px-0">
           <SidebarBlog recentPosts={recentPosts} />
         </div>
       </div>

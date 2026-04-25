@@ -46,4 +46,7 @@ export default defineConfig({
     },
     plugins: [tailwindcss(), removeHtmlComments],
   },
+  devToolbar: {
+    enabled: true, // habilita el toolbar de astro
+  },
 });

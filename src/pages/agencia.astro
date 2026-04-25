@@ -16,7 +16,8 @@ const { pathname } = Astro.url;
 
 const SEO = {
   title: "Agencia de Marketing Digital | MediaBros",
-  description: "Agencia de Marketing Digital y Posicionamiento Web. Desarrollamos estrategias de marketing digital, implementación de campañas y medición de resultados.",
+  description:
+    "Agencia de Marketing Digital y Posicionamiento Web. Desarrollamos estrategias de marketing digital, implementación de campañas y medición de resultados.",
   canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
   ogType: "website",
   noindex: false,
@@ -39,13 +40,20 @@ const SEO = {
       <m-row class="gap-10 md:gap-16 items-center">
         <m-col class="md:w-1/2">
           <ChipOvertitle text="Somos" />
-          <h2 class="mt-4 text-4xl md:text-5xl font-display leading-tight text-brand-foreground">
+          <h2
+            class="mt-4 text-4xl md:text-5xl font-display leading-tight text-brand-foreground"
+          >
             Nativos digitales
           </h2>
         </m-col>
         <m-col class="md:w-1/2">
           <p class="text-base leading-relaxed text-brand-muted">
-            Somos una agencia de marketing digital especializada en generar demanda y potenciar el crecimiento de empresas B2B. Combinamos tecnología propia, data y creatividad para desarrollar estrategias que convierten audiencias en clientes. Trabajamos con equipos comprometidos, metodologías ágiles y una cultura orientada a resultados medibles.
+            Somos una agencia de marketing digital especializada en generar
+            demanda y potenciar el crecimiento de empresas B2B. Combinamos
+            tecnología propia, data y creatividad para desarrollar estrategias
+            que convierten audiencias en clientes. Trabajamos con equipos
+            comprometidos, metodologías ágiles y una cultura orientada a
+            resultados medibles.
           </p>
         </m-col>
       </m-row>
@@ -55,15 +63,19 @@ const SEO = {
   <!-- Grilla del equipo -->
   <section class="py-16 md:py-20 bg-brand-bg">
     <m-container>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
-        {team.map((member) => (
-          <CardTeam
-            name={member.name}
-            role={member.role}
-            image={member.image}
-            linkedinUrl={member.linkedinUrl}
-          />
-        ))}
+      <div
+        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 justify-items-center"
+      >
+        {
+          team.map((member) => (
+            <CardTeam
+              name={member.name}
+              role={member.role}
+              image={member.image}
+              linkedinUrl={member.linkedinUrl}
+            />
+          ))
+        }
       </div>
     </m-container>
   </section>
@@ -73,30 +85,58 @@ const SEO = {
     <m-container>
       <div class="mb-10">
         <ChipOvertitle text="Proceso" />
-        <h2 class="mt-4 text-4xl md:text-5xl font-display leading-tight text-brand-foreground">
+        <h2
+          class="mt-4 text-4xl md:text-5xl font-display leading-tight text-brand-foreground"
+        >
           Cómo trabajamos
         </h2>
       </div>
       <m-row class="gap-6">
         <m-col class="flex-1 min-w-0">
-          <p class="text-4xl font-display font-bold text-brand-primary mb-3">01</p>
-          <h3 class="text-xl font-display font-bold text-brand-foreground mb-2">Kick Off</h3>
-          <p class="text-sm leading-relaxed text-brand-muted">Entendemos tu negocio, objetivos y mercado para alinear estrategia y equipo.</p>
+          <p class="text-4xl font-display font-bold text-brand-primary mb-3">
+            01
+          </p>
+          <h3 class="text-xl font-display font-bold text-brand-foreground mb-2">
+            Kick Off
+          </h3>
+          <p class="text-sm leading-relaxed text-brand-muted">
+            Entendemos tu negocio, objetivos y mercado para alinear estrategia y
+            equipo.
+          </p>
         </m-col>
         <m-col class="flex-1 min-w-0">
-          <p class="text-4xl font-display font-bold text-brand-primary mb-3">02</p>
-          <h3 class="text-xl font-display font-bold text-brand-foreground mb-2">Desarrollo de estrategia</h3>
-          <p class="text-sm leading-relaxed text-brand-muted">Diseñamos un plan personalizado con canales, mensajes y métricas claras.</p>
+          <p class="text-4xl font-display font-bold text-brand-primary mb-3">
+            02
+          </p>
+          <h3 class="text-xl font-display font-bold text-brand-foreground mb-2">
+            Desarrollo de estrategia
+          </h3>
+          <p class="text-sm leading-relaxed text-brand-muted">
+            Diseñamos un plan personalizado con canales, mensajes y métricas
+            claras.
+          </p>
         </m-col>
         <m-col class="flex-1 min-w-0">
-          <p class="text-4xl font-display font-bold text-brand-primary mb-3">03</p>
-          <h3 class="text-xl font-display font-bold text-brand-foreground mb-2">Implementación</h3>
-          <p class="text-sm leading-relaxed text-brand-muted">Ejecutamos con agilidad, tecnología propia y foco en resultados.</p>
+          <p class="text-4xl font-display font-bold text-brand-primary mb-3">
+            03
+          </p>
+          <h3 class="text-xl font-display font-bold text-brand-foreground mb-2">
+            Implementación
+          </h3>
+          <p class="text-sm leading-relaxed text-brand-muted">
+            Ejecutamos con agilidad, tecnología propia y foco en resultados.
+          </p>
         </m-col>
         <m-col class="flex-1 min-w-0">
-          <p class="text-4xl font-display font-bold text-brand-primary mb-3">04</p>
-          <h3 class="text-xl font-display font-bold text-brand-foreground mb-2">Medición de resultados</h3>
-          <p class="text-sm leading-relaxed text-brand-muted">Analizamos datos en tiempo real y optimizamos continuamente.</p>
+          <p class="text-4xl font-display font-bold text-brand-primary mb-3">
+            04
+          </p>
+          <h3 class="text-xl font-display font-bold text-brand-foreground mb-2">
+            Medición de resultados
+          </h3>
+          <p class="text-sm leading-relaxed text-brand-muted">
+            Analizamos datos en tiempo real y optimizamos continuamente.
+          </p>
         </m-col>
       </m-row>
     </m-container>
@@ -131,19 +171,23 @@ const SEO = {
     faqs={[
       {
         question: "¿Qué tipos de empresas son sus clientes?",
-        answer: "Trabajamos principalmente con empresas B2B de industrias como logística, tecnología, salud, construcción y servicios profesionales que buscan escalar su generación de demanda.",
+        answer:
+          "Trabajamos principalmente con empresas B2B de industrias como logística, tecnología, salud, construcción y servicios profesionales que buscan escalar su generación de demanda.",
       },
       {
         question: "¿Cuánto tiempo lleva ver resultados?",
-        answer: "Los primeros indicadores se ven en 30-60 días. Resultados consolidados generalmente entre 3 y 6 meses, dependiendo del canal y la estrategia.",
+        answer:
+          "Los primeros indicadores se ven en 30-60 días. Resultados consolidados generalmente entre 3 y 6 meses, dependiendo del canal y la estrategia.",
       },
       {
         question: "¿Tienen experiencia en mi industria?",
-        answer: "Trabajamos con más de 100 empresas en LATAM en diversas industrias. Antes de proponer una estrategia, hacemos un análisis profundo de tu mercado y competencia.",
+        answer:
+          "Trabajamos con más de 100 empresas en LATAM en diversas industrias. Antes de proponer una estrategia, hacemos un análisis profundo de tu mercado y competencia.",
       },
       {
         question: "¿Qué los diferencia de otras agencias?",
-        answer: "Tecnología propia para automatización y reporting, equipo especializado por canal, y un modelo de trabajo transparente orientado a métricas de negocio, no solo de marketing.",
+        answer:
+          "Tecnología propia para automatización y reporting, equipo especializado por canal, y un modelo de trabajo transparente orientado a métricas de negocio, no solo de marketing.",
       },
     ]}
   />
