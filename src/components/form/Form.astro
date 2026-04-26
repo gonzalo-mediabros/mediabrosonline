@@ -279,6 +279,10 @@ const isDark = theme === "dark";
         );
       });
 
+      if (errorEl) {
+        errorEl.classList.add("hidden");
+        errorEl.textContent = "Ocurrió un error al enviar. Por favor, intentá de nuevo.";
+      }
       setLoading(true);
 
       let resolved = false;
@@ -310,43 +314,62 @@ const isDark = theme === "dark";
       } else if (!rejected && actions.length > 0) {
         console.info("[Form] enviando a", actions);
         const results = await Promise.allSettled(
-          actions.map(function (url) {
+          actions.map(async function (url) {
             if (url === "mock") {
-              return (async function () {
-                console.log(
-                  "[Form mock] datos enviados:",
-                  Object.fromEntries(sanitized),
-                );
-                await new Promise(function (r) {
-                  setTimeout(r, 1200);
-                });
-                return new Response(null, { status: 200 });
-              })();
+              console.log("[Form mock] datos enviados:", Object.fromEntries(sanitized));
+              await new Promise(function (r) { setTimeout(r, 1200); });
+              return { ok: true };
             }
-            return fetch(url, { method: "POST", body: sanitized });
+            const isMbSuite = url.includes("mb-suite.com");
+            if (isMbSuite) {
+              const data = Object.fromEntries(sanitized);
+              const urlParams = new URLSearchParams(new URL(url, "http://x").search);
+              const mbFormId = urlParams.get("formId");
+              if (mbFormId) data.formId = mbFormId;
+              const res = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+              });
+              const json = await res.json();
+              console.info("[Form] mb-suite respondió:", json);
+              return { ok: json.success === true, fields: json.fields || null };
+            }
+            const res = await fetch(url, { method: "POST", body: sanitized });
+            return { ok: res.ok };
           }),
         );
         results.forEach(function (r, i) {
           if (r.status === "rejected") {
             console.error("[Form] fetch #" + i + " falló (network):", r.reason);
           } else if (!r.value.ok) {
-            console.error(
-              "[Form] fetch #" +
-                i +
-                " respondió " +
-                r.value.status +
-                " " +
-                r.value.statusText,
-              "→",
-              actions[i],
-            );
+            console.error("[Form] fetch #" + i + " falló", r.value);
           } else {
-            console.info("[Form] fetch #" + i + " OK (" + r.value.status + ")");
+            console.info("[Form] fetch #" + i + " OK");
           }
         });
         success = results.some(function (r) {
           return r.status === "fulfilled" && r.value.ok;
         });
+        if (!success) {
+          var fieldLabels = [];
+          results.forEach(function (r) {
+            if (r.status === "fulfilled" && !r.value.ok && r.value.fields) {
+              r.value.fields.forEach(function (f) {
+                var el = form.querySelector('[name="' + f.field + '"]');
+                if (el) {
+                  el.setAttribute("data-invalid", "");
+                  var labelEl = el.id ? form.querySelector('label[for="' + el.id + '"]') : null;
+                  var labelText = labelEl ? labelEl.textContent.trim() : f.field;
+                  fieldLabels.push(labelText);
+                }
+              });
+            }
+          });
+          if (errorEl && fieldLabels.length > 0) {
+            errorEl.textContent = "Revisá los siguientes campos: " + fieldLabels.join(", ") + ".";
+          }
+        }
       } else if (!rejected) {
         console.info(
           "[Form] sin actions y sin handler externo — éxito por defecto",

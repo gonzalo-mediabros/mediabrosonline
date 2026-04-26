@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import Navigation from "@/components/ui/Navigation.astro";
 import HeroSmall from "@/components/ui/HeroSmall.astro";
 import Breadcrumb from "@/components/atoms/Breadcrumb.astro";
 import Certificaciones from "@/components/ui/Certificaciones.astro";
@@ -7,6 +8,8 @@ import Footer from "@/components/ui/Footer.astro";
 import CardCta from "@/components/atoms/CardCta.astro";
 import ChipOvertitle from "@/components/atoms/ChipOvertitle.astro";
 import Button from "@/components/atoms/Button.astro";
+
+const { pathname } = Astro.url;
 
 const breadcrumbItems = [
   { label: "Home", href: "/" },
@@ -117,6 +120,7 @@ const SEO = {
 ---
 
 <Layout {...SEO}>
+  <Navigation pathname={pathname} logo="logo-blanco.svg" />
   <HeroSmall
     title="Oportunidades Laborales"
     subtitle="Solo para apasionados por el mundo digital."

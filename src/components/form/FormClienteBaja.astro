@@ -22,73 +22,74 @@ const yesNoOptions = [
 
 <div class="bg-white rounded-xl p-10">
   <Form
-    actions={["https://usebasin.com/f/FORM_ID_BAJA", "mock"]}
+    actions={["https://mb-suite.com/api/v1/public/forms/submit?formId=42eb0a8938cd4960a617de9485c9bf92"]}
     theme="dark"
     buttonText="Solicitar baja"
     successTitle="Solicitud recibida"
     successMessage="Te confirmamos la baja en breve."
   >
-    <Input name="formulario" label="Formulario" type="hidden" value="BAJA DE CLIENTE" />
+    <Input name="_website" type="hidden" value="" />
     <Input
-      name="nombre_empresa"
+      name="companyName"
       label="Nombre de empresa"
       type="text"
       required
       theme="light"
     />
     <Input
-      name="nombre_contacto"
+      name="name"
       label="Nombre y apellido del contacto"
       type="text"
       required
       theme="light"
     />
-    <Input name="telefono" label="Teléfono" type="tel" theme="light" />
+    <Input name="email" label="Email" type="email" required theme="light" />
+    <Input name="phone" label="Teléfono" type="tel" theme="light" />
     <Select
-      name="motivo"
+      name="reason"
       label="Motivo"
       options={motivoOptions}
       theme="light"
     />
     <Input
-      name="otro_motivo"
+      name="other_reason"
       label="Especificar otro motivo"
       type="text"
       theme="light"
-      showIf={{ field: "motivo", is: "==", value: "otro" }}
+      showIf={{ field: "reason", is: "==", value: "otro" }}
     />
     <Input
-      name="fecha_finalizacion"
+      name="end_date"
       label="Fecha de finalización"
       type="date"
       theme="light"
     />
     <Checkbox
-      name="facturas_saldadas"
+      name="invoices_settled"
       label="Confirmo que las facturas pendientes están saldadas"
       required
       theme="light"
     />
     <Radio
-      name="contacto_asesor"
+      name="advisor_contact"
       label="¿Querés que un asesor te contacte?"
       options={yesNoOptions}
       theme="light"
     />
     <Radio
-      name="acceso_reportes"
+      name="report_access"
       label="¿Mantener acceso a reportes?"
       options={yesNoOptions}
       theme="light"
     />
     <Textarea
-      name="valorable"
+      name="feedback_positive"
       label="¿Qué fue lo más valioso de trabajar con nosotros?"
       theme="light"
     />
-    <Textarea name="mejoras" label="¿Qué podríamos mejorar?" theme="light" />
+    <Textarea name="feedback_improvements" label="¿Qué podríamos mejorar?" theme="light" />
     <Checkbox
-      name="confirma_baja"
+      name="confirm_cancellation"
       label="Confirmo que deseo procesar la baja de mi cuenta"
       required
       theme="light"

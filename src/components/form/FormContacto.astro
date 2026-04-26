@@ -5,14 +5,18 @@ import Textarea from "@/components/form/Textarea.astro";
 ---
 
 <Form
-  actions={["https://hook.us2.make.com/eexxgw1f6h8hlyzmcgy96im9seghr2h4"]}
+  actions={[
+    "https://mb-suite.com/api/v1/public/forms/submit?formId=3bd58c081a694c4d8abc54f6e67ca073",
+    "https://hook.us2.make.com/eexxgw1f6h8hlyzmcgy96im9seghr2h4",
+  ]}
   theme="light"
   successTitle="¡Mensaje enviado!"
   successMessage="Nos ponemos en contacto a la brevedad."
 >
-  <Input name="nombre" label="Nombre" type="text" required theme="light" />
-  <Input name="email" label="Email" type="email" required theme="light" />
-  <Input name="telefono" label="Teléfono" type="tel" theme="light" />
-  <Input name="web" label="Sitio web" type="url" theme="light" />
-  <Textarea name="mensaje" label="Mensaje" required theme="light" />
+  <Input name="name" label="Nombre" type="text" theme="light" required />
+  <Input name="email" label="Email" type="email" theme="light" required />
+  <Input name="phone" label="Teléfono" type="tel" theme="light" required />
+  <Input name="website" label="Sitio web" type="url" theme="light" />
+  <Textarea name="message" label="Mensaje" theme="light" required />
+  <input type="hidden" name="_website" value="" />
 </Form>

@@ -30,85 +30,82 @@ const metodoPagoOptions = [
 
 <div class="bg-white rounded-xl p-10">
   <Form
-    actions={["https://usebasin.com/f/FORM_ID_ALTA"]}
+    actions={[
+      "https://mb-suite.com/api/v1/public/forms/submit?formId=d0cfe0f9018f421280853d642e2e2fd7",
+    ]}
     buttonText="Registrar alta"
     successTitle="¡Alta registrada!"
     successMessage="Te confirmamos los datos por email a la brevedad."
   >
-    <Input name="formulario" label="Formulario" type="hidden" value="ALTA DE CLIENTE" />
     <FormStep label="Datos de contacto">
-      <Input name="nombre" label="Nombre" type="text" required />
+      <Input name="name" label="Nombre" type="text" required />
       <Input name="email" label="Email" type="email" required />
-      <Input name="telefono" label="Teléfono" type="tel" required />
-      <Input name="website" label="Website" type="text" required />
+      <Input name="phone" label="Teléfono" type="tel" required />
+      <Input name="website" label="Website" type="url" />
     </FormStep>
     <FormStep label="Datos de empresa">
       <Select
-        name="tipo_organizacion"
+        name="organization_type"
         label="Tipo de organización"
         options={tipoOrganizacionOptions}
         required
       />
       <Select
-        name="tamano_empresa"
+        name="company_size"
         label="Tamaño de empresa"
         options={tamanoEmpresaOptions}
         required
       />
-      <Input name="razon_social" label="Razón social" type="text" required />
-      <Input
-        name="nombre_comercial"
-        label="Nombre comercial"
-        type="text"
-        required
-      />
+      <Input name="legal_name" label="Razón social" type="text" required />
+      <Input name="companyName" label="Nombre comercial" type="text" required />
       <Input name="tax_id" label="TAX ID" type="text" required />
     </FormStep>
     <FormStep label="Dirección">
-      <Input name="pais" label="País" type="text" required />
+      <Input name="country" label="País" type="text" required />
       <Input
-        name="estado_provincia"
+        name="state_province"
         label="Estado / Provincia"
         type="text"
         required
       />
-      <Input name="localidad" label="Localidad" type="text" required />
-      <Input name="direccion" label="Dirección" type="text" required />
-      <Input name="zip" label="ZIP code" type="text" required />
+      <Input name="city" label="Localidad" type="text" required />
+      <Input name="address" label="Dirección" type="text" required />
+      <Input name="zip_code" label="ZIP code" type="text" required />
     </FormStep>
     <FormStep label="Facturación y cierre">
-      <Input name="responsable" label="Responsable" type="text" required />
-      <Input name="cargo" label="Cargo" type="text" required />
+      <Input name="contact_person" label="Responsable" type="text" required />
+      <Input name="jobTitle" label="Cargo" type="text" required />
       <Input
-        name="telefono_contacto"
+        name="contact_phone"
         label="Teléfono de contacto"
         type="tel"
         required
       />
       <Input
-        name="email_contacto"
+        name="contact_email"
         label="Email de contacto"
         type="email"
         required
       />
       <Input
-        name="email_facturacion"
+        name="billing_email"
         label="Email de facturación"
         type="email"
         required
       />
       <Radio
-        name="metodo_pago"
+        name="payment_method"
         label="Método de pago"
         options={metodoPagoOptions}
         required
         direction="row"
       />
       <Checkbox
-        name="acepta_propuesta"
+        name="accept_proposal"
         label="Acepto la propuesta comercial presentada"
         required
       />
     </FormStep>
+    <input type="hidden" name="_website" value="" />
   </Form>
 </div>

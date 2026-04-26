@@ -1,4 +1,4 @@
-- [ ] Responsive
+- [x] Responsive
 - [x] SEO, metadata por página
 - [ ] SEO. revisar si debemos hacer redicrecciones 301 (claudeflare en el medio?) COMPARAR CON ORIGINAL no con /new
 - [ ] Formularios ver con Vale si llegan

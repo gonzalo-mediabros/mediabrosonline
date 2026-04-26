@@ -2,7 +2,7 @@
 interface Props {
   name: string;
   type?: string;
-  label: string;
+  label?: string;
   placeholder?: string;
   required?: boolean;
   theme?: "light" | "dark";
@@ -41,7 +41,7 @@ const inputClasses = isDark
   <input type="hidden" name={name} value={value} />
 ) : (
   <div class="flex flex-col gap-1.5" {...(showIf ? { "data-show-if": JSON.stringify(showIf), hidden: true } : {})}>
-    <label for={inputId} class={labelClasses}>{label}</label>
+    {label && <label for={inputId} class={labelClasses}>{label}</label>}
     <input
       type={type}
       id={inputId}
