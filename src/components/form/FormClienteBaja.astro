@@ -22,7 +22,10 @@ const yesNoOptions = [
 
 <div class="bg-white rounded-xl p-10">
   <Form
-    actions={["https://mb-suite.com/api/v1/public/forms/submit?formId=42eb0a8938cd4960a617de9485c9bf92"]}
+    id="baja-de-cliente"
+    actions={[
+      "https://mb-suite.com/api/v1/public/forms/submit?formId=42eb0a8938cd4960a617de9485c9bf92",
+    ]}
     theme="dark"
     buttonText="Solicitar baja"
     successTitle="Solicitud recibida"
@@ -67,6 +70,7 @@ const yesNoOptions = [
     <Checkbox
       name="invoices_settled"
       label="Confirmo que las facturas pendientes están saldadas"
+      value="si"
       required
       theme="light"
     />
@@ -87,10 +91,15 @@ const yesNoOptions = [
       label="¿Qué fue lo más valioso de trabajar con nosotros?"
       theme="light"
     />
-    <Textarea name="feedback_improvements" label="¿Qué podríamos mejorar?" theme="light" />
+    <Textarea
+      name="feedback_improvements"
+      label="¿Qué podríamos mejorar?"
+      theme="light"
+    />
     <Checkbox
       name="confirm_cancellation"
       label="Confirmo que deseo procesar la baja de mi cuenta"
+      value="si"
       required
       theme="light"
     />

@@ -1,6 +1,6 @@
 ---
 import Icon from "@/components/atoms/Icon.astro";
-import { whatsappContacts } from "@/data/whatsapp";
+import { phoneNumbers } from "@/data/whatsapp";
 
 interface Props {
   variant?: "dark" | "light";
@@ -147,9 +147,10 @@ const contentLinks = [
             Contacto
           </h3>
           {
-            whatsappContacts.map((c) => (
+            phoneNumbers.map((c) => (
               <a
                 href={`tel:${c.tel.replace(/[^\d+]/g, "")}`}
+                data-pais={c.label}
                 class="flex items-center gap-2 text-sm transition-colors duration-200 text-brand-muted hover:text-white group whitespace-nowrap"
               >
                 <img

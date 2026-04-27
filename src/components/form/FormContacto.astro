@@ -5,6 +5,7 @@ import Textarea from "@/components/form/Textarea.astro";
 ---
 
 <Form
+  id="form-de-contacto"
   actions={[
     "https://mb-suite.com/api/v1/public/forms/submit?formId=3bd58c081a694c4d8abc54f6e67ca073",
     "https://hook.us2.make.com/eexxgw1f6h8hlyzmcgy96im9seghr2h4",
@@ -16,7 +17,7 @@ import Textarea from "@/components/form/Textarea.astro";
   <Input name="name" label="Nombre" type="text" theme="light" required />
   <Input name="email" label="Email" type="email" theme="light" required />
   <Input name="phone" label="Teléfono" type="tel" theme="light" required />
-  <Input name="website" label="Sitio web" type="url" theme="light" />
+  <Input name="website" label="Sitio web" type="text" theme="light" />
   <Textarea name="message" label="Mensaje" theme="light" required />
   <input type="hidden" name="_website" value="" />
 </Form>

@@ -9,7 +9,7 @@ interface Props {
   buttonText?: string;
   theme?: "light" | "dark";
   class?: string;
-  id?: string;
+  id: string;
 }
 
 const {
@@ -20,10 +20,8 @@ const {
   buttonText = "Enviar",
   theme = "light",
   class: className,
-  id,
+  id: formId,
 } = Astro.props;
-
-const formId = id ?? crypto.randomUUID();
 const isDark = theme === "dark";
 ---
 
@@ -111,11 +109,13 @@ const isDark = theme === "dark";
 </div>
 
 <script is:inline define:vars={{ formId, actions, redirect, buttonText }}>
-  (function () {
+  function initForm() {
     const wrapper = document.getElementById("wrapper-" + formId);
     if (!wrapper) return;
 
-    const form = document.getElementById(formId);
+    const form = wrapper.querySelector("form");
+    if (!form) return;
+
     const submitBtn = form.querySelector("[data-submit]");
     const submitLabel = submitBtn
       ? submitBtn.querySelector("span.flex-1")
@@ -380,6 +380,7 @@ const isDark = theme === "dark";
       setLoading(false);
 
       if (success) {
+        if (window.dataLayer) window.dataLayer.push({ event: "form_submit", form_id: formId });
         if (errorEl) errorEl.classList.add("hidden");
         if (redirect) {
           window.location.href = redirect;
@@ -484,7 +485,13 @@ const isDark = theme === "dark";
           (idx <= current ? "bg-brand-primary" : "bg-brand-border");
       });
     }
-  })();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initForm);
+  } else {
+    initForm();
+  }
 </script>
 
 <style is:global>

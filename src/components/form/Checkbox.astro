@@ -2,6 +2,7 @@
 interface Props {
   name: string;
   label: string;
+  value?: string;
   required?: boolean;
   theme?: "light" | "dark";
   checked?: boolean;
@@ -13,6 +14,7 @@ interface Props {
 const {
   name,
   label,
+  value,
   required = false,
   theme = "light",
   checked = false,
@@ -36,6 +38,7 @@ const labelClasses = isDark
         type="checkbox"
         id={inputId}
         name={name}
+        value={value}
         checked={checked}
         required={required}
         class="cb-input"

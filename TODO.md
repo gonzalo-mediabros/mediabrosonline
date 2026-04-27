@@ -4,11 +4,12 @@
 - [ ] Formularios ver con Vale si llegan
 - [ ] Campañas chequear a qué páginas apuntan las campañas
 - [ ] GTM revisar que este instalado
-  - [ ] pixel meta
-  - [ ] pixel linkedin
-  - [ ] pixel google
-  - [ ] pixel tiktok
-  - [ ] Clarity
+- [ ] Cómo son los numeros de whatsapp? No hay de colombia?
+- - [ ] pixel meta
+- - [ ] pixel linkedin
+- - [ ] pixel google
+- - [ ] pixel tiktok
+- - [ ] Clarity
 
 ## GTM
 
