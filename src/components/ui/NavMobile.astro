@@ -76,7 +76,7 @@ const isActive = (href: string) => {
             >
               {item.label}
             </a>
-          )
+          ),
         )
       }
 
@@ -95,7 +95,11 @@ const isActive = (href: string) => {
                 class="flex items-center gap-3 px-4 py-3 no-underline transition-colors rounded-xl text-md text-white/80 hover:text-white hover:bg-white/10"
               >
                 <div class="flex items-center justify-center rounded-full bg-white/15 size-9 shrink-0">
-                  <img src={svc.icon} alt="" class="object-contain size-8" />
+                  <img
+                    src={svc.icon}
+                    alt=""
+                    class="object-contain size-8 rounded-3xl"
+                  />
                 </div>
                 <span class="font-semibold font-display">{svc.label}</span>
               </a>
@@ -106,22 +110,26 @@ const isActive = (href: string) => {
 
       <!-- Secondary pages -->
       <div class="pt-4 mt-2 border-t border-white/10">
-        <span class="block px-4 mb-2 text-sm tracking-widest uppercase text-white/40">
+        <span
+          class="block px-4 mb-2 text-sm tracking-widest uppercase text-white/40"
+        >
           Más
         </span>
-        {[
-          { label: "Testimonios", href: `${BASE}clientes` },
-          { label: "Blog",        href: `${BASE}blog` },
-          { label: "Oportunidades", href: `${BASE}oportunidades` },
-          { label: "FAQ",         href: `${BASE}faqs` },
-        ].map((link) => (
-          <a
-            href={link.href}
-            class="flex items-center px-4 py-3 no-underline transition-colors rounded-xl text-md text-white/80 hover:text-white hover:bg-white/10"
-          >
-            {link.label}
-          </a>
-        ))}
+        {
+          [
+            { label: "Testimonios", href: `${BASE}clientes` },
+            { label: "Blog", href: `${BASE}blog` },
+            { label: "Oportunidades", href: `${BASE}oportunidades` },
+            { label: "FAQ", href: `${BASE}faqs` },
+          ].map((link) => (
+            <a
+              href={link.href}
+              class="flex items-center px-4 py-3 no-underline transition-colors rounded-xl text-md text-white/80 hover:text-white hover:bg-white/10"
+            >
+              {link.label}
+            </a>
+          ))
+        }
       </div>
     </nav>
   </div>
