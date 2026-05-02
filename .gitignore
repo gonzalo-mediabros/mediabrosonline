@@ -1,3 +1,9 @@
+.*
+!.github/
+
+# jetbrains setting folder
+.idea/
+
 # build output
 dist/
 # generated types
@@ -19,18 +25,10 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# jetbrains setting folder
-.idea/
-
-
-.*
-!.github/
 
 CLAUDE.md
 GEMINI.md
 /scraper
-
 /REF
-
 cms-autodeploy.md
 TODO.md

@@ -16,7 +16,8 @@ const { pathname } = Astro.url;
 
 const SEO = {
   title: "Meta Ads — Campañas en Facebook e Instagram | Mediabros Online",
-  description: "Agencia especializada en Meta Ads. Creamos y optimizamos campañas de publicidad en Facebook e Instagram para maximizar tu retorno de inversión.",
+  description:
+    "Agencia especializada en Meta Ads. Creamos y optimizamos campañas de publicidad en Facebook e Instagram para maximizar tu retorno de inversión.",
   canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
   ogType: "website" as const,
   noindex: false,
@@ -27,7 +28,7 @@ const SEO = {
   <Navigation pathname={pathname} />
   <HeroSmall
     title="Meta Ads"
-    icon="ico-meta.png"
+    icons={["ico-meta-ads.svg", "ico-facebook.svg", "ico-instagram.svg"]}
     subtitle="Publicidad en Meta Ads orientada a generación de leads calificados"
   />
   <Breadcrumb
@@ -53,28 +54,35 @@ const SEO = {
     chipText="Campañas en Meta Ads"
     heading="Tipos de campañas de Meta"
     description="Según los objetivos del negocio, trabajamos diferentes formatos y estrategias dentro de Meta Ads"
-    sectionIconSrc="iconos/ico-meta.png"
-    sectionIconAlt="Meta Ads"
+    sectionIcons={[
+      { src: "icons/ico-meta-ads.svg", alt: "Meta" },
+      { src: "icons/ico-facebook.svg", alt: "Facebook" },
+      { src: "icons/ico-instagram.svg", alt: "Instagram" },
+    ]}
     items={[
       {
         iconName: "person_add",
         title: "Campañas de generación de leads",
-        description: "Desarrollamos campañas de generación de leads utilizando formularios instantáneos o conversiones en el sitio web, priorizando la calidad del contacto por sobre el volumen.",
+        description:
+          "Desarrollamos campañas de generación de leads utilizando formularios instantáneos o conversiones en el sitio web, priorizando la calidad del contacto por sobre el volumen.",
       },
       {
         iconName: "open_in_new",
         title: "Campañas de tráfico calificado",
-        description: "Implementamos campañas de tráfico calificado cuando el foco está en educar al usuario o dirigirlo a una landing page estratégica.",
+        description:
+          "Implementamos campañas de tráfico calificado cuando el foco está en educar al usuario o dirigirlo a una landing page estratégica.",
       },
       {
         iconName: "loop",
         title: "Estrategias de Remarketing",
-        description: "Diseñamos estrategias de remarketing para impactar nuevamente a usuarios que ya interactuaron con la marca, mejorando la tasa de conversión.",
+        description:
+          "Diseñamos estrategias de remarketing para impactar nuevamente a usuarios que ya interactuaron con la marca, mejorando la tasa de conversión.",
       },
       {
         iconName: "campaign",
         title: "Campañas de reconocimiento",
-        description: "Utilizamos campañas de reconocimiento estratégico cuando es necesario instalar una propuesta de valor antes de activar la captación directa.",
+        description:
+          "Utilizamos campañas de reconocimiento estratégico cuando es necesario instalar una propuesta de valor antes de activar la captación directa.",
       },
     ]}
   />
@@ -107,31 +115,39 @@ const SEO = {
     faqs={[
       {
         question: "¿Qué es Meta Ads?",
-        answer: "<strong>Meta Ads</strong> es un término que podría interpretarse de varias maneras dependiendo del contexto. «<strong>Meta</strong>» se refiere a <strong>Meta Platforms, Inc.</strong>, anteriormente conocida como Facebook, Inc. y «Ads» es una abreviatura común para anuncios publicitarios. Por lo tanto, <strong>Meta Ads</strong> se refiere a los anuncios que se muestran en las plataformas de Meta, como Facebook, Instagram, Messenger y WhatsApp.",
+        answer:
+          "<strong>Meta Ads</strong> es un término que podría interpretarse de varias maneras dependiendo del contexto. «<strong>Meta</strong>» se refiere a <strong>Meta Platforms, Inc.</strong>, anteriormente conocida como Facebook, Inc. y «Ads» es una abreviatura común para anuncios publicitarios. Por lo tanto, <strong>Meta Ads</strong> se refiere a los anuncios que se muestran en las plataformas de Meta, como Facebook, Instagram, Messenger y WhatsApp.",
       },
       {
         question: "¿Cómo funciona Meta Ads?",
-        answer: "<strong>Meta Ads</strong>, al igual que otros sistemas de publicidad en línea, funciona mediante un proceso complejo que involucra varios pasos:<ul class=\"mt-3 space-y-2\"><li>Creación de la campaña: El anunciante crea una campaña publicitaria en la plataforma de anuncios de <strong>Meta Ads</strong>. Durante este proceso, el anunciante define los objetivos de la campaña, el presupuesto, el público objetivo y los detalles creativos de los anuncios.</li><li>Segmentación del público: <strong>Meta Ads</strong> permite a los anunciantes segmentar su audiencia según una variedad de criterios, como ubicación geográfica, edad, género, intereses, comportamientos en línea y conexiones sociales.</li><li>Subasta de anuncios: Cuando un usuario accede a una de las plataformas de <strong>Meta Ads</strong>, el sistema realiza una subasta en tiempo real para determinar qué anuncios se mostrarán y en qué ubicaciones.</li><li>Optimización y seguimiento: Los anunciantes pueden realizar un seguimiento del rendimiento de sus anuncios a través de herramientas de análisis proporcionadas por <strong>Meta Ads</strong>.</li></ul>",
+        answer:
+          '<strong>Meta Ads</strong>, al igual que otros sistemas de publicidad en línea, funciona mediante un proceso complejo que involucra varios pasos:<ul class="mt-3 space-y-2"><li>Creación de la campaña: El anunciante crea una campaña publicitaria en la plataforma de anuncios de <strong>Meta Ads</strong>. Durante este proceso, el anunciante define los objetivos de la campaña, el presupuesto, el público objetivo y los detalles creativos de los anuncios.</li><li>Segmentación del público: <strong>Meta Ads</strong> permite a los anunciantes segmentar su audiencia según una variedad de criterios, como ubicación geográfica, edad, género, intereses, comportamientos en línea y conexiones sociales.</li><li>Subasta de anuncios: Cuando un usuario accede a una de las plataformas de <strong>Meta Ads</strong>, el sistema realiza una subasta en tiempo real para determinar qué anuncios se mostrarán y en qué ubicaciones.</li><li>Optimización y seguimiento: Los anunciantes pueden realizar un seguimiento del rendimiento de sus anuncios a través de herramientas de análisis proporcionadas por <strong>Meta Ads</strong>.</li></ul>',
       },
       {
         question: "¿Cuál es el costo de Meta Ads?",
-        answer: "El costo de anunciarse en <strong>Meta Ads</strong> depende de la segmentación, la competencia y el tipo de anuncio.",
+        answer:
+          "El costo de anunciarse en <strong>Meta Ads</strong> depende de la segmentación, la competencia y el tipo de anuncio.",
       },
       {
-        question: "¿Cómo puedo asegurarme que mis anuncios destaquen en Meta Ads?",
-        answer: "Utiliza imágenes y videos de alta calidad en <strong>Meta Ads</strong>. Tus anuncios deben ser visualmente atractivos y alineados con la identidad de tu marca. Experimenta con creatividades llamativas para captar la atención.",
+        question:
+          "¿Cómo puedo asegurarme que mis anuncios destaquen en Meta Ads?",
+        answer:
+          "Utiliza imágenes y videos de alta calidad en <strong>Meta Ads</strong>. Tus anuncios deben ser visualmente atractivos y alineados con la identidad de tu marca. Experimenta con creatividades llamativas para captar la atención.",
       },
       {
         question: "¿Cómo influye el remarketing en Meta Ads?",
-        answer: "El remarketing es esencial para reconectar con usuarios que han interactuado previamente con tus anuncios en <strong>Meta Ads</strong>. Configura listas de remarketing y personaliza anuncios específicos para estas audiencias. El remarketing puede mejorar significativamente las conversiones al dirigirte a usuarios que ya han mostrado interés en tu marca.",
+        answer:
+          "El remarketing es esencial para reconectar con usuarios que han interactuado previamente con tus anuncios en <strong>Meta Ads</strong>. Configura listas de remarketing y personaliza anuncios específicos para estas audiencias. El remarketing puede mejorar significativamente las conversiones al dirigirte a usuarios que ya han mostrado interés en tu marca.",
       },
       {
         question: "¿Qué tipos de anuncios puedo crear con Meta Ads?",
-        answer: "<strong>Meta Ads</strong> ofrece una variedad de tipos de anuncios, incluyendo:<ul class=\"mt-3 space-y-2\"><li><strong>Anuncios de imagen:</strong> Son anuncios que incluyen una imagen o video y un texto breve.</li><li><strong>Anuncios de carrusel:</strong> Son anuncios que muestran varias imágenes o videos en un formato deslizable.</li><li><strong>Anuncios de historias:</strong> Son anuncios que se muestran en las historias de Facebook e Instagram.</li><li><strong>Anuncios de video:</strong> Son anuncios que se reproducen automáticamente cuando un usuario visita una página web o aplicación móvil.</li><li><strong>Anuncios de lead ads:</strong> Son anuncios que permiten a los usuarios registrarse para recibir más información sobre tu negocio o producto.</li></ul>",
+        answer:
+          '<strong>Meta Ads</strong> ofrece una variedad de tipos de anuncios, incluyendo:<ul class="mt-3 space-y-2"><li><strong>Anuncios de imagen:</strong> Son anuncios que incluyen una imagen o video y un texto breve.</li><li><strong>Anuncios de carrusel:</strong> Son anuncios que muestran varias imágenes o videos en un formato deslizable.</li><li><strong>Anuncios de historias:</strong> Son anuncios que se muestran en las historias de Facebook e Instagram.</li><li><strong>Anuncios de video:</strong> Son anuncios que se reproducen automáticamente cuando un usuario visita una página web o aplicación móvil.</li><li><strong>Anuncios de lead ads:</strong> Son anuncios que permiten a los usuarios registrarse para recibir más información sobre tu negocio o producto.</li></ul>',
       },
       {
         question: "¿Cuáles son los beneficios de usar Meta Ads?",
-        answer: "<strong>Meta Ads</strong> ofrece una serie de beneficios, como:<ul class=\"mt-3 space-y-2\"><li><strong>Llegar a una audiencia amplia:</strong> Meta Ads te permite llegar a millones de personas que utilizan las plataformas de Meta.</li><li><strong>Dirigirte a tu público objetivo:</strong> Puedes utilizar Meta Ads para dirigirte a tus anuncios a personas específicas en función de su ubicación, intereses, edad y otros factores.</li><li><strong>Medir tu éxito:</strong> Meta Ads te permite medir el rendimiento de tus campañas y realizar ajustes para mejorar tus resultados.</li><li><strong>Pagar solo por resultados:</strong> Solo pagas cuando alguien hace clic en tu anuncio o realiza una conversión.</li></ul>",
+        answer:
+          '<strong>Meta Ads</strong> ofrece una serie de beneficios, como:<ul class="mt-3 space-y-2"><li><strong>Llegar a una audiencia amplia:</strong> Meta Ads te permite llegar a millones de personas que utilizan las plataformas de Meta.</li><li><strong>Dirigirte a tu público objetivo:</strong> Puedes utilizar Meta Ads para dirigirte a tus anuncios a personas específicas en función de su ubicación, intereses, edad y otros factores.</li><li><strong>Medir tu éxito:</strong> Meta Ads te permite medir el rendimiento de tus campañas y realizar ajustes para mejorar tus resultados.</li><li><strong>Pagar solo por resultados:</strong> Solo pagas cuando alguien hace clic en tu anuncio o realiza una conversión.</li></ul>',
       },
     ]}
   />

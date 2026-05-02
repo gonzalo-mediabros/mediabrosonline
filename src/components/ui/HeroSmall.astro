@@ -6,6 +6,7 @@ interface Props {
   title: string;
   subtitle?: string;
   icon?: string;
+  icons?: string[];
   backgroundImage?: string;
   bgColor?: string;
 }
@@ -14,6 +15,7 @@ const {
   title,
   subtitle,
   icon,
+  icons,
   backgroundImage = "pattern-ondulado.svg",
   bgColor = "bg-brand-primary"
 } = Astro.props;
@@ -38,7 +40,15 @@ const BASE = import.meta.env.BASE_URL;
     <m-container class="z-10">
       <m-row class="z-10 flex-col items-center text-center">
         <m-col class="items-center max-w-3xl space-y-4">
-          {icon && <img src={`${BASE}imgs/iconos/${icon}`} alt={title} class="size-16" />}
+          {(icons && icons.length > 0) ? (
+            <div class="flex items-center justify-center gap-2">
+              {icons.map((ic) => (
+                <img src={`${BASE}imgs/icons/${ic}`} alt="" class="size-14 rounded-full" />
+              ))}
+            </div>
+          ) : icon && (
+            <img src={`${BASE}imgs/icons/${icon}`} alt={title} class="size-16 rounded-full" />
+          )}
           <h1
             class="text-4xl sm:text-5xl md:text-7xl font-display leading-[1.1] tracking-tight"
           >
