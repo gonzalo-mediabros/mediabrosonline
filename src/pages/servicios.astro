@@ -7,6 +7,7 @@ import ChipOvertitle from "@/components/atoms/ChipOvertitle.astro";
 import CardService from "@/components/atoms/CardService.astro";
 import Certificaciones from "@/components/ui/Certificaciones.astro";
 import Footer from "@/components/ui/Footer.astro";
+import MbSuite from "@/components/home/MbSuite.astro";
 
 const { pathname } = Astro.url;
 const BASE = import.meta.env.BASE_URL;
@@ -140,6 +141,7 @@ const analyticsServices = [
           </div>
         </m-col>
       </m-row>
+      <MbSuite />
     </m-container>
   </section>
 

@@ -1,18 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Red+Hat+Display:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
 
-/* ===== LAYER 1: Primitivos de marca ===== */
 @theme {
-  /* Colors — paleta cruda (genera utilities bg-brand-*, text-brand-*, etc.) */
-  /* Primitivos activos: dark, dark-2, gris, pastel-verde (usados en componentes) */
   --color-brand-dark: #171931;
   --color-brand-dark-2: #141724;
   --color-brand-gris: #4e6286;
   --color-brand-pastel-verde: #e9f5e4;
-  /* brand-celeste, brand-verde, brand-turquesa, brand-fondo, brand-pastel-* → eliminados: */
-  /* los componentes usan los tokens semánticos (brand-primary, brand-accent, etc.) */
 
-  /* Radius — escala completa con nombres estándar Tailwind */
+  /* Radius  */
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -28,7 +23,18 @@
   --shadow-md: 0 4px 12px rgba(31, 33, 61, 0.1);
   --shadow-lg: 0 8px 30px rgba(31, 33, 61, 0.14);
 
-  /* Text sizes — escala completa (valores default Tailwind v4) */
+  /* Button glow shadows */
+  --shadow-glow-primary:
+    0 0 0 1.5px #148bef,
+    0 4px 20px rgba(20, 139, 239, 0.35);
+  --shadow-glow-dark:
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 6px 24px rgba(0, 0, 0, 0.4);
+  --shadow-glow-white:
+    0 0 0 1.5px rgba(20, 139, 239, 0.6),
+    0 4px 16px rgba(20, 139, 239, 0.18);
+
+  /* Text sizes  */
   --text-xs: 0.75rem;
   --text-sm: 0.9rem;
   --text-base: 1rem;
@@ -62,7 +68,6 @@
   --breakpoint-3xl: 1920px;
 }
 
-/* ===== LAYER 2: Tokens semánticos ===== */
 /* Valores light mode — IntelliSense los resuelve como colores */
 /* Dark mode sobreescribe las mismas variables en .dark */
 @theme {
@@ -95,12 +100,6 @@
 @source inline("bg-brand-primary bg-brand-dark bg-brand-surface text-white text-brand-muted ring-1 ring-2 ring-brand-primary ring-brand-border ring-offset-2 relative z-10 inline-flex");
 
 /* ===== Utility variables ===== */
-:root {
-  --font-size-base: 17px;
-  --section-py-sm: 3rem;
-  --section-py-lg: 5rem;
-  --section-py-xl: 7rem;
-}
 
 /* ===== Dark mode overrides (listo para activar) ===== */
 /* @custom-variant dark (&:where(.dark, .dark *)); */
@@ -122,7 +121,14 @@
 }
 
 /* ===== Base styles ===== */
+
 @layer base {
+  :root {
+    --font-size-base: 17px;
+    --section-py-sm: 3rem;
+    --section-py-lg: 5rem;
+    --section-py-xl: 7rem;
+  }
   html {
     font-size: var(--font-size-base);
     line-height: 1em;
@@ -132,9 +138,6 @@
   body {
     background: var(--color-brand-bg);
     color: var(--color-brand-foreground);
-    /* background: url("../public/imgs/grad.png") repeat;
-    background-size: cover;
-    background-position: top; */
   }
 
   @media (max-width: 767px) {
@@ -144,9 +147,6 @@
       --radius-xl: 16px;
       --radius-2xl: 20px;
     }
-  }
-  section {
-    /* background: transparent !important; */
   }
   m-container {
     display: block;
@@ -184,6 +184,23 @@
   strong {
     font-weight: 700;
     color: var(--color-brand-dark);
+  }
+}
+
+/* ===== Animations ===== */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
   }
 }
 

@@ -32,15 +32,15 @@ const Tag = isLink ? "a" : "button";
 
 const variants = {
   celeste: {
-    pill: "bg-brand-primary hover:bg-brand-primary-hover text-white ",
+    pill: "bg-brand-primary hover:bg-brand-primary-hover text-white hover:shadow-glow-primary hover:-translate-y-px",
     circle: "bg-white/10",
   },
   dark: {
-    pill: "bg-brand-dark hover:bg-brand-dark-2 text-white",
+    pill: "bg-brand-dark hover:bg-brand-dark-2 text-white hover:shadow-glow-dark hover:-translate-y-px",
     circle: "bg-white/5",
   },
   white: {
-    pill: "bg-brand-surface hover:bg-brand-bg-alt text-brand-foreground",
+    pill: "bg-brand-surface hover:bg-brand-bg-alt text-brand-foreground hover:shadow-glow-white hover:-translate-y-px",
     circle: "bg-brand-dark",
   },
 };
@@ -59,7 +59,7 @@ const currVariant = hasCustomColors
     "inline-flex items-center justify-center gap-3",
     "pl-6 pr-1",
     "py-1",
-    "rounded-full font-medium font-display transition-colors no-underline relative overflow-clip",
+    "rounded-full font-medium font-display transition-all duration-200 no-underline relative overflow-clip",
     isLink ? "cursor-pointer" : "border-none cursor-pointer",
     currVariant.pill,
     className,

@@ -3,15 +3,20 @@ import Layout from "@/layouts/Layout.astro";
 import Navigation from "@/components/ui/Navigation.astro";
 import HeroSmall from "@/components/ui/HeroSmall.astro";
 import Breadcrumb from "@/components/atoms/Breadcrumb.astro";
-import ContactSection from "@/components/ui/ContactSection.astro";
+import ChipOvertitle from "@/components/atoms/ChipOvertitle.astro";
+import CardSection from "@/components/atoms/CardSection.astro";
+import FormContacto from "@/components/form/FormContacto.astro";
 import Certificaciones from "@/components/ui/Certificaciones.astro";
 import Footer from "@/components/ui/Footer.astro";
+import { phoneNumbers } from "@/data/whatsapp";
 
+const BASE = import.meta.env.BASE_URL;
 const { pathname } = Astro.url;
 
 const SEO = {
   title: "Contacto - Envianos tu consulta! | MediaBros",
-  description: "Con sede central en Buenos Aires, brindamos servicios de marketing digital en todo Latinoamérica, Estados Unidos, Canadá y varios países de Europa.",
+  description:
+    "Con sede central en Buenos Aires, brindamos servicios de marketing digital en todo Latinoamérica, Estados Unidos, Canadá y varios países de Europa.",
   canonicalURL: new URL(Astro.url.pathname, Astro.site ?? Astro.url).href,
   ogType: "website",
   noindex: false,
@@ -28,7 +33,72 @@ const SEO = {
 
   <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Contacto" }]} />
 
-  <ContactSection />
+  <section id="contacto" class="py-14 md:py-24 bg-brand-bg">
+    <m-container class="p-0 md:px-4">
+      <CardSection
+        variant="primary"
+        glowStyle="dual"
+        backgroundPattern={BASE + "imgs/mapa.png"}
+        backgroundPatternOpacity={0.3}
+        class="flex items-center px-2 py-4 lg:pr-10 lg:pl-20 lg:py-10 md:p-10"
+      >
+        <m-row class="py-10 md:py-0 flex-col items-center gap-20 lg:flex-row">
+          <m-col class="flex-1 w-full lg:w-1/2 gap-0">
+            <ChipOvertitle
+              text="Conversemos"
+              theme="dark"
+              class="mb-4 md:mb-8"
+            />
+            <h2
+              class="mb-6 text-4xl leading-tight text-white md:text-5xl lg:text-6xl font-display"
+            >
+              ¿Necesitas asesoramiento?
+            </h2>
+            <p class="leading-relaxed text-white/90 mb-8">
+              Conversemos juntos sobre Marketing Digital. Exploremos las
+              posibles acciones para tu empresa ó revisemos tus acciones
+              actuales para encontrar opciones de mejora!
+            </p>
+            <ul class="flex flex-col gap-2 mb-4">
+              {
+                phoneNumbers.map((c) => (
+                  <li>
+                    <a
+                      href={`tel:${c.tel.replace(/\s/g, "")}`}
+                      target="_blank"
+                      data-pais={c.label}
+                      class="text-white/90 hover:text-white transition-colors"
+                    >
+                      {c.label} {c.tel}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+            <a
+              href="mailto:info@mediabrosonline.com"
+              class="text-white/90 hover:text-white transition-colors"
+            >
+              info@mediabrosonline.com
+            </a>
+          </m-col>
+          <m-col class="flex-1 w-full lg:w-1/2">
+            <div class="bg-white rounded-xl p-6">
+              <h3
+                class="text-2xl font-display text-brand-foreground mb-2 text-center"
+              >
+                Asesoramiento personalizado
+              </h3>
+              <p class="text-slate-500 text-center mb-8">
+                Completa tus datos y nos ponemos en contacto.
+              </p>
+              <FormContacto />
+            </div>
+          </m-col>
+        </m-row>
+      </CardSection>
+    </m-container>
+  </section>
 
   <Certificaciones />
   <Footer />

@@ -129,6 +129,12 @@ const isDark = theme === "dark";
     const isMultistep = steps.length > 0;
     let currentStep = 0;
 
+    const sourceInput = document.createElement("input");
+    sourceInput.type = "hidden";
+    sourceInput.name = "source_url";
+    sourceInput.value = window.location.href;
+    form.appendChild(sourceInput);
+
     form.addEventListener("invalid", function (e) {
       var el = e.target;
       if (el && !el.hasAttribute("data-select-input")) el.setAttribute("data-invalid", "");

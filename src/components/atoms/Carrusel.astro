@@ -59,12 +59,14 @@ const id = `embla-${Math.random().toString(36).slice(2, 8)}`;
 // Gap siempre numérico en px
 const gapNum = typeof gap === "number" ? gap : 24;
 
+// padding-based gap: each slide carries padding-left so clones keep the gap at loop seam.
+// flex-basis formula: (100% + gap) / N so that content area stays (100% - gap*(N-1)) / N.
 const computeSlideSize = (spv: SlideCount, g: number) =>
   spv === "auto"
     ? "auto"
     : spv === 1
       ? "100%"
-      : `calc((100% - ${g * (spv - 1)}px) / ${spv})`;
+      : `calc((100% + ${g}px) / ${spv})`;
 
 // Breakpoints Tailwind v4
 const bpMap: Record<string, number> = {
@@ -339,15 +341,15 @@ const sidesNextClass = arrowsX === "out" ? "-right-6" : "right-3";
 
   .embla__container {
     display: flex;
-    gap: var(--embla-gap, 0px);
+    /* Negative margin compensates the leading padding of the first slide */
+    margin-left: calc(var(--embla-gap, 0px) * -1);
   }
 
-  /* Cada hijo directo se comporta como slide.
-     :global() es necesario porque los hijos del <slot> pertenecen
-     a otro componente y no tienen el mismo data-astro-cid. */
+  /* padding-left instead of gap so Embla loop clones carry the spacing */
   :global(.embla__container > *) {
     flex: 0 0 var(--embla-slide-size, 100%);
     min-width: 0;
+    padding-left: var(--embla-gap, 0px);
   }
 
   /* Light theme arrows */

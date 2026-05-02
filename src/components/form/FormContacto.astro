@@ -14,10 +14,14 @@ import Textarea from "@/components/form/Textarea.astro";
   successTitle="¡Mensaje enviado!"
   successMessage="Nos ponemos en contacto a la brevedad."
 >
-  <Input name="name" label="Nombre" type="text" theme="light" required />
-  <Input name="email" label="Email" type="email" theme="light" required />
-  <Input name="phone" label="Teléfono" type="tel" theme="light" required />
-  <Input name="website" label="Sitio web" type="text" theme="light" />
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <Input name="name" label="Nombre" type="text" theme="light" required />
+    <Input name="email" label="Email" type="email" theme="light" required />
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <Input name="phone" label="Teléfono" type="tel" theme="light" required />
+    <Input name="website" label="Sitio web" type="text" theme="light" />
+  </div>
   <Textarea name="message" label="Mensaje" theme="light" required />
   <input type="hidden" name="_website" value="" />
 </Form>

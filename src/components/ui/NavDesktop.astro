@@ -26,8 +26,8 @@ const linkActive   = theme === "dark"
 const linkInactive = theme === "dark" ? "text-white/90" : "text-brand-foreground";
 
 const dropdownPanelClass = theme === "dark"
-  ? "relative p-4 border shadow-2xl rounded-2xl border-white/5 bg-brand-dark/95 backdrop-blur-xl"
-  : "relative p-4 border rounded-2xl border-brand-gris/15 bg-brand-surface shadow-sm";
+  ? "relative p-4 border shadow-2xl rounded-2xl border-white/5 bg-brand-dark/90 backdrop-blur-xl"
+  : "relative p-4 border rounded-2xl border-brand-gris/15 bg-brand-surface/90 backdrop-blur-xl shadow-sm";
 
 const dropdownArrowColor = theme === "dark"
   ? "rgba(23, 25, 49, 0.95)"
@@ -38,8 +38,8 @@ const dropdownItemClass = theme === "dark"
   : "flex items-center gap-3 px-3 py-2.5 rounded-full transition-colors no-underline text-sm text-brand-foreground/80 hover:text-brand-foreground hover:bg-brand-dark/3 border border-brand-dark/0 hover:border-brand-dark/2";
 
 const iconContainerClass = theme === "dark"
-  ? "flex items-center justify-center rounded-full bg-white/10  p-1 shrink-0"
-  : "flex items-center justify-center rounded-full bg-brand-gris/2  p-1 shrink-0";
+  ? "flex items-center justify-center shrink-0 rounded-full border-4 overflow-hidden border-brand-gris/20"
+  : "flex items-center justify-center shrink-0 rounded-full border-4 overflow-hidden border-white/30 ";
 ---
 
 <nav class="items-center hidden gap-8 md:flex">
@@ -80,7 +80,7 @@ const iconContainerClass = theme === "dark"
               <li role="none">
                 <a href={svc.href} role="menuitem" class={dropdownItemClass}>
                   <div class={iconContainerClass}>
-                    <img src={svc.icon} alt="" class="object-contain size-10" />
+                    <img src={svc.icon} alt="" class="object-contain size-11" />
                   </div>
                   <span class="text-lg font-semibold font-display whitespace-nowrap">
                     {svc.label}
