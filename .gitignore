@@ -1,5 +1,5 @@
 .*
-!.github/
+# !.github/
 
 # jetbrains setting folder
 .idea/
